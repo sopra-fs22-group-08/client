@@ -1,8 +1,8 @@
 name: Deploy Project
 
-on: 
+on:
   push:
-    branches: 
+    branches:
       - master
 
 jobs:
@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # uncomment both tokens for assignment 2-4
-      # SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # auto-generated
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # auto-generated
       HEROKU_KEY: ${{ secrets.HEROKU_API_KEY }}
       HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
       HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}  
@@ -19,11 +19,11 @@ jobs:
     steps:
     # checkout repository code
     - uses: actions/checkout@v1
-   
+
     # uncomment for assignment 2-4
-    # - name: SonarCloud Scan
-    #   uses: sonarsource/sonarcloud-github-action@master
-    
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+
     # create .netrc file for heroku authentication
     # https://devcenter.heroku.com/articles/authentication
     - run: |+
@@ -35,12 +35,10 @@ jobs:
               login $HEROKU_EMAIL
               password $HEROKU_KEY
           EOF
-    
+
     # login with .netrc file
-    - run: heroku login    
-      
+    - run: heroku login
+
     # deploy code
-    - run: heroku git:remote -a $HEROKU_APP_NAME 
+    - run: heroku git:remote -a $HEROKU_APP_NAME
     - run: git push heroku HEAD:refs/heads/master
-
-
