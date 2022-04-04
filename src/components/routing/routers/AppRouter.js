@@ -6,6 +6,7 @@ import Login from "components/views/Login";
 import Profile from "components/views/Profile";
 import {ProfileGuard} from "components/routing/routeProtectors/ProfileGuard";
 import Register from "components/views/Register";
+import LandingPage from "../../views/LandingPage";
 
 /**
  * Main router of your application.
@@ -41,7 +42,7 @@ const AppRouter = () => {
           </LoginGuard>
         </Route>
         <Route exact path="/">
-          <Redirect to="/game"/>
+            <LandingPage/>
         </Route>
       </Switch>
     </BrowserRouter>
