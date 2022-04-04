@@ -13,15 +13,12 @@ however be sure not to clutter your files with an endless amount!
 As a rule of thumb, use one file per component and only add small,
 specific components that belong to the main one in the same file.
  */
-const FormField = props => {
+const FormFieldUn = props => {
   return (
     <div className="login field">
-      <label className="login label">
-        {props.label}
-      </label>
       <input
-        className="login input"
-        placeholder="enter here.."
+        className="login username-text"
+        placeholder="Enter your Username ..."
         value={props.value}
         onChange={e => props.onChange(e.target.value)}
       />
@@ -29,8 +26,27 @@ const FormField = props => {
   );
 };
 
-FormField.propTypes = {
-  label: PropTypes.string,
+FormFieldUn.propTypes = {
+    value: PropTypes.string,
+    onChange: PropTypes.func
+};
+
+const FormFieldPw = props => {
+    return (
+        <div className="login field">
+            <input
+                type="password"
+                className="login password-text"
+                placeholder="Enter your Password ..."
+                value={props.value}
+                onChange={e => props.onChange(e.target.value)}
+            />
+        </div>
+    );
+};
+
+
+FormFieldPw.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func
 };
@@ -58,31 +74,39 @@ const Login = props => {
     }
   };
 
+  document.body.style = 'background: #4757FF;';
+
   return (
     <BaseContainer>
-      <div className="login container">
-        <div className="login form">
-          <FormField
-            label="Username"
+      <div className="login title">No Brainer</div>
+      <div className="login login-text">Login</div>
+      <div className="login username-title">Username</div>
+      <div className="login username-field"></div>
+
+        <FormFieldUn
             value={username}
             onChange={un => setUsername(un)}
-          />
-          <FormField
-            label="Password"
+        />
+
+      <div className="login password-title">Password</div>
+      <div className="login password-field"></div>
+        <FormFieldPw
             value={password}
             onChange={n => setPassword(n)}
-          />
-          <div className="login button-container">
-            <Button
-              disabled={!username || !password}
-              width="100%"
-              onClick={() => doLogin()}
-            >
-              Login
-            </Button>
-          </div>
-        </div>
-      </div>
+        />
+
+
+        <Button
+            className="login loginButton"
+            disabled={!username || !password}
+            onClick={() => doLogin()}
+        >
+            Test
+        </Button>
+
+
+
+
     </BaseContainer>
   );
 };
