@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import {Spinner} from 'components/ui/Spinner';
-import {useHistory, useLocation} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import "styles/views/Profile.scss";
 
@@ -50,14 +50,20 @@ const Profile = (props) => {
     if (user) {
         content = (
                 <div className="profile">
+                    <div>First Name:</div>
+                    <div>{user.firstName}</div>
+                    <div>--------------------------- </div>
+                    <div>Last Name:</div>
+                    <div>{user.lastName}</div>
+                    <div>--------------------------- </div>
+                    <div>Email:</div>
+                    <div>{user.email}</div>
+                    <div>--------------------------- </div>
                     <div>Username:</div>
                     <div>{user.username}</div>
                     <div>--------------------------- </div>
                     <div>Status:</div>
                     <div>{user.status}</div>
-                    <div>--------------------------- </div>
-                    <div>Email:</div>
-                    <div>{user.email}</div>
                     <div>--------------------------- </div>
                 </div>
         );

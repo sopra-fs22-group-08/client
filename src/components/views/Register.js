@@ -37,14 +37,15 @@ FormField.propTypes = {
 
 const Register = () => {
   const history = useHistory();
-  const [name, setName] = useState(null);
+  const [firstName, setFirstName] = useState(null);
+  const [lastName, setLastName] = useState(null);
   const [username, setUsername] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
 
   const doRegister = async () => {
     try {
-      const requestBody = JSON.stringify({username, name, email, password});
+      const requestBody = JSON.stringify({username, firstName, lastName, email, password});
       const response = await api.post('/users', requestBody);
 
       // Get the returned user and update a new object.
@@ -69,19 +70,24 @@ const Register = () => {
       <div className="register container">
         <div className="register form">
           <FormField
-            label="Username"
-            value={username}
-            onChange={un => setUsername(un)}
+            label="firstName"
+            value={firstName}
+            onChange={un => setFirstName(un)}
           />
           <FormField
-             label="Name"
-             value={name}
-             onChange={n => setName(n)}
+             label="lastName"
+             value={lastName}
+             onChange={n => setLastName(n)}
           />
           <FormField
             label="Email"
             value={email}
             onChange={n => setEmail(n)}
+          />
+          <FormField
+                  label="Username"
+                  value={username}
+                  onChange={un => setUsername(un)}
           />
           <FormField
              label="Password"
@@ -90,7 +96,7 @@ const Register = () => {
           />
           <div className="register button-container">
             <Button
-              disabled={!username || !name}
+              disabled={!username || !firstName}
               width="100%"
               onClick={() => doRegister()}
             >
