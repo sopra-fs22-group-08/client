@@ -6,6 +6,7 @@ import BaseContainer from "components/ui/BaseContainer";
 import "styles/views/Profile.scss";
 import PropTypes from "prop-types";
 import {Button} from 'components/ui/Button';
+import User from "../../models/User";
 
 const FormFieldFn = props => {
     return (
@@ -117,6 +118,7 @@ const Profile = (props) => {
     const [username, setUsername] = useState(null);
     const [editButton, setEditButton] = useState(false);
     const [password, setPassword] = useState(null);
+    const [burgerMenu, setBurgerMenu] = useState(false);
 
     const doUpdate = async () => {
         const id = localStorage.getItem("userId")
@@ -125,6 +127,32 @@ const Profile = (props) => {
         const response = await api.put('/users/'+ id, requestBody);
 
         window.location.reload(false);
+    };
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        history.push('/login');
+    }
+
+    const goProfile = async () => {
+        const id = localStorage.getItem("userId")
+        history.push(`/profile/` + id);
+
+    };
+
+    const goHome = async () => {
+        history.push(`/home`);
+
+    };
+
+    const goStore = async () => {
+        history.push(`/store`);
+
+    };
+
+    const goCreator = async () => {
+        history.push(`/creator`);
+
     };
 
     // the effect hook can be used to react to change in your component.
@@ -234,15 +262,59 @@ const Profile = (props) => {
     );
 
 
+    let burgerMenuContent = (
+        <BaseContainer>
+            <div className="profile window"></div>
+            <div className="profile username"></div>
+            <Button
+                className="profile username"
+                onClick={() => {setBurgerMenu(false); goProfile();}}
+            >{user?.username  ? user.username : "Username"}
+            </Button>
+            <Button
+                className="profile home"
+                onClick={() => goHome()}
+            >Home
+            </Button>
+            <Button
+                className="profile store"
+                onClick={() => goStore()}
+            >Store
+            </Button>
+            <Button
+                className="profile creator"
+                onClick={() => goCreator()}
+            >Creator
+            </Button>
+            <Button
+                className="profile logoutButton"
+                onClick={() => logout()}
+            >Logout
+            </Button>
+            <div
+                className="profile x"
+                onClick={() => setBurgerMenu(false)}
+
+            >x</div>
+
+        </BaseContainer>
+    )
+
 
     if (user) {
         content = (
             <BaseContainer>
                 <div className="profile title">NB</div>
 
+
                 <div className="profile burger1"></div>
                 <div className="profile burger2"></div>
                 <div className="profile burger3"></div>
+                <div
+                    className="profile burgerButton"
+                    // open edit window
+                    onClick={() => setBurgerMenu(true)}
+                ></div>
 
                 <div className="profile login-text">Profile</div>
 
@@ -296,6 +368,7 @@ const Profile = (props) => {
     return (
             <BaseContainer>
                 {editButton ? edit : content}
+                {burgerMenu ? burgerMenuContent : null}
             </BaseContainer>
     );
 }
