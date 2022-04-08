@@ -7,24 +7,94 @@ import "styles/views/Profile.scss";
 import PropTypes from "prop-types";
 import {Button} from 'components/ui/Button';
 
-const FormField = props => {
+const FormFieldFn = props => {
     return (
-            <div className="register field">
-                <label className="register label">
-                    {props.label}
-                </label>
-                <input
-                        className="register input"
-                        placeholder="enter here.."
-                        value={props.value}
-                        onChange={e => props.onChange(e.target.value)}
-                />
-            </div>
+        <div className="profile field">
+            <input
+                className="profile firstName-text"
+                placeholder="Enter your First Name ..."
+                value={props.value}
+                onChange={e => props.onChange(e.target.value)}
+            />
+        </div>
     );
 };
 
-FormField.propTypes = {
-    label: PropTypes.string,
+FormFieldFn.propTypes = {
+    value: PropTypes.string,
+    onChange: PropTypes.func
+};
+
+const FormFieldLn = props => {
+    return (
+        <div className="profile field">
+            <input
+                className="profile lastName-text"
+                placeholder="Enter your Last Name ..."
+                value={props.value}
+                onChange={e => props.onChange(e.target.value)}
+            />
+        </div>
+    );
+};
+
+FormFieldLn.propTypes = {
+    value: PropTypes.string,
+    onChange: PropTypes.func
+};
+
+const FormFieldEm = props => {
+    return (
+        <div className="profile field">
+            <input
+                className="profile email-text"
+                placeholder="Enter your Email ..."
+                value={props.value}
+                onChange={e => props.onChange(e.target.value)}
+            />
+        </div>
+    );
+};
+
+FormFieldEm.propTypes = {
+    value: PropTypes.string,
+    onChange: PropTypes.func
+};
+
+const FormFieldUn = props => {
+    return (
+        <div className="profile field">
+            <input
+                className="profile username-text"
+                placeholder="Enter your Username ..."
+                value={props.value}
+                onChange={e => props.onChange(e.target.value)}
+            />
+        </div>
+    );
+};
+
+FormFieldUn.propTypes = {
+    value: PropTypes.string,
+    onChange: PropTypes.func
+};
+
+const FormFieldPw = props => {
+    return (
+        <div className="profile field">
+            <input
+                type="password"
+                className="profile password-text"
+                placeholder="********"
+                value={props.value}
+                onChange={e => props.onChange(e.target.value)}
+            />
+        </div>
+    );
+};
+
+
+FormFieldPw.propTypes = {
     value: PropTypes.string,
     onChange: PropTypes.func
 };
@@ -46,6 +116,7 @@ const Profile = (props) => {
     const [email, setEmail] = useState(null);
     const [username, setUsername] = useState(null);
     const [editButton, setEditButton] = useState(false);
+    const [password, setPassword] = useState(null);
 
     const doUpdate = async () => {
         const id = localStorage.getItem("userId")
@@ -82,28 +153,28 @@ const Profile = (props) => {
         fetchData();
     }, []);
 
-    let content = <Spinner/>;
+    let content;
     let addEditButton = "";
     let edit;
 
     edit = (
             <div>
-                <FormField
+                <FormFieldUn
                         label="First Name"
                         value={firstName}
                         onChange={b => setFirstName(b)}
                 />
-                <FormField
+                <FormFieldUn
                         label="Last Name"
                         value={lastName}
                         onChange={b => setLastName(b)}
                 />
-                <FormField
+                <FormFieldUn
                         label="Email"
                         value={email}
                         onChange={b => setEmail(b)}
                 />
-                <FormField
+                <FormFieldUn
                         label="Username"
                         value={username}
                         onChange={un => setUsername(un)}
@@ -121,9 +192,9 @@ const Profile = (props) => {
 
     addEditButton = (
             <Button
-                    width="100%"
-                    // open edit window
-                    onClick={() => setEditButton(true)}
+                className="register createButton"
+                // open edit window
+                onClick={() => setEditButton(true)}
             >
                 Edit
             </Button>
@@ -133,34 +204,65 @@ const Profile = (props) => {
 
     if (user) {
         content = (
-                <div className="profile">
-                    <div>First Name:</div>
-                    <div>{user.firstName}</div>
-                    <div>--------------------------- </div>
-                    <div>Last Name:</div>
-                    <div>{user.lastName}</div>
-                    <div>--------------------------- </div>
-                    <div>Email:</div>
-                    <div>{user.email}</div>
-                    <div>--------------------------- </div>
-                    <div>Username:</div>
-                    <div>{user.username}</div>
-                    <div>--------------------------- </div>
-                    <div>Status:</div>
-                    <div>{user.status}</div>
-                    <div>--------------------------- </div>
-                    {addEditButton}
-                </div>
+            <BaseContainer>
+                <div className="profile title">NB</div>
+
+                <div className="profile burger1"></div>
+                <div className="profile burger2"></div>
+                <div className="profile burger3"></div>
+
+                <div className="profile login-text">Create New Account</div>
+
+                <div className="profile firstName-title">First Name</div>
+                <div className="profile firstName-field"></div>
+
+                <FormFieldFn
+                    value={user.firstName}
+                    onChange={un => setFirstName(un)}
+                />
+
+                <div className="profile lastName-title">Last Name</div>
+                <div className="profile lastName-field"></div>
+
+                <FormFieldLn
+                    value={user.lastName}
+                    onChange={n => setLastName(n)}
+                />
+
+                <div className="profile email-title">Email</div>
+                <div className="profile email-field"></div>
+
+                <FormFieldEm
+                    value={user.email}
+                    onChange={n => setEmail(n)}
+                />
+
+                <div className="profile username-title">Username</div>
+                <div className="profile username-field"></div>
+
+                <FormFieldUn
+                    value={user.username}
+                    onChange={un => setUsername(un)}
+                />
+
+                <div className="profile password-title">Password</div>
+                <div className="profile password-field"></div>
+                <FormFieldPw
+                    value={password}
+                    onChange={n => setPassword(n)}
+                />
+                {addEditButton}
+
+            </BaseContainer>
+
         );
     }
 
-    return (
-            <BaseContainer className="profile container">
-                <h2>Profile</h2>
-                <p className="profile paragraph">
-                    {editButton ? edit : content}
-                </p>
+    document.body.style = 'background: #4757FF;';
 
+    return (
+            <BaseContainer>
+                {editButton ? edit : content}
             </BaseContainer>
     );
 }

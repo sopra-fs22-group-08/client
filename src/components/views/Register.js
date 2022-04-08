@@ -132,7 +132,7 @@ const Register = () => {
       // Register successfully worked --> navigate to the route /game in the GameRouter
       history.push(`/game`);
     } catch (error) {
-      alert(`Something went wrong during the Regristration: \n${handleError(error)}`);
+      alert(`Something went wrong during the Registration: \n${handleError(error)}`);
     }
   };
 
