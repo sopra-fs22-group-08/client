@@ -1,6 +1,333 @@
 @import 'src/styles/_theme.scss';
 
 .register {
+
+  &.title {
+    position: absolute;
+    width: 235px;
+    height: 45px;
+    left: 128px;
+    top: 20px;
+
+    font-family: 'Racing Sans One', cursive;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 46px;
+    line-height: 58px;
+    text-align: center;
+
+    color: #000000;
+
+  }
+
+  &.login-text {
+    position: absolute;
+    width: 510px;
+    height: 49px;
+    left: 501px;
+    top: 136px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 54px;
+    line-height: 63px;
+
+    color: #000000;
+  }
+
+  //FirstName
+  &.firstName-title {
+    position: absolute;
+    width: 160px;
+    height: 38px;
+    left: 575px;
+    top: 249px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    /* identical to box height */
+
+
+    color: #000000;
+
+  }
+  &.firstName-field {
+    position: absolute;
+    width: 363px;
+    height: 49px;
+    left: 575px;
+    top: 292px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+  }
+  &.firstName-text {
+    position: absolute;
+    width: 281px;
+    height: 22px;
+    left: 595px;
+    top: 303px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+
+    color: rgba(0, 0, 0, 0.6);
+
+
+    border: none;
+    border-width: 0;
+  }
+
+  //LastName
+  &.lastName-title {
+    position: absolute;
+    width: 160px;
+    height: 38px;
+    left: 575px;
+    top: 359px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    /* identical to box height */
+
+
+    color: #000000;
+
+  }
+  &.lastName-field {
+    position: absolute;
+    width: 363px;
+    height: 49px;
+    left: 575px;
+    top: 402px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+  }
+  &.lastName-text {
+    position: absolute;
+    width: 281px;
+    height: 22px;
+    left: 595px;
+    top: 413px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+
+    color: rgba(0, 0, 0, 0.6);
+
+
+
+    border: none;
+    border-width: 0;
+  }
+
+  //Email
+  &.email-title {
+    position: absolute;
+    width: 160px;
+    height: 38px;
+    left: 575px;
+    top: 469px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    /* identical to box height */
+
+
+    color: #000000;
+
+  }
+  &.email-field {
+    position: absolute;
+    width: 363px;
+    height: 49px;
+    left: 575px;
+    top: 512px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+  }
+  &.email-text {
+    position: absolute;
+    width: 281px;
+    height: 22px;
+    left: 595px;
+    top: 523px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+
+    color: rgba(0, 0, 0, 0.6);
+
+
+
+    border: none;
+    border-width: 0;
+  }
+
+
+  //Username
+  &.username-title {
+    position: absolute;
+    width: 149px;
+    height: 38px;
+    left: 574px;
+    top: 579px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    /* identical to box height */
+
+
+    color: #000000;
+
+  }
+  &.username-field {
+    position: absolute;
+    width: 363px;
+    height: 49px;
+    left: 574px;
+    top: 622px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+  }
+  &.username-text {
+    position: absolute;
+    width: 281px;
+    height: 22px;
+    left: 594px;
+    top: 633px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+
+    color: rgba(0, 0, 0, 0.6);
+
+
+    border: none;
+    border-width: 0;
+  }
+
+  //Password
+  &.password-title {
+    position: absolute;
+    width: 160px;
+    height: 38px;
+    left: 575px;
+    top: 689px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    /* identical to box height */
+
+
+    color: #000000;
+
+
+  }
+  &.password-field {
+    position: absolute;
+    width: 363px;
+    height: 49px;
+    left: 575px;
+    top: 732px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+  }
+  &.password-text {
+    position: absolute;
+    width: 281px;
+    height: 22px;
+    left: 595px;
+    top: 743px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+
+    color: rgba(0, 0, 0, 0.6);
+
+    border: none;
+    border-width: 0;
+
+  }
+
+  &.createButton {
+    position: absolute;
+    width: 146px;
+    height: 63px;
+    left: 683px;
+    top: 832px;
+
+    background: #FFCA00;
+    border-radius: 20px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+
+    color: #000000;
+
+
+  }
+
+
+
+
+
+
+
   &.container {
     margin-top: 2em;
     min-height: 300px;

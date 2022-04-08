@@ -13,24 +13,95 @@ however be sure not to clutter your files with an endless amount!
 As a rule of thumb, use one file per component and only add small,
 specific components that belong to the main one in the same file.
  */
-const FormField = props => {
+
+const FormFieldFn = props => {
   return (
-    <div className="register field">
-      <label className="register label">
-        {props.label}
-      </label>
-      <input
-        className="register input"
-        placeholder="enter here.."
-        value={props.value}
-        onChange={e => props.onChange(e.target.value)}
-      />
-    </div>
+      <div className="register field">
+        <input
+            className="register firstName-text"
+            placeholder="Enter your First Name ..."
+            value={props.value}
+            onChange={e => props.onChange(e.target.value)}
+        />
+      </div>
   );
 };
 
-FormField.propTypes = {
-  label: PropTypes.string,
+FormFieldFn.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func
+};
+
+const FormFieldLn = props => {
+  return (
+      <div className="register field">
+        <input
+            className="register lastName-text"
+            placeholder="Enter your Last Name ..."
+            value={props.value}
+            onChange={e => props.onChange(e.target.value)}
+        />
+      </div>
+  );
+};
+
+FormFieldLn.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func
+};
+
+const FormFieldEm = props => {
+  return (
+      <div className="register field">
+        <input
+            className="register email-text"
+            placeholder="Enter your Email ..."
+            value={props.value}
+            onChange={e => props.onChange(e.target.value)}
+        />
+      </div>
+  );
+};
+
+FormFieldEm.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func
+};
+
+const FormFieldUn = props => {
+  return (
+      <div className="register field">
+        <input
+            className="register username-text"
+            placeholder="Enter your Username ..."
+            value={props.value}
+            onChange={e => props.onChange(e.target.value)}
+        />
+      </div>
+  );
+};
+
+FormFieldUn.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func
+};
+
+const FormFieldPw = props => {
+  return (
+      <div className="register field">
+        <input
+            type="password"
+            className="register password-text"
+            placeholder="Enter your Password ..."
+            value={props.value}
+            onChange={e => props.onChange(e.target.value)}
+        />
+      </div>
+  );
+};
+
+
+FormFieldPw.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func
 };
@@ -65,46 +136,62 @@ const Register = () => {
     }
   };
 
+  document.body.style = 'background: #4757FF;';
+
   return (
+
     <BaseContainer>
-      <div className="register container">
-        <div className="register form">
-          <FormField
-            label="firstName"
-            value={firstName}
-            onChange={un => setFirstName(un)}
-          />
-          <FormField
-             label="lastName"
-             value={lastName}
-             onChange={n => setLastName(n)}
-          />
-          <FormField
-            label="Email"
-            value={email}
-            onChange={n => setEmail(n)}
-          />
-          <FormField
-                  label="Username"
-                  value={username}
-                  onChange={un => setUsername(un)}
-          />
-          <FormField
-             label="Password"
-             value={password}
-              onChange={n => setPassword(n)}
-          />
-          <div className="register button-container">
-            <Button
-              disabled={!username || !firstName}
-              width="100%"
-              onClick={() => doRegister()}
-            >
-              Register
-            </Button>
-          </div>
-        </div>
-      </div>
+      <div className="register title">No Brainer</div>
+      <div className="register login-text">Create New Account</div>
+
+      <div className="register firstName-title">First Name</div>
+      <div className="register firstName-field"></div>
+
+      <FormFieldFn
+          value={firstName}
+          onChange={un => setFirstName(un)}
+      />
+
+      <div className="register lastName-title">Last Name</div>
+      <div className="register lastName-field"></div>
+
+      <FormFieldLn
+          value={lastName}
+          onChange={n => setLastName(n)}
+      />
+
+      <div className="register email-title">Email</div>
+      <div className="register email-field"></div>
+
+      <FormFieldEm
+          value={email}
+          onChange={n => setEmail(n)}
+      />
+
+      <div className="register username-title">Username</div>
+      <div className="register username-field"></div>
+
+      <FormFieldUn
+          value={username}
+          onChange={un => setUsername(un)}
+      />
+
+      <div className="register password-title">Password</div>
+      <div className="register password-field"></div>
+      <FormFieldPw
+          value={password}
+          onChange={n => setPassword(n)}
+      />
+
+
+      <Button
+          className="register createButton"
+          disabled={!firstName || !lastName || !email || !username || !password}
+          onClick={() => doRegister()}
+      >
+        Create
+      </Button>
+
     </BaseContainer>
   );
 };

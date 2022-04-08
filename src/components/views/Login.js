@@ -101,7 +101,7 @@ const Login = props => {
             disabled={!username || !password}
             onClick={() => doLogin()}
         >
-            Test
+            Login
         </Button>
 
 
