@@ -25,6 +25,8 @@ const LandingPage = props => {
     history.push(`/register`);
   };
 
+  document.body.style = 'background: #FFFFFF;';
+
   return (
     <BaseContainer>
       <div className="landingPage title"> No Brainer</div>
