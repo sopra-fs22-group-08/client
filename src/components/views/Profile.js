@@ -141,7 +141,8 @@ const Profile = (props) => {
     };
 
     const goHome = async () => {
-        history.push(`/home`);
+        const id = localStorage.getItem("userId")
+        history.push(`/home/` + id);
 
     };
 

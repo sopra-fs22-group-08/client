@@ -7,6 +7,7 @@ import Profile from "components/views/Profile";
 import {ProfileGuard} from "components/routing/routeProtectors/ProfileGuard";
 import Register from "components/views/Register";
 import LandingPage from "../../views/LandingPage";
+import Home from "../../views/Home";
 
 /**
  * Main router of your application.
@@ -26,6 +27,12 @@ const AppRouter = () => {
             <GameRouter base="/game"/>
           </GameGuard>
         </Route>
+
+          <Route path="/home">
+              <GameGuard>
+                  <Home/>
+              </GameGuard>
+          </Route>
         <Route path="/profile">
             <ProfileGuard>
                 <Profile/>
