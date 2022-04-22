@@ -74,7 +74,8 @@ const Profile = (props) => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
             try {
-                const userId = location.pathname.match(/\d+$/);
+                const userId = localStorage.getItem("userId")
+                //const userId = location.pathname.match(/\d+$/);
                 const response = await api.get('/users/' + userId);
 
                 await new Promise(resolve => setTimeout(resolve, 1000));
