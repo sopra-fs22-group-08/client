@@ -62,7 +62,7 @@ const Profile = (props) => {
     };
 
     const goCreator = async () => {
-        history.push(`/creator`);
+        history.push(`/deckcreator`);
 
     };
 
