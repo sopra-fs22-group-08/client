@@ -7,10 +7,12 @@
   for more information visit https://sass-lang.com/guide
  */
 
-.game {
+.inspect {
   &.container {
+    margin-left: auto;
+    margin-right: 15px;
+    margin-top: 15px;
     background: $background;
-    padding: 1.5em;
     border-radius: $borderRadius;
     display: flex;
     flex-direction: column;
@@ -18,7 +20,6 @@
     box-shadow: $dropShadow;
   }
   &.user-list {
-
     list-style: none;
     padding-left: 0;
   }
@@ -38,7 +39,7 @@
   }
 }
 
-.player {
+.user {
   &.container {
 
     margin: 0.5em 0;
