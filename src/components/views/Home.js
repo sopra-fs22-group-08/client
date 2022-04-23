@@ -76,12 +76,11 @@ const Profile = (props) => {
             try {
                 const userId = localStorage.getItem("userId")
                 //const userId = location.pathname.match(/\d+$/);
-                //const response = await api.get('/users/' + userId);
+                const response = await api.get('/users/' + userId);
 
                 await new Promise(resolve => setTimeout(resolve, 1000));
 
                 setUser(response.data)
-
 
                 const response2 = await api.get('/users');
 
@@ -92,7 +91,6 @@ const Profile = (props) => {
 
                 // Get the returned users and update the state.
                 setUsers(response2.data);
-
 
             } catch (error) {
                 console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
