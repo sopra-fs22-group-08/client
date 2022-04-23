@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react';
 import {useHistory, useLocation} from 'react-router-dom';
 import {api, handleError} from "../../helpers/api";
 import "styles/views/InspectDeck.scss";
+import {Button} from "../ui/Button";
 
 
 const InspectDeck = (props) => {
@@ -10,10 +11,63 @@ const InspectDeck = (props) => {
     const history = useHistory();
     const location = useLocation();
     const [users, setUsers] = useState(null)
+    const [popupFlag, setPopupFlag] = useState(null);
+
+    /*All of this commented out code is copied from our Websocket Implementation on Armins M1 repo:*/
+    /*const closePopup = () => {
+        setPopupFlag(false);
+    }
+
+    const sendInvitation = ({user}) => {
+        stompClient.send("/app/invite", {}, user.username);
+    };
+
+    const onInviteReceived = (payload) => {
+        // const payloadData = JSON.parse(payload.body);
+        // console.log(payloadData);
+        setPopupFlag(true);
+    }
+
+    const onInviteReceivedPrivate = (payload) => {
+        const payloadData = payload.body;
+        // console.log(payload);
+        setPopupFlag(true);
+    }
+
+    //connect user to Websocket for invitation
+    const connect = () => {
+        const socket = new SockJS(`${getDomain()}/websocket`);
+        stompClient = Stomp.over(socket);
+        stompClient.connect(
+            {username: localStorage.getItem("username")},
+            onConnected,
+            onError);
+        console.log("just got connected " + userData.from);
+    }
+
+    const onError = (err) => {
+        console.log(err);
+    }
+
+    const onConnected = () => {
+        setUserData({...userData, "connected": true});
+        stompClient.subscribe('/topic/greetings', function (payload) {
+            onInviteReceived(payload)
+        });
+        //stompClient.subscribe('/user/'+userData.username+'/private', onPrivateMessage);
+        stompClient.subscribe('/users/queue/invite/greetings', function (payload) {
+            onInviteReceivedPrivate(payload);
+        });
+    }*/
 
     const User = ({user}) => (
         <div className='player container'>
             <div className='player name'>{user.username}</div>
+            <Button
+                className="primary-button"
+                //onClick={() => sendInvitation()}
+            >Invite Player
+            </Button>
         </div>
     );
 
@@ -45,7 +99,7 @@ const InspectDeck = (props) => {
     if (users) {
         content = (
             <div className='game'>
-                <h1>List of all Online Users</h1>
+                <h1>List of all Online (Not yet..) Users</h1>
                 <ul className='game user-list'>
                     {users.map((user) => (
                         <User user={user} key={user.id}/>
