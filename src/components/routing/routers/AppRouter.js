@@ -11,6 +11,7 @@ import Home from "../../views/Home";
 import DeckCreator from "../../views/DeckCreator";
 import CardCreator from "../../views/CardCreator";
 import PublicDecks from "../../views/PublicDecks";
+import InspectDeck from "../../views/InspectDeck";
 import LearningTool from "../../views/LearningTool";
 
 
@@ -24,7 +25,6 @@ import LearningTool from "../../views/LearningTool";
  * Documentation about routing in React: https://reacttraining.com/react-router/web/guides/quick-start
  */
 const AppRouter = () => {
-
     return (
         <BrowserRouter>
             <Switch>
@@ -73,12 +73,14 @@ const AppRouter = () => {
                     <LandingPage/>
                 </Route>
                 <Route path="/publicdecks">
-                    <PublicDecks/>
+                        <PublicDecks/>
+                </Route>
+                <Route path="/inspectdeck">
+                    <InspectDeck/>
                 </Route>
             </Switch>
         </BrowserRouter>
     );
-
 };
 
 /*
