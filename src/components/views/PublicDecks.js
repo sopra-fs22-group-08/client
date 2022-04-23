@@ -10,13 +10,31 @@ import {Button} from 'components/ui/Button';
 
 const PublicDecks = (props) => {
 
+    const history = useHistory();
+    document.body.style = 'background: #4757FF;';
+
     const [decks, setDecks] = useState(null);
+
+    function inspectDeck(deck) {
+
+        let url = "/inspectdeck/"
+
+        history.push({
+            pathname: url.concat(deck.deckname),
+            deck: deck
+        })
+    }
 
     const Deck = ({deck}) => (
         <div className='deck container'>
             <div className='deck name'>
-                id: {deck.id}
+                {deck.deckname}
             </div>
+            <Button
+                className="primary-button"
+                onClick={() => inspectDeck(deck)}
+            >Inspect
+            </Button>
         </div>
     );
     Deck.propTypes = {
@@ -28,24 +46,14 @@ const PublicDecks = (props) => {
         async function fetchDecks() {
             try {
                 const response = await api.get('/decks');
-
                 // delays continuous execution of an async operation for 1 second.
                 // This is just a fake async call, so that the spinner can be displayed
                 // feel free to remove it :)
                 await new Promise(resolve => setTimeout(resolve, 1000));
-                console.log(response.data);
+
                 // Get the returned users and update the state.
                 setDecks(response.data);
 
-                // This is just some data for you to see what is available.
-                // Feel free to remove it.
-                console.log('request to:', response.request.responseURL);
-                console.log('status code:', response.status);
-                console.log('status text:', response.statusText);
-                console.log('requested data:', response.data);
-
-                // See here to get more data.
-                console.log(response);
             } catch (error) {
                 console.error(`Something went wrong while fetching the decks: \n${handleError(error)}`);
                 console.error("Details:", error);
@@ -56,21 +64,27 @@ const PublicDecks = (props) => {
         fetchDecks();
     }, []);
 
-    let content = (
-        <div className='publicDecks'>
-            <ul className='publicDecks deck-list'>
-                {decks.map((deck) => (
-                    <Deck deck={deck} key={deck.id}/>
-                ))}
-            </ul>
-        </div>
-    );
+    let content = <></>
+
+    if (decks) {
+        content = (
+            <div className='publicDecks'>
+                <div className ="h1"> List of all Users</div>
+                <ul className='publicDecks deck-list'>
+                    {decks.map((deck) => (
+                        <Deck deck={deck} key={deck.id} />
+                    ))}
+                </ul>
+            </div>
+        );
+    }
 
     return (
-        <BaseContainer>
+        <BaseContainer className= "publicDecks container">
             {content}
         </BaseContainer>
     );
+
 }
 
 export default PublicDecks;

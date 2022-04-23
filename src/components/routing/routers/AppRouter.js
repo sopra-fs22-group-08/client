@@ -11,6 +11,7 @@ import Home from "../../views/Home";
 import DeckCreator from "../../views/DeckCreator";
 import CardCreator from "../../views/CardCreator";
 import PublicDecks from "../../views/PublicDecks";
+import InspectDeck from "../../views/InspectDeck";
 
 /**
  * Main router of your application.
@@ -66,6 +67,9 @@ const AppRouter = () => {
                 </Route>
                 <Route path="/publicdecks">
                         <PublicDecks/>
+                </Route>
+                <Route path="/inspectdeck">
+                    <InspectDeck/>
                 </Route>
             </Switch>
         </BrowserRouter>

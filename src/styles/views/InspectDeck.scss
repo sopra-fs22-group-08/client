@@ -7,11 +7,8 @@
   for more information visit https://sass-lang.com/guide
  */
 
-.publicDecks {
+.game {
   &.container {
-    position: fixed;
-    bottom: 500px;
-    right: 500px;
     background: $background;
     padding: 1.5em;
     border-radius: $borderRadius;
@@ -20,11 +17,11 @@
     align-items: center;
     box-shadow: $dropShadow;
   }
-  &.deck-list {
+  &.user-list {
     list-style: none;
     padding-left: 0;
   }
-  &.deck-item {
+  &.user-item {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,9 +30,15 @@
   & p,h2 {
     margin: 0.5em 0;
   }
+  & h1 {
+    margin: 0.5em 0;
+    font-weight: 500;
+    color: #FF0000;
+    font-size: 30px;
+  }
 }
 
-.deck {
+.player {
   &.container {
     margin: 0.5em 0;
     width: 20em;
@@ -49,5 +52,14 @@
     font-weight: 300;
     margin-left: 5px;
   }
-
+  &.username {
+    font-weight: 500;
+    color: $accent;
+  }
+  &.id {
+    margin-left: auto;
+    margin-right: 10px;
+    font-family: $fontMono;
+    font-weight: 300;
+  }
 }
