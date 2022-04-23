@@ -17,10 +17,6 @@ const PublicDecks = (props) => {
             <div className='deck name'>
                 id: {deck.id}
             </div>
-            {/* <div className='player username'>{user.username} </div> */}
-            {/* <div className='secondary-button' onClick={() => toProfile(user.id)}>{user.username}</div> */}
-            {/* <div className='player name'>{user.name}</div> */}
-            {/* <Button onClick={() => toProfile(user.id)}>view Profile</Button> */}
         </div>
     );
     Deck.propTypes = {
@@ -29,7 +25,7 @@ const PublicDecks = (props) => {
 
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
-        /*async function fetchDecks() {
+        async function fetchDecks() {
             try {
                 const response = await api.get('/decks');
 
@@ -37,7 +33,7 @@ const PublicDecks = (props) => {
                 // This is just a fake async call, so that the spinner can be displayed
                 // feel free to remove it :)
                 await new Promise(resolve => setTimeout(resolve, 1000));
-
+                console.log(response.data);
                 // Get the returned users and update the state.
                 setDecks(response.data);
 
@@ -55,14 +51,17 @@ const PublicDecks = (props) => {
                 console.error("Details:", error);
                 alert("Something went wrong while fetching the decks! See the console for details.");
             }
-        }*/
+        }
 
-        //fetchDecks();
+        fetchDecks();
     }, []);
 
     let content = (
         <div className='publicDecks'>
             <ul className='publicDecks deck-list'>
+                {decks.map((deck) => (
+                    <Deck deck={deck} key={deck.id}/>
+                ))}
             </ul>
         </div>
     );
