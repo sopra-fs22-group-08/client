@@ -17,6 +17,7 @@ const Profile = (props) => {
     // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [user, setUser] = useState(null);
     const [users, setUsers] = useState(null);
+
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
     const [email, setEmail] = useState(null);
@@ -40,19 +41,23 @@ const Profile = (props) => {
     const goProfile = async () => {
         const id = localStorage.getItem('userId');
         history.push(`/profile/` + id);
+
     };
 
     const goHome = async () => {
         const id = localStorage.getItem('userId');
         history.push(`/home/` + id);
+
     };
 
-    const goStore = async () => {
-        history.push(`/store`);
+    const goPublicDecks = async () => {
+        history.push(`/publicdecks`);
+
     };
 
     const goCreator = async () => {
         history.push(`/deckcreator`);
+
     };
 
     // the effect hook can be used to react to change in your component.
@@ -112,8 +117,10 @@ const Profile = (props) => {
             >
                 Home
             </Button>
-            <Button className='Home store' onClick={() => goStore()}>
-                Store
+            <Button
+                className="Home public-decks"
+                onClick={() => goPublicDecks()}
+            >Public Decks
             </Button>
             <Button className='Home creator' onClick={() => goCreator()}>
                 Creator
