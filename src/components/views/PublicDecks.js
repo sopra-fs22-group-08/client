@@ -69,7 +69,7 @@ const PublicDecks = (props) => {
     if (decks) {
         content = (
             <div className='publicDecks'>
-                <div className ="h1"> List of all Users</div>
+                <div className ="h2"> List of all Decks</div>
                 <ul className='publicDecks deck-list'>
                     {decks.map((deck) => (
                         <Deck deck={deck} key={deck.id} />

@@ -61,8 +61,8 @@ const InspectDeck = (props) => {
     }*/
 
     const User = ({user}) => (
-        <div className='player container'>
-            <div className='player name'>{user.username}</div>
+        <div className='user container'>
+            <div className='user name'>{user.username}</div>
             <Button
                 className="primary-button"
                 //onClick={() => sendInvitation()}
@@ -98,9 +98,9 @@ const InspectDeck = (props) => {
     let content = <> </>
     if (users) {
         content = (
-            <div className='game'>
-                <h1>List of all Online (Not yet..) Users</h1>
-                <ul className='game user-list'>
+            <div className='inspect'>
+                <h1>List of all Users Online (Not yet..) Users</h1>
+                <ul className='inspect user-list'>
                     {users.map((user) => (
                         <User user={user} key={user.id}/>
                     ))}
@@ -110,7 +110,7 @@ const InspectDeck = (props) => {
     }
 
     return (
-        <BaseContainer className="Game container">
+        <BaseContainer className="inspect container">
             {content}
         </BaseContainer>
     );
