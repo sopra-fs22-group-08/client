@@ -18,6 +18,7 @@
     box-shadow: $dropShadow;
   }
   &.user-list {
+
     list-style: none;
     padding-left: 0;
   }
@@ -33,13 +34,13 @@
   & h1 {
     margin: 0.5em 0;
     font-weight: 500;
-    color: #FF0000;
     font-size: 30px;
   }
 }
 
 .player {
   &.container {
+
     margin: 0.5em 0;
     width: 20em;
     padding: 10px;
