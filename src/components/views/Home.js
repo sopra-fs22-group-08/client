@@ -56,8 +56,8 @@ const Profile = (props) => {
 
     };
 
-    const goStore = async () => {
-        history.push(`/store`);
+    const goPublicDecks = async () => {
+        history.push(`/publicdecks`);
 
     };
 
@@ -76,7 +76,7 @@ const Profile = (props) => {
             try {
                 const userId = localStorage.getItem("userId")
                 //const userId = location.pathname.match(/\d+$/);
-                const response = await api.get('/users/' + userId);
+                //const response = await api.get('/users/' + userId);
 
                 await new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -122,9 +122,9 @@ const Profile = (props) => {
             >Home
             </Button>
             <Button
-                className="Home store"
-                onClick={() => goStore()}
-            >Store
+                className="Home public-decks"
+                onClick={() => goPublicDecks()}
+            >Public Decks
             </Button>
             <Button
                 className="Home creator"
@@ -207,8 +207,6 @@ const Profile = (props) => {
                 <div className="Home cards-Title1">Cards</div>
                 <div className="Home cards-Title2">Yours, Completed</div>
                 <div className="Home cards-list">{listItems2}</div>
-
-
 
             </BaseContainer>
 

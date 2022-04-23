@@ -10,6 +10,7 @@ import LandingPage from "../../views/LandingPage";
 import Home from "../../views/Home";
 import DeckCreator from "../../views/DeckCreator";
 import CardCreator from "../../views/CardCreator";
+import PublicDecks from "../../views/PublicDecks";
 
 /**
  * Main router of your application.
@@ -21,51 +22,54 @@ import CardCreator from "../../views/CardCreator";
  * Documentation about routing in React: https://reacttraining.com/react-router/web/guides/quick-start
  */
 const AppRouter = () => {
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/game">
-          <GameGuard>
-            <GameRouter base="/game"/>
-          </GameGuard>
-        </Route>
+    return (
+        <BrowserRouter>
+            <Switch>
+                <Route path="/game">
+                    <GameGuard>
+                        <GameRouter base="/game"/>
+                    </GameGuard>
+                </Route>
 
-          <Route path="/home">
-              <GameGuard>
-                  <Home/>
-              </GameGuard>
-          </Route>
-          <Route path="/deckcreator">
-              <GameGuard>
-                  <DeckCreator/>
-              </GameGuard>
-          </Route>
-          <Route path="/cardcreator">
-              <GameGuard>
-                  <CardCreator/>
-              </GameGuard>
-          </Route>
-        <Route path="/profile">
-            <ProfileGuard>
-                <Profile/>
-            </ProfileGuard>
-        </Route>
-        <Route exact path="/Register">
-            <LoginGuard>
-                <Register/>
-            </LoginGuard>
-        </Route>
-        <Route exact path="/login">
-          <LoginGuard>
-            <Login/>
-          </LoginGuard>
-        </Route>
-        <Route exact path="/">
-            <LandingPage/>
-        </Route>
-      </Switch>
-    </BrowserRouter>
-  );
+                <Route path="/home">
+                    <GameGuard>
+                        <Home/>
+                    </GameGuard>
+                </Route>
+                <Route path="/deckcreator">
+                    <GameGuard>
+                        <DeckCreator/>
+                    </GameGuard>
+                </Route>
+                <Route path="/cardcreator">
+                    <GameGuard>
+                        <CardCreator/>
+                    </GameGuard>
+                </Route>
+                <Route path="/profile">
+                    <ProfileGuard>
+                        <Profile/>
+                    </ProfileGuard>
+                </Route>
+                <Route exact path="/Register">
+                    <LoginGuard>
+                        <Register/>
+                    </LoginGuard>
+                </Route>
+                <Route exact path="/login">
+                    <LoginGuard>
+                        <Login/>
+                    </LoginGuard>
+                </Route>
+                <Route exact path="/">
+                    <LandingPage/>
+                </Route>
+                <Route path="/publicdecks">
+                        <PublicDecks/>
+                </Route>
+            </Switch>
+        </BrowserRouter>
+    );
 };
 
 /*
