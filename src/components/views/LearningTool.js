@@ -5,6 +5,9 @@ import BaseContainer from "components/ui/BaseContainer";
 import "styles/views/Profile.scss";
 import PropTypes from "prop-types";
 import {Button} from 'components/ui/Button';
+import User from "../../models/User";
+import Card from "../../models/Card";
+import {ButtonRedGreen} from "../ui/ButtonRedGreen";
 
 const FormFieldFn = props => {
     return (
@@ -131,6 +134,11 @@ const LearningTool = (props) => {
 
     };
 
+    const goResult = async () => {
+        history.push(`/learningtoolresult`);
+
+    };
+
     const goNextCard = async () => {
         const deckId = location.pathname.match(/deckID=(\d+)/);
         let cardId = location.pathname.match(/cardID=(\d+)/);
@@ -217,20 +225,25 @@ const LearningTool = (props) => {
         }
         return array;
     }
-    let arr = [0, 1, 2, 3,];
+    let arr = [0, 1, 2, 3];
     arr = shuffleAnswers(arr);
 
     const match = location.pathname.match(/cardID=(\d+)/);
     const cardID = match[1]
 
-    //checks if there are still some cards left to learn
-    function checkNextCard(cardID, value) {
+    function checkAnswer(cardID, value) {
         if (value == 0) {
             setCount(count + 1)
         }
+        localStorage.setItem('result', count);
+        localStorage.setItem('lengthDeck', Object.keys(cards).length);
+        checkNextCard(cardID, value)
+    }
+    //checks if there are still some cards left to learn
+    function checkNextCard(cardID, value) {
         cardID++
         if (Object.keys(cards).length <= (cardID)) {
-            return goHome()
+            return goResult()
         }
         else {
             return goNextCard()
@@ -269,50 +282,53 @@ const LearningTool = (props) => {
                 <div className="card answer1-field"></div>
 
                 <Button
-                        className="cardDeck createButton"
-                        onClick={() => checkNextCard(cardID, arr[0])}
+                    className="cardDeck createButton"
+                    onClick={() => checkAnswer(cardID, arr[0])}
                 >
-                <FormFieldLn
-                    value={cards[cardID].options[arr[0]]}
-                />
+                    <FormFieldLn
+                        value={cards[cardID].options[arr[0]]}
+                    />
                 </Button>
 
                 <div className="card answer2-title">Answer 2</div>
                 <div className="card answer2-field"></div>
 
                 <Button
-                        className="cardDeck createButton"
-                        onClick={() => checkNextCard(cardID, arr[1])}
+                    className="cardDeck createButton"
+                    onClick={() => checkAnswer(cardID, arr[1])}
                 >
-                <FormFieldEm
-                    value={cards[cardID].options[arr[1]]}
-                />
+                    <FormFieldEm
+                        value={cards[cardID].options[arr[1]]}
+                    />
                 </Button>
 
                 <div className="profile answer3-title">Answer 3</div>
                 <div className="profile answer3-field"></div>
 
                 <Button
-                        className="cardDeck createButton"
-                        onClick={() => checkNextCard(cardID, arr[2])}
+                    className="cardDeck createButton"
+                    onClick={() => checkAnswer(cardID, arr[2])}
                 >
-                <FormFieldUn
-                    value={cards[cardID].options[arr[2]]}
-                />
+                    <FormFieldUn
+                        value={cards[cardID].options[arr[2]]}
+                    />
                 </Button>
 
                 <div className="profile answer4-title">Answer 4</div>
                 <div className="profile answer4-field"></div>
 
                 <Button
-                        className="cardDeck createButton"
-                        onClick={() => checkNextCard(cardID, arr[3])}
+                    className="cardDeck createButton"
+                    onClick={() => checkAnswer(cardID, arr[3])}
                 >
-                <FormFieldPw
-                    value={cards[cardID].options[arr[3]]}
-                />
+                    <FormFieldPw
+                        value={cards[cardID].options[arr[3]]}
+                    />
                 </Button>
 
+
+
+                <div><p>{cardID}/{Object.keys(cards).length}</p></div>
                 <div><p>You had {count} correct</p></div>
 
             </BaseContainer>
@@ -323,10 +339,10 @@ const LearningTool = (props) => {
     document.body.style = 'background: #4757FF;';
 
     return (
-            <BaseContainer>
-                {content}
-                {burgerMenu ? burgerMenuContent : null}
-            </BaseContainer>
+        <BaseContainer>
+            {content}
+            {burgerMenu ? burgerMenuContent : null}
+        </BaseContainer>
     );
 }
 
