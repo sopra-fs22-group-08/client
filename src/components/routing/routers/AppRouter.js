@@ -10,6 +10,7 @@ import LandingPage from "../../views/LandingPage";
 import Home from "../../views/Home";
 import DeckCreator from "../../views/DeckCreator";
 import CardCreator from "../../views/CardCreator";
+import LearningTool from "../../views/LearningTool";
 
 /**
  * Main router of your application.
@@ -43,6 +44,11 @@ const AppRouter = () => {
           <Route path="/cardcreator">
               <GameGuard>
                   <CardCreator/>
+              </GameGuard>
+          </Route>
+          <Route path="/learningtool">
+              <GameGuard>
+                  <LearningTool/>
               </GameGuard>
           </Route>
         <Route path="/profile">
