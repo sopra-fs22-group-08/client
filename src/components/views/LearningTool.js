@@ -99,9 +99,10 @@ const LearningTool = (props) => {
     // a component can have as many state variables as you like.
     // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [user, setUser] = useState(null);
+    const [count, setCount] = useState(0);
 
     const [cards, setCards] = useState(null);
-    const [card, setCard] = useState(null);
+
 
     const [burgerMenu, setBurgerMenu] = useState(false);
 
@@ -226,7 +227,10 @@ const LearningTool = (props) => {
     const cardID = match[1]
 
     //checks if there are still some cards left to learn
-    function checkNextCard(cardID) {
+    function checkNextCard(cardID, value) {
+        if (value == 0) {
+            setCount(count + 1)
+        }
         cardID++
         if (Object.keys(cards).length <= (cardID)) {
             return goHome()
@@ -269,7 +273,7 @@ const LearningTool = (props) => {
 
                 <Button
                         className="cardDeck createButton"
-                        onClick={() => checkNextCard(cardID)}
+                        onClick={() => checkNextCard(cardID, arr[0])}
                 >
                 <FormFieldLn
                     value={cards[cardID].options[arr[0]]}
@@ -281,7 +285,7 @@ const LearningTool = (props) => {
 
                 <Button
                         className="cardDeck createButton"
-                        onClick={() => checkNextCard(cardID)}
+                        onClick={() => checkNextCard(cardID, arr[1])}
                 >
                 <FormFieldEm
                     value={cards[cardID].options[arr[1]]}
@@ -293,7 +297,7 @@ const LearningTool = (props) => {
 
                 <Button
                         className="cardDeck createButton"
-                        onClick={() => checkNextCard(cardID)}
+                        onClick={() => checkNextCard(cardID, arr[2])}
                 >
                 <FormFieldUn
                     value={cards[cardID].options[arr[2]]}
@@ -305,12 +309,14 @@ const LearningTool = (props) => {
 
                 <Button
                         className="cardDeck createButton"
-                        onClick={() => checkNextCard(cardID)}
+                        onClick={() => checkNextCard(cardID, arr[3])}
                 >
                 <FormFieldPw
                     value={cards[cardID].options[arr[3]]}
                 />
                 </Button>
+
+                <div><p>You had {count} correct</p></div>
 
             </BaseContainer>
 
