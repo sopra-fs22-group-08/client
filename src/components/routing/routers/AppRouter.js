@@ -1,15 +1,17 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { GameGuard } from 'components/routing/routeProtectors/GameGuard';
-import GameRouter from 'components/routing/routers/GameRouter';
-import { LoginGuard } from 'components/routing/routeProtectors/LoginGuard';
-import Login from 'components/views/Login';
-import Profile from 'components/views/Profile';
-import { ProfileGuard } from 'components/routing/routeProtectors/ProfileGuard';
-import Register from 'components/views/Register';
-import LandingPage from '../../views/LandingPage';
-import Home from '../../views/Home';
-import DeckCreator from '../../views/DeckCreator';
-import CardCreator from '../../views/CardCreator';
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import {GameGuard} from "components/routing/routeProtectors/GameGuard";
+import GameRouter from "components/routing/routers/GameRouter";
+import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
+import Login from "components/views/Login";
+import Profile from "components/views/Profile";
+import {ProfileGuard} from "components/routing/routeProtectors/ProfileGuard";
+import Register from "components/views/Register";
+import LandingPage from "../../views/LandingPage";
+import Home from "../../views/Home";
+import DeckCreator from "../../views/DeckCreator";
+import CardCreator from "../../views/CardCreator";
+import LearningTool from "../../views/LearningTool";
+
 
 /**
  * Main router of your application.
@@ -21,50 +23,58 @@ import CardCreator from '../../views/CardCreator';
  * Documentation about routing in React: https://reacttraining.com/react-router/web/guides/quick-start
  */
 const AppRouter = () => {
-    return (
-        <BrowserRouter>
-            <Switch>
-                <Route path='/game'>
-                    <GameGuard>
-                        <GameRouter base='/game' />
-                    </GameGuard>
-                </Route>
-                <Route path='/home'>
-                    <GameGuard>
-                        <Home />
-                    </GameGuard>
-                </Route>
-                <Route path='/deckcreator'>
-                    <GameGuard>
-                        <DeckCreator />
-                    </GameGuard>
-                </Route>
-                <Route path='/cardcreator'>
-                    <GameGuard>
-                        <CardCreator />
-                    </GameGuard>
-                </Route>
-                <Route path='/profile'>
-                    <ProfileGuard>
-                        <Profile />
-                    </ProfileGuard>
-                </Route>
-                <Route exact path='/register'>
-                    <LoginGuard>
-                        <Register />
-                    </LoginGuard>
-                </Route>
-                <Route exact path='/login'>
-                    <LoginGuard>
-                        <Login />
-                    </LoginGuard>
-                </Route>
-                <Route exact path='/'>
-                    <LandingPage />
-                </Route>
-            </Switch>
-        </BrowserRouter>
-    );
+
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path="/game">
+          <GameGuard>
+            <GameRouter base="/game"/>
+          </GameGuard>
+        </Route>
+
+          <Route path="/home">
+              <GameGuard>
+                  <Home/>
+              </GameGuard>
+          </Route>
+          <Route path="/deckcreator">
+              <GameGuard>
+                  <DeckCreator/>
+              </GameGuard>
+          </Route>
+          <Route path="/cardcreator">
+              <GameGuard>
+                  <CardCreator/>
+              </GameGuard>
+          </Route>
+          <Route path="/learningtool">
+              <GameGuard>
+                  <LearningTool/>
+              </GameGuard>
+          </Route>
+        <Route path="/profile">
+            <ProfileGuard>
+                <Profile/>
+            </ProfileGuard>
+        </Route>
+        <Route exact path="/Register">
+            <LoginGuard>
+                <Register/>
+            </LoginGuard>
+        </Route>
+        <Route exact path="/login">
+          <LoginGuard>
+            <Login/>
+          </LoginGuard>
+        </Route>
+        <Route exact path="/">
+            <LandingPage/>
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
+
 };
 
 /*

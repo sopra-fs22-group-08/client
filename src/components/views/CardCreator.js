@@ -6,6 +6,8 @@ import {Button} from 'components/ui/Button';
 import 'styles/views/CardCreator.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
+import Deck from "../../models/Deck";
+import Card from "../../models/Card";
 
 /*
 It is possible to add multiple components inside a single file,
@@ -150,6 +152,13 @@ const CardCreator = () => {
       const deckId = localStorage.getItem('deckId');
       const requestBodyCard = JSON.stringify({question, answer, options});
       const responseCard = await api.post('/decks/' + deckId +'/cards', requestBodyCard);
+
+      // Get the returned deck and update a new object.
+      const card = new Card(responseCard.data);
+
+      // Store deckID into the local storage.
+      localStorage.setItem('cardId', card.id);
+
 
       // DeckCreator successfully worked --> navigate to the route /home in the GameRouter
       history.push(`/home/` + 1);
