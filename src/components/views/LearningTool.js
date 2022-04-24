@@ -1,13 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
-import {Spinner} from 'components/ui/Spinner';
 import {useHistory, useLocation} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import "styles/views/Profile.scss";
 import PropTypes from "prop-types";
 import {Button} from 'components/ui/Button';
-import User from "../../models/User";
-import Card from "../../models/Card";
 
 const FormFieldFn = props => {
     return (

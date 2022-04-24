@@ -7,6 +7,8 @@ import 'styles/views/Login.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 
+document.body.style = 'background: #4757FF';
+
 /*
 It is possible to add multiple components inside a single file,
 however be sure not to clutter your files with an endless amount!
@@ -76,7 +78,6 @@ const Login = props => {
     }
   };
 
-  document.body.style = 'background: #4757FF;';
 
   return (
     <BaseContainer>
@@ -96,7 +97,6 @@ const Login = props => {
             value={password}
             onChange={n => setPassword(n)}
         />
-
 
         <Button
             className="login loginButton"
