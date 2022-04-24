@@ -12,6 +12,7 @@ import DeckCreator from "../../views/DeckCreator";
 import CardCreator from "../../views/CardCreator";
 import LearningTool from "../../views/LearningTool";
 
+
 /**
  * Main router of your application.
  * In the following class, different routes are rendered. In our case, there is a Login Route with matches the path "/login"
@@ -22,6 +23,7 @@ import LearningTool from "../../views/LearningTool";
  * Documentation about routing in React: https://reacttraining.com/react-router/web/guides/quick-start
  */
 const AppRouter = () => {
+
   return (
     <BrowserRouter>
       <Switch>
@@ -72,9 +74,10 @@ const AppRouter = () => {
       </Switch>
     </BrowserRouter>
   );
+
 };
 
 /*
-* Don't forget to export your component!
+ * Don't forget to export your component!
  */
 export default AppRouter;
