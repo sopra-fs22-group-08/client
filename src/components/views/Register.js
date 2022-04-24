@@ -127,7 +127,7 @@ const Register = () => {
 
       // Store userID and username into the local storage.
       localStorage.setItem('userId', user.id);
-      localStorage.setItem('username', user.username);
+      // localStorage.setItem('username', user.username);
 
       // Register successfully worked --> navigate to the route /game in the GameRouter
       history.push(`/home/` + user.id);

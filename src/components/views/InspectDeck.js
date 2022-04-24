@@ -8,7 +8,6 @@ import {Button} from "../ui/Button";
 
 const InspectDeck = (props) => {
 
-    const history = useHistory();
     const location = useLocation();
     const [users, setUsers] = useState(null)
     const [popupFlag, setPopupFlag] = useState(null);
@@ -99,6 +98,7 @@ const InspectDeck = (props) => {
     if (users) {
         content = (
             <div className='inspect'>
+                <h1>Inspecting deck: {location.deck.deckname}</h1>
                 <h1>List of all Users Online (Not yet..) Users</h1>
                 <ul className='inspect user-list'>
                     {users.map((user) => (

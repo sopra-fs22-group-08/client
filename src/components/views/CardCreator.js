@@ -1,12 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
-import User from 'models/User';
 import {useHistory, useLocation} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
 import 'styles/views/CardCreator.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
-import Deck from "../../models/Deck";
 import Card from "../../models/Card";
 
 /*

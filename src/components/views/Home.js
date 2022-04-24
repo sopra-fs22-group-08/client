@@ -3,9 +3,7 @@ import {api, handleError} from 'helpers/api';
 import {useHistory, useLocation} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
 import "styles/views/Home.scss";
-import PropTypes from "prop-types";
 import {Button} from 'components/ui/Button';
-import User from "../../models/User";
 
 
 
@@ -118,8 +116,7 @@ const Profile = (props) => {
                     setBurgerMenu(false);
                     goHome();
                 }}
-            >
-                Home
+            >Home
             </Button>
             <Button
                 className="Home public-decks"

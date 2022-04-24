@@ -1,6 +1,5 @@
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
-import {GameGuard} from "components/routing/routeProtectors/GameGuard";
-import GameRouter from "components/routing/routers/GameRouter";
+import {GeneralGuard} from "components/routing/routeProtectors/GeneralGuard";
 import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
 import Login from "components/views/Login";
 import Profile from "components/views/Profile";
@@ -28,31 +27,25 @@ const AppRouter = () => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/game">
-                    <GameGuard>
-                        <GameRouter base="/game"/>
-                    </GameGuard>
-                </Route>
-
                 <Route path="/home">
-                    <GameGuard>
+                    <GeneralGuard>
                         <Home/>
-                    </GameGuard>
+                    </GeneralGuard>
                 </Route>
                 <Route path="/deckcreator">
-                    <GameGuard>
+                    <GeneralGuard>
                         <DeckCreator/>
-                    </GameGuard>
+                    </GeneralGuard>
                 </Route>
                 <Route path="/cardcreator">
-                    <GameGuard>
+                    <GeneralGuard>
                         <CardCreator/>
-                    </GameGuard>
+                    </GeneralGuard>
                 </Route>
                 <Route path="/learningtool">
-                    <GameGuard>
+                    <GeneralGuard>
                         <LearningTool/>
-                    </GameGuard>
+                    </GeneralGuard>
                 </Route>
                 <Route path="/profile">
                     <ProfileGuard>
@@ -73,10 +66,14 @@ const AppRouter = () => {
                     <LandingPage/>
                 </Route>
                 <Route path="/publicdecks">
+                    <GeneralGuard>
                         <PublicDecks/>
+                    </GeneralGuard>
                 </Route>
                 <Route path="/inspectdeck">
-                    <InspectDeck/>
+                    <GeneralGuard>
+                        <InspectDeck/>
+                    </GeneralGuard>
                 </Route>
             </Switch>
         </BrowserRouter>
@@ -84,6 +81,6 @@ const AppRouter = () => {
 };
 
 /*
-* Don't forget to export your component!
+ * Don't forget to export your component!
  */
 export default AppRouter;

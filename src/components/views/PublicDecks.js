@@ -5,7 +5,6 @@ import BaseContainer from "components/ui/BaseContainer";
 import "styles/views/Home.scss";
 import "styles/views/PublicDecks.scss";
 import PropTypes from "prop-types";
-import User from "../../models/User";
 import {Button} from 'components/ui/Button';
 
 const PublicDecks = (props) => {
