@@ -1,19 +1,19 @@
-import {useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
-import {useHistory, useLocation} from 'react-router-dom';
-import BaseContainer from "components/ui/BaseContainer";
-import "styles/views/Profile.scss";
-import PropTypes from "prop-types";
-import {Button} from 'components/ui/Button';
+import { useEffect, useState } from 'react';
+import { api, handleError } from 'helpers/api';
+import { useHistory, useLocation } from 'react-router-dom';
+import BaseContainer from 'components/ui/BaseContainer';
+import 'styles/views/Profile.scss';
+import PropTypes from 'prop-types';
+import { Button } from 'components/ui/Button';
 
-const FormFieldFn = props => {
+const FormFieldFn = (props) => {
     return (
-        <div className="profile field">
+        <div className='profile field'>
             <input
-                className="profile firstName-text"
-                placeholder="Enter your First Name ..."
+                className='profile firstName-text'
+                placeholder='Enter your First Name ...'
                 value={props.value}
-                onChange={e => props.onChange(e.target.value)}
+                onChange={(e) => props.onChange(e.target.value)}
             />
         </div>
     );
@@ -21,17 +21,17 @@ const FormFieldFn = props => {
 
 FormFieldFn.propTypes = {
     value: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
 };
 
-const FormFieldLn = props => {
+const FormFieldLn = (props) => {
     return (
-        <div className="profile field">
+        <div className='profile field'>
             <input
-                className="profile lastName-text"
-                placeholder="Enter your Last Name ..."
+                className='profile lastName-text'
+                placeholder='Enter your Last Name ...'
                 value={props.value}
-                onChange={e => props.onChange(e.target.value)}
+                onChange={(e) => props.onChange(e.target.value)}
             />
         </div>
     );
@@ -39,17 +39,17 @@ const FormFieldLn = props => {
 
 FormFieldLn.propTypes = {
     value: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
 };
 
-const FormFieldEm = props => {
+const FormFieldEm = (props) => {
     return (
-        <div className="profile field">
+        <div className='profile field'>
             <input
-                className="profile email-text"
-                placeholder="Enter your Email ..."
+                className='profile email-text'
+                placeholder='Enter your Email ...'
                 value={props.value}
-                onChange={e => props.onChange(e.target.value)}
+                onChange={(e) => props.onChange(e.target.value)}
             />
         </div>
     );
@@ -57,17 +57,17 @@ const FormFieldEm = props => {
 
 FormFieldEm.propTypes = {
     value: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
 };
 
-const FormFieldUn = props => {
+const FormFieldUn = (props) => {
     return (
-        <div className="profile field">
+        <div className='profile field'>
             <input
-                className="profile username-text"
-                placeholder="Enter your Username ..."
+                className='profile username-text'
+                placeholder='Enter your Username ...'
                 value={props.value}
-                onChange={e => props.onChange(e.target.value)}
+                onChange={(e) => props.onChange(e.target.value)}
             />
         </div>
     );
@@ -75,27 +75,26 @@ const FormFieldUn = props => {
 
 FormFieldUn.propTypes = {
     value: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
 };
 
-const FormFieldPw = props => {
+const FormFieldPw = (props) => {
     return (
-        <div className="profile field">
+        <div className='profile field'>
             <input
-                type="password"
-                className="profile password-text"
-                placeholder="********"
+                type='password'
+                className='profile password-text'
+                placeholder='********'
                 value={props.value}
-                onChange={e => props.onChange(e.target.value)}
+                onChange={(e) => props.onChange(e.target.value)}
             />
         </div>
     );
 };
 
-
 FormFieldPw.propTypes = {
     value: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
 };
 
 const Profile = (props) => {
@@ -119,10 +118,10 @@ const Profile = (props) => {
     const [burgerMenu, setBurgerMenu] = useState(false);
 
     const doUpdate = async () => {
-        const id = localStorage.getItem("userId")
+        const id = localStorage.getItem('userId');
 
-        const requestBody = JSON.stringify({firstName, lastName, email, username});
-        const response = await api.put('/users/'+ id, requestBody);
+        const requestBody = JSON.stringify({ firstName, lastName, email, username });
+        const response = await api.put('/users/' + id, requestBody);
 
         window.location.reload(false);
     };
@@ -130,28 +129,24 @@ const Profile = (props) => {
     const logout = () => {
         localStorage.removeItem('token');
         history.push('/login');
-    }
+    };
 
     const goProfile = async () => {
-        const id = localStorage.getItem("userId")
+        const id = localStorage.getItem('userId');
         history.push(`/profile/` + id);
-
     };
 
     const goHome = async () => {
-        const id = localStorage.getItem("userId")
+        const id = localStorage.getItem('userId');
         history.push(`/home/` + id);
-
     };
 
     const goStore = async () => {
         history.push(`/store`);
-
     };
 
     const goCreator = async () => {
         history.push(`/deckcreator`);
-
     };
 
     // the effect hook can be used to react to change in your component.
@@ -165,15 +160,17 @@ const Profile = (props) => {
                 const userId = location.pathname.match(/\d+$/);
                 const response = await api.get('/users/' + userId);
 
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                await new Promise((resolve) => setTimeout(resolve, 1000));
 
-                setUser(response.data)
-
-
+                setUser(response.data);
             } catch (error) {
-                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("Something went wrong while fetching the users! See the console for details.");
+                console.error(
+                    `Something went wrong while fetching the users: \n${handleError(error)}`
+                );
+                console.error('Details:', error);
+                alert(
+                    'Something went wrong while fetching the users! See the console for details.'
+                );
             }
         }
 
@@ -181,195 +178,145 @@ const Profile = (props) => {
     }, []);
 
     let content;
-    let addEditButton = "";
+    let addEditButton = '';
     let edit;
 
     edit = (
-
         <BaseContainer>
-            <div className="profile title">NB</div>
+            <div className='profile title'>NB</div>
 
-            <div className="profile burger1"></div>
-            <div className="profile burger2"></div>
-            <div className="profile burger3"></div>
+            <div className='profile burger1'></div>
+            <div className='profile burger2'></div>
+            <div className='profile burger3'></div>
 
-            <div className="register login-text">Edit Profile</div>
+            <div className='register login-text'>Edit Profile</div>
 
-            <div className="register firstName-title">First Name</div>
-            <div className="register firstName-field"></div>
+            <div className='register firstName-title'>First Name</div>
+            <div className='register firstName-field'></div>
 
-            <FormFieldFn
-                value={firstName}
-                onChange={un => setFirstName(un)}
-            />
+            <FormFieldFn value={firstName} onChange={(un) => setFirstName(un)} />
 
-            <div className="register lastName-title">Last Name</div>
-            <div className="register lastName-field"></div>
+            <div className='register lastName-title'>Last Name</div>
+            <div className='register lastName-field'></div>
 
-            <FormFieldLn
-                value={lastName}
-                onChange={n => setLastName(n)}
-            />
+            <FormFieldLn value={lastName} onChange={(n) => setLastName(n)} />
 
-            <div className="register email-title">Email</div>
-            <div className="register email-field"></div>
+            <div className='register email-title'>Email</div>
+            <div className='register email-field'></div>
 
-            <FormFieldEm
-                value={email}
-                onChange={n => setEmail(n)}
-            />
+            <FormFieldEm value={email} onChange={(n) => setEmail(n)} />
 
-            <div className="register username-title">Username</div>
-            <div className="register username-field"></div>
+            <div className='register username-title'>Username</div>
+            <div className='register username-field'></div>
 
-            <FormFieldUn
-                value={username}
-                onChange={un => setUsername(un)}
-            />
+            <FormFieldUn value={username} onChange={(un) => setUsername(un)} />
 
-            <div className="register password-title">Password</div>
-            <div className="register password-field"></div>
-            <FormFieldPw
-                value={password}
-                onChange={n => setPassword(n)}
-            />
-
+            <div className='register password-title'>Password</div>
+            <div className='register password-field'></div>
+            <FormFieldPw value={password} onChange={(n) => setPassword(n)} />
 
             <Button
-                className="register createButton"
+                className='register createButton'
                 onClick={() => [setEditButton(false), doUpdate()]}
             >
                 Submit
             </Button>
-
-        </BaseContainer>)
-
-
-
-
-
-
-
-    addEditButton = (
-            <Button
-                className="register createButton"
-                // open edit window
-                onClick={() => setEditButton(true)}
-            >
-                Edit
-            </Button>
+        </BaseContainer>
     );
 
+    addEditButton = (
+        <Button
+            className='register createButton'
+            // open edit window
+            onClick={() => setEditButton(true)}
+        >
+            Edit
+        </Button>
+    );
 
     let burgerMenuContent = (
         <BaseContainer>
-            <div className="profile window"></div>
-            <div className="profile username"></div>
+            <div className='profile window'></div>
+            <div className='profile username'></div>
             <Button
-                className="profile username"
-                onClick={() => {setBurgerMenu(false); goProfile();}}
-            >{user?.username  ? user.username : "Username"}
+                className='profile username'
+                onClick={() => {
+                    setBurgerMenu(false);
+                    goProfile();
+                }}
+            >
+                {user?.username ? user.username : 'Username'}
             </Button>
-            <Button
-                className="profile home"
-                onClick={() => goHome()}
-            >Home
+            <Button className='profile home' onClick={() => goHome()}>
+                Home
             </Button>
-            <Button
-                className="profile store"
-                onClick={() => goStore()}
-            >Store
+            <Button className='profile store' onClick={() => goStore()}>
+                Store
             </Button>
-            <Button
-                className="profile creator"
-                onClick={() => goCreator()}
-            >Creator
+            <Button className='profile creator' onClick={() => goCreator()}>
+                Creator
             </Button>
-            <Button
-                className="profile logoutButton"
-                onClick={() => logout()}
-            >Logout
+            <Button className='profile logoutButton' onClick={() => logout()}>
+                Logout
             </Button>
-            <div
-                className="profile x"
-                onClick={() => setBurgerMenu(false)}
-
-            >x</div>
-
+            <div className='profile x' onClick={() => setBurgerMenu(false)}>
+                x
+            </div>
         </BaseContainer>
-    )
-
+    );
 
     if (user) {
         content = (
             <BaseContainer>
-                <div className="profile title">NB</div>
+                <div className='profile title'>NB</div>
 
-
-                <div className="profile burger1"></div>
-                <div className="profile burger2"></div>
-                <div className="profile burger3"></div>
+                <div className='profile burger1'></div>
+                <div className='profile burger2'></div>
+                <div className='profile burger3'></div>
                 <div
-                    className="profile burgerButton"
+                    className='profile burgerButton'
                     // open edit window
                     onClick={() => setBurgerMenu(true)}
                 ></div>
 
-                <div className="profile login-text">Profile</div>
+                <div className='profile login-text'>Profile</div>
 
-                <div className="profile firstName-title">First Name</div>
-                <div className="profile firstName-field"></div>
+                <div className='profile firstName-title'>First Name</div>
+                <div className='profile firstName-field'></div>
 
-                <FormFieldFn
-                    value={user.firstName}
-                    onChange={un => setFirstName(un)}
-                />
+                <FormFieldFn value={user.firstName} onChange={(un) => setFirstName(un)} />
 
-                <div className="profile lastName-title">Last Name</div>
-                <div className="profile lastName-field"></div>
+                <div className='profile lastName-title'>Last Name</div>
+                <div className='profile lastName-field'></div>
 
-                <FormFieldLn
-                    value={user.lastName}
-                    onChange={n => setLastName(n)}
-                />
+                <FormFieldLn value={user.lastName} onChange={(n) => setLastName(n)} />
 
-                <div className="profile email-title">Email</div>
-                <div className="profile email-field"></div>
+                <div className='profile email-title'>Email</div>
+                <div className='profile email-field'></div>
 
-                <FormFieldEm
-                    value={user.email}
-                    onChange={n => setEmail(n)}
-                />
+                <FormFieldEm value={user.email} onChange={(n) => setEmail(n)} />
 
-                <div className="profile username-title">Username</div>
-                <div className="profile username-field"></div>
+                <div className='profile username-title'>Username</div>
+                <div className='profile username-field'></div>
 
-                <FormFieldUn
-                    value={user.username}
-                    onChange={un => setUsername(un)}
-                />
+                <FormFieldUn value={user.username} onChange={(un) => setUsername(un)} />
 
-                <div className="profile password-title">Password</div>
-                <div className="profile password-field"></div>
-                <FormFieldPw
-                    value={password}
-                    onChange={n => setPassword(n)}
-                />
+                <div className='profile password-title'>Password</div>
+                <div className='profile password-field'></div>
+                <FormFieldPw value={password} onChange={(n) => setPassword(n)} />
                 {addEditButton}
-
             </BaseContainer>
-
         );
     }
 
     document.body.style = 'background: #4757FF;';
 
     return (
-            <BaseContainer>
-                {editButton ? edit : content}
-                {burgerMenu ? burgerMenuContent : null}
-            </BaseContainer>
+        <BaseContainer>
+            {editButton ? edit : content}
+            {burgerMenu ? burgerMenuContent : null}
+        </BaseContainer>
     );
-}
+};
 
 export default Profile;

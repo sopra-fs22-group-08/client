@@ -1,13 +1,11 @@
-import React, {useState} from 'react';
-import {useHistory} from 'react-router-dom';
-import {Button} from 'components/ui/Button';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Button } from 'components/ui/Button';
 import 'styles/views/Login.scss';
-import BaseContainer from "components/ui/BaseContainer";
-import PropTypes from "prop-types";
-import {api, handleError} from "../../helpers/api";
-import User from "../../models/User";
-
-
+import BaseContainer from 'components/ui/BaseContainer';
+import PropTypes from 'prop-types';
+import { api, handleError } from '../../helpers/api';
+import User from '../../models/User';
 
 /*
 It is possible to add multiple components inside a single file,
@@ -15,14 +13,14 @@ however be sure not to clutter your files with an endless amount!
 As a rule of thumb, use one file per component and only add small,
 specific components that belong to the main one in the same file.
  */
-const FormFieldUn = props => {
+const FormFieldUn = (props) => {
     return (
-        <div className="login field">
+        <div className='login field'>
             <input
-                className="login username-text"
-                placeholder="Enter your Username ..."
+                className='login username-text'
+                placeholder='Enter your Username ...'
                 value={props.value}
-                onChange={e => props.onChange(e.target.value)}
+                onChange={(e) => props.onChange(e.target.value)}
             />
         </div>
     );
@@ -30,55 +28,46 @@ const FormFieldUn = props => {
 
 FormFieldUn.propTypes = {
     value: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
 };
 
-const FormFieldPw = props => {
+const FormFieldPw = (props) => {
     return (
-        <div className="login field">
+        <div className='login field'>
             <input
-                type="password"
-                className="login password-text"
-                placeholder="Enter your Password ..."
+                type='password'
+                className='login password-text'
+                placeholder='Enter your Password ...'
                 value={props.value}
-                onChange={e => props.onChange(e.target.value)}
+                onChange={(e) => props.onChange(e.target.value)}
             />
         </div>
     );
 };
 
-
 FormFieldPw.propTypes = {
     value: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
 };
 
-const Login = props => {
+const Login = (props) => {
     const history = useHistory();
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
 
     const doLogin = async () => {
         try {
-            const requestBody = JSON.stringify({username, password});
+            const requestBody = JSON.stringify({ username, password });
             const response = await api.post('/login', requestBody);
 
             // Get the returned user and update a new object.
             const user = new User(response.data);
 
-<<<<<<< HEAD
-      // Store the token into the local storage.
-      localStorage.setItem('token', user.token);
-
-      // Store userID into the local storage.
-      localStorage.setItem('userId', user.id);
-=======
             // Store the token into the local storage.
             localStorage.setItem('token', user.token);
+
             // Store userID into the local storage.
             localStorage.setItem('userId', user.id);
-            localStorage.setItem('username', user.username);
->>>>>>> 917fa0b (added initial implementation of websockets)
 
             // Login successfully worked --> navigate to the route /game in the GameRouter
             history.push(`/home/` + user.id);
@@ -87,37 +76,24 @@ const Login = props => {
         }
     };
 
-<<<<<<< HEAD
     document.body.style = 'background: #4757FF';
-=======
     return (
         <BaseContainer>
-            <div className="login title">No Brainer</div>
-            <div className="login login-text">Login</div>
-            <div className="login username-title">Username</div>
-            <div className="login username-field"></div>
->>>>>>> 917fa0b (added initial implementation of websockets)
-
-            <FormFieldUn
-                value={username}
-                onChange={un => setUsername(un)}
-            />
-
-            <div className="login password-title">Password</div>
-            <div className="login password-field"></div>
-            <FormFieldPw
-                value={password}
-                onChange={n => setPassword(n)}
-            />
-
+            <div className='login title'>No Brainer</div>
+            <div className='login login-text'>Login</div>
+            <div className='login username-title'>Username</div>
+            <div className='login username-field'></div>
+            <FormFieldUn value={username} onChange={(un) => setUsername(un)} />
+            <div className='login password-title'>Password</div>
+            <div className='login password-field'></div>
+            <FormFieldPw value={password} onChange={(n) => setPassword(n)} />
             <Button
-                className="login loginButton"
+                className='login loginButton'
                 disabled={!username || !password}
                 onClick={() => doLogin()}
             >
                 Login
             </Button>
-
         </BaseContainer>
     );
 };

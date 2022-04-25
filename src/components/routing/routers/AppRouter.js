@@ -15,7 +15,6 @@ import LearningTool from "../../views/LearningTool";
 import LearningToolResult from "../../views/LearningToolResult";
 import CardOverview from "../../views/CardOverview";
 
-
 /**
  * Main router of your application.
  * In the following class, different routes are rendered. In our case, there is a Login Route with matches the path "/login"
@@ -29,19 +28,19 @@ const AppRouter = () => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/home">
+                <Route path='/home'>
                     <GeneralGuard>
-                        <Home/>
+                        <Home />
                     </GeneralGuard>
                 </Route>
-                <Route path="/deckcreator">
+                <Route path='/deckcreator'>
                     <GeneralGuard>
-                        <DeckCreator/>
+                        <DeckCreator />
                     </GeneralGuard>
                 </Route>
-                <Route path="/cardcreator">
+                <Route path='/cardcreator'>
                     <GeneralGuard>
-                        <CardCreator/>
+                        <CardCreator />
                     </GeneralGuard>
                 </Route>
                 <Route path="/cardOverview">
@@ -51,7 +50,7 @@ const AppRouter = () => {
                 </Route>
                 <Route path="/learningtool">
                     <GeneralGuard>
-                        <LearningTool/>
+                        <LearningTool />
                     </GeneralGuard>
                 </Route>
                 <Route path="/learningtoolresult">
@@ -61,30 +60,30 @@ const AppRouter = () => {
                 </Route>
                 <Route path="/profile">
                     <ProfileGuard>
-                        <Profile/>
+                        <Profile />
                     </ProfileGuard>
                 </Route>
-                <Route exact path="/Register">
+                <Route exact path='/Register'>
                     <LoginGuard>
-                        <Register/>
+                        <Register />
                     </LoginGuard>
                 </Route>
-                <Route exact path="/login">
+                <Route exact path='/login'>
                     <LoginGuard>
-                        <Login/>
+                        <Login />
                     </LoginGuard>
                 </Route>
-                <Route exact path="/">
-                    <LandingPage/>
+                <Route exact path='/'>
+                    <LandingPage />
                 </Route>
-                <Route path="/publicdecks">
+                <Route path='/publicdecks'>
                     <GeneralGuard>
-                        <PublicDecks/>
+                        <PublicDecks />
                     </GeneralGuard>
                 </Route>
-                <Route path="/inspectdeck">
+                <Route path='/inspectdeck'>
                     <GeneralGuard>
-                        <InspectDeck/>
+                        <InspectDeck />
                     </GeneralGuard>
                 </Route>
             </Switch>

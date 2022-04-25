@@ -1,4 +1,4 @@
-import AppRouter from "components/routing/routers/AppRouter";
+import AppRouter from 'components/routing/routers/AppRouter';
 
 /**
  * Happy coding!
@@ -6,11 +6,11 @@ import AppRouter from "components/routing/routers/AppRouter";
  * Overhauled by Kyrill Hux
  */
 const App = () => {
-  return (
-    <div>
-      <AppRouter/>
-    </div>
-  );
+    return (
+        <div>
+            <AppRouter />
+        </div>
+    );
 };
 
 export default App;
