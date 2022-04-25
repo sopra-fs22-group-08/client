@@ -14,10 +14,12 @@ const InspectDeck = (props) => {
 
     /*
      * @brief send private invitation to websocket
+     * BUG: can only send once
      */
     const sendPrivateInvite = ({ user }) => {
         console.log('just sent an invite to ' + user.username);
         stompClient.send('/app/invite', {}, user.username);
+        // stompClient.publish('/app/invite', user.username)
     };
 
     const ListUser = ({ user }) => (

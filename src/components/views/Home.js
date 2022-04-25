@@ -59,7 +59,7 @@ const Home = (props) => {
 
     const onInviteReceivedPrivate = (payload) => {
         // const payloadData = payload.body;
-        // console.log(payload);
+        console.log(payload);
         setPopupFlag(true);
     };
 
