@@ -84,9 +84,9 @@ const Home = (props) => {
         history.push('/cardOverview');
     };
 
-    const goProfile = async () => {
-        const id = localStorage.getItem('userId');
-        history.push(`/profile/` + id);
+    const toProfile = (userId) => {
+        let url = "/profile/"
+        history.push(url.concat(userId));
     };
 
     const goHome = async () => {
@@ -146,7 +146,7 @@ const Home = (props) => {
         <BaseContainer>
             <div className='Home window'></div>
             <div className='Home username'></div>
-            <Button className='Home username' onClick={() => goProfile()}>
+            <Button className='Home username' onClick={() => toProfile()}>
                 {user?.username ? user.username : 'Username'}
             </Button>
             <Button

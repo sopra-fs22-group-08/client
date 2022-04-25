@@ -304,7 +304,7 @@ const Profile = (props) => {
                 <div className='profile password-title'>Password</div>
                 <div className='profile password-field'></div>
                 <FormFieldPw value={password} onChange={(n) => setPassword(n)} />
-                {addEditButton}
+                {localStorage.getItem('username') !== user.username ? null : addEditButton}
             </BaseContainer>
         );
     }
