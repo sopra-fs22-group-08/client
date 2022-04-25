@@ -141,8 +141,8 @@ const Profile = (props) => {
         history.push(`/home/` + id);
     };
 
-    const goStore = async () => {
-        history.push(`/store`);
+    const goPublicDecks = async () => {
+        history.push(`/publicdecks`);
     };
 
     const goCreator = async () => {
@@ -250,8 +250,8 @@ const Profile = (props) => {
             <Button className='profile home' onClick={() => goHome()}>
                 Home
             </Button>
-            <Button className='profile store' onClick={() => goStore()}>
-                Store
+            <Button className='profile public-decks' onClick={() => goPublicDecks()}>
+                Public Decks
             </Button>
             <Button className='profile creator' onClick={() => goCreator()}>
                 Creator

@@ -51,8 +51,8 @@ const LearningTool = (props) => {
         history.push(`/home/` + id);
     };
 
-    const goStore = async () => {
-        history.push(`/store`);
+    const goPublicDecks = async () => {
+        history.push(`/publicdecks`);
     };
 
     const goCreator = async () => {
@@ -125,8 +125,8 @@ const LearningTool = (props) => {
             <Button className='learningTool home' onClick={() => goHome()}>
                 Home
             </Button>
-            <Button className='learningTool store' onClick={() => goStore()}>
-                Store
+            <Button className='learningTool publicdecks' onClick={() => goPublicDecks()}>
+                Public Decks
             </Button>
             <Button className='learningTool creator' onClick={() => goCreator()}>
                 Creator
@@ -192,8 +192,6 @@ const LearningTool = (props) => {
                     onClick={() => setBurgerMenu(true)}
                 ></div>
                 <div className='learningTool question-field'></div>
-                <FormFieldFn value={cards[cardID].question} />
-
                 <div className='learningTool card2'></div>
                 <div className='learningTool card'></div>
                 <div className='learningTool card-number'>

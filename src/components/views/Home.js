@@ -85,7 +85,7 @@ const Home = (props) => {
     };
 
     const toProfile = (userId) => {
-        let url = "/profile/"
+        let url = '/profile/';
         history.push(url.concat(userId));
     };
 
@@ -111,7 +111,6 @@ const Home = (props) => {
         async function fetchData() {
             try {
                 const userId = localStorage.getItem('userId');
-                //const userId = location.pathname.match(/\d+$/);
                 const response = await api.get('/users/' + userId);
                 await new Promise((resolve) => setTimeout(resolve, 1000));
                 setUser(response.data);
@@ -146,7 +145,10 @@ const Home = (props) => {
         <BaseContainer>
             <div className='Home window'></div>
             <div className='Home username'></div>
-            <Button className='Home username' onClick={() => toProfile()}>
+            <Button
+                className='Home username'
+                onClick={() => toProfile(localStorage.getItem('userId'))}
+            >
                 {user?.username ? user.username : 'Username'}
             </Button>
             <Button

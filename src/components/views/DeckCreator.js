@@ -98,8 +98,8 @@ const DeckCreator = () => {
         history.push(`/home/` + id);
     };
 
-    const goStore = async () => {
-        history.push(`/store`);
+    const goPublicDecks = async () => {
+        history.push(`/publicdecks`);
     };
 
     const goCreator = async () => {
@@ -122,8 +122,8 @@ const DeckCreator = () => {
             <Button className='cardCreator home' onClick={() => goHome()}>
                 Home
             </Button>
-            <Button className='cardCreator store' onClick={() => goStore()}>
-                Store
+            <Button className='cardCreator public-decks' onClick={() => goPublicDecks()}>
+                Public Decks
             </Button>
             <Button className='cardCreator creator' onClick={() => goCreator()}>
                 Creator
