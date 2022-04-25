@@ -1,19 +1,15 @@
-import { useEffect, useState } from 'react';
-import { api, handleError } from 'helpers/api';
-import { useHistory, useLocation } from 'react-router-dom';
-import BaseContainer from 'components/ui/BaseContainer';
 import 'styles/views/Home.scss';
+// react imports
+import { useEffect, useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+// local imports
+import { api, handleError } from 'helpers/api';
+import { stompClient } from 'helpers/websocket';
+import BaseContainer from 'components/ui/BaseContainer';
 import { Button } from 'components/ui/Button';
-import SockJS from 'sockjs-client';
-import Stomp from 'stompjs';
-import { getDomain } from '../../helpers/getDomain';
-import { Popup } from '../ui/Popup';
+import { Popup } from 'components/ui/Popup';
 
-// TODO: move this into more general location
-export const stompClient = Stomp.over(new SockJS(`${getDomain()}/websocket`));
-
-// TODO: rename to home
-const Profile = (props) => {
+const Home = (props) => {
     // use react-router-dom's hook to access the history
     const history = useHistory();
     const location = useLocation();
@@ -39,7 +35,7 @@ const Profile = (props) => {
      * Websocket logic
      */
     const [popupFlag, setPopupFlag] = useState(null);
-    // TODO: remove userData, change to 'user'
+    // TODO: remove userData, doesn't do anything, when connecting it is still empty
     const [userData, setUserData] = useState({
         from: '',
         connected: false,
@@ -49,7 +45,6 @@ const Profile = (props) => {
         setPopupFlag(false);
     };
 
-    // TODO: BIG NONO: user_bb has to be done correctly
     const connect = () => {
         stompClient.connect({ username: localStorage.getItem('username') }, onConnected, onError);
         console.log('just got connected ' + userData.from);
@@ -63,7 +58,7 @@ const Profile = (props) => {
     };
 
     const onInviteReceivedPrivate = (payload) => {
-        const payloadData = payload.body;
+        // const payloadData = payload.body;
         // console.log(payload);
         setPopupFlag(true);
     };
@@ -118,23 +113,17 @@ const Profile = (props) => {
                 const userId = localStorage.getItem('userId');
                 //const userId = location.pathname.match(/\d+$/);
                 const response = await api.get('/users/' + userId);
-
                 await new Promise((resolve) => setTimeout(resolve, 1000));
-
                 setUser(response.data);
-
                 //Decks
                 const response3 = await api.get('/users/' + userId + '/decks');
                 await new Promise((resolve) => setTimeout(resolve, 1000));
                 setDecks(response3.data);
-
                 const response2 = await api.get('/users');
-
                 // delays continuous execution of an async operation for 1 second.
                 // This is just a fake async call, so that the spinner can be displayed
                 // feel free to remove it :)
                 await new Promise((resolve) => setTimeout(resolve, 1000));
-
                 // Get the returned users and update the state.
                 setUsers(response2.data);
             } catch (error) {
@@ -147,9 +136,7 @@ const Profile = (props) => {
                 );
             }
         }
-
         connect();
-
         fetchData();
     }, []);
 
@@ -206,7 +193,6 @@ const Profile = (props) => {
                 </Button>
             ));
         }
-
         content = (
             <BaseContainer>
                 <div className='Home title'>NB</div>
@@ -246,4 +232,4 @@ const Profile = (props) => {
     );
 };
 
-export default Profile;
+export default Home;
