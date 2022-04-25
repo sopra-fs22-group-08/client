@@ -1,5 +1,5 @@
-import {Redirect} from "react-router-dom";
-import PropTypes from "prop-types";
+import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 /**
  * routeProtectors interfaces can tell the router whether or not it should allow navigation to a requested route.
@@ -10,13 +10,13 @@ import PropTypes from "prop-types";
  * @Guard
  * @param props
  */
-export const ProfileGuard = props => {
-  if (localStorage.getItem("token")) {
-    return props.children;
-  }
-  return <Redirect to="/login"/>;
+export const ProfileGuard = (props) => {
+    if (localStorage.getItem('token')) {
+        return props.children;
+    }
+    return <Redirect to='/login' />;
 };
 
 ProfileGuard.propTypes = {
-  children: PropTypes.node
+    children: PropTypes.node,
 };

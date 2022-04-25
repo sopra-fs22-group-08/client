@@ -1,13 +1,15 @@
-import {useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
-import {useHistory, useLocation} from 'react-router-dom';
-import BaseContainer from "components/ui/BaseContainer";
-import "styles/views/Home.scss";
-import {Button} from 'components/ui/Button';
+import 'styles/views/Home.scss';
+// react imports
+import { useEffect, useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+// local imports
+import { api, handleError } from 'helpers/api';
+import { stompClient } from 'helpers/websocket';
+import BaseContainer from 'components/ui/BaseContainer';
+import { Button } from 'components/ui/Button';
+import { Popup } from 'components/ui/Popup';
 
-
-
-const Profile = (props) => {
+const Home = (props) => {
     // use react-router-dom's hook to access the history
     const history = useHistory();
     const location = useLocation();
@@ -29,6 +31,43 @@ const Profile = (props) => {
     const [burgerMenu, setBurgerMenu] = useState(false);
     const [decks, setDecks] = useState(null);
 
+    /*
+     * Websocket logic
+     */
+    const [popupFlag, setPopupFlag] = useState(null);
+    // TODO: remove userData, doesn't do anything, when connecting it is still empty
+    const [userData, setUserData] = useState({
+        from: '',
+        connected: false,
+    });
+
+    const closePopup = () => {
+        setPopupFlag(false);
+    };
+
+    const connect = () => {
+        stompClient.connect({ username: localStorage.getItem('username') }, onConnected, onError);
+        console.log('just got connected ' + userData.from);
+    };
+
+    const onConnected = () => {
+        setUserData({ ...userData, connected: true });
+        stompClient.subscribe('/users/queue/invite/greetings', function (payload) {
+            onInviteReceivedPrivate(payload);
+        });
+    };
+
+    const onInviteReceivedPrivate = (payload) => {
+        // const payloadData = payload.body;
+        console.log(payload);
+        setPopupFlag(true);
+    };
+
+    const onError = (err) => {
+        console.log(err);
+    };
+    //  end websockets
+
     const doUpdate = async () => {
         const id = localStorage.getItem('userId');
         const requestBody = JSON.stringify({ firstName, lastName, email, username });
@@ -45,26 +84,22 @@ const Profile = (props) => {
         history.push('/cardOverview');
     };
 
-    const goProfile = async () => {
-        const id = localStorage.getItem('userId');
-        history.push(`/profile/` + id);
-
+    const toProfile = (userId) => {
+        let url = '/profile/';
+        history.push(url.concat(userId));
     };
 
     const goHome = async () => {
         const id = localStorage.getItem('userId');
         history.push(`/home/` + id);
-
     };
 
     const goPublicDecks = async () => {
         history.push(`/publicdecks`);
-
     };
 
     const goCreator = async () => {
         history.push(`/deckcreator`);
-
     };
 
     // the effect hook can be used to react to change in your component.
@@ -76,25 +111,18 @@ const Profile = (props) => {
         async function fetchData() {
             try {
                 const userId = localStorage.getItem('userId');
-                //const userId = location.pathname.match(/\d+$/);
                 const response = await api.get('/users/' + userId);
-
                 await new Promise((resolve) => setTimeout(resolve, 1000));
-
                 setUser(response.data);
-
                 //Decks
-                const response3 = await api.get('/users/' + userId +'/decks');
+                const response3 = await api.get('/users/' + userId + '/decks');
                 await new Promise((resolve) => setTimeout(resolve, 1000));
                 setDecks(response3.data);
-
                 const response2 = await api.get('/users');
-
                 // delays continuous execution of an async operation for 1 second.
                 // This is just a fake async call, so that the spinner can be displayed
                 // feel free to remove it :)
                 await new Promise((resolve) => setTimeout(resolve, 1000));
-
                 // Get the returned users and update the state.
                 setUsers(response2.data);
             } catch (error) {
@@ -107,7 +135,7 @@ const Profile = (props) => {
                 );
             }
         }
-
+        connect();
         fetchData();
     }, []);
 
@@ -117,7 +145,10 @@ const Profile = (props) => {
         <BaseContainer>
             <div className='Home window'></div>
             <div className='Home username'></div>
-            <Button className='Home username' onClick={() => goProfile()}>
+            <Button
+                className='Home username'
+                onClick={() => toProfile(localStorage.getItem('userId'))}
+            >
                 {user?.username ? user.username : 'Username'}
             </Button>
             <Button
@@ -126,87 +157,81 @@ const Profile = (props) => {
                     setBurgerMenu(false);
                     goHome();
                 }}
-            >Home
+            >
+                Home
             </Button>
-            <Button
-                className="Home public-decks"
-                onClick={() => goPublicDecks()}
-            >Public Decks
+            <Button className='Home public-decks' onClick={() => goPublicDecks()}>
+                Public Decks
             </Button>
-            <Button
-                className="Home creator"
-                onClick={() => goCreator()}
-            >Creator
+            <Button className='Home creator' onClick={() => goCreator()}>
+                Creator
             </Button>
-            <Button
-                className="Home logoutButton"
-                onClick={() => logout()}
-            >Logout
+            <Button className='Home logoutButton' onClick={() => logout()}>
+                Logout
             </Button>
-            <div
-                className="Home x"
-                onClick={() => setBurgerMenu(false)}
-
-            >x</div>
-
+            <div className='Home x' onClick={() => setBurgerMenu(false)}>
+                x
+            </div>
         </BaseContainer>
-    )
-
-
+    );
 
     if (user) {
-
-        var listItems = (<div className="Home deck-None">Please create a new Deck</div>);
-        if(decks){
-            listItems = decks.map(d =>
-                <Button className="Home listElement-Box"
-                        onClick={() => {cardOverview(); localStorage.setItem('DeckID',d.id)}}
+        var listItems = <div className='Home deck-None'>Please create a new Deck</div>;
+        if (decks) {
+            listItems = decks.map((d) => (
+                <Button
+                    className='Home listElement-Box'
+                    onClick={() => {
+                        cardOverview();
+                        localStorage.setItem('DeckID', d.id);
+                    }}
                 >
-                    <div className="Home listElement-Number"></div>
-                    <div className="Home listElement-Title">{d.deckname}</div>
-                    <div className="Home listElement-Score"><br /> <br /> </div>
-                    <div className="Home listElement-Text">Click to Learn</div></Button>
-
-            );
+                    <div className='Home listElement-Number'></div>
+                    <div className='Home listElement-Title'>{d.deckname}</div>
+                    <div className='Home listElement-Score'>
+                        <br /> <br />{' '}
+                    </div>
+                    <div className='Home listElement-Text'>Click to Learn</div>
+                </Button>
+            ));
         }
-
-
-
-
-
-
-
         content = (
             <BaseContainer>
-                <div className="Home title">NB</div>
-
-
-                <div className="Home burger1"></div>
-                <div className="Home burger2"></div>
-                <div className="Home burger3"></div>
+                <div className='Home title'>NB</div>
+                <div className='Home burger1'></div>
+                <div className='Home burger2'></div>
+                <div className='Home burger3'></div>
                 <div
-                    className="Home burgerButton"
+                    className='Home burgerButton'
                     // open edit window
                     onClick={() => setBurgerMenu(true)}
                 ></div>
-
-                <div className="Home listTitle">Continue Learning</div>
-                <div className="Home list">{listItems}</div>
-
-
+                <div className='Home listTitle'>Continue Learning</div>
+                <div className='Home list'>{listItems}</div>
             </BaseContainer>
-
         );
     }
 
-    document.body.style = 'background: #4757FF;';
+    document.body.style = 'background: #4757FF';
 
     return (
-            <BaseContainer>
-                {editButton ? null : content}
-                {burgerMenu ? burgerMenuContent : null}
-            </BaseContainer>
+        <BaseContainer>
+            <div>
+                {popupFlag && (
+                    <Popup
+                        content={
+                            <>
+                                <b>You have received an Invitation</b>
+                            </>
+                        }
+                        handleClose={closePopup}
+                    />
+                )}
+            </div>
+            {editButton ? null : content}
+            {burgerMenu ? burgerMenuContent : null}
+        </BaseContainer>
     );
-}
+};
 
-export default Profile;
+export default Home;

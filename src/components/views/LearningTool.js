@@ -1,16 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
-import {useHistory, useLocation} from 'react-router-dom';
-import BaseContainer from "components/ui/BaseContainer";
-import "styles/views/LearningTool.scss";
-import PropTypes from "prop-types";
-import {Button} from 'components/ui/Button';
-import User from "../../models/User";
-import Card from "../../models/Card";
-import {ButtonRedGreen} from "../ui/ButtonRedGreen";
-
-
-
+import React, { useEffect, useState } from 'react';
+import { api, handleError } from 'helpers/api';
+import { useHistory, useLocation } from 'react-router-dom';
+import BaseContainer from 'components/ui/BaseContainer';
+import 'styles/views/LearningTool.scss';
+import PropTypes from 'prop-types';
+import { Button } from 'components/ui/Button';
+import User from '../../models/User';
+import Card from '../../models/Card';
+import { ButtonRedGreen } from '../ui/ButtonRedGreen';
 
 const LearningTool = (props) => {
     // use react-router-dom's hook to access the history
@@ -37,54 +34,45 @@ const LearningTool = (props) => {
 
     const [counter, setCounter] = useState(0);
 
-
-
     const [burgerMenu, setBurgerMenu] = useState(false);
-
 
     const logout = () => {
         localStorage.removeItem('token');
         history.push('/login');
-    }
+    };
 
     const goProfile = async () => {
-        const id = localStorage.getItem("userId")
+        const id = localStorage.getItem('userId');
         history.push(`/profile/` + id);
-
     };
 
     const goHome = async () => {
-        const id = localStorage.getItem("userId")
+        const id = localStorage.getItem('userId');
         history.push(`/home/` + id);
-
     };
 
-    const goStore = async () => {
-        history.push(`/store`);
-
+    const goPublicDecks = async () => {
+        history.push(`/publicdecks`);
     };
 
     const goCreator = async () => {
         history.push(`/deckcreator`);
-
     };
 
     const goResult = async () => {
         history.push(`/learningtoolresult`);
-
     };
 
     const goNextCard = async () => {
         const deckId = location.pathname.match(/deckID=(\d+)/);
         let cardId = location.pathname.match(/cardID=(\d+)/);
-        cardId[1]++
-        setB1(false)
-        setB2(false)
-        setB3(false)
-        setB4(false)
-        setArr(shuffleAnswers([1, 2, 0, 3]))
+        cardId[1]++;
+        setB1(false);
+        setB2(false);
+        setB3(false);
+        setB4(false);
+        setArr(shuffleAnswers([1, 2, 0, 3]));
         history.push(`/learningtool/deckID=` + deckId[1] + '/cardID=' + cardId[1]);
-
     };
 
     // the effect hook can be used to react to change in your component.
@@ -100,16 +88,19 @@ const LearningTool = (props) => {
 
                 const responseDeck = await api.get('/decks/' + deckId[1]);
 
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                await new Promise((resolve) => setTimeout(resolve, 1000));
 
-                setDeck(responseDeck.data)
-                setCards(responseCard.data)
-
-
+                setDeck(responseDeck.data);
+                setCards(responseCard.data);
+                setCards(responseCard.data);
             } catch (error) {
-                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("Something went wrong while fetching the users! See the console for details.");
+                console.error(
+                    `Something went wrong while fetching the users: \n${handleError(error)}`
+                );
+                console.error('Details:', error);
+                alert(
+                    'Something went wrong while fetching the users! See the console for details.'
+                );
             }
         }
 
@@ -120,42 +111,34 @@ const LearningTool = (props) => {
 
     let burgerMenuContent = (
         <BaseContainer>
-            <div className="learningTool window"></div>
-            <div className="learningTool username"></div>
+            <div className='learningTool window'></div>
+            <div className='learningTool username'></div>
             <Button
-                className="learningTool username"
-                onClick={() => {setBurgerMenu(false); goProfile();}}
-            >{user?.username  ? user.username : "Username"}
+                className='learningTool username'
+                onClick={() => {
+                    setBurgerMenu(false);
+                    goProfile();
+                }}
+            >
+                {user?.username ? user.username : 'Username'}
             </Button>
-            <Button
-                className="learningTool home"
-                onClick={() => goHome()}
-            >Home
+            <Button className='learningTool home' onClick={() => goHome()}>
+                Home
             </Button>
-            <Button
-                className="learningTool store"
-                onClick={() => goStore()}
-            >Store
+            <Button className='learningTool publicdecks' onClick={() => goPublicDecks()}>
+                Public Decks
             </Button>
-            <Button
-                className="learningTool creator"
-                onClick={() => goCreator()}
-            >Creator
+            <Button className='learningTool creator' onClick={() => goCreator()}>
+                Creator
             </Button>
-            <Button
-                className="learningTool logoutButton"
-                onClick={() => logout()}
-            >Logout
+            <Button className='learningTool logoutButton' onClick={() => logout()}>
+                Logout
             </Button>
-            <div
-                className="learningTool x"
-                onClick={() => setBurgerMenu(false)}
-
-            >x</div>
-
+            <div className='learningTool x' onClick={() => setBurgerMenu(false)}>
+                x
+            </div>
         </BaseContainer>
-    )
-
+    );
 
     function shuffleAnswers(array) {
         let curId = array.length;
@@ -168,106 +151,121 @@ const LearningTool = (props) => {
         }
         return array;
     }
-
-
     const match = location.pathname.match(/cardID=(\d+)/);
-    const cardID = match[1]
+    const cardID = match[1];
 
-   async function checkAnswer(cardID, value) {
-        let c = counter
+    async function checkAnswer(cardID, value) {
+        let c = counter;
         if (value == 0) {
             //Right Answer
-            c = c +1;
-            setCounter(c)
+            c = c + 1;
+            setCounter(c);
             localStorage.setItem('result', c);
         }
 
-       await new Promise(resolve => setTimeout(resolve, 1200));
-
+        await new Promise((resolve) => setTimeout(resolve, 1200));
 
         localStorage.setItem('lengthDeck', Object.keys(cards).length);
 
-        checkNextCard(cardID, value)
+        checkNextCard(cardID, value);
     }
     //checks if there are still some cards left to learn
     function checkNextCard(cardID, value) {
-        cardID++
-        if (Object.keys(cards).length <= (cardID)) {
-            return goResult()
-        }
-        else {
-            return goNextCard()
+        cardID++;
+        if (Object.keys(cards).length <= cardID) {
+            return goResult();
+        } else {
+            return goNextCard();
         }
     }
-
-
-
-
     if (cards) {
         content = (
             <BaseContainer>
-                <div className="learningTool title">NB</div>
+                <div className='learningTool title'>NB</div>
 
-
-                <div className="learningTool burger1"></div>
-                <div className="learningTool burger2"></div>
-                <div className="learningTool burger3"></div>
+                <div className='learningTool burger1'></div>
+                <div className='learningTool burger2'></div>
+                <div className='learningTool burger3'></div>
                 <div
-                    className="learningTool burgerButton"
+                    className='learningTool burgerButton'
                     // open edit window
                     onClick={() => setBurgerMenu(true)}
                 ></div>
+                <div className='learningTool question-field'></div>
+                <div className='learningTool card2'></div>
+                <div className='learningTool card'></div>
+                <div className='learningTool card-number'>
+                    {cardID}/{Object.keys(cards).length}
+                </div>
+                <div className='learningTool card-tittle'>{deck.deckname}</div>
+                <div className='learningTool card-question'>{cards[cardID].question}</div>
 
-
-
-                <div className="learningTool question-field"></div>
-
-
-
-
-
-
-                <div className="learningTool card2"></div>
-                <div className="learningTool card"></div>
-                <div className="learningTool card-number">{cardID}/{Object.keys(cards).length}</div>
-                <div className="learningTool card-tittle">{deck.deckname}</div>
-                <div className="learningTool card-question">{cards[cardID].question}</div>
-
-                <div className="learningTool learn-tittle">Which one is correct?</div>
-
+                <div className='learningTool learn-tittle'>Which one is correct?</div>
 
                 <Button
-                    className={b1 ? ( arr[0] == 0? "learningTool card-aw1-card-green" : "learningTool card-aw1-card-red" ): "learningTool card-aw1-card"}
-                    onClick={() => {checkAnswer(cardID, arr[0]); setB1(true)}}
+                    className={
+                        b1
+                            ? arr[0] == 0
+                                ? 'learningTool card-aw1-card-green'
+                                : 'learningTool card-aw1-card-red'
+                            : 'learningTool card-aw1-card'
+                    }
+                    onClick={() => {
+                        checkAnswer(cardID, arr[0]);
+                        setB1(true);
+                    }}
                 >
                     {cards[cardID].options[arr[0]]}
                 </Button>
 
-
                 <Button
-                    className={b2 ? ( arr[1] == 0? "learningTool card-aw2-card-green" : "learningTool card-aw2-card-red" ): "learningTool card-aw2-card"}
-                    onClick={() => {checkAnswer(cardID, arr[1]); setB2(true)}}
+                    className={
+                        b2
+                            ? arr[1] == 0
+                                ? 'learningTool card-aw2-card-green'
+                                : 'learningTool card-aw2-card-red'
+                            : 'learningTool card-aw2-card'
+                    }
+                    onClick={() => {
+                        checkAnswer(cardID, arr[1]);
+                        setB2(true);
+                    }}
                 >
                     {cards[cardID].options[arr[1]]}
                 </Button>
 
                 <Button
-                    className={b3 ? ( arr[2] == 0? "learningTool card-aw3-card-green" : "learningTool card-aw3-card-red" ): "learningTool card-aw3-card"}
-                    onClick={() => {checkAnswer(cardID, arr[2]); setB3(true)}}
+                    className={
+                        b3
+                            ? arr[2] == 0
+                                ? 'learningTool card-aw3-card-green'
+                                : 'learningTool card-aw3-card-red'
+                            : 'learningTool card-aw3-card'
+                    }
+                    onClick={() => {
+                        checkAnswer(cardID, arr[2]);
+                        setB3(true);
+                    }}
                 >
                     {cards[cardID].options[arr[2]]}
                 </Button>
 
                 <Button
-                    className={b4 ? ( arr[3] == 0? "learningTool card-aw4-card-green" : "learningTool card-aw4-card-red" ): "learningTool card-aw4-card"}
-                    onClick={() => {checkAnswer(cardID, arr[3]); setB4(true)}}
+                    className={
+                        b4
+                            ? arr[3] == 0
+                                ? 'learningTool card-aw4-card-green'
+                                : 'learningTool card-aw4-card-red'
+                            : 'learningTool card-aw4-card'
+                    }
+                    onClick={() => {
+                        checkAnswer(cardID, arr[3]);
+                        setB4(true);
+                    }}
                 >
                     {cards[cardID].options[arr[3]]}
                 </Button>
-
-
             </BaseContainer>
-
         );
     }
 
@@ -279,6 +277,6 @@ const LearningTool = (props) => {
             {burgerMenu ? burgerMenuContent : null}
         </BaseContainer>
     );
-}
+};
 
 export default LearningTool;

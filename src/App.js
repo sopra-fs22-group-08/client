@@ -1,4 +1,5 @@
-import AppRouter from "components/routing/routers/AppRouter";
+import AppRouter from 'components/routing/routers/AppRouter';
+import { PopupProvider } from 'react-hook-popup';
 
 /**
  * Happy coding!
@@ -6,11 +7,13 @@ import AppRouter from "components/routing/routers/AppRouter";
  * Overhauled by Kyrill Hux
  */
 const App = () => {
-  return (
-    <div>
-      <AppRouter/>
-    </div>
-  );
+    return (
+        <div>
+            <PopupProvider>
+                <AppRouter />
+            </PopupProvider>
+        </div>
+    );
 };
 
 export default App;
