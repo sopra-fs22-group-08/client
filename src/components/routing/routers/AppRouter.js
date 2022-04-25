@@ -13,6 +13,7 @@ import PublicDecks from "../../views/PublicDecks";
 import InspectDeck from "../../views/InspectDeck";
 import LearningTool from "../../views/LearningTool";
 import LearningToolResult from "../../views/LearningToolResult";
+import CardOverview from "../../views/CardOverview";
 
 
 /**
@@ -41,6 +42,11 @@ const AppRouter = () => {
                 <Route path="/cardcreator">
                     <GeneralGuard>
                         <CardCreator/>
+                    </GeneralGuard>
+                </Route>
+                <Route path="/cardOverview">
+                    <GeneralGuard>
+                        <CardOverview/>
                     </GeneralGuard>
                 </Route>
                 <Route path="/learningtool">

@@ -27,6 +27,7 @@ const Profile = (props) => {
     const [editButton, setEditButton] = useState(false);
     const [password, setPassword] = useState(null);
     const [burgerMenu, setBurgerMenu] = useState(false);
+    const [decks, setDecks] = useState(null);
 
     const doUpdate = async () => {
         const id = localStorage.getItem('userId');
@@ -38,6 +39,10 @@ const Profile = (props) => {
     const logout = () => {
         localStorage.removeItem('token');
         history.push('/login');
+    };
+
+    const cardOverview = () => {
+        history.push('/cardOverview');
     };
 
     const goProfile = async () => {
@@ -77,6 +82,11 @@ const Profile = (props) => {
                 await new Promise((resolve) => setTimeout(resolve, 1000));
 
                 setUser(response.data);
+
+                //Decks
+                const response3 = await api.get('/users/' + userId +'/decks');
+                await new Promise((resolve) => setTimeout(resolve, 1000));
+                setDecks(response3.data);
 
                 const response2 = await api.get('/users');
 
@@ -146,37 +156,23 @@ const Profile = (props) => {
 
     if (user) {
 
-        const numbers = [1, 2, 3, 4, 5];
-        const listItems = numbers.map((number) =>
-            <div className="Home listElement-Box">
-        <div className="Home listElement-Number">43 / 76</div>
-        <div className="Home listElement-Title">Asset Pricing </div>
-        <div className="Home listElement-Score">1. YOU <br /> 2. Gusti <br /> 3. Mefisto</div>
-        <div className="Home listElement-Text">Click to Learn</div></div>
-        );
+        var listItems = (<div className="Home deck-None">Please create a new Deck</div>);
+        if(decks){
+            listItems = decks.map(d =>
+                <Button className="Home listElement-Box"
+                        onClick={() => {cardOverview(); localStorage.setItem('DeckID',d.id)}}
+                >
+                    <div className="Home listElement-Number"></div>
+                    <div className="Home listElement-Title">{d.deckname}</div>
+                    <div className="Home listElement-Score"><br /> <br /> </div>
+                    <div className="Home listElement-Text">Click to Learn</div></Button>
 
-        const numbers2 = [1, 2, 3, 4, 5,6,7,8,9,10,11,12,13,14,15,16];
-        const listItems2 = numbers2.map((number) =>
-            <div className="Home listElement-Box">
-                <div className="Home listElement-Number">43 / 76</div>
-                <div className="Home listElement-Title">Asset Pricing </div>
-                <div className="Home listElement-Score">1. YOU <br /> 2. Gusti <br /> 3. Mefisto</div>
-                <div className="Home listElement-Text">Click to Learn</div></div>
-        );
-
-        var listItems3;
-        if (users){
-             listItems3 = users.map(u =>
-                <Button
-                    className="Home online-Button"
-                    onClick={() => logout()}
-                >{u.username}
-                </Button>
             );
         }
-        else{
-            listItems3 = (<div className="Home online-None">Currently there is no User online</div>);
-        }
+
+
+
+
 
 
 
@@ -197,13 +193,6 @@ const Profile = (props) => {
                 <div className="Home listTitle">Continue Learning</div>
                 <div className="Home list">{listItems}</div>
 
-                <div className="Home online-Title">People to challenge</div>
-                <div className="Home online-Number">10</div>
-                <div className="Home online-ButtonPositon">{listItems3}</div>
-
-                <div className="Home cards-Title1">Cards</div>
-                <div className="Home cards-Title2">Yours, Completed</div>
-                <div className="Home cards-list">{listItems2}</div>
 
             </BaseContainer>
 

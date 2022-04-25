@@ -7,7 +7,7 @@ import 'styles/views/Login.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 
-document.body.style = 'background: #4757FF';
+
 
 /*
 It is possible to add multiple components inside a single file,
@@ -79,6 +79,7 @@ const Login = props => {
     }
   };
 
+    document.body.style = 'background: #4757FF';
 
   return (
     <BaseContainer>
