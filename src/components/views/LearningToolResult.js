@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import {useHistory, useLocation} from 'react-router-dom';
 import BaseContainer from "components/ui/BaseContainer";
-import "styles/views/Profile.scss";
+import "styles/views/LearningTool.scss";
 import PropTypes from "prop-types";
 import {Button} from 'components/ui/Button';
 import User from "../../models/User";
@@ -60,35 +60,35 @@ const LearningToolResult = (props) => {
 
     let burgerMenuContent = (
         <BaseContainer>
-            <div className="profile window"></div>
-            <div className="profile username"></div>
+            <div className="learningTool window"></div>
+            <div className="learningTool username"></div>
             <Button
-                className="profile username"
+                className="learningTool username"
                 onClick={() => {setBurgerMenu(false); goProfile();}}
             >{user?.username  ? user.username : "Username"}
             </Button>
             <Button
-                className="profile home"
+                className="learningTool home"
                 onClick={() => goHome()}
             >Home
             </Button>
             <Button
-                className="profile store"
+                className="learningTool store"
                 onClick={() => goStore()}
             >Store
             </Button>
             <Button
-                className="profile creator"
+                className="learningTool creator"
                 onClick={() => goCreator()}
             >Creator
             </Button>
             <Button
-                className="profile logoutButton"
+                className="learningTool logoutButton"
                 onClick={() => logout()}
             >Logout
             </Button>
             <div
-                className="profile x"
+                className="learningTool x"
                 onClick={() => setBurgerMenu(false)}
 
             >x</div>
@@ -99,32 +99,33 @@ const LearningToolResult = (props) => {
 
 
     let count = localStorage.getItem('result');
-    //count++
+    localStorage.setItem('result', 0);
+
     const lengthDeck = localStorage.getItem('lengthDeck');
 
     content = (
         <BaseContainer>
-            <div className="profile title">NB</div>
+            <div className="learningTool title">NB</div>
 
 
-            <div className="profile burger1"></div>
-            <div className="profile burger2"></div>
-            <div className="profile burger3"></div>
+            <div className="learningTool burger1"></div>
+            <div className="learningTool burger2"></div>
+            <div className="learningTool burger3"></div>
             <div
-                className="profile burgerButton"
+                className="learningTool burgerButton"
                 // open edit window
                 onClick={() => setBurgerMenu(true)}
             ></div>
 
-            <div className="card question-title">Result</div>
+            <div className="learningTool resPage-Title">Result</div>
 
 
-            <div><p>You had {(count)} out of {lengthDeck} correct</p></div>
+            <div className="learningTool resPage-Text">You had {(count)} out of {lengthDeck} correct</div>
 
         </BaseContainer>
 
     );
-    document.body.style = 'background: #4757FF;';
+    document.body.style = 'background: #FFCA00;';
 
     return (
             <BaseContainer>
