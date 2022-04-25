@@ -68,6 +68,7 @@ const Login = props => {
 
       // Store the token into the local storage.
       localStorage.setItem('token', user.token);
+
       // Store userID into the local storage.
       localStorage.setItem('userId', user.id);
 
