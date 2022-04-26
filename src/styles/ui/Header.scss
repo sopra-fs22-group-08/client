@@ -1,0 +1,55 @@
+.burgerMenu {
+    //Burger Menu
+    &.Button {
+        cursor: pointer;
+        position: absolute;
+        width: 36px;
+        height: 42px;
+        left: 1311px;
+        top: 30px;
+    }
+
+    &.b1 {
+        cursor: pointer;
+        position: absolute;
+        width: 18px;
+        height: 7.2px;
+        left: 1329px;
+        top: 30px;
+        border-radius: 5px;
+
+
+        background-color: black;
+        margin: 6px 0;
+
+    }
+
+    &.b2 {
+        cursor: pointer;
+        position: absolute;
+        width: 36px;
+        height: 7.2px;
+        left: 1311px;
+        top: 44.4px;
+        border-radius: 5px;
+
+
+        background-color: black;
+        margin: 6px 0;
+
+    }
+
+    &.b3 {
+        cursor: pointer;
+        position: absolute;
+        width: 18px;
+        height: 7.2px;
+        left: 1311px;
+        top: 58.8px;
+        border-radius: 5px;
+
+        background-color: black;
+        margin: 6px 0;
+
+    }
+}
