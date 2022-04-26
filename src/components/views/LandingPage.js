@@ -4,13 +4,6 @@ import { Button } from 'components/ui/Button';
 import 'styles/views/LandingPage.scss';
 import BaseContainer from 'components/ui/BaseContainer';
 
-/*
-It is possible to add multiple components inside a single file,
-however be sure not to clutter your files with an endless amount!
-As a rule of thumb, use one file per component and only add small,
-specific components that belong to the main one in the same file.
- */
-
 const LandingPage = (props) => {
     const history = useHistory();
 
@@ -63,10 +56,10 @@ const LandingPage = (props) => {
                     Only practice the decks that you're about to forget.
                 </div>
 
-                <div className='landingPage card-left'></div>
-                <div className='landingPage card-right'></div>
+                <div className='landingPage card-left'/>
+                <div className='landingPage card-right'/>
 
-                <div className='landingPage card'></div>
+                <div className='landingPage card'/>
                 <div className='landingPage card-text'>
                     What is the difference between a long call and a long put option?
                 </div>
@@ -78,8 +71,4 @@ const LandingPage = (props) => {
     );
 };
 
-/**
- * You can get access to the history object's properties via the withRouter.
- * withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
- */
 export default LandingPage;

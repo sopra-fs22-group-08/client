@@ -6,13 +6,8 @@ import 'styles/views/CardCreator.scss';
 import BaseContainer from 'components/ui/BaseContainer';
 import PropTypes from 'prop-types';
 import Card from '../../models/Card';
+import Header from "../ui/Header";
 
-/*
-It is possible to add multiple components inside a single file,
-however be sure not to clutter your files with an endless amount!
-As a rule of thumb, use one file per component and only add small,
-specific components that belong to the main one in the same file.
- */
 
 const FormFieldLn = (props) => {
     return (
@@ -111,26 +106,23 @@ const CardCreator = () => {
     const [wrongAnswer2, setWrongAnswer2] = useState(null);
     const [wrongAnswer3, setWrongAnswer3] = useState(null);
     const options = [answer, wrongAnswer1, wrongAnswer2, wrongAnswer3];
-    const [burgerMenu, setBurgerMenu] = useState(false);
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
+
         async function fetchData() {
             try {
                 const userId = localStorage.getItem('userId');
                 const response = await api.get('/users/' + userId);
-
                 await new Promise((resolve) => setTimeout(resolve, 1000));
-
                 setUser(response.data);
             } catch (error) {
                 console.error(
-                    `Something went wrong while fetching the users: \n${handleError(error)}`
+                    `Something went wrong while fetching the Data: \n${handleError(error)}`
                 );
                 console.error('Details:', error);
                 alert(
-                    'Something went wrong while fetching the users! See the console for details.'
+                    'Something went wrong while fetching the Data! See the console for details.'
                 );
             }
         }
@@ -158,99 +150,36 @@ const CardCreator = () => {
         }
     };
 
-    const logout = () => {
-        localStorage.removeItem('token');
-        history.push('/login');
-    };
-
-    const goProfile = async () => {
-        const id = localStorage.getItem('userId');
-        history.push(`/profile/` + id);
-    };
-
-    const goHome = async () => {
-        const id = localStorage.getItem('userId');
-        history.push(`/home/` + id);
-    };
-
-    const goPublicDecks = async () => {
-        history.push(`/publicdecks`);
-    };
-
-    const goCreator = async () => {
-        history.push(`/creator`);
-    };
-
-    let burgerMenuContent = (
-        <BaseContainer>
-            <div className='cardCreator window'></div>
-            <div className='cardCreator username'></div>
-            <Button
-                className='cardCreator username'
-                onClick={() => {
-                    setBurgerMenu(false);
-                    goProfile();
-                }}
-            >
-                {user?.username ? user.username : 'Username'}
-            </Button>
-            <Button className='cardCreator home' onClick={() => goHome()}>
-                Home
-            </Button>
-            <Button className='cardCreator public-decks' onClick={() => goPublicDecks()}>
-                Public Decks
-            </Button>
-            <Button className='cardCreator creator' onClick={() => goCreator()}>
-                Creator
-            </Button>
-            <Button className='cardCreator logoutButton' onClick={() => logout()}>
-                Logout
-            </Button>
-            <div className='cardCreator x' onClick={() => setBurgerMenu(false)}>
-                x
-            </div>
-        </BaseContainer>
-    );
-
     document.body.style = 'background: #4757FF;';
 
     return (
         <BaseContainer>
-            <div className='cardCreator title'>NB</div>
-
-            <div className='cardCreator burger1'></div>
-            <div className='cardCreator burger2'></div>
-            <div className='cardCreator burger3'></div>
-            <div
-                className='cardCreator burgerButton'
-                // open edit window
-                onClick={() => setBurgerMenu(true)}
-            ></div>
+            <Header/>
 
             <div className='cardCreator card-title'>Card</div>
 
             <div className='cardCreator card-ft'>Question</div>
-            <div className='cardCreator frontText-field'></div>
+            <div className='cardCreator frontText-field'/>
 
             <FormFieldLn value={question} onChange={(n) => setQuestion(n)} />
 
             <div className='cardCreator card-bt'>Answer</div>
-            <div className='cardCreator backText-field'></div>
+            <div className='cardCreator backText-field'/>
 
             <FormFieldEm value={answer} onChange={(n) => setAnswer(n)} />
 
             <div className='cardCreator card-w1'>Wrong Answer</div>
-            <div className='cardCreator wrongAnswer-field'></div>
+            <div className='cardCreator wrongAnswer-field'/>
 
             <FormFieldFn value={wrongAnswer1} onChange={(n) => setWrongAnswer1(n)} />
 
             <div className='cardCreator card-w2'>Wrong Answer</div>
-            <div className='cardCreator wrongAnswer-field'></div>
+            <div className='cardCreator wrongAnswer-field'/>
 
             <FormFieldUn value={wrongAnswer2} onChange={(n) => setWrongAnswer2(n)} />
 
             <div className='cardCreator card-w3'>Wrong Answer</div>
-            <div className='card wrongAnswer-field'></div>
+            <div className='card wrongAnswer-field'/>
 
             <FormFieldPw value={wrongAnswer3} onChange={(n) => setWrongAnswer3(n)} />
 
@@ -269,13 +198,8 @@ const CardCreator = () => {
                 Create
             </Button>
 
-            {burgerMenu ? burgerMenuContent : null}
         </BaseContainer>
     );
 };
 
-/**
- * You can get access to the history object's properties via the withRouter.
- * withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
- */
 export default CardCreator;

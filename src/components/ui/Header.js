@@ -64,7 +64,7 @@ const Header = () => {
     let burgerMenuContent = (
         <BaseContainer>
             <div className='Home title'>NB</div>
-            <div className='Home window'></div>
+            <div className='Home window'/>
             <Button
                 className='Home username'
                 onClick={() => toProfile(localStorage.getItem('userId'))}
@@ -99,14 +99,13 @@ const Header = () => {
         content = (
             <BaseContainer>
                 <div className='Home title'>NB</div>
-                <div className='Home burger1'></div>
-                <div className='Home burger2'></div>
-                <div className='Home burger3'></div>
+                <div className='Home burger1'/>
+                <div className='Home burger2'/>
+                <div className='Home burger3'/>
                 <div
                     className='Home burgerButton'
-                    // open edit window
                     onClick={() => setBurgerMenu(true)}
-                ></div>
+                />
             </BaseContainer>
         );
     }

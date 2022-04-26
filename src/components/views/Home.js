@@ -96,7 +96,7 @@ const Home = () => {
                         localStorage.setItem('DeckID', d.id);
                     }}
                 >
-                    <div className='Home listElement-Number'></div>
+                    <div className='Home listElement-Number'/>
                     <div className='Home listElement-Title'>{d.deckname}</div>
                     <div className='Home listElement-Score'>
                         <br /> <br />{' '}
@@ -112,6 +112,7 @@ const Home = () => {
 
     return (
         <BaseContainer>
+            <Header/>
             <div>
                 {popupFlag && (
                     <Popup
@@ -126,7 +127,6 @@ const Home = () => {
             </div>
             <div className='Home listTitle'>Continue Learning</div>
             <div className='Home list'>{listItems}</div>
-            <Header></Header>
         </BaseContainer>
     );
 };

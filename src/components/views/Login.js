@@ -7,12 +7,6 @@ import PropTypes from 'prop-types';
 import { api, handleError } from '../../helpers/api';
 import User from '../../models/User';
 
-/*
-It is possible to add multiple components inside a single file,
-however be sure not to clutter your files with an endless amount!
-As a rule of thumb, use one file per component and only add small,
-specific components that belong to the main one in the same file.
- */
 const FormFieldUn = (props) => {
     return (
         <div className='login field'>
@@ -82,10 +76,10 @@ const Login = (props) => {
             <div className='login title'>No Brainer</div>
             <div className='login login-text'>Login</div>
             <div className='login username-title'>Username</div>
-            <div className='login username-field'></div>
+            <div className='login username-field'/>
             <FormFieldUn value={username} onChange={(un) => setUsername(un)} />
             <div className='login password-title'>Password</div>
-            <div className='login password-field'></div>
+            <div className='login password-field'/>
             <FormFieldPw value={password} onChange={(n) => setPassword(n)} />
             <Button
                 className='login loginButton'
@@ -98,8 +92,4 @@ const Login = (props) => {
     );
 };
 
-/**
- * You can get access to the history object's properties via the withRouter.
- * withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
- */
 export default Login;

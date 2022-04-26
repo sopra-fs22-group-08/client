@@ -5,6 +5,7 @@ import BaseContainer from 'components/ui/BaseContainer';
 import 'styles/views/Profile.scss';
 import PropTypes from 'prop-types';
 import { Button } from 'components/ui/Button';
+import Header from "../ui/Header";
 
 const FormFieldFn = (props) => {
     return (
@@ -97,25 +98,17 @@ FormFieldPw.propTypes = {
     onChange: PropTypes.func,
 };
 
-const Profile = (props) => {
-    // use react-router-dom's hook to access the history
+const Profile = () => {
     const history = useHistory();
     const location = useLocation();
 
-    // define a state variable (using the state hook).
-    // if this variable changes, the component will re-render, but the variable will
-    // keep its value throughout render cycles.
-    // a component can have as many state variables as you like.
-    // more information can be found under https://reactjs.org/docs/hooks-state.html
     const [user, setUser] = useState(null);
-
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
     const [email, setEmail] = useState(null);
     const [username, setUsername] = useState(null);
     const [editButton, setEditButton] = useState(false);
     const [password, setPassword] = useState(null);
-    const [burgerMenu, setBurgerMenu] = useState(false);
 
     const doUpdate = async () => {
         const id = localStorage.getItem('userId');
@@ -126,35 +119,8 @@ const Profile = (props) => {
         window.location.reload(false);
     };
 
-    const logout = () => {
-        localStorage.removeItem('token');
-        history.push('/login');
-    };
-
-    const goProfile = async () => {
-        const id = localStorage.getItem('userId');
-        history.push(`/profile/` + id);
-    };
-
-    const goHome = async () => {
-        const id = localStorage.getItem('userId');
-        history.push(`/home/` + id);
-    };
-
-    const goPublicDecks = async () => {
-        history.push(`/publicdecks`);
-    };
-
-    const goCreator = async () => {
-        history.push(`/deckcreator`);
-    };
-
-    // the effect hook can be used to react to change in your component.
-    // in this case, the effect hook is only run once, the first time the component is mounted
-    // this can be achieved by leaving the second argument an empty array.
-    // for more information on the effect hook, please see https://reactjs.org/docs/hooks-effect.html
     useEffect(() => {
-        // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
+
         async function fetchData() {
             try {
                 const userId = location.pathname.match(/\d+$/);
@@ -183,36 +149,30 @@ const Profile = (props) => {
 
     edit = (
         <BaseContainer>
-            <div className='profile title'>NB</div>
-
-            <div className='profile burger1'></div>
-            <div className='profile burger2'></div>
-            <div className='profile burger3'></div>
-
             <div className='register login-text'>Edit Profile</div>
 
             <div className='register firstName-title'>First Name</div>
-            <div className='register firstName-field'></div>
+            <div className='register firstName-field'/>
 
             <FormFieldFn value={firstName} onChange={(un) => setFirstName(un)} />
 
             <div className='register lastName-title'>Last Name</div>
-            <div className='register lastName-field'></div>
+            <div className='register lastName-field'/>
 
             <FormFieldLn value={lastName} onChange={(n) => setLastName(n)} />
 
             <div className='register email-title'>Email</div>
-            <div className='register email-field'></div>
+            <div className='register email-field'/>
 
             <FormFieldEm value={email} onChange={(n) => setEmail(n)} />
 
             <div className='register username-title'>Username</div>
-            <div className='register username-field'></div>
+            <div className='register username-field'/>
 
             <FormFieldUn value={username} onChange={(un) => setUsername(un)} />
 
             <div className='register password-title'>Password</div>
-            <div className='register password-field'></div>
+            <div className='register password-field'/>
             <FormFieldPw value={password} onChange={(n) => setPassword(n)} />
 
             <Button
@@ -234,75 +194,34 @@ const Profile = (props) => {
         </Button>
     );
 
-    let burgerMenuContent = (
-        <BaseContainer>
-            <div className='profile window'></div>
-            <div className='profile username'></div>
-            <Button
-                className='profile username'
-                onClick={() => {
-                    setBurgerMenu(false);
-                    goProfile();
-                }}
-            >
-                {user?.username ? user.username : 'Username'}
-            </Button>
-            <Button className='profile home' onClick={() => goHome()}>
-                Home
-            </Button>
-            <Button className='profile public-decks' onClick={() => goPublicDecks()}>
-                Public Decks
-            </Button>
-            <Button className='profile creator' onClick={() => goCreator()}>
-                Creator
-            </Button>
-            <Button className='profile logoutButton' onClick={() => logout()}>
-                Logout
-            </Button>
-            <div className='profile x' onClick={() => setBurgerMenu(false)}>
-                x
-            </div>
-        </BaseContainer>
-    );
-
     if (user) {
         content = (
             <BaseContainer>
-                <div className='profile title'>NB</div>
-
-                <div className='profile burger1'></div>
-                <div className='profile burger2'></div>
-                <div className='profile burger3'></div>
-                <div
-                    className='profile burgerButton'
-                    // open edit window
-                    onClick={() => setBurgerMenu(true)}
-                ></div>
 
                 <div className='profile login-text'>Profile</div>
 
                 <div className='profile firstName-title'>First Name</div>
-                <div className='profile firstName-field'></div>
+                <div className='profile firstName-field'/>
 
                 <FormFieldFn value={user.firstName} onChange={(un) => setFirstName(un)} />
 
                 <div className='profile lastName-title'>Last Name</div>
-                <div className='profile lastName-field'></div>
+                <div className='profile lastName-field'/>
 
                 <FormFieldLn value={user.lastName} onChange={(n) => setLastName(n)} />
 
                 <div className='profile email-title'>Email</div>
-                <div className='profile email-field'></div>
+                <div className='profile email-field'/>
 
                 <FormFieldEm value={user.email} onChange={(n) => setEmail(n)} />
 
                 <div className='profile username-title'>Username</div>
-                <div className='profile username-field'></div>
+                <div className='profile username-field'/>
 
                 <FormFieldUn value={user.username} onChange={(un) => setUsername(un)} />
 
                 <div className='profile password-title'>Password</div>
-                <div className='profile password-field'></div>
+                <div className='profile password-field'/>
                 <FormFieldPw value={password} onChange={(n) => setPassword(n)} />
                 {localStorage.getItem('username') !== user.username ? null : addEditButton}
             </BaseContainer>
@@ -313,8 +232,8 @@ const Profile = (props) => {
 
     return (
         <BaseContainer>
+            <Header/>
             {editButton ? edit : content}
-            {burgerMenu ? burgerMenuContent : null}
         </BaseContainer>
     );
 };
