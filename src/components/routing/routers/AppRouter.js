@@ -14,6 +14,7 @@ import InspectDeck from "../../views/InspectDeck";
 import LearningTool from "../../views/LearningTool";
 import LearningToolResult from "../../views/LearningToolResult";
 import CardOverview from "../../views/CardOverview";
+import Library from "../../views/Library";
 
 /**
  * Main router of your application.
@@ -75,6 +76,11 @@ const AppRouter = () => {
                 </Route>
                 <Route exact path='/'>
                     <LandingPage />
+                </Route>
+                <Route path='/library'>
+                    <GeneralGuard>
+                        <Library />
+                    </GeneralGuard>
                 </Route>
                 <Route path='/publicdecks'>
                     <GeneralGuard>

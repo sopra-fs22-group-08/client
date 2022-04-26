@@ -30,7 +30,7 @@ const Header = () => {
     };
 
     const goPublicDecks = async () => {
-        history.push(`/publicdecks`);
+        history.push('/library');
     };
 
     const goCreator = async () => {
