@@ -63,33 +63,27 @@ const Header = () => {
 
     let burgerMenuContent = (
         <BaseContainer>
-            <div className='Home title'>NB</div>
-            <div className='Home window'/>
+            <div className='burgerMenu title'>NB</div>
+            <div className='burgerMenu window'/>
             <Button
-                className='Home username'
+                className='burgerMenu username'
                 onClick={() => toProfile(localStorage.getItem('userId'))}
             >
                 {user?.username ? user.username : 'Username'}
             </Button>
-            <Button
-                className='Home home'
-                onClick={() => {
-                    setBurgerMenu(false);
-                    goHome();
-                }}
-            >
+            <Button className='burgerMenu home' onClick={() => {setBurgerMenu(false); goHome(); }}>
                 Home
             </Button>
-            <Button className='Home public-decks' onClick={() => goPublicDecks()}>
-                Public Decks
+            <Button className='burgerMenu public-decks' onClick={() => goPublicDecks()}>
+                Library
             </Button>
-            <Button className='Home creator' onClick={() => goCreator()}>
+            <Button className='burgerMenu creator' onClick={() => goCreator()}>
                 Creator
             </Button>
-            <Button className='Home logoutButton' onClick={() => logout()}>
+            <Button className='burgerMenu logoutButton' onClick={() => logout()}>
                 Logout
             </Button>
-            <div className='Home x' onClick={() => setBurgerMenu(false)}>
+            <div className='burgerMenu x' onClick={() => setBurgerMenu(false)}>
                 x
             </div>
         </BaseContainer>
@@ -98,12 +92,12 @@ const Header = () => {
     if (user) {
         content = (
             <BaseContainer>
-                <div className='Home title'>NB</div>
-                <div className='Home burger1'/>
-                <div className='Home burger2'/>
-                <div className='Home burger3'/>
+                <div className='burgerMenu title'>NB</div>
+                <div className='burgerMenu burger1'/>
+                <div className='burgerMenu burger2'/>
+                <div className='burgerMenu burger3'/>
                 <div
-                    className='Home burgerButton'
+                    className='burgerMenu burgerButton'
                     onClick={() => setBurgerMenu(true)}
                 />
             </BaseContainer>
