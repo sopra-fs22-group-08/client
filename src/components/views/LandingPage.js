@@ -50,17 +50,17 @@ const LandingPage = (props) => {
                     Get Started
                 </Button>
 
-                <div className='landingPage text1-title'>Anything</div>
+                <div className='landingPage text1-title'>Anywhere</div>
                 <div className='landingPage text1-text'>
-                    From images to audio, video and LaTeX we got you covered.
+                    Find us in a web browser, wherever you are.
                 </div>
-                <div className='landingPage text2-title'>Anywhere</div>
+                <div className='landingPage text2-title'>Simplicity</div>
                 <div className='landingPage text2-text'>
-                    Finde us on any device with a web browser.
+                    Easy to use, easy to learn.
                 </div>
                 <div className='landingPage text3-title'>Efficiently</div>
                 <div className='landingPage text3-text'>
-                    Only practice the material that you're about to forget.
+                    Only practice the decks that you're about to forget.
                 </div>
 
                 <div className='landingPage card-left'></div>
