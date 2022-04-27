@@ -9,12 +9,11 @@ import LandingPage from "../../views/LandingPage";
 import Home from "../../views/Home";
 import DeckCreator from "../../views/DeckCreator";
 import CardCreator from "../../views/CardCreator";
-import PublicDecks from "../../views/PublicDecks";
-import InspectDeck from "../../views/InspectDeck";
 import LearningTool from "../../views/LearningTool";
 import LearningToolResult from "../../views/LearningToolResult";
 import CardOverview from "../../views/CardOverview";
 import Library from "../../views/Library";
+import Multiplayer from "../../views/Multiplayer";
 
 /**
  * Main router of your application.
@@ -82,14 +81,9 @@ const AppRouter = () => {
                         <Library />
                     </GeneralGuard>
                 </Route>
-                <Route path='/publicdecks'>
+                <Route path='/multiplayer'>
                     <GeneralGuard>
-                        <PublicDecks />
-                    </GeneralGuard>
-                </Route>
-                <Route path='/inspectdeck'>
-                    <GeneralGuard>
-                        <InspectDeck />
+                        <Multiplayer />
                     </GeneralGuard>
                 </Route>
             </Switch>

@@ -4,10 +4,8 @@ import { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 // local imports
 import { api, handleError } from 'helpers/api';
-import { stompClient } from 'helpers/websocket';
 import BaseContainer from 'components/ui/BaseContainer';
 import { Button } from 'components/ui/Button';
-import { Popup } from 'components/ui/Popup';
 import Header from 'components/ui/Header';
 
 const Library = () => {
@@ -17,42 +15,11 @@ const Library = () => {
     const [user, setUser] = useState(null);
     const [allDecks, setAllDecks] = useState(null);
 
-    /*
-     * Websocket logic
-     */
-    const [popupFlag, setPopupFlag] = useState(null);
     // TODO: remove userData, doesn't do anything, when connecting it is still empty
     const [userData, setUserData] = useState({
         from: '',
         connected: false,
     });
-
-    const closePopup = () => {
-        setPopupFlag(false);
-    };
-
-    const connect = () => {
-        stompClient.connect({ username: localStorage.getItem('username') }, onConnected, onError);
-        console.log('just got connected ' + userData.from);
-    };
-
-    const onConnected = () => {
-        setUserData({ ...userData, connected: true });
-        stompClient.subscribe('/users/queue/invite/greetings', function (payload) {
-            onInviteReceivedPrivate(payload);
-        });
-    };
-
-    const onInviteReceivedPrivate = (payload) => {
-        // const payloadData = payload.body;
-        console.log(payload);
-        setPopupFlag(true);
-    };
-
-    const onError = (err) => {
-        console.log(err);
-    };
-    //  end websockets
 
     const cardOverview = () => {
         history.push('/cardOverview');
@@ -80,7 +47,6 @@ const Library = () => {
                 );
             }
         }
-        connect();
         fetchData();
     }, []);
 
@@ -115,18 +81,6 @@ const Library = () => {
     return (
         <BaseContainer>
             <Header/>
-            <div>
-                {popupFlag && (
-                    <Popup
-                        content={
-                            <>
-                                <b>You have received an Invitation</b>
-                            </>
-                        }
-                        handleClose={closePopup}
-                    />
-                )}
-            </div>
             <div className='Home listTitle'>Public Decks</div>
             <div className='Home list'>{listItems}</div>
         </BaseContainer>
