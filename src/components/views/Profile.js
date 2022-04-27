@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { api, handleError } from 'helpers/api';
 import { useHistory, useLocation } from 'react-router-dom';
 import BaseContainer from 'components/ui/BaseContainer';
@@ -232,8 +232,8 @@ const Profile = () => {
 
     return (
         <BaseContainer>
-            <Header/>
             {editButton ? edit : content}
+            <Header/>
         </BaseContainer>
     );
 };

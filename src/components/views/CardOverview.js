@@ -109,7 +109,6 @@ const CardOverview = () => {
 
     return (
         <BaseContainer>
-            <Header/>
 
             <Button className='cardOverview card' onClick={() => doLearning()}>
                 <div className='cardOverview card-Title'>{deck ? deck.deckname : ''}</div>
@@ -118,7 +117,7 @@ const CardOverview = () => {
             {/*<Button className='cardOverview edit-Button'>Edit</Button>*/}
             <div className='cardOverview people-Title'>People to challenge</div>
             <div className='cardOverview people-Button-position'>{listItems3}</div>
-
+            <Header/>
         </BaseContainer>
     );
 };

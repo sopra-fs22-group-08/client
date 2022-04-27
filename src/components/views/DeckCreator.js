@@ -79,8 +79,6 @@ const DeckCreator = () => {
 
     return (
         <BaseContainer>
-            <Header/>
-
             <div className='cardCreator cardDeck-title'>Title</div>
 
             <FormFieldFn value={deckname} onChange={(un) => setDeckname(un)} />
@@ -92,6 +90,7 @@ const DeckCreator = () => {
             >
                 Create
             </Button>
+            <Header/>
         </BaseContainer>
     );
 };

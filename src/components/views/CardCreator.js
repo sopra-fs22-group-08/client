@@ -154,7 +154,6 @@ const CardCreator = () => {
 
     return (
         <BaseContainer>
-            <Header/>
 
             <div className='cardCreator card-title'>Card</div>
 
@@ -197,7 +196,7 @@ const CardCreator = () => {
             >
                 Create
             </Button>
-
+            <Header/>
         </BaseContainer>
     );
 };

@@ -134,11 +134,11 @@ const Home = () => {
 
     return (
         <BaseContainer>
-            <Header/>
             <div className='Home listTitle'>Continue Learning</div>
             <div className='Home list'>{listItems}</div>
             <div className='Home invitations-title'>Invitations</div>
             <div className='Home invitations-list'>{listInvites}</div>
+            <Header/>
         </BaseContainer>
     );
 };

@@ -64,7 +64,7 @@ const Header = () => {
     let burgerMenuContent = (
         <BaseContainer>
             <div className='burgerMenu title'>NB</div>
-            <div className='burgerMenu window'/>
+            <div className='burgerMenu window'>
             <Button
                 className='burgerMenu username'
                 onClick={() => toProfile(localStorage.getItem('userId'))}
@@ -86,6 +86,7 @@ const Header = () => {
             <div className='burgerMenu x' onClick={() => setBurgerMenu(false)}>
                 x
             </div>
+            </div>
         </BaseContainer>
     );
 
@@ -93,13 +94,14 @@ const Header = () => {
         content = (
             <BaseContainer>
                 <div className='burgerMenu title'>NB</div>
-                <div className='burgerMenu burger1'/>
-                <div className='burgerMenu burger2'/>
-                <div className='burgerMenu burger3'/>
                 <div
-                    className='burgerMenu burgerButton'
+                    className='burgerMenu burger-position'
                     onClick={() => setBurgerMenu(true)}
-                />
+                >
+                    <div className='burgerMenu burger1'/>
+                    <div className='burgerMenu burger2'/>
+                    <div className='burgerMenu burger3'/>
+                </div>
             </BaseContainer>
         );
     }

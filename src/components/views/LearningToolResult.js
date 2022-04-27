@@ -19,12 +19,12 @@ const LearningToolResult = () => {
 
     return (
         <BaseContainer>
-            <Header/>
             <div className='learningTool resPage-Title'>Result</div>
 
             <div className='learningTool resPage-Text'>
                 You had {count} out of {lengthDeck} correct
             </div>
+            <Header/>
         </BaseContainer>
     );
 };

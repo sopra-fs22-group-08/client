@@ -185,8 +185,8 @@ const LearningTool = () => {
 
     return (
         <BaseContainer>
-            <Header/>
             {content}
+            <Header/>
         </BaseContainer>
     );
 };

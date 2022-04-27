@@ -1,21 +1,20 @@
 .burgerMenu {
     //Burger Menu
-    &.burgerButton {
+    &.burger-position{
         cursor: pointer;
         position: absolute;
         width: 36px;
-        height: 42px;
-        left: 1311px;
+        height: 46px;
+        right: 10%;
         top: 30px;
     }
 
     &.burger1 {
-        cursor: pointer;
         position: absolute;
         width: 18px;
         height: 7.2px;
-        left: 1329px;
-        top: 30px;
+        right: 0%;
+        top: 0px;
         border-radius: 5px;
 
 
@@ -25,12 +24,11 @@
     }
 
     &.burger2 {
-        cursor: pointer;
         position: absolute;
         width: 36px;
         height: 7.2px;
-        left: 1311px;
-        top: 44.4px;
+        right: 0%;
+        top: 14.4px;
         border-radius: 5px;
 
 
@@ -40,12 +38,11 @@
     }
 
     &.burger3 {
-        cursor: pointer;
         position: absolute;
         width: 18px;
         height: 7.2px;
-        left: 1311px;
-        top: 58.8px;
+        left: 0%;
+        top: 28.8px;
         border-radius: 5px;
 
         background-color: black;
@@ -59,8 +56,8 @@
         position: absolute;
         width: 128px;
         height: 31px;
-        left: 1163px;
-        top: 26px;
+        right: 35%;
+        top: 10px;
 
         font-family: 'Racing Sans One';
         font-style: normal;
@@ -78,8 +75,8 @@
         position: absolute;
         width: 128px;
         height: 27px;
-        left: 1163px;
-        top: 89px;
+        right: 30%;
+        bottom: 200px;
 
         font-family: 'Roboto';
         font-style: normal;
@@ -96,8 +93,8 @@
         position: absolute;
         width: 128px;
         height: 27px;
-        left: 1163px;
-        top: 141px;
+        right: 30%;
+        bottom: 150px;
 
         font-family: 'Roboto';
         font-style: normal;
@@ -114,8 +111,8 @@
         position: absolute;
         width: 128px;
         height: 28px;
-        left: 1163px;
-        top: 191px;
+        right: 30%;
+        bottom: 100px;
 
         font-family: 'Roboto';
         font-style: normal;
@@ -130,8 +127,8 @@
         position: absolute;
         width: 170px;
         height: 54.29px;
-        left: 1165px;
-        top: 251px;
+        right: 11%;
+        bottom: 15px;
 
         background: #FFCA00;
         border-radius: 20px;
@@ -155,8 +152,8 @@
         position: absolute;
         width: 24px;
         height: 44px;
-        left: 1318px;
-        top: 13px;
+        right: 6%;
+        top: 4px;
 
         font-family: 'Roboto';
         font-style: normal;
@@ -173,7 +170,7 @@
         position: absolute;
         width: 220px;
         height: 306.5px;
-        left: 1140px;
+        right: 9%;
         top: 17px;
 
         background: #FFFFFF;

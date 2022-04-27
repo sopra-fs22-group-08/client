@@ -1,6 +1,6 @@
 import 'styles/views/Home.scss';
 // react imports
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 // local imports
 import { api, handleError } from 'helpers/api';
@@ -78,9 +78,9 @@ const Library = () => {
 
     return (
         <BaseContainer>
-            <Header/>
             <div className='Home listTitle'>Public Decks</div>
             <div className='Home list'>{listItems}</div>
+            <Header/>
         </BaseContainer>
     );
 };
