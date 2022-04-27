@@ -48,11 +48,11 @@ const LearningTool = () => {
                 setCards(responseCard.data);
             } catch (error) {
                 console.error(
-                    `Something went wrong while fetching the users: \n${handleError(error)}`
+                    `Something went wrong while fetching the decks: \n${handleError(error)}`
                 );
                 console.error('Details:', error);
                 alert(
-                    'Something went wrong while fetching the users! See the console for details.'
+                    'Something went wrong while fetching the decks! See the console for details.'
                 );
             }
         }
