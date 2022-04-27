@@ -100,7 +100,7 @@ const Home = () => {
             ));
         }
 
-        var listInvites = <div className='Home deck-None'>Please create a new Deck</div>;
+        var listInvites = <div className='Home deck-None'>Invite Player</div>;
         if (invitations) {
             listInvites = invitations.map((i) => (
 
