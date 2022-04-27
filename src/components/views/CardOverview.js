@@ -115,7 +115,7 @@ const CardOverview = () => {
                 <div className='cardOverview card-Title'>{deck ? deck.deckname : ''}</div>
                 <div className='cardOverview card-Text'>Click to Learn</div>
             </Button>
-            <Button className='cardOverview edit-Button'>Edit</Button>
+            {/*<Button className='cardOverview edit-Button'>Edit</Button>*/}
             <div className='cardOverview people-Title'>People to challenge</div>
             <div className='cardOverview people-Button-position'>{listItems3}</div>
 

@@ -35,8 +35,8 @@ const Home = () => {
             //fetch invitations for the logged in-user from backend
             const id = localStorage.getItem("userId");
             const responseBody = await api.get("/users/" + id + "/invitations");
-            //setInvitations(responseBody.data);
-            console.log(responseBody.data);
+            setInvitations(responseBody.data);
+            //console.log(responseBody.data);
 
         }catch (error){
             alert(error);
@@ -100,6 +100,34 @@ const Home = () => {
             ));
         }
 
+        var listInvites = <div className='Home deck-None'>Please create a new Deck</div>;
+        if (invitations) {
+            listInvites = invitations.map((i) => (
+
+                    <div className='Home invitations-Field'>
+                        //TODO add User Name, Add Deck Name
+                    <div className='Home invitations-text'>Person 1 wants to conquer you on BWL 3</div>
+                    <Button
+                        className='Home invitations-Accept'
+                        onClick={() => {
+                            //TODO send Accept
+                            cardOverview();
+                        }}
+                    >Accept</Button>
+                    <Button
+                        className='Home invitations-Decline'
+                        onClick={() => {
+                            //TODO send Decline
+                            cardOverview();
+                        }}
+                    >X</Button>
+                    </div>
+
+
+            ));
+        }
+
+
     }
 
     document.body.style = 'background: #4757FF';
@@ -109,6 +137,8 @@ const Home = () => {
             <Header/>
             <div className='Home listTitle'>Continue Learning</div>
             <div className='Home list'>{listItems}</div>
+            <div className='Home invitations-title'>Invitations</div>
+            <div className='Home invitations-list'>{listInvites}</div>
         </BaseContainer>
     );
 };

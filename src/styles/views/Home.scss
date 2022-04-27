@@ -9,6 +9,97 @@
 
 .Home {
 
+    &.invitations-list {
+        position: absolute;
+        width: 484.32px;
+        height: 32px;
+        left: 261.68px;
+        top: 436px;
+    }
+
+    &.invitations-title {
+        position: absolute;
+        width: 289.52px;
+        height: 29px;
+        left: 235px;
+        top: 388px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 28px;
+        /* identical to box height */
+
+
+        color: #000000;
+    }
+    &.invitations-Field {
+        position: relative;
+        width: 484.32px;
+        height: 32px;
+        margin-right: 10px; margin-bottom: 10px;
+
+        background: #FFFFFF;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        border-radius: 10px;
+    }
+    &.invitations-text {
+        position: relative;
+        left: 10px;
+        top: 3px;
+
+        font-family: 'Racing Sans One';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+
+        color: #000000;
+    }
+    &.invitations-Accept {
+        position: relative;
+        left: 380px;
+        top: -16px;
+        width: 54px;
+        height: 23px;
+
+
+        background: #21EA71;
+        border-radius: 20px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+
+        color: #FFFFFF;
+
+    }
+    &.invitations-Decline {
+        position: relative;
+        width: 27.42px;
+        height: 23px;
+        left: 390px;
+        top: -16px;
+
+
+        background: #EA2D21;
+        border-radius: 20px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+
+        color: #FFFFFF;
+    }
+
     &.deck-None {
         float:left;
         height: 32px;

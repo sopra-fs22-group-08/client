@@ -58,8 +58,6 @@ const Library = () => {
                 <Button
                     className='Home listElement-Box'
                     onClick={() => {
-
-                        // TODO: Press to ad to players library
                         cardOverview();
                         localStorage.setItem('DeckID', d.id);
                     }}
