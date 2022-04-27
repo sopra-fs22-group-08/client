@@ -14,6 +14,7 @@ const CardOverview = () => {
 
     const [users, setUsers] = useState(null);
     const [deck, setDeck] = useState(null);
+    const [user, setUser] = useState(null);
 
     const doLearning = () => {
         const deckID = localStorage.getItem('DeckID');
@@ -68,6 +69,8 @@ const CardOverview = () => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
             try {
+                const userID = localStorage.getItem('userId');
+                setUser(userID);
                 const deckID = localStorage.getItem('DeckID');
                 const responseDeck = await api.get('/decks/' + deckID);
                 const responseUsers = await api.get('/users');
@@ -88,19 +91,21 @@ const CardOverview = () => {
         fetchData();
     }, []);
 
-
     var listItems3;
     if (users) {
-        listItems3 = users.map((u) => (
-            <Button
-                className='cardOverview people-Button'
-                // TODO: start multiplayer/send invite
-                // FIX: leads to profile
-                onClick={() => startMP(u.id)}
-            >
-                {u.username}
-            </Button>
-        ));
+        listItems3 = users.map((u) => {
+            if (String(u.id) !== user) {
+                return <Button
+                    className='cardOverview people-Button'
+                    // TODO: start multiplayer/send invite
+                    // FIX: leads to profile
+                    onClick={() => startMP(u.id)}
+                >
+                    {u.username}
+                </Button>
+            }
+
+        });
     } else {
         listItems3 = <div className='cardOverview online-None'>Currently there is no User online</div>;
     }
