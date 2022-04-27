@@ -4,10 +4,8 @@ import { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 // local imports
 import { api, handleError } from 'helpers/api';
-import { stompClient } from 'helpers/websocket';
 import BaseContainer from 'components/ui/BaseContainer';
 import { Button } from 'components/ui/Button';
-import { Popup } from 'components/ui/Popup';
 import Header from 'components/ui/Header';
 
 const Home = () => {
@@ -16,54 +14,43 @@ const Home = () => {
 
     const [user, setUser] = useState(null);
     const [decks, setDecks] = useState(null);
+    const [invitations, setInvitations] = useState(null);
 
-    /*
-     * Websocket logic
-     */
-    const [popupFlag, setPopupFlag] = useState(null);
     // TODO: remove userData, doesn't do anything, when connecting it is still empty
     const [userData, setUserData] = useState({
         from: '',
         connected: false,
     });
 
-    const closePopup = () => {
-        setPopupFlag(false);
-    };
-
-    const connect = () => {
-        stompClient.connect({ username: localStorage.getItem('username') }, onConnected, onError);
-        console.log('just got connected ' + userData.from);
-    };
-
-    const onConnected = () => {
-        setUserData({ ...userData, connected: true });
-        stompClient.subscribe('/users/queue/invite/greetings', function (payload) {
-            onInviteReceivedPrivate(payload);
-        });
-    };
-
-    const onInviteReceivedPrivate = (payload) => {
-        // const payloadData = payload.body;
-        console.log(payload);
-        setPopupFlag(true);
-    };
-
-    const onError = (err) => {
-        console.log(err);
-    };
-    //  end websockets
-
     const cardOverview = () => {
         history.push('/cardOverview');
     };
 
+    /*
+    * Every interval time: check if the logged in player has any invites and fetch them
+    * */
+    const checkInvites = async () =>{
+        try{
+
+            //fetch invitations for the logged in-user from backend
+            const id = localStorage.getItem("userId");
+            const responseBody = await api.get("/users/" + id + "/invitations");
+            //setInvitations(responseBody.data);
+            console.log(responseBody.data);
+
+        }catch (error){
+            alert(error);
+            console.log(error);
+        }
+
+    }
 
     useEffect(() => {
 
         async function fetchData() {
             try {
                 const userId = localStorage.getItem('userId');
+                console.log(userId);
                 const responseUser = await api.get('/users/' + userId);
                 const responseDecks = await api.get('/users/' + userId + '/decks');
                 await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -80,10 +67,17 @@ const Home = () => {
                 );
             }
         }
-        connect();
-        fetchData();
-    }, []);
 
+        /*
+        * set Interval to which we fetch the invitations:
+        **/
+        const interval = setInterval(() => {
+            checkInvites();
+        }, 5000);
+
+        fetchData();
+        return () => clearInterval(interval);
+    }, []);
 
     if (user) {
         var listItems = <div className='Home deck-None'>Please create a new Deck</div>;
@@ -113,18 +107,6 @@ const Home = () => {
     return (
         <BaseContainer>
             <Header/>
-            <div>
-                {popupFlag && (
-                    <Popup
-                        content={
-                            <>
-                                <b>You have received an Invitation</b>
-                            </>
-                        }
-                        handleClose={closePopup}
-                    />
-                )}
-            </div>
             <div className='Home listTitle'>Continue Learning</div>
             <div className='Home list'>{listItems}</div>
         </BaseContainer>

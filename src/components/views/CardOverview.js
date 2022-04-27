@@ -5,6 +5,7 @@ import BaseContainer from 'components/ui/BaseContainer';
 import 'styles/views/CardOverview.scss';
 import { Button } from 'components/ui/Button';
 import Header from "../ui/Header";
+import Duel from "models/Duel"
 
 const CardOverview = () => {
     // use react-router-dom's hook to access the history
@@ -14,17 +15,54 @@ const CardOverview = () => {
     const [users, setUsers] = useState(null);
     const [deck, setDeck] = useState(null);
 
-
     const doLearning = () => {
         const deckID = localStorage.getItem('DeckID');
         history.push('/learningtool/deckID=' + deckID + '/cardID=0');
     };
 
-    const toProfile = (userId) => {
-        let url = "/profile/"
-        history.push(url.concat(userId));
-    };
+    /*
+    *Send invitation to user with userToInviteId and then create a new duel and go to multiplayer page
+    * */
+    const startMP = async (userToInviteId) => {
+        try{
 
+            //first create a new duel with the two players
+            const playerOneId = localStorage.getItem("userId");
+            const playerTwoId = userToInviteId;
+            const deckID = deck.id;
+            const requestBodyDuel = JSON.stringify({playerOneId, deckID, playerTwoId});
+
+            const responseDuel = await api.post("/duels", requestBodyDuel);
+
+            const duel = new Duel(responseDuel.data);
+            console.log("just created new duel with Player 1: " + duel.playerOneId + ", player 2: " + duel.playerTwoId + " and id: " + duel.id);
+
+            //then send an invitation to the player to invite
+            const senderId = playerOneId;
+            const receiverId = playerTwoId;
+            const duelId = duel.id;
+            const requestBodyInvitation = JSON.stringify({senderId, receiverId, duelId});
+
+            await api.post('/users/' + receiverId + '/invitation', requestBodyInvitation);
+
+            console.log("just sent an invitation to player: " + receiverId);
+
+            //then open new multiplayer page with the duel in location:
+            const url = "/multiplayer/";
+            history.push({
+                pathname: url.concat(duel.id),
+                state: {detail: duel}
+            })
+
+        }catch (error){
+            alert(error);
+            console.log(error);
+        }
+    }
+
+    /*
+    * create a new duel with the invited player and push on duel site
+    * */
 
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
@@ -58,7 +96,7 @@ const CardOverview = () => {
                 className='cardOverview people-Button'
                 // TODO: start multiplayer/send invite
                 // FIX: leads to profile
-                onClick={() => toProfile(u.id)}
+                onClick={() => startMP(u.id)}
             >
                 {u.username}
             </Button>
@@ -66,7 +104,6 @@ const CardOverview = () => {
     } else {
         listItems3 = <div className='cardOverview online-None'>Currently there is no User online</div>;
     }
-
 
     document.body.style = 'background: #FFCA00;';
 
