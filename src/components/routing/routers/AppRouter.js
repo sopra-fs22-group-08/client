@@ -14,6 +14,8 @@ import LearningToolResult from "../../views/LearningToolResult";
 import CardOverview from "../../views/CardOverview";
 import Library from "../../views/Library";
 import Multiplayer from "../../views/Multiplayer";
+import MultiplayerTool from "../../views/MultiplayerTool";
+import MultiplayerToolResult from "../../views/MultiplayerToolResult";
 
 /**
  * Main router of your application.
@@ -84,6 +86,16 @@ const AppRouter = () => {
                 <Route path='/multiplayer'>
                     <GeneralGuard>
                         <Multiplayer />
+                    </GeneralGuard>
+                </Route>
+                <Route path='/multiplayerTool'>
+                    <GeneralGuard>
+                        <MultiplayerTool />
+                    </GeneralGuard>
+                </Route>
+                <Route path='/multiplayerToolResult'>
+                    <GeneralGuard>
+                        <MultiplayerToolResult />
                     </GeneralGuard>
                 </Route>
             </Switch>

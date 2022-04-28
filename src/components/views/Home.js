@@ -26,6 +26,16 @@ const Home = () => {
         history.push('/cardOverview');
     };
 
+    const acceptInvite = (invite) => {
+        api.put('/duels/' + invite.duelId + '/players/' + user.id + '/status/ACCEPTED');
+        localStorage.setItem("duelId", invite.duelId);
+        history.push('/multiplayerTool/deckID='+ invite.deckId + '/cardID=0');
+    }
+
+    const declineInvite = (invite) => {
+//Todo decline invite
+    }
+
     /*
     * Every interval time: check if the logged in player has any invites and fetch them
     * */
@@ -111,14 +121,14 @@ const Home = () => {
                         className='Home invitations-Accept'
                         onClick={() => {
                             //TODO send Accept
-                            cardOverview();
+                            acceptInvite(i);
                         }}
                     >Accept</Button>
                     <Button
                         className='Home invitations-Decline'
                         onClick={() => {
                             //TODO send Decline
-                            cardOverview();
+                            declineInvite(i);
                         }}
                     >X</Button>
                     </div>

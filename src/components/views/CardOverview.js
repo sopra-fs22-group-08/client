@@ -30,20 +30,22 @@ const CardOverview = () => {
             //first create a new duel with the two players
             const playerOneId = localStorage.getItem("userId");
             const playerTwoId = userToInviteId;
-            const deckID = deck.id;
-            const requestBodyDuel = JSON.stringify({playerOneId, deckID, playerTwoId});
+            const deckId = deck.id;
+            const requestBodyDuel = JSON.stringify({playerOneId, deckId, playerTwoId});
 
             const responseDuel = await api.post("/duels", requestBodyDuel);
 
             const duel = new Duel(responseDuel.data);
             console.log("just created new duel with Player 1: " + duel.playerOneId + ", player 2: " + duel.playerTwoId + " and id: " + duel.id);
+            console.log(duel);
+            console.log(deckId)
+            localStorage.setItem("duelId", duel.id);
 
             //then send an invitation to the player to invite
             const senderId = playerOneId;
             const receiverId = playerTwoId;
             const duelId = duel.id;
             const deckname = deck.deckname;
-            const deckId = deck.id;
             const senderUsername = user.username;
             const receiverUsername = userN;
 
@@ -115,8 +117,6 @@ const CardOverview = () => {
             if (String(u.id) !== String(user.id)) {
                 return <Button
                     className='cardOverview people-Button'
-                    // TODO: start multiplayer/send invite
-                    // FIX: leads to profile
                     onClick={() => startMP(u.id, u.username)}
                 >
                     {u.username}
