@@ -47,7 +47,7 @@ const Multiplayer = () => {
     document.body.style = 'background: #FFCA00;';
     return (
         <BaseContainer>
-            <h1> Here you wait until the other player has invited your invitation</h1>
+            <h1> Here you wait until the other player has accepted your invitation</h1>
         </BaseContainer>
     );
 }
