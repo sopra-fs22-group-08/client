@@ -106,7 +106,7 @@ const Home = () => {
 
                     <div className='Home invitations-Field'>
                         //TODO add User Name, Add Deck Name
-                    <div className='Home invitations-text'>Person 1 wants to conquer you on BWL 3</div>
+                    <div className='Home invitations-text'>{i.senderUsername} wants to challenge you on {i.deckname}</div>
                     <Button
                         className='Home invitations-Accept'
                         onClick={() => {

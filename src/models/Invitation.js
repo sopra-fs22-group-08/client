@@ -10,6 +10,10 @@ class Invitation {
         this.duelId = null;
         this.senderId = null;
         this.receiverId = null;
+        this.deckname = null;
+        this.deckId = null;
+        this.senderUsername = null;
+        this.receiverUsername = null;
 
         Object.assign(this, data);
     }

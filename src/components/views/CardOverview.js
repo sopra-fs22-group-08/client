@@ -24,7 +24,7 @@ const CardOverview = () => {
     /*
     *Send invitation to user with userToInviteId and then create a new duel and go to multiplayer page
     * */
-    const startMP = async (userToInviteId) => {
+    const startMP = async (userToInviteId, userN) => {
         try{
 
             //first create a new duel with the two players
@@ -42,7 +42,23 @@ const CardOverview = () => {
             const senderId = playerOneId;
             const receiverId = playerTwoId;
             const duelId = duel.id;
-            const requestBodyInvitation = JSON.stringify({senderId, receiverId, duelId});
+            const deckname = deck.deckname;
+            const deckId = deck.id;
+            const senderUsername = user.username;
+            const receiverUsername = userN;
+
+
+            const requestBodyInvitation = JSON.stringify({
+                senderId,
+                receiverId,
+                duelId,
+                deckname,
+                deckId,
+                senderUsername,
+                receiverUsername
+            });
+
+            console.log(requestBodyInvitation)
 
             await api.post('/users/' + receiverId + '/invitation', requestBodyInvitation);
 
@@ -70,13 +86,15 @@ const CardOverview = () => {
         async function fetchData() {
             try {
                 const userID = localStorage.getItem('userId');
-                setUser(userID);
                 const deckID = localStorage.getItem('DeckID');
                 const responseDeck = await api.get('/decks/' + deckID);
                 const responseUsers = await api.get('/users');
+                const responseUser = await api.get('/users/' + userID);
+
                 await new Promise((resolve) => setTimeout(resolve, 1000));
                 setDeck(responseDeck.data);
                 setUsers(responseUsers.data);
+                setUser(responseUser.data)
             } catch (error) {
                 console.error(
                     `Something went wrong while fetching the Data: \n${handleError(error)}`
@@ -92,14 +110,14 @@ const CardOverview = () => {
     }, []);
 
     var listItems3;
-    if (users) {
+    if (users && user) {
         listItems3 = users.map((u) => {
-            if (String(u.id) !== user) {
+            if (String(u.id) !== String(user.id)) {
                 return <Button
                     className='cardOverview people-Button'
                     // TODO: start multiplayer/send invite
                     // FIX: leads to profile
-                    onClick={() => startMP(u.id)}
+                    onClick={() => startMP(u.id, u.username)}
                 >
                     {u.username}
                 </Button>
