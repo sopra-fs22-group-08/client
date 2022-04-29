@@ -33,8 +33,8 @@ const LandingPage = (props) => {
                     Remembering things just became much easier.
                 </div>
                 <div className='landingPage text-text'>
-                    It's a lot more efficient than traditional study methods, you can either greatly
-                    decrease your time spent studying, or greatly increase the amount you learn.
+                    Easily create your own flashcards and share your decks with other users.
+                    Test and increase your knowledge on your own or against other users.
                 </div>
                 <Button
                     className='landingPage getStartedButton-container'
