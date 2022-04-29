@@ -10,29 +10,31 @@ const Multiplayer = () => {
 
     const [duel, setDuel] = useState(null);
 
+    async function checkAccepted() {
+        try {
+            const duelId = localStorage.getItem("duelId");
+            const responseDuel = await api.get('/duels/' + duelId);
+
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            setDuel(responseDuel.data);
+
+        } catch (error) {
+            console.error(
+                `Something went wrong while fetching the decks: \n${handleError(error)}`
+            );
+            console.error('Details:', error);
+            alert(
+                'Something went wrong while fetching the decks! See the console for details.'
+            );
+        }
+    }
+
     useEffect(() => {
 
-        async function fetchData() {
-            try {
-                const duelId = localStorage.getItem("duelId");
-                const responseDuel = await api.get('/duels/' + duelId);
+        const interval = setInterval(() => {
+            checkAccepted();
+        }, 5000);
 
-                await new Promise((resolve) => setTimeout(resolve, 1000));
-                setDuel(responseDuel.data);
-
-
-            } catch (error) {
-                console.error(
-                    `Something went wrong while fetching the decks: \n${handleError(error)}`
-                );
-                console.error('Details:', error);
-                alert(
-                    'Something went wrong while fetching the decks! See the console for details.'
-                );
-            }
-        }
-
-        fetchData();
     }, []);
 
     if (duel) {

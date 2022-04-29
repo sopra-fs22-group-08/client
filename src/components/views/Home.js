@@ -122,14 +122,12 @@ const Home = () => {
                     <Button
                         className='Home invitations-Accept'
                         onClick={() => {
-                            //TODO send Accept
                             acceptInvite(i);
                         }}
                     >Accept</Button>
                     <Button
                         className='Home invitations-Decline'
                         onClick={() => {
-                            //TODO send Decline
                             declineInvite(i);
                         }}
                     >X</Button>
