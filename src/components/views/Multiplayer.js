@@ -2,7 +2,8 @@ import BaseContainer from "../ui/BaseContainer";
 import {useHistory, useLocation} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {api, handleError} from "../../helpers/api";
-
+import LoadingSpin from "react-loading-spin";
+import 'styles/views/Multiplayer.scss';
 
 const Multiplayer = () => {
     const history = useHistory();
@@ -49,7 +50,23 @@ const Multiplayer = () => {
     document.body.style = 'background: #FFCA00;';
     return (
         <BaseContainer>
-            <h1> Here you wait until the other player has accepted your invitation</h1>
+            <div className="Loading">
+                <div className="Loading text">
+                    waiting for your friend to accept
+                </div>
+                <div className={"ExampleOfUsage"}>
+                    <LoadingSpin
+                        duration="2s"
+                        width="15px"
+                        timingFunction="ease-in-out"
+                        direction="alternate"
+                        size="150px"
+                        primaryColor="yellow"
+                        secondaryColor="#333"
+                        numberOfRotationsInAnimation={2}
+                    />
+                </div>
+            </div>
         </BaseContainer>
     );
 }
