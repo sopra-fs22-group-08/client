@@ -124,10 +124,6 @@ const Register = () => {
             localStorage.setItem('userId', user.id);
             localStorage.setItem('username', user.username);
 
-            // Send Mail verification
-            const mail = JSON.stringify({ email });
-            await api.put('/users/' + user.id + '/verification', mail);
-
             // Register successfully worked --> navigate to the route /game in the GameRouter
             history.push(`/home/` + user.id);
         } catch (error) {
