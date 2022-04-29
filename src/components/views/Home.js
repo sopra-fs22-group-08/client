@@ -26,15 +26,15 @@ const Home = () => {
         history.push('/cardOverview');
     };
 
-    const acceptInvite = (invite) => {
-        api.delete('/invitations/' + invite.id)
-        api.put('/duels/' + invite.duelId + '/players/' + user.id + '/status/ACCEPTED');
+    const acceptInvite = async (invite) => {
+        await api.delete('/invitations/' + invite.id)
+        await api.put('/duels/' + invite.duelId + '/players/' + user.id + '/status/ACCEPTED');
         localStorage.setItem("duelId", invite.duelId);
         history.push('/multiplayerTool/deckID=' + invite.deckId + '/cardID=0');
     }
 
-    const declineInvite = (invite) => {
-        api.delete('/invitations/' + invite.id)
+    const declineInvite = async (invite) => {
+        await api.delete('/invitations/' + invite.id)
     }
 
     /*

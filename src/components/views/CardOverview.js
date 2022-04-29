@@ -6,6 +6,7 @@ import 'styles/views/CardOverview.scss';
 import { Button } from 'components/ui/Button';
 import Header from "../ui/Header";
 import Duel from "models/Duel"
+import Invitation from "../../models/Invitation";
 
 const CardOverview = () => {
     // use react-router-dom's hook to access the history
@@ -36,9 +37,6 @@ const CardOverview = () => {
             const responseDuel = await api.post("/duels", requestBodyDuel);
 
             const duel = new Duel(responseDuel.data);
-            console.log("just created new duel with Player 1: " + duel.playerOneId + ", player 2: " + duel.playerTwoId + " and id: " + duel.id);
-            console.log(duel);
-            console.log(deckId)
             localStorage.setItem("duelId", duel.id);
 
             //then send an invitation to the player to invite
@@ -60,17 +58,14 @@ const CardOverview = () => {
                 receiverUsername
             });
 
-            console.log(requestBodyInvitation)
-
-            await api.post('/users/' + receiverId + '/invitation', requestBodyInvitation);
-
-            console.log("just sent an invitation to player: " + receiverId);
+            const responseBodyInvitation = await api.post('/users/' + receiverId + '/invitation', requestBodyInvitation);
+            const inv = responseBodyInvitation.data;
 
             //then open new multiplayer page with the duel in location:
             const url = "/multiplayer/";
             history.push({
                 pathname: url.concat(duel.id),
-                state: {detail: duel}
+                state: {detail: inv}
             })
 
         }catch (error){

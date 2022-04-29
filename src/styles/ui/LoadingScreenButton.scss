@@ -1,24 +1,17 @@
 
-.primary-button {
+.loadingScreen-button {
     &:hover {
         transform: translateY(-2px);
     }
 
-    &:disabled {
-        cursor: default;
-        opacity: 0.6;
-
-        &:hover {
-            transform: none;
-        }
-    }
-
     padding: 6px;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 25px;
     text-align: center;
-    height: 35px;
+    height: 40px;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-family: 'Roboto';
+
 }

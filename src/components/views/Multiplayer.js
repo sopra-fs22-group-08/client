@@ -4,12 +4,13 @@ import React, {useEffect, useState} from "react";
 import {api, handleError} from "../../helpers/api";
 import LoadingSpin from "react-loading-spin";
 import 'styles/views/Multiplayer.scss';
+import 'styles/ui/LoadingScreenButton.scss';
+import {Button} from 'components/ui/Button';
+import declineInvite from 'components/views/Home';
 
 const Multiplayer = () => {
     const history = useHistory();
     const location = useLocation();
-
-    const [duel, setDuel] = useState(null);
 
     async function checkAccepted() {
         try {
@@ -17,16 +18,17 @@ const Multiplayer = () => {
             const responseDuel = await api.get('/duels/' + duelId);
 
             await new Promise((resolve) => setTimeout(resolve, 1000));
-            setDuel(responseDuel.data);
+
+            const d = responseDuel.data;
+
+            if (d.playerTwoStatus === "ACCEPTED") {
+                localStorage.setItem("duelId", d.id);
+                history.push('/multiplayerTool/deckID=' + d.deckId + '/cardID=0');
+            }
 
         } catch (error) {
-            console.error(
-                `Something went wrong while fetching the decks: \n${handleError(error)}`
-            );
-            console.error('Details:', error);
-            alert(
-                'Something went wrong while fetching the decks! See the console for details.'
-            );
+            alert(error);
+            console.log(error);
         }
     }
 
@@ -37,15 +39,6 @@ const Multiplayer = () => {
         }, 5000);
 
     }, []);
-
-    if (duel) {
-        console.log(duel)
-        if (duel.playerTwoStatus === "ACCEPTED") {
-            //Todo witerleite zum spiele
-            localStorage.setItem("duelId", duel.id);
-            history.push('/multiplayerTool/deckID=' + duel.deckId + '/cardID=0');
-        }
-    }
 
     document.body.style = 'background: #FFCA00;';
     return (
@@ -65,6 +58,16 @@ const Multiplayer = () => {
                         secondaryColor="#333"
                         numberOfRotationsInAnimation={2}
                     />
+                </div>
+                <div className="Loading cancel">
+                    <Button
+                        className='loadingScreen-button'
+                        onClick={() => {
+                            api.delete('/invitations/' + location.state.detail.id);
+                            history.push(`/home/` + localStorage.getItem("userId"));
+                        }}>
+                        cancel
+                    </Button>
                 </div>
             </div>
         </BaseContainer>
