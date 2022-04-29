@@ -11,7 +11,8 @@ const MultiplayerToolResult = () => {
     const location = useLocation();
 
     let count = localStorage.getItem('result');
-    localStorage.setItem('result', 0);
+    //TODO: find way to reset
+    //localStorage.setItem('result', 0);
 
     const lengthDeck = localStorage.getItem('lengthDeck');
 

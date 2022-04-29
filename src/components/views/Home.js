@@ -1,11 +1,11 @@
 import 'styles/views/Home.scss';
 // react imports
-import { useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import {useEffect, useState} from 'react';
+import {useHistory, useLocation} from 'react-router-dom';
 // local imports
-import { api, handleError } from 'helpers/api';
+import {api, handleError} from 'helpers/api';
 import BaseContainer from 'components/ui/BaseContainer';
-import { Button } from 'components/ui/Button';
+import {Button} from 'components/ui/Button';
 import Header from 'components/ui/Header';
 
 const Home = () => {
@@ -27,20 +27,21 @@ const Home = () => {
     };
 
     const acceptInvite = (invite) => {
+        api.delete('/invitations/' + invite.id)
         api.put('/duels/' + invite.duelId + '/players/' + user.id + '/status/ACCEPTED');
         localStorage.setItem("duelId", invite.duelId);
-        history.push('/multiplayerTool/deckID='+ invite.deckId + '/cardID=0');
+        history.push('/multiplayerTool/deckID=' + invite.deckId + '/cardID=0');
     }
 
     const declineInvite = (invite) => {
-//Todo decline invite
+        api.delete('/invitations/' + invite.id)
     }
 
     /*
     * Every interval time: check if the logged in player has any invites and fetch them
     * */
-    const checkInvites = async () =>{
-        try{
+    const checkInvites = async () => {
+        try {
 
             //fetch invitations for the logged in-user from backend
             const id = localStorage.getItem("userId");
@@ -48,7 +49,7 @@ const Home = () => {
             setInvitations(responseBody.data);
             //console.log(responseBody.data);
 
-        }catch (error){
+        } catch (error) {
             alert(error);
             console.log(error);
         }
@@ -103,7 +104,7 @@ const Home = () => {
                     <div className='Home listElement-Number'/>
                     <div className='Home listElement-Title'>{d.deckname}</div>
                     <div className='Home listElement-Score'>
-                        <br /> <br />{' '}
+                        <br/> <br/>{' '}
                     </div>
                     <div className='Home listElement-Text'>Click to Learn</div>
                 </Button>
@@ -114,9 +115,10 @@ const Home = () => {
         if (invitations) {
             listInvites = invitations.map((i) => (
 
-                    <div className='Home invitations-Field'>
-                        //TODO add User Name, Add Deck Name
-                    <div className='Home invitations-text'>{i.senderUsername} wants to challenge you on {i.deckname}</div>
+                <div className='Home invitations-Field'>
+                    <div className='Home invitations-text'>{i.senderUsername} wants to challenge you
+                        on {i.deckname}
+                    </div>
                     <Button
                         className='Home invitations-Accept'
                         onClick={() => {
@@ -131,9 +133,7 @@ const Home = () => {
                             declineInvite(i);
                         }}
                     >X</Button>
-                    </div>
-
-
+                </div>
             ));
         }
 
