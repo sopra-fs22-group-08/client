@@ -15,38 +15,42 @@ const MultiplayerToolResult = () => {
     //localStorage.setItem('result', 0);
 
     const lengthDeck = localStorage.getItem('lengthDeck');
+    const userId = localStorage.getItem("userId")
 
 
     const [duel, setDuel] = useState(null);
     const [opponent, setOpponent] = useState(null);
     let opponentScore = 0;
+    let opponentId;
+
+    if (duel && userId){
+        console.log("Check test");
+        if(String(duel.playerOneId) === String(userId)){
+            opponentId = duel.playerTwoId;
+            opponentScore = duel.playerTwoScore;
+        }else{
+            opponentId = duel.playerOneId;
+            opponentScore = duel.playerOneScore;
+        }
+    }
+
 
     useEffect(() => {
-
-        let opponentId;
-
 
         async function fetchData() {
             try {
                 const duelId = localStorage.getItem("duelId");
-                const userId = localStorage.getItem("userId");
                 const responseDuel = await api.get('/duels/' + duelId);
 
                 await new Promise((resolve) => setTimeout(resolve, 1000));
                 setDuel(responseDuel.data);
 
-                if(duel){
-                    if(duel.playerOneId === userId){
-                        opponentId = duel.playerTwoId;
-                        opponentScore = duel.playerTwoScore;
-                    }else{
-                        opponentId = duel.playerOneId;
-                        opponentScore = duel.playerOneScore;
-                    }
-                    const responseOpponent = await api.get('/users/' + opponentId);
-                    await new Promise((resolve) => setTimeout(resolve, 1000));
+                if(userId){
+                    const responseOpponent =  api.get('/users/' + parseInt(opponentId));
+                    new Promise((resolve) => setTimeout(resolve, 1000));
                     setOpponent(responseOpponent.data);
                 }
+
 
 
             } catch (error) {
@@ -67,10 +71,14 @@ const MultiplayerToolResult = () => {
     let content;
     if (duel) {
         console.log(duel)
+
+
+
         if (duel.playerOneStatus === "FINISHED" && duel.playerTwoStatus === "FINISHED" ) {
+
             content = (
                 <div>
-                    {} Score = {opponentScore}
+                    Your {opponent ? opponent.username : "Opponent"} had {opponentScore} out of {lengthDeck} correct
                 </div>
             );
 
