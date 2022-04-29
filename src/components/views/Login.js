@@ -70,10 +70,14 @@ const Login = () => {
         }
     };
 
+    const goToLandingPage = () => {
+        history.push('/');
+    }
+
     document.body.style = 'background: #4757FF';
     return (
         <BaseContainer>
-            <div className='login title'>No Brainer</div>
+            <div className='login title' onClick={()=>goToLandingPage()}>No Brainer</div>
             <div className='login login-text'>Login</div>
             <div className='login username-title'>Username</div>
             <div className='login username-field'/>

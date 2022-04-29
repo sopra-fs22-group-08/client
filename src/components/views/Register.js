@@ -131,11 +131,13 @@ const Register = () => {
         }
     };
 
+    const goToLandingPage = () => {
+        history.push('/');
+    }
     document.body.style = 'background: #4757FF;';
-
     return (
         <BaseContainer>
-            <div className='register title'>No Brainer</div>
+            <div className='register title' onClick={()=>goToLandingPage()}>No Brainer</div>
             <div className='register login-text'>Create New Account</div>
 
             <div className='register firstName-title'>First Name</div>
