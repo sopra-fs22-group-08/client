@@ -10,7 +10,8 @@ const LearningToolResult = () => {
     const location = useLocation();
 
     let count = localStorage.getItem('result');
-    localStorage.setItem('result', 0);
+    //TODO: Find other way to set it 0
+    //localStorage.setItem('result', 0);
 
     const lengthDeck = localStorage.getItem('lengthDeck');
 
