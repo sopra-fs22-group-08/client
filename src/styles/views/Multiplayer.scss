@@ -6,7 +6,6 @@
     left: 50%;
     margin-top: -100px;
     margin-left: -200px;
-
     &.text{
         top: 40%;
         left: 40%;
@@ -17,8 +16,22 @@
         font-size: 48px;
         line-height: 28px;
     }
+    &.text-Start{
+        top: 43%;
+        left: 48%;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 48px;
+        line-height: 28px;
+    }
     &.cancel{
         top: 78%;
         left: 51.5%;
+    }
+    &.start{
+        top: 52%;
+        left: 53%;
     }
 }
