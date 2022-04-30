@@ -17,7 +17,6 @@ const MultiplayerToolResult = () => {
     const lengthDeck = localStorage.getItem('lengthDeck');
     const userId = localStorage.getItem("userId")
 
-
     const [duel, setDuel] = useState(null);
     const [opponent, setOpponent] = useState(null);
     let opponentScore = 0;
@@ -34,46 +33,36 @@ const MultiplayerToolResult = () => {
         }
     }
 
+    async function fetchData() {
+        try {
+            const duelId = localStorage.getItem("duelId");
+            const responseDuel = await api.get('/duels/' + duelId);
+
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            setDuel(responseDuel.data);
+
+            if(userId){
+                const responseOpponent =  api.get('/users/' + parseInt(opponentId));
+                new Promise((resolve) => setTimeout(resolve, 1000));
+                setOpponent(responseOpponent.data);
+            }
+
+        } catch (error) {
+            alert(error);
+            console.log(error);
+        }
+    }
 
     useEffect(() => {
 
-        async function fetchData() {
-            try {
-                const duelId = localStorage.getItem("duelId");
-                const responseDuel = await api.get('/duels/' + duelId);
-
-                await new Promise((resolve) => setTimeout(resolve, 1000));
-                setDuel(responseDuel.data);
-
-                if(userId){
-                    const responseOpponent =  api.get('/users/' + parseInt(opponentId));
-                    new Promise((resolve) => setTimeout(resolve, 1000));
-                    setOpponent(responseOpponent.data);
-                }
-
-
-
-            } catch (error) {
-                console.error(
-                    `Something went wrong while fetching the decks: \n${handleError(error)}`
-                );
-                console.error('Details:', error);
-                alert(
-                    'Something went wrong while fetching the decks! See the console for details.'
-                );
-            }
-        }
+        setInterval(() => fetchData(), 5000);
 
         fetchData();
     }, []);
 
-
     let content;
     if (duel) {
         console.log(duel)
-
-
-
         if (duel.playerOneStatus === "FINISHED" && duel.playerTwoStatus === "FINISHED" ) {
 
             content = (
@@ -84,10 +73,6 @@ const MultiplayerToolResult = () => {
 
         }
     }
-
-
-
-
 
     document.body.style = 'background: #FFCA00;';
 
