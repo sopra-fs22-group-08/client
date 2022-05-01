@@ -126,7 +126,7 @@ const Profile = () => {
                 const userId = location.pathname.match(/\d+$/);
                 const response = await api.get('/users/' + userId);
 
-                await new Promise((resolve) => setTimeout(resolve, 1000));
+                //wait new Promise((resolve) => setTimeout(resolve, 1000));
 
                 setUser(response.data);
             } catch (error) {

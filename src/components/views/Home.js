@@ -64,7 +64,7 @@ const Home = () => {
                 console.log(userId);
                 const responseUser = await api.get('/users/' + userId);
                 const responseDecks = await api.get('/users/' + userId + '/decks');
-                await new Promise((resolve) => setTimeout(resolve, 1000));
+                //await new Promise((resolve) => setTimeout(resolve, 1000));
                 setUser(responseUser.data);
                 setDecks(responseDecks.data);
 

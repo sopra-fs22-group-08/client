@@ -5,6 +5,8 @@ import BaseContainer from 'components/ui/BaseContainer';
 import 'styles/views/LearningTool.scss';
 import { Button } from 'components/ui/Button';
 import Header from "../ui/Header";
+//TextToSpeech API
+const synth = window.speechSynthesis;
 
 const LearningTool = () => {
     const history = useHistory();
@@ -18,6 +20,37 @@ const LearningTool = () => {
     const [b4, setB4] = useState(false);
     const [arr, setArr] = useState(shuffleAnswers([1, 2, 0, 3]));
     const [counter, setCounter] = useState(0);
+    let voices = []
+
+    const getVoice = () =>{
+        voices = synth.getVoices();
+        return voices[9];
+    }
+    const speak = (text) => {
+        if(synth.speaking){
+            console.error('Already speaking...');
+            return;
+        }
+        if(text !== ""){
+            //Get Speak text
+            const speakText = new SpeechSynthesisUtterance(text)
+            //Speak End
+            speakText.onend = e => {
+                console.log("Done Speaking...")
+            }
+            //Speak error
+            speakText.onerror = e => {
+                console.error("Something went wrong");
+            }
+            const selectedVoice = getVoice();
+
+            speakText.voice = selectedVoice;
+            speakText.rate = 1;
+            speakText.pitch = 1;
+            //Speak
+            synth.speak(speakText);
+        }
+    }
 
     const goResult = async () => {
         history.push(`/learningtoolresult`);
@@ -42,7 +75,7 @@ const LearningTool = () => {
                 const deckId = location.pathname.match(/deckID=(\d+)/);
                 const responseCard = await api.get('/decks/' + deckId[1] + '/cards');
                 const responseDeck = await api.get('/decks/' + deckId[1]);
-                await new Promise((resolve) => setTimeout(resolve, 1000));
+                //await new Promise((resolve) => setTimeout(resolve, 1000));
                 setDeck(responseDeck.data);
                 setCards(responseCard.data);
                 setCards(responseCard.data);
@@ -177,6 +210,7 @@ const LearningTool = () => {
                 >
                     {cards[cardID].options[arr[3]]}
                 </Button>
+                <Button onClick={()=>speak(cards[cardID].question)}>TEXT TO SPEECH</Button>
             </BaseContainer>
         );
     }

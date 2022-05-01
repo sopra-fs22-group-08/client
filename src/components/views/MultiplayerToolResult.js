@@ -55,7 +55,7 @@ const MultiplayerToolResult = () => {
 
     useEffect(() => {
 
-        setInterval(() => fetchData(), 5000);
+        setInterval(() => fetchData(), 2000);
 
         fetchData();
     }, []);

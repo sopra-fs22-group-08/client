@@ -33,7 +33,7 @@ const Library = () => {
                 const userId = localStorage.getItem('userId');
                 const responseUser = await api.get('/users/' + userId);
                 const responseDecks = await api.get('/decks');
-                await new Promise((resolve) => setTimeout(resolve, 1000));
+                //await new Promise((resolve) => setTimeout(resolve, 1000));
                 setUser(responseUser.data);
                 setAllDecks(responseDecks.data);
 
