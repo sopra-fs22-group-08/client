@@ -3,8 +3,9 @@ import { api, handleError } from 'helpers/api';
 import { useHistory, useLocation } from 'react-router-dom';
 import BaseContainer from 'components/ui/BaseContainer';
 import 'styles/views/LearningTool.scss';
-import { Button } from 'components/ui/Button';
-import Header from "../ui/Header";
+import {Button} from 'components/ui/Button';
+
+const synth = window.speechSynthesis;
 
 const MultiplayerTool = () => {
     const history = useHistory();
@@ -19,6 +20,37 @@ const MultiplayerTool = () => {
     const [b4, setB4] = useState(false);
     const [arr, setArr] = useState(shuffleAnswers([1, 2, 0, 3]));
     const [counter, setCounter] = useState(0);
+    const [disable, setDisable] = useState(false);
+    let voices = [];
+    const getVoice = () => {
+        voices = synth.getVoices();
+        return voices[9];
+    }
+    const speak = (text) => {
+        if (synth.speaking) {
+            console.error('Already speaking...');
+            return;
+        }
+        if (text !== "") {
+            //Get Speak text
+            const speakText = new SpeechSynthesisUtterance(text)
+            //Speak End
+            speakText.onend = e => {
+                console.log("Done Speaking...")
+            }
+            //Speak error
+            speakText.onerror = e => {
+                console.error("Something went wrong");
+            }
+            const selectedVoice = getVoice();
+
+            speakText.voice = selectedVoice;
+            speakText.rate = 1;
+            speakText.pitch = 1;
+            //Speak
+            synth.speak(speakText);
+        }
+    }
 
     const goResult = async () => {
         const duelId = localStorage.getItem("duelId")
@@ -37,6 +69,7 @@ const MultiplayerTool = () => {
         setB3(false);
         setB4(false);
         setArr(shuffleAnswers([1, 2, 0, 3]));
+        setDisable(false);
         history.push(`/multiplayerTool/deckID=` + deckId[1] + '/cardID=' + cardId[1]);
     };
 
@@ -118,70 +151,79 @@ const MultiplayerTool = () => {
                     {cardID}/{Object.keys(cards).length}
                 </div>
                 <div className='learningTool card-tittle'>{deck.deckname}</div>
-                <div className='learningTool card-question'>{cards[cardID].question}</div>
+                <div className='learningTool card-question'>{cards[cardID].question}
+                    <button className="learningTool text-to-speech"
+                            onClick={() => speak(cards[cardID].question)}>
+                        TEXT TO SPEECH
+                    </button>
+                </div>
 
                 <div className='learningTool learn-tittle'>Which one is correct?</div>
 
-                <Button
-                    className={
-                        b1
-                            ? arr[0] == 0
-                                ? 'learningTool card-aw1-card-green'
-                                : 'learningTool card-aw1-card-red'
-                            : 'learningTool card-aw1-card'
-                    }
-                    onClick={() => {
-                        checkAnswer(cardID, arr[0]);
-                        setB1(true);
-                    }}
+                <Button disabled={disable}
+                        className={
+                            b1
+                                ? arr[0] == 0
+                                    ? 'learningTool card-aw1-card-green'
+                                    : 'learningTool card-aw1-card-red'
+                                : 'learningTool card-aw1-card'
+                        }
+                        onClick={() => {
+                            checkAnswer(cardID, arr[0]);
+                            setB1(true);
+                            setDisable(true);
+                        }}
                 >
                     {cards[cardID].options[arr[0]]}
                 </Button>
 
-                <Button
-                    className={
-                        b2
-                            ? arr[1] === 0
-                                ? 'learningTool card-aw2-card-green'
-                                : 'learningTool card-aw2-card-red'
-                            : 'learningTool card-aw2-card'
-                    }
-                    onClick={() => {
-                        checkAnswer(cardID, arr[1]);
-                        setB2(true);
-                    }}
+                <Button disabled={disable}
+                        className={
+                            b2
+                                ? arr[1] === 0
+                                    ? 'learningTool card-aw2-card-green'
+                                    : 'learningTool card-aw2-card-red'
+                                : 'learningTool card-aw2-card'
+                        }
+                        onClick={() => {
+                            checkAnswer(cardID, arr[1]);
+                            setB2(true);
+                            setDisable(true);
+                        }}
                 >
                     {cards[cardID].options[arr[1]]}
                 </Button>
 
-                <Button
-                    className={
-                        b3
-                            ? arr[2] === 0
-                                ? 'learningTool card-aw3-card-green'
-                                : 'learningTool card-aw3-card-red'
-                            : 'learningTool card-aw3-card'
-                    }
-                    onClick={() => {
-                        checkAnswer(cardID, arr[2]);
-                        setB3(true);
-                    }}
+                <Button disabled={disable}
+                        className={
+                            b3
+                                ? arr[2] === 0
+                                    ? 'learningTool card-aw3-card-green'
+                                    : 'learningTool card-aw3-card-red'
+                                : 'learningTool card-aw3-card'
+                        }
+                        onClick={() => {
+                            checkAnswer(cardID, arr[2]);
+                            setB3(true);
+                            setDisable(true);
+                        }}
                 >
                     {cards[cardID].options[arr[2]]}
                 </Button>
 
-                <Button
-                    className={
-                        b4
-                            ? arr[3] === 0
-                                ? 'learningTool card-aw4-card-green'
-                                : 'learningTool card-aw4-card-red'
-                            : 'learningTool card-aw4-card'
-                    }
-                    onClick={() => {
-                        checkAnswer(cardID, arr[3]);
-                        setB4(true);
-                    }}
+                <Button disabled={disable}
+                        className={
+                            b4
+                                ? arr[3] === 0
+                                    ? 'learningTool card-aw4-card-green'
+                                    : 'learningTool card-aw4-card-red'
+                                : 'learningTool card-aw4-card'
+                        }
+                        onClick={() => {
+                            checkAnswer(cardID, arr[3]);
+                            setB4(true);
+                            setDisable(true);
+                        }}
                 >
                     {cards[cardID].options[arr[3]]}
                 </Button>
@@ -194,7 +236,6 @@ const MultiplayerTool = () => {
     return (
         <BaseContainer>
             {content}
-            <Header/>
         </BaseContainer>
     );
 };

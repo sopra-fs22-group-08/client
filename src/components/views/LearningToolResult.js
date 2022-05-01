@@ -26,13 +26,14 @@ const LearningToolResult = () => {
             <div className='learningTool resPage-Text'>
                 You had {count} out of {lengthDeck} correct
                 <div>
-                    <button onClick={()=>{history.push("/home/"+ userId)}} className = {"learningTool back-button"}>
+                    <button onClick={()=>{
+                        history.push("/home/"+ userId);
+                        localStorage.setItem('result', 0);
+                    }} className = {"learningTool back-button"}>
                         Go Back
                     </button>
                 </div>
             </div>
-
-            <Header/>
         </BaseContainer>
     );
 };

@@ -17,14 +17,20 @@
 
     color: #000000;
 
-  }
+    }
 
-  &.loginButton-container {
-    position: absolute;
-    width: 107px;
-    height: 46px;
-    left: 1277px;
-    top: 31px;
+    &.disclaimer {
+        color: #EA2D21;
+        font-weight: bold;
+        font-style: normal;
+    }
+
+    &.loginButton-container {
+        position: absolute;
+        width: 107px;
+        height: 46px;
+        left: 1277px;
+        top: 31px;
 
     background: #4757FF;
     border-radius: 10px;

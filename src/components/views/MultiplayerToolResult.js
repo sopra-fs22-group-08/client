@@ -81,7 +81,10 @@ const MultiplayerToolResult = () => {
                     </h3>
                     Your {opponent ? opponent.username : "Opponent"} had {opponentScore} out of {lengthDeck} correct
                     <div>
-                        <button onClick={()=>{history.push("/home/"+ userId)}} className = "learningTool back-button">
+                        <button onClick={() => {
+                            localStorage.setItem('result', 0);
+                            history.push("/home/" + userId);
+                        }} className="learningTool back-button">
                             Go Back
                         </button>
                     </div>
@@ -102,7 +105,6 @@ const MultiplayerToolResult = () => {
                 You had {count} out of {lengthDeck} correct
                 {content}
             </div>
-            <Header/>
         </BaseContainer>
     );
 };
