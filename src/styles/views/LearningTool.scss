@@ -8,16 +8,26 @@
  */
 
 .learningTool {
-
+    &.back-button{
+        align-content: center;
+        position: relative;
+    }
+    &.text-to-speech{
+        margin:20px;
+        font-size: 20px;
+        padding: 2px;
+    }
 
     &.resPage-Title {
 
-        position: absolute;
-        width: 374px;
-        height: 161px;
-        left: 569px;
-        top: 218px;
+        position: relative;
+        width: 50%;
+        height: 50%;
+        left: 20%;
+        right:20%;
+        top: 300px;
 
+        text-align: center;
         font-family: 'Racing Sans One';
         font-style: normal;
         font-weight: 400;
@@ -28,12 +38,17 @@
     }
 
     &.resPage-Text {
-        position: absolute;
-        width: 735px;
-        height: 75px;
-        left: 389px;
-        top: 454px;
+        position: relative;
+        width: 50%;
+        height: 50%;
+        left: 20%;
+        right:20%;
+        top: 300px;
 
+        display:flex;
+        flex-direction: column;
+
+        text-align: center;
         font-family: 'Roboto';
         font-style: normal;
         font-weight: 400;
@@ -43,7 +58,6 @@
 
 
         color: #000000;
-
     }
 
 
@@ -62,7 +76,6 @@
         font-size: 32px;
         line-height: 38px;
         /* identical to box height */
-
 
         color: #000000;
 

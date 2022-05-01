@@ -142,10 +142,16 @@ const LearningTool = () => {
                 <div className='learningTool card-number'>
                     {cardID}/{Object.keys(cards).length}
                 </div>
-                <div className='learningTool card-tittle'>{deck.deckname}</div>
-                <div className='learningTool card-question'>{cards[cardID].question}</div>
+                <div className='learningTool card-tittle'>{deck.deckname}
+                </div>
+                <div className='learningTool card-question'>{cards[cardID].question}
+                    <button className = "learningTool text-to-speech" onClick={()=>speak(cards[cardID].question)}>
+                        TEXT TO SPEECH
+                    </button>
+                </div>
+                <div className='learningTool learn-tittle'>Which one is correct?
 
-                <div className='learningTool learn-tittle'>Which one is correct?</div>
+                </div>
 
                 <Button
                     className={
@@ -210,7 +216,6 @@ const LearningTool = () => {
                 >
                     {cards[cardID].options[arr[3]]}
                 </Button>
-                <Button onClick={()=>speak(cards[cardID].question)}>TEXT TO SPEECH</Button>
             </BaseContainer>
         );
     }
