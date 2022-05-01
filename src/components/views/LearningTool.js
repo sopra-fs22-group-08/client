@@ -20,6 +20,7 @@ const LearningTool = () => {
     const [b4, setB4] = useState(false);
     const [arr, setArr] = useState(shuffleAnswers([1, 2, 0, 3]));
     const [counter, setCounter] = useState(0);
+    const [disable, setDisable] = useState(false);
     let voices = []
 
     const getVoice = () =>{
@@ -65,6 +66,7 @@ const LearningTool = () => {
         setB3(false);
         setB4(false);
         setArr(shuffleAnswers([1, 2, 0, 3]));
+        setDisable(false);
         history.push(`/learningtool/deckID=` + deckId[1] + '/cardID=' + cardId[1]);
     };
 
@@ -153,7 +155,7 @@ const LearningTool = () => {
 
                 </div>
 
-                <Button
+                <Button disabled = {disable}
                     className={
                         b1
                             ? arr[0] == 0
@@ -164,12 +166,13 @@ const LearningTool = () => {
                     onClick={() => {
                         checkAnswer(cardID, arr[0]);
                         setB1(true);
+                        setDisable(true);
                     }}
                 >
                     {cards[cardID].options[arr[0]]}
                 </Button>
 
-                <Button
+                <Button disabled = {disable}
                     className={
                         b2
                             ? arr[1] === 0
@@ -180,12 +183,13 @@ const LearningTool = () => {
                     onClick={() => {
                         checkAnswer(cardID, arr[1]);
                         setB2(true);
+                        setDisable(true);
                     }}
                 >
                     {cards[cardID].options[arr[1]]}
                 </Button>
 
-                <Button
+                <Button disabled = {disable}
                     className={
                         b3
                             ? arr[2] === 0
@@ -196,12 +200,13 @@ const LearningTool = () => {
                     onClick={() => {
                         checkAnswer(cardID, arr[2]);
                         setB3(true);
+                        setDisable(true);
                     }}
                 >
                     {cards[cardID].options[arr[2]]}
                 </Button>
 
-                <Button
+                <Button disabled = {disable}
                     className={
                         b4
                             ? arr[3] === 0
@@ -212,6 +217,7 @@ const LearningTool = () => {
                     onClick={() => {
                         checkAnswer(cardID, arr[3]);
                         setB4(true);
+                        setDisable(true);
                     }}
                 >
                     {cards[cardID].options[arr[3]]}
@@ -225,7 +231,6 @@ const LearningTool = () => {
     return (
         <BaseContainer>
             {content}
-            <Header/>
         </BaseContainer>
     );
 };
