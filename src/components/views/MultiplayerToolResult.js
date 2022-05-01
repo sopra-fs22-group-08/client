@@ -69,7 +69,7 @@ const MultiplayerToolResult = () => {
                 status = "LOSS";
             }
             else if(opponentScore < count){
-                status = "WON"
+                status = "WIN"
             }
             else{
                 status = "DRAW";
