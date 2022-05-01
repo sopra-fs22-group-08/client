@@ -63,6 +63,12 @@ const Login = () => {
             // Store userID into the local storage.
             localStorage.setItem('userId', user.id);
 
+            // BUG: set result to 0
+            if (localStorage.getItem('result') === null) {
+                // console.log("inside null check")
+                localStorage.setItem('result', 0);
+            }
+
             // Login successfully worked --> navigate to the route /game in the GameRouter
             history.push(`/home/` + user.id);
         } catch (error) {
