@@ -66,7 +66,7 @@ const MultiplayerToolResult = () => {
         if (duel.playerOneStatus === "FINISHED" && duel.playerTwoStatus === "FINISHED" ) {
             let status;
             if (opponentScore > count){
-                status = "LOST";
+                status = "LOSS";
             }
             else if(opponentScore < count){
                 status = "WON"
