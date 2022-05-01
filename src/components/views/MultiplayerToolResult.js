@@ -64,11 +64,29 @@ const MultiplayerToolResult = () => {
     if (duel) {
         console.log(duel)
         if (duel.playerOneStatus === "FINISHED" && duel.playerTwoStatus === "FINISHED" ) {
-
+            let status;
+            if (opponentScore > count){
+                status = "LOST";
+            }
+            else if(opponentScore < count){
+                status = "WON"
+            }
+            else{
+                status = "DRAW";
+            }
             content = (
                 <div>
+                    <h3 align = "center">
+                        It's a {status}!
+                    </h3>
                     Your {opponent ? opponent.username : "Opponent"} had {opponentScore} out of {lengthDeck} correct
+                    <div>
+                        <button onClick={()=>{history.push("/home/"+ userId)}} className = "learningTool back-button">
+                            Go Back
+                        </button>
+                    </div>
                 </div>
+
             );
 
         }

@@ -8,6 +8,7 @@ const LearningToolResult = () => {
 
     const history = useHistory();
     const location = useLocation();
+    const userId = localStorage.getItem("userId");
 
     let count = localStorage.getItem('result');
     //TODO: Find other way to set it 0
@@ -24,7 +25,13 @@ const LearningToolResult = () => {
 
             <div className='learningTool resPage-Text'>
                 You had {count} out of {lengthDeck} correct
+                <div>
+                    <button onClick={()=>{history.push("/home/"+ userId)}} className = {"learningTool back-button"}>
+                        Go Back
+                    </button>
+                </div>
             </div>
+
             <Header/>
         </BaseContainer>
     );
