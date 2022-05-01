@@ -75,7 +75,7 @@ const LearningTool = () => {
                 const deckId = location.pathname.match(/deckID=(\d+)/);
                 const responseCard = await api.get('/decks/' + deckId[1] + '/cards');
                 const responseDeck = await api.get('/decks/' + deckId[1]);
-                await new Promise((resolve) => setTimeout(resolve, 1000));
+                //await new Promise((resolve) => setTimeout(resolve, 1000));
                 setDeck(responseDeck.data);
                 setCards(responseCard.data);
                 setCards(responseCard.data);

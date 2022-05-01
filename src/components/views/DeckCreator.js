@@ -38,7 +38,7 @@ const DeckCreator = () => {
             try {
                 const userId = localStorage.getItem('userId');
                 const response = await api.get('/users/' + userId);
-                await new Promise((resolve) => setTimeout(resolve, 1000));
+                //await new Promise((resolve) => setTimeout(resolve, 1000));
                 setUser(response.data);
             } catch (error) {
                 console.error(
