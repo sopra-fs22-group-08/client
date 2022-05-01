@@ -1,21 +1,21 @@
 @import 'styles/theme';
 
 .landingPage {
-  &.title {
-    position: absolute;
-    width: 235px;
-    height: 45px;
-    left: 128px;
-    top: 20px;
+    &.title {
+        position: absolute;
+        width: 235px;
+        height: 45px;
+        left: 128px;
+        top: 20px;
 
-    font-family: 'Racing Sans One', cursive;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 46px;
-    line-height: 58px;
-    text-align: center;
+        font-family: 'Racing Sans One', cursive;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 46px;
+        line-height: 58px;
+        text-align: center;
 
-    color: #000000;
+        color: #000000;
 
     }
 
@@ -32,313 +32,318 @@
         left: 1277px;
         top: 31px;
 
-    background: #4757FF;
-    border-radius: 10px;
-
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 24px;
-    line-height: 28px;
-    text-align: center;
-
-    color: #FFFFFF;
-  }
-
-  &.registerButton-container {
-    position: absolute;
-    width: 108px;
-    height: 46px;
-    left: 1149px;
-    top: 31px;
-    background: #FFFFFF;
-    border-radius: 10px;
-
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 24px;
-    line-height: 28px;
-    text-align: center;
-
-    color: #000000;
-
-  }
-
-  &.text-title {
-    position: absolute;
-    width: 617px;
-    height: 117px;
-    left: 257px;
-    top: 212px;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 54px;
-    line-height: 63px;
-
-    color: #000000;
-  }
-
-  &.text-text {
-    position: absolute;
-    width: 619px;
-    height: 86px;
-    left: 255px;
-    top: 361px;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 200;
-    font-size: 24px;
-    line-height: 28px;
-
-    color: #000000;
-
-  }
-
-  &.getStartedButton-container {
-    position: absolute;
-    width: 236px;
-    height: 63px;
-    left: 255px;
-    top: 507px;
-
-    background: #4757FF;
-    border-radius: 10px;
-
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 24px;
-    line-height: 28px;
-    text-align: center;
-
-    color: #FFFFFF;
-
-  }
-
-  &.text1-title {
-    position: absolute;
-    width: 236px;
-    height: 45px;
-    left: 255px;
-    top: 786px;
+        background: #4757FF;
+        border-radius: 10px;
+
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 28px;
+        text-align: center;
+
+        color: #FFFFFF;
+    }
+
+    &.registerButton-container {
+        position: absolute;
+        width: 108px;
+        height: 46px;
+        left: 1149px;
+        top: 31px;
+        background: #FFFFFF;
+        border-radius: 10px;
+
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 28px;
+        text-align: center;
+
+        color: #000000;
+
+    }
+
+    &.text-title {
+        position: absolute;
+        width: 617px;
+        height: 117px;
+        left: 257px;
+        top: 212px;
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 54px;
+        line-height: 63px;
+
+        color: #000000;
+    }
+
+    &.text-text {
+        position: absolute;
+        width: 619px;
+        height: 86px;
+        left: 255px;
+        top: 361px;
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 200;
+        font-size: 24px;
+        line-height: 28px;
+
+        color: #000000;
+
+    }
+
+    &.getStartedButton-container {
+        position: absolute;
+        width: 236px;
+        height: 63px;
+        left: 255px;
+        top: 507px;
+
+        background: #4757FF;
+        border-radius: 10px;
+
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 28px;
+        text-align: center;
+
+        color: #FFFFFF;
+
+    }
+
+    &.text1-title {
+        position: absolute;
+        width: 236px;
+        height: 45px;
+        left: 255px;
+        top: 786px;
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 37px;
 
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 32px;
-    line-height: 37px;
+        color: #000000;
 
-    color: #000000;
-
-  }
-
-  &.text1-text {
-    position: absolute;
-    width: 236px;
-    height: 41px;
-    left: 255px;
-    top: 831px;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 200;
-    font-size: 16px;
-    line-height: 19px;
-
-    color: #000000;
-
-  }
-
-  &.text2-title {
-    position: absolute;
-    width: 234px;
-    height: 45px;
-    left: 512px;
-    top: 786px;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 32px;
-    line-height: 37px;
-
-    color: #000000;
-
-  }
-
-  &.text2-text {
-    position: absolute;
-    width: 234px;
-    height: 41px;
-    left: 512px;
-    top: 831px;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 200;
-    font-size: 16px;
-    line-height: 19px;
-
-    color: #000000;
-
-
-  }
-
-  &.text3-title {
-    position: absolute;
-    width: 236px;
-    height: 45px;
-    left: 765px;
-    top: 786px;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 32px;
-    line-height: 37px;
-
-    color: #000000;
-
-  }
-
-  &.text3-text {
-    position: absolute;
-    width: 235px;
-    height: 41px;
-    left: 766px;
-    top: 831px;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 200;
-    font-size: 16px;
-    line-height: 19px;
-
-    color: #000000;
-
-  }
-
-
-
-  &.card {
-    position: absolute;
-    width: 300px;
-    height: 425px;
-    left: 1021px;
-    top: 250px;
-
-    background: #FFFFFF;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
-  }
-  &.card-title {
-    position: absolute;
-    width: 95px;
-    height: 19px;
-    left: 1034px;
-    top: 261px;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-
-    text-align: center;
-
-    color: #000000;
-  }
-  &.card-number {
-    position: absolute;
-    width: 42px;
-    height: 19px;
-    left: 1262px;
-    top: 261px;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-
-    text-align: center;
-
-    color: #000000;
-  }
-  &.card-text {
-    position: absolute;
-    width: 189px;
-    height: 245px;
-    left: 1051px;
-    top: 319px;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 32px;
-    line-height: 37px;
-
-    color: #000000;
-  }
-  &.card-action {
-    position: absolute;
-    width: 83px;
-    height: 19px;
-    left: 1129px;
-    top: 644px;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-
-    text-align: center;
-
-    color: #000000;
-  }
-  &.card-left {
-    position: absolute;
-    width: 300px;
-    height: 425px;
-    left: 1021px;
-    top: 250px;
-
-    background: #4757FF;
-    border-radius: 20px;
-    transform: rotate(-9.64deg);
-  }
-  &.card-right {
-    position: absolute;
-    width: 300px;
-    height: 425px;
-    left: 1021px;
-    top: 250px;
-
-    background: #FFCA00;
-    border-radius: 20px;
-    transform: rotate(11.39deg);
-  }
-
-
-  &.container {
-    margin-top: 2em;
-    min-height: 300px;
-    /* we include the center mixin defined in _theme.scss and save three duplicate lines :) */
-    @include center;
-    flex-direction: column;
-  }
+    }
+
+    &.text1-text {
+        position: absolute;
+        width: 236px;
+        height: 41px;
+        left: 255px;
+        top: 831px;
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 200;
+        font-size: 16px;
+        line-height: 19px;
+
+        color: #000000;
+
+    }
+
+    &.text2-title {
+        position: absolute;
+        width: 234px;
+        height: 45px;
+        left: 512px;
+        top: 786px;
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 37px;
+
+        color: #000000;
+
+    }
+
+    &.text2-text {
+        position: absolute;
+        width: 234px;
+        height: 41px;
+        left: 512px;
+        top: 831px;
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 200;
+        font-size: 16px;
+        line-height: 19px;
+
+        color: #000000;
+
+
+    }
+
+    &.text3-title {
+        position: absolute;
+        width: 236px;
+        height: 45px;
+        left: 765px;
+        top: 786px;
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 37px;
+
+        color: #000000;
+
+    }
+
+    &.text3-text {
+        position: absolute;
+        width: 235px;
+        height: 41px;
+        left: 766px;
+        top: 831px;
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 200;
+        font-size: 16px;
+        line-height: 19px;
+
+        color: #000000;
+
+    }
+
+
+    &.card {
+        position: absolute;
+        width: 300px;
+        height: 425px;
+        left: 1021px;
+        top: 250px;
+
+        background: #FFFFFF;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+    }
+
+    &.card-title {
+        position: absolute;
+        width: 95px;
+        height: 19px;
+        left: 1034px;
+        top: 261px;
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 19px;
+        /* identical to box height */
+
+        text-align: center;
+
+        color: #000000;
+    }
+
+    &.card-number {
+        position: absolute;
+        width: 42px;
+        height: 19px;
+        left: 1262px;
+        top: 261px;
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 19px;
+        /* identical to box height */
+
+        text-align: center;
+
+        color: #000000;
+    }
+
+    &.card-text {
+        position: absolute;
+        width: 189px;
+        height: 245px;
+        left: 1051px;
+        top: 319px;
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 32px;
+        line-height: 37px;
+
+        color: #000000;
+    }
+
+    &.card-action {
+        position: absolute;
+        width: 83px;
+        height: 19px;
+        left: 1129px;
+        top: 644px;
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 19px;
+        /* identical to box height */
+
+        text-align: center;
+
+        color: #000000;
+    }
+
+    &.card-left {
+        position: absolute;
+        width: 300px;
+        height: 425px;
+        left: 1021px;
+        top: 250px;
+
+        background: #4757FF;
+        border-radius: 20px;
+        transform: rotate(-9.64deg);
+    }
+
+    &.card-right {
+        position: absolute;
+        width: 300px;
+        height: 425px;
+        left: 1021px;
+        top: 250px;
+
+        background: #FFCA00;
+        border-radius: 20px;
+        transform: rotate(11.39deg);
+    }
+
+
+    &.container {
+        margin-top: 2em;
+        min-height: 300px;
+        /* we include the center mixin defined in _theme.scss and save three duplicate lines :) */
+        @include center;
+        flex-direction: column;
+    }
 
 }

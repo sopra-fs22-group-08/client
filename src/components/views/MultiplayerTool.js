@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { api, handleError } from 'helpers/api';
-import { useHistory, useLocation } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {api, handleError} from 'helpers/api';
+import {useHistory, useLocation} from 'react-router-dom';
 import BaseContainer from 'components/ui/BaseContainer';
 import 'styles/views/LearningTool.scss';
 import {Button} from 'components/ui/Button';
@@ -114,6 +114,7 @@ const MultiplayerTool = () => {
         }
         return array;
     }
+
     const match = location.pathname.match(/cardID=(\d+)/);
     const cardID = match[1];
 
@@ -132,6 +133,7 @@ const MultiplayerTool = () => {
 
         checkNextCard(cardID, value);
     }
+
     //checks if there are still some cards left to learn
     function checkNextCard(cardID, value) {
         cardID++;
@@ -141,6 +143,7 @@ const MultiplayerTool = () => {
             return goNextCard();
         }
     }
+
     if (cards) {
         content = (
             <BaseContainer>
