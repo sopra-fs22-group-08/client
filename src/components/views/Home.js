@@ -34,6 +34,7 @@ const Home = () => {
     }
 
     const declineInvite = async (invite) => {
+        await api.put('/duels/' + invite.duelId + '/players/' + user.id + '/status/DECLINED');
         await api.delete('/invitations/' + invite.id)
     }
 
@@ -42,18 +43,14 @@ const Home = () => {
     * */
     const checkInvites = async () => {
         try {
-
             //fetch invitations for the logged in-user from backend
             const id = localStorage.getItem("userId");
             const responseBody = await api.get("/users/" + id + "/invitations");
             setInvitations(responseBody.data);
-            console.log("test");
-
         } catch (error) {
             alert(error);
             console.log(error);
         }
-
     }
 
     useEffect(() => {
@@ -64,7 +61,6 @@ const Home = () => {
                 console.log(userId);
                 const responseUser = await api.get('/users/' + userId);
                 const responseDecks = await api.get('/users/' + userId + '/decks');
-                //await new Promise((resolve) => setTimeout(resolve, 1000));
                 setUser(responseUser.data);
                 setDecks(responseDecks.data);
 
@@ -84,7 +80,7 @@ const Home = () => {
         **/
         const interval = setInterval(() => {
             checkInvites();
-        }, 5000);
+        }, 1000);
 
         fetchData();
         return () => clearInterval(interval);
@@ -114,7 +110,6 @@ const Home = () => {
         var listInvites = <div className='Home deck-None'>Invite Player</div>;
         if (invitations) {
             listInvites = invitations.map((i) => (
-
                 <div className='Home invitations-Field'>
                     <div className='Home invitations-text'>{i.senderUsername} wants to challenge you
                         on {i.deckname}

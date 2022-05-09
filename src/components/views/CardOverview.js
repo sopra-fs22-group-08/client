@@ -47,7 +47,6 @@ const CardOverview = () => {
             const senderUsername = user.username;
             const receiverUsername = userN;
 
-
             const requestBodyInvitation = JSON.stringify({
                 senderId,
                 receiverId,
