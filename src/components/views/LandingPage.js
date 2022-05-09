@@ -70,7 +70,7 @@ const LandingPage = (props) => {
                 </div>
                 <div className='landingPage card-title'>Asset Pricing</div>
                 <div className='landingPage card-number'>1 / 76</div>
-                <div className='landingPage card-action'>Click to Flip</div>
+                <div className='landingPage card-action'/>
             </div>
         </BaseContainer>
     );
