@@ -11,22 +11,24 @@ import declineInvite from 'components/views/Home';
 const Multiplayer = () => {
 
     const [hasAccepted, setHasAccepted] = useState(false);
+    const [hasDeclined, setHasDeclined] = useState(false);
     const [duel, setDuel] = useState(null);
 
     const history = useHistory();
     const location = useLocation();
 
-    const checkAccepted = async () => {
+    const checkDuelStatus = async () => {
         try {
             const duelId = localStorage.getItem('duelId');
             const responseDuel = await api.get('/duels/' + duelId);
-
-            await new Promise((resolve) => setTimeout(resolve, 1000));
             const d = responseDuel.data;
+            setDuel(d);
 
             if (d.playerTwoStatus === 'ACCEPTED') {
                 setHasAccepted(true);
-                setDuel(d);
+            }
+            if (d.playerTwoStatus === 'DECLINED') {
+                setHasDeclined(true);
             }
 
         } catch (error) {
@@ -36,15 +38,14 @@ const Multiplayer = () => {
     }
 
     useEffect(() => {
-        setInterval(() => checkAccepted(), 5000);
+        const interval = setInterval(() => checkDuelStatus(), 1000);
+        return () => clearInterval(interval);
     }, []);
 
     document.body.style = 'background: #FFCA00;';
     return (
         <BaseContainer>
-
-            {hasAccepted
-                ?
+            {hasAccepted &&
                 <div className="Loading text-Start">
                     Your game is ready
                     <div className="Loading start">
@@ -57,8 +58,23 @@ const Multiplayer = () => {
                             Start Game
                         </Button>
                     </div>
+                </div>}
+            {hasDeclined &&
+                <div className="Loading text-Start">
+                    Your Invitation has been declined
+                    <div className="Loading declined">
+                        <Button
+                            className='loadingScreen-button'
+                            onClick={async () => {
+                                api.delete('/duels/' + duel.id);
+                                history.push(`/home/` + localStorage.getItem("userId"));
+                            }}>
+                            Ok
+                        </Button>
+                    </div>
                 </div>
-                :
+            }
+            {!hasAccepted && !hasDeclined &&
                 <div className="Loading">
                     <div className="Loading text">
                         waiting for your friend to accept
@@ -78,7 +94,7 @@ const Multiplayer = () => {
                     <div className="Loading cancel">
                         <Button
                             className='loadingScreen-button'
-                            onClick={() => {
+                            onClick={async () => {
                                 api.delete('/invitations/' + location.state.detail.id);
                                 history.push(`/home/` + localStorage.getItem("userId"));
                             }}>
@@ -87,7 +103,6 @@ const Multiplayer = () => {
                     </div>
                 </div>
             }
-
         </BaseContainer>
     );
 };
