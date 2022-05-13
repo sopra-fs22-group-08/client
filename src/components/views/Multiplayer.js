@@ -55,7 +55,7 @@ const Multiplayer = () => {
                                 localStorage.setItem('duelId', duel.id);
                                 history.push('/multiplayerTool/deckID=' + duel.deckId + '/cardID=0');
                             }}>
-                            Start Game
+                            Start
                         </Button>
                     </div>
                 </div>}
@@ -77,17 +77,17 @@ const Multiplayer = () => {
             {!hasAccepted && !hasDeclined &&
                 <div className="Loading">
                     <div className="Loading text">
-                        waiting for your friend to accept
+                        Waiting for your Friend
                     </div>
-                    <div className={"ExampleOfUsage"}>
+                    <div className="Loading position">
                         <LoadingSpin
                             duration="2s"
-                            width="15px"
+                            width="12px"
                             timingFunction="ease-in-out"
                             direction="alternate"
-                            size="150px"
-                            primaryColor="yellow"
-                            secondaryColor="#333"
+                            size="250px"
+                            primaryColor="#4757FF"
+                            secondaryColor="#000000"
                             numberOfRotationsInAnimation={2}
                         />
                     </div>
@@ -98,7 +98,7 @@ const Multiplayer = () => {
                                 api.delete('/invitations/' + location.state.detail.id);
                                 history.push(`/home/` + localStorage.getItem("userId"));
                             }}>
-                            cancel
+                            Cancel
                         </Button>
                     </div>
                 </div>

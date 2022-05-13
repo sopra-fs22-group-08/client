@@ -4,14 +4,27 @@
         transform: translateY(-2px);
     }
 
-    padding: 6px;
-    font-weight: 700;
-    font-size: 25px;
+    width: 107px;
+    height: 46px;
+
+
+    background: #4757FF;
+    border-radius: 10px;
+
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
     text-align: center;
-    height: 40px;
+
+    color: #FFFFFF;
+
+    padding: 6px;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-family: 'Roboto';
+
 
 }

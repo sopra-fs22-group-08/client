@@ -6,29 +6,42 @@
     left: 50%;
     margin-top: -100px;
     margin-left: -200px;
+
+    &.position{
+        position: relative;
+        top: 130px;
+        left: 300px;
+    }
+
     &.text{
+        position: center;
         top: 40%;
-        left: 40%;
+
 
         font-family: 'Roboto';
         font-style: normal;
         font-weight: 500;
         font-size: 48px;
         line-height: 28px;
+
+        color: #000000;
     }
     &.text-Start{
+        position: absolute;
         top: 43%;
-        left: 48%;
 
         font-family: 'Roboto';
         font-style: normal;
         font-weight: 500;
         font-size: 48px;
         line-height: 28px;
+
+        color: #000000;
     }
     &.cancel{
-        top: 78%;
-        left: 51.5%;
+        position: relative;
+        top: 80px;
+        left: 368px;
     }
     &.start{
         top: 52%;

@@ -102,6 +102,7 @@ const MultiplayerToolResult = () => {
                 You had {count} out of {lengthDeck} correct
                 {content}
             </div>
+            <Header/>
         </BaseContainer>
     );
 };
