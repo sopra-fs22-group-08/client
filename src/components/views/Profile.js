@@ -126,7 +126,7 @@ const Profile = () => {
                 const userId = location.pathname.match(/\d+$/);
                 const response = await api.get('/users/' + userId);
 
-                //wait new Promise((resolve) => setTimeout(resolve, 1000));
+                new Promise((resolve) => setTimeout(resolve, 1000));
 
                 setUser(response.data);
             } catch (error) {
@@ -144,55 +144,46 @@ const Profile = () => {
     }, []);
 
     let content;
-    let addEditButton = '';
     let edit;
 
     edit = (
         <BaseContainer>
-            <div className='register login-text'>Edit Profile</div>
+            <div className='profile login-text'>Edit Profile</div>
 
-            <div className='register firstName-title'>First Name</div>
-            <div className='register firstName-field'/>
+            <div className='profile firstName-title'>First Name</div>
+            <div className='profile firstName-field'/>
 
             <FormFieldFn value={firstName} onChange={(un) => setFirstName(un)} />
 
-            <div className='register lastName-title'>Last Name</div>
-            <div className='register lastName-field'/>
+            <div className='profile lastName-title'>Last Name</div>
+            <div className='profile lastName-field'/>
 
             <FormFieldLn value={lastName} onChange={(n) => setLastName(n)} />
 
-            <div className='register email-title'>Email</div>
-            <div className='register email-field'/>
+            {/*<div className='profile email-title'>Email</div>
+            <div className='profile email-field'/>
 
-            <FormFieldEm value={email} onChange={(n) => setEmail(n)} />
+            <FormFieldEm value={email} onChange={(n) => setEmail(n)} />*/}
 
-            <div className='register username-title'>Username</div>
-            <div className='register username-field'/>
+            <div className='profile username-title'>Username</div>
+            <div className='profile username-field'/>
 
             <FormFieldUn value={username} onChange={(un) => setUsername(un)} />
 
-            <div className='register password-title'>Password</div>
-            <div className='register password-field'/>
+            <div className='profile password-title'>Password</div>
+            <div className='profile password-field'/>
             <FormFieldPw value={password} onChange={(n) => setPassword(n)} />
 
             <Button
-                className='register createButton'
-                onClick={() => [setEditButton(false), doUpdate()]}
+                className='profile createButton'
+                onClick={() => [doUpdate(),setEditButton(false)]}
             >
                 Submit
             </Button>
         </BaseContainer>
     );
 
-    addEditButton = (
-        <Button
-            className='register createButton'
-            // open edit window
-            onClick={() => setEditButton(true)}
-        >
-            Edit
-        </Button>
-    );
+
 
     if (user) {
         content = (
@@ -223,7 +214,15 @@ const Profile = () => {
                 <div className='profile password-title'>Password</div>
                 <div className='profile password-field'/>
                 <FormFieldPw value={password} onChange={(n) => setPassword(n)} />
-                {localStorage.getItem('username') !== user.username ? null : addEditButton}
+
+                <Button
+                    className='register createButton'
+                    // open edit window
+                    onClick={() => setEditButton(true)}
+                >
+                    Edit
+                </Button>
+
             </BaseContainer>
         );
     }
