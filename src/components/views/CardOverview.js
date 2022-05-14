@@ -36,8 +36,8 @@ const CardOverview = () => {
     const [editButton, setEditButton] = useState(false);
 
     const doLearning = () => {
-        const deckID = localStorage.getItem('DeckID');
-        history.push('/learningtool/deckID=' + deckID + '/cardID=0');
+        const Id = localStorage.getItem('deckId');
+        history.push('/learningtool/deckID=' + Id + '/cardID=0');
     };
 
     const doUpdate = async () => {
@@ -160,8 +160,8 @@ const CardOverview = () => {
             listItems = card.map((c) => (
                 <Button
                     className='Home listElement-Box'
-                    onClick={() => {
-                        //add Edit Card Page!!! @Nico
+                    onClick={() => { localStorage.setItem('cardId', c.id);
+                        history.push('/CardEditPage');
                     }}
                 >
                     <div className='Home listElement-Number'/>
