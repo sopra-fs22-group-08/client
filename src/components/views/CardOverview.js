@@ -8,6 +8,20 @@ import Header from "../ui/Header";
 import Duel from "models/Duel"
 import Invitation from "../../models/Invitation";
 
+const FormField = (props) => {
+    return (
+        <div className='profile field'>
+            <input
+                className='profile firstName-text'
+                placeholder='Enter the new Deckname ...'
+                value={props.value}
+                onChange={(e) => props.onChange(e.target.value)}
+            />
+        </div>
+    );
+};
+
+
 const CardOverview = () => {
     // use react-router-dom's hook to access the history
     const history = useHistory();
@@ -16,12 +30,23 @@ const CardOverview = () => {
     const [users, setUsers] = useState(null);
     const [deck, setDeck] = useState(null);
     const [user, setUser] = useState(null);
+    const [deckname, setDeckname] = useState(null);
+    const [visibility, setVisibility] = useState(null);
+    const [editButton, setEditButton] = useState(false);
 
     const doLearning = () => {
         const deckID = localStorage.getItem('DeckID');
         history.push('/learningtool/deckID=' + deckID + '/cardID=0');
     };
 
+    const doUpdate = async () => {
+        const deckId = location.pathname.match(/\d+$/);
+
+        const requestBodyTitle = JSON.stringify({ deckname, visibility });
+        const responseTitle = await api.put('/decks/' + deckId, requestBodyTitle);
+
+        window.location.reload(false);
+    };
     /*
     *Send invitation to user with userToInviteId and then create a new duel and go to multiplayer page
     * */
@@ -122,18 +147,39 @@ const CardOverview = () => {
         listItems3 = <div className='cardOverview online-None'>Currently there is no User online</div>;
     }
 
+
+    let content;
+    let edit;
+
+    edit = (
+        <BaseContainer>
+
+            <div className='cardOverview card-Title'>{deck ? deck.deckname : ''}</div>
+            <FormField value={deckname} onChange={(n) => setDeckname(n) & setVisibility("PUBLIC")} /> //@andrin add switch
+            <Button className='cardOverview edit-Button' onClick={() => [doUpdate(),setEditButton(false)]}>Submit</Button>
+            <Header/>
+        </BaseContainer>
+    );
+
+    content = (
+        <BaseContainer>
+
+        <Button className='cardOverview card' onClick={() => doLearning()}>
+            <div className='cardOverview card-Title'>{deck ? deck.deckname : ''}</div>
+            <div className='cardOverview card-Text'>Click to Learn</div>
+        </Button>
+        <Button className='cardOverview edit-Button' onClick={() => setEditButton(true)} >Edit</Button>
+        <div className='cardOverview people-Title'>People to challenge</div>
+        <div className='cardOverview people-Button-position'>{listItems3}</div>
+        <Header/>
+    </BaseContainer>
+    );
+
     document.body.style = 'background: #FFCA00;';
 
     return (
         <BaseContainer>
-
-            <Button className='cardOverview card' onClick={() => doLearning()}>
-                <div className='cardOverview card-Title'>{deck ? deck.deckname : ''}</div>
-                <div className='cardOverview card-Text'>Click to Learn</div>
-            </Button>
-            <Button className='cardOverview edit-Button'>Edit</Button>
-            <div className='cardOverview people-Title'>People to challenge</div>
-            <div className='cardOverview people-Button-position'>{listItems3}</div>
+            {editButton ? edit : content}
             <Header/>
         </BaseContainer>
     );

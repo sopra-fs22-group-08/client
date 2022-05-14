@@ -30,6 +30,7 @@ const DeckCreator = () => {
     const history = useHistory();
     const location = useLocation();
     const [deckname, setDeckname] = useState(null);
+    const [visibility, setVisibility] = useState(null);
     const [user, setUser] = useState(null);
 
     useEffect(() => {
@@ -57,7 +58,7 @@ const DeckCreator = () => {
     const doDeckCreator = async () => {
         try {
             const userid = localStorage.getItem('userId');
-            const requestBodyTitle = JSON.stringify({ deckname });
+            const requestBodyTitle = JSON.stringify({ deckname, visibility });
             const responseTitle = await api.post('/users/' + userid + '/decks', requestBodyTitle);
 
             // Get the returned deck and update a new object.
@@ -81,8 +82,7 @@ const DeckCreator = () => {
         <BaseContainer>
             <div className='cardCreator cardDeck-title'>Title</div>
 
-            <FormFieldFn value={deckname} onChange={(un) => setDeckname(un)} />
-
+            <FormFieldFn value={deckname} onChange={(un) => setDeckname(un) & setVisibility("PUBLIC") } />  //@andrin add switch
             <Button
                 className='cardCreator createButton2'
                 disabled={!deckname}

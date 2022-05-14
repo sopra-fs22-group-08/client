@@ -22,8 +22,8 @@ const Home = () => {
         connected: false,
     });
 
-    const cardOverview = () => {
-        history.push('/cardOverview');
+    const cardOverview = (deckID) => {
+        history.push('/cardOverview/deckID=' + deckID);
     };
 
     const acceptInvite = async (invite) => {
@@ -93,7 +93,7 @@ const Home = () => {
                 <Button
                     className='Home listElement-Box'
                     onClick={() => {
-                        cardOverview();
+                        cardOverview(d.id);
                         localStorage.setItem('DeckID', d.id);
                     }}
                 >
