@@ -112,10 +112,12 @@ const CardEditPage = () => {
     const doUpdate = async () => {
         const id = localStorage.getItem('cardId');
 
-        const requestBody = JSON.stringify({ question, answer, options });
+        const requestBody = JSON.stringify({question, answer, options});
         const response = await api.put('/cards/' + id, requestBody);
-
-
+    };
+    const deleteCard = async () => {
+        const id = localStorage.getItem('cardId');
+        await api.delete('/cards/' + id);
     };
 
     useEffect(() => {
@@ -143,7 +145,7 @@ const CardEditPage = () => {
     }, []);
 
 
-    const goTocardOverviewDeck = async () => {
+    const goToCardOverviewDeck = async () => {
         const deckId = localStorage.getItem('deckId');
         setDeckId(deckId);
         history.push(`/cardOverview/deckID=` + deckId);
@@ -182,9 +184,15 @@ const CardEditPage = () => {
 
             <Button
                 className='cardCreator createButton3'
-                onClick={() => [doUpdate(), goTocardOverviewDeck()]}
+                onClick={() => [doUpdate(), goToCardOverviewDeck()]}
             >
                 Submit
+            </Button>
+            <Button
+                className='cardCreator createButton4'
+                onClick={() => [deleteCard(), goToCardOverviewDeck()]}
+            >
+                Delete
             </Button>
             <Header/>
         </BaseContainer>

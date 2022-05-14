@@ -160,7 +160,8 @@ const CardOverview = () => {
             listItems = card.map((c) => (
                 <Button
                     className='Home listElement-Box'
-                    onClick={() => { localStorage.setItem('cardId', c.id);
+                    onClick={() => {
+                        localStorage.setItem('cardId', c.id);
                         history.push('/CardEditPage');
                     }}
                 >
