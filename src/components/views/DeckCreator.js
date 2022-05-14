@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { api, handleError } from 'helpers/api';
-import { useHistory, useLocation } from 'react-router-dom';
-import { Button } from 'components/ui/Button';
+import React, {useEffect, useState} from 'react';
+import {api, handleError} from 'helpers/api';
+import {useHistory, useLocation} from 'react-router-dom';
+import {Button} from 'components/ui/Button';
 import 'styles/views/Register.scss';
 import BaseContainer from 'components/ui/BaseContainer';
 import PropTypes from 'prop-types';
@@ -58,7 +58,7 @@ const DeckCreator = () => {
     const doDeckCreator = async () => {
         try {
             const userid = localStorage.getItem('userId');
-            const requestBodyTitle = JSON.stringify({ deckname, visibility });
+            const requestBodyTitle = JSON.stringify({deckname, visibility});
             const responseTitle = await api.post('/users/' + userid + '/decks', requestBodyTitle);
 
             // Get the returned deck and update a new object.
@@ -75,14 +75,15 @@ const DeckCreator = () => {
     };
 
 
-
     document.body.style = 'background: #4757FF;';
 
     return (
         <BaseContainer>
             <div className='cardCreator cardDeck-title'>Title</div>
 
-            <FormFieldFn value={deckname} onChange={(un) => setDeckname(un) & setVisibility("PUBLIC") } />  //@andrin add switch
+            <FormFieldFn value={deckname}
+                         onChange={(un) => setDeckname(un) & setVisibility("PUBLIC")}/> //@andrin
+            add switch
             <Button
                 className='cardCreator createButton2'
                 disabled={!deckname}

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { api, handleError } from 'helpers/api';
-import { useHistory, useLocation } from 'react-router-dom';
-import { Button } from 'components/ui/Button';
+import React, {useEffect, useState} from 'react';
+import {api, handleError} from 'helpers/api';
+import {useHistory, useLocation} from 'react-router-dom';
+import {Button} from 'components/ui/Button';
 import 'styles/views/CardCreator.scss';
 import BaseContainer from 'components/ui/BaseContainer';
 import PropTypes from 'prop-types';
@@ -133,7 +133,7 @@ const CardCreator = () => {
     const doCardCreator = async () => {
         try {
             const deckId = localStorage.getItem('deckId');
-            const requestBodyCard = JSON.stringify({ question, answer, options });
+            const requestBodyCard = JSON.stringify({question, answer, options});
             const responseCard = await api.post('/decks/' + deckId + '/cards', requestBodyCard);
 
             // Get the returned deck and update a new object.
@@ -160,27 +160,27 @@ const CardCreator = () => {
             <div className='cardCreator card-ft'>Question</div>
             <div className='cardCreator frontText-field'/>
 
-            <FormFieldLn value={question} onChange={(n) => setQuestion(n)} />
+            <FormFieldLn value={question} onChange={(n) => setQuestion(n)}/>
 
             <div className='cardCreator card-bt'>Answer</div>
             <div className='cardCreator backText-field'/>
 
-            <FormFieldEm value={answer} onChange={(n) => setAnswer(n)} />
+            <FormFieldEm value={answer} onChange={(n) => setAnswer(n)}/>
 
             <div className='cardCreator card-w1'>Wrong Answer</div>
             <div className='cardCreator wrongAnswer-field'/>
 
-            <FormFieldFn value={wrongAnswer1} onChange={(n) => setWrongAnswer1(n)} />
+            <FormFieldFn value={wrongAnswer1} onChange={(n) => setWrongAnswer1(n)}/>
 
             <div className='cardCreator card-w2'>Wrong Answer</div>
             <div className='cardCreator wrongAnswer-field'/>
 
-            <FormFieldUn value={wrongAnswer2} onChange={(n) => setWrongAnswer2(n)} />
+            <FormFieldUn value={wrongAnswer2} onChange={(n) => setWrongAnswer2(n)}/>
 
             <div className='cardCreator card-w3'>Wrong Answer</div>
             <div className='card wrongAnswer-field'/>
 
-            <FormFieldPw value={wrongAnswer3} onChange={(n) => setWrongAnswer3(n)} />
+            <FormFieldPw value={wrongAnswer3} onChange={(n) => setWrongAnswer3(n)}/>
 
             <Button
                 className='cardCreator createButton3'

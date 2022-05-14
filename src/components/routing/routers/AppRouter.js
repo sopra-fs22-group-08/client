@@ -16,6 +16,7 @@ import Library from "../../views/Library";
 import Multiplayer from "../../views/Multiplayer";
 import MultiplayerTool from "../../views/MultiplayerTool";
 import MultiplayerToolResult from "../../views/MultiplayerToolResult";
+import CardEditPage from "../../views/CardEditPage";
 
 /**
  * Main router of your application.
@@ -33,6 +34,11 @@ const AppRouter = () => {
                 <Route path='/home'>
                     <GeneralGuard>
                         <Home />
+                    </GeneralGuard>
+                </Route>
+                <Route path='/CardEditPage'>
+                    <GeneralGuard>
+                        <CardEditPage />
                     </GeneralGuard>
                 </Route>
                 <Route path='/deckcreator'>

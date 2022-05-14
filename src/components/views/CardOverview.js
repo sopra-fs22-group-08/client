@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { api, handleError } from 'helpers/api';
-import { useHistory, useLocation } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {api, handleError} from 'helpers/api';
+import {useHistory, useLocation} from 'react-router-dom';
 import BaseContainer from 'components/ui/BaseContainer';
 import 'styles/views/CardOverview.scss';
-import { Button } from 'components/ui/Button';
+import {Button} from 'components/ui/Button';
 import Header from "../ui/Header";
 import Duel from "models/Duel"
 import Invitation from "../../models/Invitation";
@@ -42,7 +42,7 @@ const CardOverview = () => {
     const doUpdate = async () => {
         const deckId = location.pathname.match(/\d+$/);
 
-        const requestBodyTitle = JSON.stringify({ deckname, visibility });
+        const requestBodyTitle = JSON.stringify({deckname, visibility});
         const responseTitle = await api.put('/decks/' + deckId, requestBodyTitle);
 
         window.location.reload(false);
@@ -51,7 +51,7 @@ const CardOverview = () => {
     *Send invitation to user with userToInviteId and then create a new duel and go to multiplayer page
     * */
     const startMP = async (userToInviteId, userN) => {
-        try{
+        try {
 
             //first create a new duel with the two players
             const playerOneId = localStorage.getItem("userId");
@@ -92,7 +92,7 @@ const CardOverview = () => {
                 state: {detail: inv}
             })
 
-        }catch (error){
+        } catch (error) {
             alert(error);
             console.log(error);
         }
@@ -111,6 +111,7 @@ const CardOverview = () => {
                 const responseDeck = await api.get('/decks/' + deckID);
                 const responseUsers = await api.get('/users');
                 const responseUser = await api.get('/users/' + userID);
+                const responseCards = await api.get('/decks/' + deckID + '/cards');
 
                 await new Promise((resolve) => setTimeout(resolve, 1000));
                 setDeck(responseDeck.data);
@@ -144,7 +145,8 @@ const CardOverview = () => {
 
         });
     } else {
-        listItems3 = <div className='cardOverview online-None'>Currently there is no User online</div>;
+        listItems3 =
+            <div className='cardOverview online-None'>Currently there is no User online</div>;
     }
 
 
@@ -153,10 +155,13 @@ const CardOverview = () => {
 
     edit = (
         <BaseContainer>
-
+            <div className='cardOverview Title'>Deck Edit Page</div>
             <div className='cardOverview card-Title'>{deck ? deck.deckname : ''}</div>
-            <FormField value={deckname} onChange={(n) => setDeckname(n) & setVisibility("PUBLIC")} /> //@andrin add switch
-            <Button className='cardOverview edit-Button' onClick={() => [doUpdate(),setEditButton(false)]}>Submit</Button>
+            <FormField value={deckname}
+                       onChange={(n) => setDeckname(n) & setVisibility("PUBLIC")}/> //@andrin add
+            switch
+            <Button className='cardOverview edit-Button'
+                    onClick={() => [doUpdate(), setEditButton(false)]}>Submit</Button>
             <Header/>
         </BaseContainer>
     );
@@ -164,15 +169,16 @@ const CardOverview = () => {
     content = (
         <BaseContainer>
 
-        <Button className='cardOverview card' onClick={() => doLearning()}>
-            <div className='cardOverview card-Title'>{deck ? deck.deckname : ''}</div>
-            <div className='cardOverview card-Text'>Click to Learn</div>
-        </Button>
-        <Button className='cardOverview edit-Button' onClick={() => setEditButton(true)} >Edit</Button>
-        <div className='cardOverview people-Title'>People to challenge</div>
-        <div className='cardOverview people-Button-position'>{listItems3}</div>
-        <Header/>
-    </BaseContainer>
+            <Button className='cardOverview card' onClick={() => doLearning()}>
+                <div className='cardOverview card-Title'>{deck ? deck.deckname : ''}</div>
+                <div className='cardOverview card-Text'>Click to Learn</div>
+            </Button>
+            <Button className='cardOverview edit-Button'
+                    onClick={() => setEditButton(true)}>Edit</Button>
+            <div className='cardOverview people-Title'>People to challenge</div>
+            <div className='cardOverview people-Button-position'>{listItems3}</div>
+            <Header/>
+        </BaseContainer>
     );
 
     document.body.style = 'background: #FFCA00;';
