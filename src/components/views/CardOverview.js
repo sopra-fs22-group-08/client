@@ -29,6 +29,7 @@ const CardOverview = () => {
 
     const [users, setUsers] = useState(null);
     const [deck, setDeck] = useState(null);
+    const [card, setCard] = useState(null);
     const [user, setUser] = useState(null);
     const [deckname, setDeckname] = useState(null);
     const [visibility, setVisibility] = useState(null);
@@ -113,10 +114,14 @@ const CardOverview = () => {
                 const responseUser = await api.get('/users/' + userID);
                 const responseCards = await api.get('/decks/' + deckID + '/cards');
 
+                // Store deckID into the local storage.
+                localStorage.setItem('deckId', deckID);
+
                 await new Promise((resolve) => setTimeout(resolve, 1000));
                 setDeck(responseDeck.data);
                 setUsers(responseUsers.data);
-                setUser(responseUser.data)
+                setUser(responseUser.data);
+                setCard(responseCards.data);
             } catch (error) {
                 console.error(
                     `Something went wrong while fetching the Data: \n${handleError(error)}`
@@ -149,6 +154,27 @@ const CardOverview = () => {
             <div className='cardOverview online-None'>Currently there is no User online</div>;
     }
 
+    if (user) {
+        var listItems = <div className='Home deck-None'>Please create a new Card</div>;
+        if (card) {
+            listItems = card.map((c) => (
+                <Button
+                    className='Home listElement-Box'
+                    onClick={() => {
+                        //add Edit Card Page!!! @Nico
+                    }}
+                >
+                    <div className='Home listElement-Number'/>
+                    <div className='Home listElement-Title'>{c.question}</div>
+                    <div className='Home listElement-Score'>
+                        <br/> <br/>{' '}
+                    </div>
+                    <div className='Home listElement-Text'>Click to Edit</div>
+                </Button>
+            ));
+        }
+
+    }
 
     let content;
     let edit;
@@ -160,9 +186,13 @@ const CardOverview = () => {
             <FormField value={deckname}
                        onChange={(n) => setDeckname(n) & setVisibility("PUBLIC")}/> //@andrin add
             switch
+            <Button className='cardOverview addCard-Button'
+                    onClick={() => history.push('/cardcreator')}>Add Card</Button>
             <Button className='cardOverview edit-Button'
                     onClick={() => [doUpdate(), setEditButton(false)]}>Submit</Button>
             <Header/>
+            <div className='Home listTitle'>Cards</div>
+            <div className='Home list'>{listItems}</div>
         </BaseContainer>
     );
 

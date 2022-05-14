@@ -107,6 +107,7 @@ const CardCreator = () => {
     const [wrongAnswer3, setWrongAnswer3] = useState(null);
     const options = [answer, wrongAnswer1, wrongAnswer2, wrongAnswer3];
     const [user, setUser] = useState(null);
+    const [deckId, setDeckId] = useState(null);
 
     useEffect(() => {
 
@@ -139,8 +140,10 @@ const CardCreator = () => {
             // Get the returned deck and update a new object.
             const card = new Card(responseCard.data);
 
-            // Store deckID into the local storage.
+            // Store cardID into the local storage.
             localStorage.setItem('cardId', card.id);
+
+            setDeckId(deckId);
 
             // DeckCreator successfully worked --> navigate to the route /home in the GameRouter
             history.push(`/home/` + 1);
@@ -185,7 +188,7 @@ const CardCreator = () => {
             <Button
                 className='cardCreator createButton3'
                 disabled={question || answer || wrongAnswer1 || wrongAnswer2 || wrongAnswer3}
-                onClick={() => history.push(`/home/` + 1)}
+                onClick={() => history.push(`/cardOverview/deckID=` + deckId)}
             >
                 End
             </Button>
