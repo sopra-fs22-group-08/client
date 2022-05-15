@@ -237,7 +237,11 @@ const MultiplayerTool = () => {
                     {cards[cardID].options[arr[3]]}
                 </Button>
                 <div className='learningTool livescore-container'>
-                    You have {localStorage.getItem('result')} out of {localStorage.getItem('lengthDeck')} correct!
+                    You have{' '}
+                    {parseInt(localStorage.getItem('result')) === null
+                        ? 0
+                        : localStorage.getItem('result')}{' '}
+                    out of {Object.keys(cards).length} correct!
                 </div>
             </BaseContainer>
         );
