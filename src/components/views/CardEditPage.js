@@ -5,7 +5,6 @@ import {Button} from 'components/ui/Button';
 import 'styles/views/CardCreator.scss';
 import BaseContainer from 'components/ui/BaseContainer';
 import PropTypes from 'prop-types';
-import Card from '../../models/Card';
 import Header from "../ui/Header";
 
 const FormFieldLn = (props) => {
@@ -96,7 +95,7 @@ FormFieldPw.propTypes = {
     onChange: PropTypes.func,
 };
 
-const CardCreator = () => {
+const CardEditPage = () => {
     const history = useHistory();
     const location = useLocation();
     const [question, setQuestion] = useState(null);
@@ -105,17 +104,31 @@ const CardCreator = () => {
     const [wrongAnswer2, setWrongAnswer2] = useState(null);
     const [wrongAnswer3, setWrongAnswer3] = useState(null);
     const options = [answer, wrongAnswer1, wrongAnswer2, wrongAnswer3];
-    const [user, setUser] = useState(null);
+    const [card, setCard] = useState(null);
     const [deckId, setDeckId] = useState(null);
+
+    const doUpdate = async () => {
+        const id = localStorage.getItem('cardId');
+
+        const requestBody = JSON.stringify({question, answer, options});
+        const response = await api.put('/cards/' + id, requestBody);
+    };
+    const deleteCard = async () => {
+        const id = localStorage.getItem('cardId');
+        await api.delete('/cards/' + id);
+    };
 
     useEffect(() => {
 
         async function fetchData() {
             try {
-                const userId = localStorage.getItem('userId');
-                const response = await api.get('/users/' + userId);
-                await new Promise((resolve) => setTimeout(resolve, 1000));
-                setUser(response.data);
+                const deckId = await localStorage.getItem('deckId')
+                const response = await api.get('/decks/' + deckId + '/cards');
+
+                new Promise((resolve) => setTimeout(resolve, 1000));
+
+                 setCard(response.data);
+
             } catch (error) {
                 console.error(
                     `Something went wrong while fetching the Data: \n${handleError(error)}`
@@ -130,33 +143,42 @@ const CardCreator = () => {
         fetchData();
     }, []);
 
-    const doCardCreator = async () => {
-        try {
-            const deckId = localStorage.getItem('deckId');
-            const requestBodyCard = JSON.stringify({question, answer, options});
-            const responseCard = await api.post('/decks/' + deckId + '/cards', requestBodyCard);
 
-            // Get the returned deck and update a new object.
-            const card = new Card(responseCard.data);
-
-            // Store cardID into the local storage.
-            localStorage.setItem('cardId', card.id);
-
-            setDeckId(deckId);
-
-            // DeckCreator successfully worked --> navigate to the route /home in the GameRouter
-            history.push(`/home/` + 1);
-            history.push(`/cardcreator`);
-        } catch (error) {
-            alert(`Something went wrong during the Creation: \n${handleError(error)}`);
+    useEffect(() => {
+        async function fetchData2() {
+            const cardId = await localStorage.getItem('cardId');
+            var count = 0;
+            for (const c of card) {
+                if (c.id === parseInt(cardId)) {
+                    break;
+                }
+                count++
+            }
+            setQuestion(card[count].question);
+            setAnswer(card[count].answer);
+            setWrongAnswer1(card[count].options[1]);
+            setWrongAnswer2(card[count].options[2]);
+            setWrongAnswer3(card[count].options[3]);
         }
+
+        fetchData2();
+
+    }, [card]);
+
+
+    const goToCardOverviewDeckEdit = async () => {
+        const deckId = localStorage.getItem('deckId');
+        setDeckId(deckId);
+         localStorage.setItem('edit',true);
+
+        history.push(`/cardOverview/deckID=` + deckId);
+
     };
 
     document.body.style = 'background: #4757FF;';
 
     return (
         <BaseContainer>
-
             <div className='cardCreator card-title'>Card</div>
 
             <div className='cardCreator card-ft'>Question</div>
@@ -186,21 +208,19 @@ const CardCreator = () => {
 
             <Button
                 className='cardCreator createButton3'
-                disabled={question || answer || wrongAnswer1 || wrongAnswer2 || wrongAnswer3}
-                onClick={() => history.push(`/cardOverview/deckID=` + deckId)}
+                onClick={() => [doUpdate(), goToCardOverviewDeckEdit()]}
             >
-                End
+                Submit
             </Button>
             <Button
                 className='cardCreator createButton4'
-                disabled={!question || !answer || !wrongAnswer1 || !wrongAnswer2 || !wrongAnswer3}
-                onClick={() => doCardCreator()}
+                onClick={() => [deleteCard(), goToCardOverviewDeckEdit()]}
             >
-                Create
+                Delete
             </Button>
             <Header/>
         </BaseContainer>
     );
 };
 
-export default CardCreator;
+export default CardEditPage;

@@ -22,6 +22,7 @@ const Library = () => {
     });
 
     const cardOverview = () => {
+        localStorage.setItem('edit', false)
         history.push('/cardOverview');
     };
 

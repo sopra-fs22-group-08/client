@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { api, handleError } from 'helpers/api';
-import { useHistory, useLocation } from 'react-router-dom';
-import { Button } from 'components/ui/Button';
+import React, {useEffect, useState} from 'react';
+import {api, handleError} from 'helpers/api';
+import {useHistory, useLocation} from 'react-router-dom';
+import {Button} from 'components/ui/Button';
 import 'styles/views/Register.scss';
 import BaseContainer from 'components/ui/BaseContainer';
 import PropTypes from 'prop-types';
 import Deck from '../../models/Deck';
 import Header from "../ui/Header";
+import Switch from "@mui/material/Switch";
 
 const FormFieldFn = (props) => {
     return (
@@ -32,6 +33,7 @@ const DeckCreator = () => {
     const [deckname, setDeckname] = useState(null);
     const [visibility, setVisibility] = useState(null);
     const [user, setUser] = useState(null);
+    const [checked, setChecked] = React.useState(true);
 
     useEffect(() => {
 
@@ -58,7 +60,7 @@ const DeckCreator = () => {
     const doDeckCreator = async () => {
         try {
             const userid = localStorage.getItem('userId');
-            const requestBodyTitle = JSON.stringify({ deckname, visibility });
+            const requestBodyTitle = JSON.stringify({deckname, visibility});
             const responseTitle = await api.post('/users/' + userid + '/decks', requestBodyTitle);
 
             // Get the returned deck and update a new object.
@@ -74,7 +76,14 @@ const DeckCreator = () => {
         }
     };
 
-
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if(checked){
+            setVisibility("PUBLIC")
+        } else {
+            setVisibility("PRIVATE")
+        }
+        setChecked(event.target.checked);
+    };
 
     document.body.style = 'background: #4757FF;';
 
@@ -82,7 +91,22 @@ const DeckCreator = () => {
         <BaseContainer>
             <div className='cardCreator cardDeck-title'>Title</div>
 
-            <FormFieldFn value={deckname} onChange={(un) => setDeckname(un) & setVisibility("PUBLIC") } />  //@andrin add switch
+
+            <div className='cardCreator switch-text'
+            >
+                {visibility ? visibility : 'State'}
+            </div>
+
+            <Switch
+                className='cardCreator switch'
+                checked={checked}
+                onChange={handleChange}
+                color="default"
+            />
+
+            <FormFieldFn value={deckname}
+                         onChange={(un) => setDeckname(un) & setVisibility("PUBLIC")}/> //@andrin
+            add switch
             <Button
                 className='cardCreator createButton2'
                 disabled={!deckname}
