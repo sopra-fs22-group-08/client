@@ -26,6 +26,11 @@ const Library = () => {
         history.push('/cardOverview');
     };
 
+    function isPublic(de) {
+        if (String(de.visibility) === 'PUBLIC'){
+            return de;
+        }
+    }
 
     useEffect(() => {
 
@@ -55,7 +60,9 @@ const Library = () => {
     if (user) {
         var listItems = <div className='Home deck-None'>Please create a new Deck</div>;
         if (allDecks) {
-            listItems = allDecks.map((d) => (
+            const publicDecks = allDecks.filter(isPublic)
+            console.log(publicDecks)
+            listItems = publicDecks.map((d) => (
                 <Button
                     className='Home listElement-Box'
                     onClick={() => {
