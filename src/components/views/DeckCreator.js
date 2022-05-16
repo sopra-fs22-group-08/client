@@ -105,8 +105,7 @@ const DeckCreator = () => {
             />
 
             <FormFieldFn value={deckname}
-                         onChange={(un) => setDeckname(un) & setVisibility("PUBLIC")}/> //@andrin
-            add switch
+                         onChange={(un) => setDeckname(un)}/>
             <Button
                 className='cardCreator createButton2'
                 disabled={!deckname}
