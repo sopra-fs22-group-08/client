@@ -127,7 +127,7 @@ const CardEditPage = () => {
 
                 new Promise((resolve) => setTimeout(resolve, 1000));
 
-                 setCard(response.data);
+                setCard(response.data);
 
             } catch (error) {
                 console.error(
@@ -169,7 +169,7 @@ const CardEditPage = () => {
     const goToCardOverviewDeckEdit = async () => {
         const deckId = localStorage.getItem('deckId');
         setDeckId(deckId);
-         localStorage.setItem('edit',true);
+        localStorage.setItem('edit', true);
 
         history.push(`/cardOverview/deckID=` + deckId);
 

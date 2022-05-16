@@ -109,21 +109,21 @@ const CardOverview = () => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
             try {
-                const userID = localStorage.getItem('userId');
-                const deckID = localStorage.getItem('DeckID');
+                const userId = localStorage.getItem('userId');
+                const deckId = localStorage.getItem('deckId');
                 const editen = localStorage.getItem('edit');
-                if (editen === true){
+                if (editen === true) {
                     setEditButton(editen);
                 }
 
 
-                const responseDeck = await api.get('/decks/' + deckID);
+                const responseDeck = await api.get('/decks/' + deckId);
                 const responseUsers = await api.get('/users');
-                const responseUser = await api.get('/users/' + userID);
-                const responseCards = await api.get('/decks/' + deckID + '/cards');
+                const responseUser = await api.get('/users/' + userId);
+                const responseCards = await api.get('/decks/' + deckId + '/cards');
 
-                // Store deckID into the local storage.
-                localStorage.setItem('deckId', deckID);
+                // Store deckId into the local storage.
+                localStorage.setItem('deckId', deckId);
 
                 await new Promise((resolve) => setTimeout(resolve, 1000));
                 setDeck(responseDeck.data);
@@ -150,8 +150,9 @@ const CardOverview = () => {
         async function fetchData2() {
             setDeckname(deck.deckname);
         }
+
         fetchData2();
-        }, [deck]);
+    }, [deck]);
 
 
     var listItems3;
@@ -199,7 +200,7 @@ const CardOverview = () => {
     let edit;
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if(checked){
+        if (checked) {
             setVisibility("PUBLIC")
         } else {
             setVisibility("PRIVATE")
@@ -236,7 +237,7 @@ const CardOverview = () => {
 
 
             <Button className='cardOverview edit-Button'
-                    onClick={() => [doUpdate(), localStorage.setItem('edit', false),setEditButton(false)]}
+                    onClick={() => [doUpdate(), localStorage.setItem('edit', false), setEditButton(false)]}
             >
                 Submit Changes
             </Button>
