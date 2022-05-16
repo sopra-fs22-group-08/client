@@ -127,9 +127,6 @@ const CardOverview = () => {
 
                 await new Promise((resolve) => setTimeout(resolve, 1000));
                 setDeck(responseDeck.data);
-                if (deck) {
-                    setDeckname(deck.deckname);
-                }
                 setUsers(responseUsers.data);
                 setUser(responseUser.data);
                 setCard(responseCards.data);
@@ -146,6 +143,16 @@ const CardOverview = () => {
 
         fetchData();
     }, []);
+
+
+    useEffect(() => {
+        // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
+        async function fetchData2() {
+            setDeckname(deck.deckname);
+        }
+        fetchData2();
+        }, [deck]);
+
 
     var listItems3;
     if (users && user) {
@@ -203,8 +210,10 @@ const CardOverview = () => {
     edit = (
         <BaseContainer>
             <div className='cardOverview card-Title'>Edit</div>
-            <FormField value={deckname}
-                       onChange={(n) => setDeckname(n)}/>
+            <FormField
+                value={deckname}
+                onChange={(n) => setDeckname(n)}
+            />
 
             {editButton}
             <Button className='cardOverview addCard-Button'
