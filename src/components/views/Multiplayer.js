@@ -91,6 +91,7 @@ const Multiplayer = () => {
                                     }
                                     try {
                                         await api.put('/duels/' + duel.id + '/players/' + userId + '/status/CHICKEN');
+                                        localStorage.removeItem("duelId");
                                         history.push(`/home/` + userId);
                                     } catch (error) {
                                         console.log(error);
@@ -103,13 +104,14 @@ const Multiplayer = () => {
                 </div>}
             {(P1Status === "DECLINED" || P2Status === "DECLINED") &&
                 <div className="Loading text-Start">
-                    The Invitation has been declined
+                    Your Invitation has been declined
                     <div className="Loading declined">
                         <Button
                             className='loadingScreen-button'
                             onClick={async () => {
                                 try {
                                     await api.delete('/duels/' + duel.id);
+                                    localStorage.removeItem("duelId");
                                     history.push(`/home/` + userId);
                                 } catch (error) {
                                     console.log(error);
@@ -129,6 +131,7 @@ const Multiplayer = () => {
                             onClick={async () => {
                                 try {
                                     await api.delete('/duels/' + duel.id);
+                                    localStorage.removeItem("duelId");
                                     history.push(`/home/` + userId);
                                 } catch (error) {
                                     console.log(error);
@@ -166,6 +169,7 @@ const Multiplayer = () => {
                                 } catch (error) {
                                     console.log(error);
                                 }
+                                localStorage.removeItem("duelId");
                                 history.push(`/home/` + userId);
                             }}>
                             Cancel
