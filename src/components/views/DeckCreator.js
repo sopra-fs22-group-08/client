@@ -7,6 +7,7 @@ import BaseContainer from 'components/ui/BaseContainer';
 import PropTypes from 'prop-types';
 import Deck from '../../models/Deck';
 import Header from "../ui/Header";
+import Switch from "@mui/material/Switch";
 
 const FormFieldFn = (props) => {
     return (
@@ -32,6 +33,7 @@ const DeckCreator = () => {
     const [deckname, setDeckname] = useState(null);
     const [visibility, setVisibility] = useState(null);
     const [user, setUser] = useState(null);
+    const [checked, setChecked] = React.useState(true);
 
     useEffect(() => {
 
@@ -74,12 +76,33 @@ const DeckCreator = () => {
         }
     };
 
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if(checked){
+            setVisibility("PUBLIC")
+        } else {
+            setVisibility("PRIVATE")
+        }
+        setChecked(event.target.checked);
+    };
 
     document.body.style = 'background: #4757FF;';
 
     return (
         <BaseContainer>
             <div className='cardCreator cardDeck-title'>Title</div>
+
+
+            <div className='cardCreator switch-text'
+            >
+                {visibility ? visibility : 'State'}
+            </div>
+
+            <Switch
+                className='cardCreator switch'
+                checked={checked}
+                onChange={handleChange}
+                color="default"
+            />
 
             <FormFieldFn value={deckname}
                          onChange={(un) => setDeckname(un) & setVisibility("PUBLIC")}/> //@andrin

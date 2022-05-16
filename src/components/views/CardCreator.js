@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import Card from '../../models/Card';
 import Header from "../ui/Header";
 
-
 const FormFieldLn = (props) => {
     return (
         <div className='cardCreator card-question-field'>

@@ -7,12 +7,13 @@ import {Button} from 'components/ui/Button';
 import Header from "../ui/Header";
 import Duel from "models/Duel"
 import Invitation from "../../models/Invitation";
+import Switch from '@mui/material/Switch';
 
 const FormField = (props) => {
     return (
-        <div className='profile field'>
+        <div className='cardOverview form-field'>
             <input
-                className='profile firstName-text'
+                className='cardOverview form-text'
                 placeholder='Enter the new Deckname ...'
                 value={props.value}
                 onChange={(e) => props.onChange(e.target.value)}
@@ -34,6 +35,7 @@ const CardOverview = () => {
     const [deckname, setDeckname] = useState(null);
     const [visibility, setVisibility] = useState(null);
     const [editButton, setEditButton] = useState(false);
+    const [checked, setChecked] = React.useState(true);
 
     const doLearning = () => {
         const Id = localStorage.getItem('deckId');
@@ -109,6 +111,12 @@ const CardOverview = () => {
             try {
                 const userID = localStorage.getItem('userId');
                 const deckID = localStorage.getItem('DeckID');
+                const editen = localStorage.getItem('edit');
+                if (editen === true){
+                    setEditButton(editen);
+                }
+
+
                 const responseDeck = await api.get('/decks/' + deckID);
                 const responseUsers = await api.get('/users');
                 const responseUser = await api.get('/users/' + userID);
@@ -119,6 +127,9 @@ const CardOverview = () => {
 
                 await new Promise((resolve) => setTimeout(resolve, 1000));
                 setDeck(responseDeck.data);
+                if (deck) {
+                    setDeckname(deck.deckname);
+                }
                 setUsers(responseUsers.data);
                 setUser(responseUser.data);
                 setCard(responseCards.data);
@@ -155,22 +166,22 @@ const CardOverview = () => {
     }
 
     if (user) {
-        var listItems = <div className='Home deck-None'>Please create a new Card</div>;
+        var listItems = <div className='cardOverview deck-None'>Please create a new Card</div>;
         if (card) {
             listItems = card.map((c) => (
                 <Button
-                    className='Home listElement-Box'
+                    className='cardOverview listElement-Box'
                     onClick={() => {
                         localStorage.setItem('cardId', c.id);
                         history.push('/CardEditPage');
                     }}
                 >
-                    <div className='Home listElement-Number'/>
-                    <div className='Home listElement-Title'>{c.question}</div>
-                    <div className='Home listElement-Score'>
+                    <div className='cardOverview listElement-Number'/>
+                    <div className='cardOverview listElement-Title'>{c.question}</div>
+                    <div className='cardOverview listElement-Score'>
                         <br/> <br/>{' '}
                     </div>
-                    <div className='Home listElement-Text'>Click to Edit</div>
+                    <div className='cardOverview listElement-Text'>Click to Edit</div>
                 </Button>
             ));
         }
@@ -180,20 +191,49 @@ const CardOverview = () => {
     let content;
     let edit;
 
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if(checked){
+            setVisibility("PUBLIC")
+        } else {
+            setVisibility("PRIVATE")
+        }
+        setChecked(event.target.checked);
+    };
+
     edit = (
         <BaseContainer>
-            <div className='cardOverview Title'>Deck Edit Page</div>
-            <div className='cardOverview card-Title'>{deck ? deck.deckname : ''}</div>
+            <div className='cardOverview card-Title'>Edit</div>
             <FormField value={deckname}
-                       onChange={(n) => setDeckname(n) & setVisibility("PUBLIC")}/> //@andrin add
-            switch
+                       onChange={(n) => setDeckname(n)}/>
+
+            {editButton}
             <Button className='cardOverview addCard-Button'
-                    onClick={() => history.push('/cardcreator')}>Add Card</Button>
+                    onClick={() => history.push('/cardcreator')}
+            >
+                +
+            </Button>
+
+            <div className='cardOverview switch-text'
+            >
+                {visibility ? visibility : 'State'}
+            </div>
+
+            <Switch
+                className='cardOverview switch'
+                checked={checked}
+                onChange={handleChange}
+                color="default"
+            />
+
+
             <Button className='cardOverview edit-Button'
-                    onClick={() => [doUpdate(), setEditButton(false)]}>Submit</Button>
+                    onClick={() => [doUpdate(), localStorage.setItem('edit', false),setEditButton(false)]}
+            >
+                Submit Changes
+            </Button>
             <Header/>
-            <div className='Home listTitle'>Cards</div>
-            <div className='Home list'>{listItems}</div>
+            <div className='cardOverview listTitle'>Cards</div>
+            <div className='cardOverview list'>{listItems}</div>
         </BaseContainer>
     );
 
@@ -201,10 +241,10 @@ const CardOverview = () => {
         <BaseContainer>
 
             <Button className='cardOverview card' onClick={() => doLearning()}>
-                <div className='cardOverview card-Title'>{deck ? deck.deckname : ''}</div>
+                <div className='cardOverview card-Title2'>{deck ? deck.deckname : ''}</div>
                 <div className='cardOverview card-Text'>Click to Learn</div>
             </Button>
-            <Button className='cardOverview edit-Button'
+            <Button className='cardOverview edit-Button2'
                     onClick={() => setEditButton(true)}>Edit</Button>
             <div className='cardOverview people-Title'>People to challenge</div>
             <div className='cardOverview people-Button-position'>{listItems3}</div>

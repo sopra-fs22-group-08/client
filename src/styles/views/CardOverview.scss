@@ -1,6 +1,31 @@
 @import 'src/styles/theme';
 
 .cardOverview {
+    &.switch{
+        position: absolute;
+        left: 400px;
+        top: 200px;
+
+    }
+    &.switch-text{
+        position: absolute;
+
+        position: absolute;
+        width: 49px;
+        height: 29px;
+        left: 235px;
+        top: 200px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 900;
+        font-size: 32px;
+        line-height: 38px;
+        text-align: center;
+
+        color: #000000;
+
+    }
 
     &.online-None {
         float:left;
@@ -33,9 +58,8 @@
     }
     &.card-Title {
         position: absolute;
-        left: 10%;
-        right: 10%;
-        top: 20%;
+        left: 235px;
+        top: 120px;
 
         font-family: 'Roboto';
         font-style: normal;
@@ -47,6 +71,24 @@
         color: #000000;
 
     }
+
+    &.card-Title2 {
+        position: absolute;
+        left: 30px;
+        top: 30px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 900;
+        font-size: 32px;
+        line-height: 38px;
+        text-align: center;
+
+        color: #000000;
+
+    }
+
+
     &.card-Text {
 
         position: absolute;
@@ -65,10 +107,10 @@
     }
     &.edit-Button {
         position: absolute;
-        width: 236px;
-        height: 63px;
-        left: 383px;
-        top: 637px;
+        width: 200px;
+        height: 55px;
+        left: 900px;
+        top: 110px;
 
         background: #4757FF;
         border-radius: 10px;
@@ -83,6 +125,49 @@
 
         color: #FFFFFF;
 
+    }
+
+    &.edit-Button2 {
+        position: absolute;
+        width: 200px;
+        height: 55px;
+        left: 400px;
+        top: 620px;
+
+        background: #4757FF;
+        border-radius: 10px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 28px;
+        text-align: center;
+        padding-top: 5px;
+
+        color: #FFFFFF;
+
+    }
+
+    &.addCard-Button {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        left: 340px;
+        top: 270px;
+
+        background: #4757FF;
+        border-radius: 10px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 900;
+        font-size: 24px;
+        line-height: 28px;
+        text-align: center;
+        padding-top: 5px;
+
+        color: #FFFFFF;
     }
     &.people-Title {
         position: absolute;
@@ -129,6 +214,256 @@
         width: 80%;
         left: 767px;
         top: 327px;
+    }
+
+    &.invitations-list {
+        position: absolute;
+        width: 484.32px;
+        height: 32px;
+        left: 261.68px;
+        top: 436px;
+    }
+
+    &.invitations-title {
+        position: absolute;
+        width: 289.52px;
+        height: 29px;
+        left: 235px;
+        top: 388px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 28px;
+        /* identical to box height */
+
+        color: #FFFFFF;
+    }
+    &.invitations-Field {
+        position: relative;
+        width: 550px;
+        height: 32px;
+        margin-right: 10px; margin-bottom: 10px;
+
+        background: #FFFFFF;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        border-radius: 10px;
+    }
+    &.invitations-text {
+        position: relative;
+        left: 5px;
+        top: 5px;
+
+        font-family: 'Racing Sans One';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+
+        color: #000000;
+    }
+    &.invitations-Accept {
+        position: relative;
+        left: 450px;
+        top: -17px;
+        width: 54px;
+        height: 23px;
+
+        background: #228C22;
+        border-radius: 20px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+
+        color: #FFFFFF;
+
+    }
+    &.invitations-Decline {
+        position: relative;
+        width: 27.42px;
+        height: 23px;
+        left: 460px;
+        top: -17px;
+
+
+        background: #EA2D21;
+        border-radius: 20px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+
+        color: #FFFFFF;
+    }
+
+    &.deck-None {
+        float:left;
+        height: 32px;
+        margin-right: 20px; margin-bottom: 20px;
+
+        font-family: 'Racing Sans One';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+        text-align: center;
+
+        color: #000000;
+    }
+
+    &.listTitle {
+        position: absolute;
+        width: 49px;
+        height: 29px;
+        left: 235px;
+        top: 270px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 900;
+        font-size: 32px;
+        line-height: 38px;
+        text-align: center;
+
+        color: #000000;
+    }
+
+    &.list {
+        position: absolute;
+        width: 60%;
+        left: 255px;
+        top: 320px;
+    }
+    &.listElement-Number {
+        position: relative;
+        top: 4px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+
+        color: #000000;
+    }
+    &.listElement-Title {
+        position: relative;
+        top: -30px;
+
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 900;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+
+        color: #000000;
+
+    }
+    &.listElement-Score {
+        position: relative;
+        left: 8px;
+        top: 40px;
+
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+
+        color: #000000;
+
+    }
+    &.listElement-Text {
+        position: relative;
+        bottom: -35px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 10px;
+        line-height: 9px;
+        text-align: center;
+
+        color: #000000;
+
+    }
+    &.listElement-Box {
+        float:left;
+        width: 108px;
+        height: 153px;
+        margin-right: 20px; margin-bottom: 20px;
+
+        background: #FFFFFF;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+
+    }
+
+    &.form-title {
+        position: absolute;
+        width: 160px;
+        height: 38px;
+        left: 575px;
+        top: 359px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 38px;
+        /* identical to box height */
+
+
+        color: #FFFFFF;
+
+    }
+    &.form-field {
+        position: absolute;
+        width: 363px;
+        height: 49px;
+        left: 350px;
+        top: 115px;
+
+        background: #FFFFFF;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+    }
+    &.form-text {
+        position: absolute;
+        width: 281px;
+        height: 30px;
+        left: 10px;
+        top: 9px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 28px;
+
+        color: rgba(0, 0, 0, 0.6);
+
+
+
+        border: none;
+        border-width: 0;
     }
 
 }

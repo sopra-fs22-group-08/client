@@ -63,7 +63,13 @@ const Header = () => {
 
     let burgerMenuContent = (
         <BaseContainer>
-            <div className='burgerMenu title'>NB</div>
+
+            <Button
+                className='burgerMenu title'
+                onClick={() => goHome()}
+            >NB
+            </Button>
+
             <div className='burgerMenu window'>
             <Button
                 className='burgerMenu username'
@@ -93,7 +99,12 @@ const Header = () => {
     if (user) {
         content = (
             <BaseContainer>
-                <div className='burgerMenu title'>NB</div>
+                <Button
+                    className='burgerMenu title'
+                    onClick={() => goHome()}
+                >NB
+                </Button>
+
                 <div
                     className='burgerMenu burger-position'
                     onClick={() => setBurgerMenu(true)}
