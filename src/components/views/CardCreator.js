@@ -200,6 +200,7 @@ const CardCreator = () => {
             </Button>
             <Header/>
         </BaseContainer>
+
     );
 };
 
