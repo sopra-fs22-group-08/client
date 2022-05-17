@@ -94,7 +94,7 @@ const Home = () => {
                     className='Home listElement-Box'
                     onClick={() => {
                         cardOverview(d.id);
-                        localStorage.setItem('DeckID', d.id);
+                        localStorage.setItem('deckId', d.id);
                     }}
                 >
                     <div className='Home listElement-Number'/>

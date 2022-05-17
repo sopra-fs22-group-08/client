@@ -12,7 +12,7 @@ const resetLocalstore = () => {
      */
     localStorage.removeItem('result');
     localStorage.removeItem('lengthDeck');
-    localStorage.removeItem('DeckID');
+    localStorage.removeItem('deckId');
 };
 
 const MultiplayerToolResult = () => {

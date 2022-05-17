@@ -110,7 +110,7 @@ const CardOverview = () => {
         async function fetchData() {
             try {
                 const userID = localStorage.getItem('userId');
-                const deckID = localStorage.getItem('DeckID');
+                const deckID = localStorage.getItem('deckId');
                 const editen = localStorage.getItem('edit');
                 if (editen === true){
                     setEditButton(editen);
