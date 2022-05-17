@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import BaseContainer from 'components/ui/BaseContainer';
 import 'styles/views/LearningTool.scss';
-import Header from '../ui/Header';
-import { api, handleError } from '../../helpers/api';
+import { api } from '../../helpers/api';
 import { Button } from 'components/ui/Button';
 
 const resetLocalstore = () => {
+    /**
+     * NOTE: the duelId cannot be cleared out, since it causes 400 errors,
+     * as there is an async fetch to it in the background
+     */
     localStorage.removeItem('result');
     localStorage.removeItem('lengthDeck');
-    localStorage.removeItem('duelId');
     localStorage.removeItem('DeckID');
 };
 
 const MultiplayerToolResult = () => {
     const history = useHistory();
-    const location = useLocation();
 
     let userScore = parseInt(localStorage.getItem('result'));
     const lengthDeck = parseInt(localStorage.getItem('lengthDeck'));
