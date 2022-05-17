@@ -12,7 +12,7 @@ const Header = () => {
     const [user, setUser] = useState(null);
     const [burgerMenu, setBurgerMenu] = useState(false);
 
-    const logout = (userId) => {
+    const logout = () => {
         const setUserOffline = async () => {
             const firstName = user.firstName;
             const lastName = user.lastName;
