@@ -15,6 +15,11 @@ const Library = () => {
     const [user, setUser] = useState(null);
     const [allDecks, setAllDecks] = useState(null);
 
+    const doLearning = () => {
+        const Id = localStorage.getItem('deckId');
+        history.push('/learningtool/deckID=' + Id + '/cardID=0');
+    };
+
     // TODO: remove userData, doesn't do anything, when connecting it is still empty
     const [userData, setUserData] = useState({
         from: '',
@@ -66,7 +71,7 @@ const Library = () => {
                 <Button
                     className='Home listElement-Box'
                     onClick={() => {
-                        cardOverview();
+                        doLearning();
                         localStorage.setItem('deckId', d.id);
                     }}
                 >
@@ -75,7 +80,7 @@ const Library = () => {
                     <div className='Home listElement-Score'>
                         <br /> <br />{' '}
                     </div>
-                    <div className='Home listElement-Text'>Click to ADD</div>
+                    <div className='Home listElement-Text'>Click to Learn</div>
                 </Button>
             ));
         }
