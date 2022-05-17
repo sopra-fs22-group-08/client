@@ -1,7 +1,7 @@
 /**
  * Deck model
  */
-class Deck {
+class deck {
     constructor(data = {}) {
         this.id = null;
         this.deckname = null;
@@ -9,4 +9,4 @@ class Deck {
         Object.assign(this, data);
     }
 }
-export default Deck;
+export default deck;

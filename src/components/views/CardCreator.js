@@ -108,6 +108,11 @@ const CardCreator = () => {
     const [user, setUser] = useState(null);
     const [deckId, setDeckId] = useState(null);
 
+    const goToCardOverview = async () => {
+        const deckId = localStorage.getItem('deckId');
+        history.push(`/cardOverview/deckID=` + deckId);
+    };
+
     useEffect(() => {
 
         async function fetchData() {
@@ -129,6 +134,8 @@ const CardCreator = () => {
 
         fetchData();
     }, []);
+
+
 
     const doCardCreator = async () => {
         try {
@@ -187,7 +194,7 @@ const CardCreator = () => {
             <Button
                 className='cardCreator createButton3'
                 disabled={question || answer || wrongAnswer1 || wrongAnswer2 || wrongAnswer3}
-                onClick={() => history.push(`/cardOverview/deckID=` + deckId)}
+                onClick={() => goToCardOverview()}
             >
                 End
             </Button>
@@ -200,6 +207,7 @@ const CardCreator = () => {
             </Button>
             <Header/>
         </BaseContainer>
+
     );
 };
 

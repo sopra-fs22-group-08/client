@@ -31,7 +31,7 @@ const DeckCreator = () => {
     const history = useHistory();
     const location = useLocation();
     const [deckname, setDeckname] = useState(null);
-    const [visibility, setVisibility] = useState(null);
+    const [visibility, setVisibility] = useState('PRIVATE');
     const [user, setUser] = useState(null);
     const [checked, setChecked] = React.useState(true);
 
@@ -66,7 +66,7 @@ const DeckCreator = () => {
             // Get the returned deck and update a new object.
             const deck = new Deck(responseTitle.data);
 
-            // Store deckID into the local storage.
+            // Store deckId into the local storage.
             localStorage.setItem('deckId', deck.id);
 
             // DeckCreator successfully worked --> navigate to the route /home in the GameRouter

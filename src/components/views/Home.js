@@ -22,8 +22,8 @@ const Home = () => {
         connected: false,
     });
 
-    const cardOverview = (deckID) => {
-        history.push('/cardOverview/deckID=' + deckID);
+    const cardOverview = (deckId) => {
+        history.push('/cardOverview/deckID=' + deckId);
     };
 
     const acceptInvite = async (invite) => {
