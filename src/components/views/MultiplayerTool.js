@@ -159,7 +159,7 @@ const MultiplayerTool = () => {
                         className='learningTool text-to-speech'
                         onClick={() => speak(cards[cardID].question)}
                     >
-                        Voice
+                        Text To Speech
                     </button>
                 </div>
 

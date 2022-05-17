@@ -31,11 +31,9 @@
         color: #FFFFFF;
     }
     &.text-to-speech {
-        position: relative;
-        width: 100px;
+        position: center;
+        width: fit-content;
         height: 40px;
-        left: -10px;
-        top: 260px;
 
         background: #4757ff;
         border-radius: 10px;
@@ -46,7 +44,7 @@
         font-size: 24px;
         line-height: 28px;
         text-align: center;
-        padding-top: 5px;
+        //padding-top: 5px;
 
         color: #ffffff;
     }
@@ -132,6 +130,7 @@
     }
     &.card-question {
         position: absolute;
+        text-align: center;
         width: 217px;
         height: 266px;
         left: 390px;

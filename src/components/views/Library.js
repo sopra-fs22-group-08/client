@@ -81,8 +81,8 @@ const Library = () => {
             <Button
                 className='Home listElement-Box'
                 onClick={() => {
-                    doLearning();
-                    // cardOverview();
+                    //doLearning();
+                    cardOverview();
                     localStorage.setItem('deckId', d.id);
                 }}
             >
