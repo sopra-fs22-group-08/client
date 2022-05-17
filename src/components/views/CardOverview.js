@@ -150,7 +150,6 @@ const CardOverview = () => {
         async function fetchData2() {
             setDeckname(deck.deckname);
         }
-
         fetchData2();
     }, [deck]);
 
