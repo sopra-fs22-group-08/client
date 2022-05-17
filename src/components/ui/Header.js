@@ -12,7 +12,7 @@ const Header = () => {
     const [user, setUser] = useState(null);
     const [burgerMenu, setBurgerMenu] = useState(false);
 
-    const logout = (userId) => {
+    const logout = () => {
         const setUserOffline = async () => {
             const firstName = user.firstName;
             const lastName = user.lastName;
@@ -20,7 +20,7 @@ const Header = () => {
             const email = user.email;
             const status = 'OFFLINE';
             const requestBody = JSON.stringify({ firstName, lastName, username, email, status });
-            const response = await api.put('/users/' + userId, requestBody);
+            await api.put('/logout', requestBody);
         };
         setUserOffline();
         localStorage.clear();
