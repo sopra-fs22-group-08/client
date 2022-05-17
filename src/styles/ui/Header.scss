@@ -180,11 +180,12 @@
 
 
     &.title {
+        cursor: pointer;
         position: absolute;
         width: 107px;
         height: 45px;
         left: 128px;
-        top: 20px;
+        top: 10px;
 
         font-family: 'Racing Sans One';
         font-style: normal;
@@ -194,6 +195,7 @@
         text-align: center;
 
         color: #000000;
+        background-color: transparent;
 
     }
 }
