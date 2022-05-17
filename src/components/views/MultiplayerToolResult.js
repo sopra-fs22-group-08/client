@@ -101,7 +101,7 @@ const MultiplayerToolResult = () => {
                 }}
                 className='learningTool back-button'
             >
-                Go Back
+                Go Home
             </Button>
         </BaseContainer>
     );

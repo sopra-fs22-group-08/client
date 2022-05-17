@@ -102,7 +102,7 @@ const Home = () => {
                     <div className='Home listElement-Score'>
                         <br/> <br/>{' '}
                     </div>
-                    <div className='Home listElement-Text'>Click to Learn</div>
+                    <div className='Home listElement-Text'>Click to Overview</div>
                 </Button>
             ));
         }

@@ -171,7 +171,7 @@ const CardCreator = () => {
 
             <FormFieldLn value={question} onChange={(n) => setQuestion(n)}/>
 
-            <div className='cardCreator card-bt'>Answer</div>
+            <div className='cardCreator card-bt'>Right Answer</div>
             <div className='cardCreator backText-field'/>
 
             <FormFieldEm value={answer} onChange={(n) => setAnswer(n)}/>

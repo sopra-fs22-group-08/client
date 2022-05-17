@@ -9,8 +9,26 @@
 
 .learningTool {
     &.back-button {
-        align-content: center;
         position: relative;
+        width: 200px;
+        height: 55px;
+        left: 36%;
+        right: 35%;
+        top: 200px;
+
+
+        background: #4757FF;
+        border-radius: 10px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 28px;
+        text-align: center;
+        padding-top: 5px;
+
+        color: #FFFFFF;
     }
     &.text-to-speech {
         position: relative;
@@ -39,7 +57,7 @@
         height: 50%;
         left: 20%;
         right: 20%;
-        top: 300px;
+        top: 50px;
 
         text-align: center;
         font-family: 'Racing Sans One';
@@ -57,7 +75,7 @@
         height: 50%;
         left: 20%;
         right: 20%;
-        top: 300px;
+        top: 100px;
 
         display: flex;
         flex-direction: column;

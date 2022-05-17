@@ -20,7 +20,7 @@ const Header = () => {
             const email = user.email;
             const status = 'OFFLINE';
             const requestBody = JSON.stringify({ firstName, lastName, username, email, status });
-            const response = await api.put('/users/' + userId, requestBody);
+            await api.put('/logout', requestBody);
         };
         setUserOffline();
         localStorage.clear();
