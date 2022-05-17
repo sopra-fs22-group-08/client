@@ -36,6 +36,7 @@ const CardOverview = () => {
     const [visibility, setVisibility] = useState(null);
     const [editButton, setEditButton] = useState(false);
     const [checked, setChecked] = React.useState(true);
+    const [showEdit, setShowEdit] = useState(false);
 
     const doLearning = () => {
         const Id = localStorage.getItem('deckId');
@@ -125,8 +126,11 @@ const CardOverview = () => {
 
                 const responseDeck = await api.get('/decks/' + deckId);
                 const responseUsers = await api.get('/users');
+                const responseDecks = await api.get('/users/' + userId  + '/decks');
                 const responseUser = await api.get('/users/' + userId);
                 const responseCards = await api.get('/decks/' + deckId + '/cards');
+
+                const ownDecks = responseDecks.data;
 
                 // Store deckId into the local storage.
                 localStorage.setItem('deckId', deckId);
@@ -136,6 +140,14 @@ const CardOverview = () => {
                 setUsers(responseUsers.data);
                 setUser(responseUser.data);
                 setCard(responseCards.data);
+
+                //check if deck is own deck
+                for (var i=0; i<ownDecks.length; i++){
+                    if (JSON.stringify(ownDecks[i]) === JSON.stringify(responseDeck.data)){
+                        setShowEdit(true);
+                    }
+                }
+
             } catch (error) {
                 console.error(
                     `Something went wrong while fetching the Data: \n${handleError(error)}`
@@ -205,6 +217,7 @@ const CardOverview = () => {
 
     let content;
     let edit;
+    let edit_button;
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (checked) {
@@ -214,6 +227,12 @@ const CardOverview = () => {
         }
         setChecked(event.target.checked);
     };
+    if(showEdit){
+        edit_button = (
+            <Button className='cardOverview edit-Button2'
+                    onClick={() => setEditButton(true)}>Edit</Button>
+        )
+    }
 
     edit = (
         <BaseContainer>
@@ -261,8 +280,7 @@ const CardOverview = () => {
                 <div className='cardOverview card-Title2'>{deck ? deck.deckname : ''}</div>
                 <div className='cardOverview card-Text'>Click to Learn</div>
             </Button>
-            <Button className='cardOverview edit-Button2'
-                    onClick={() => setEditButton(true)}>Edit</Button>
+            {edit_button}
             <div className='cardOverview people-Title'>People to challenge</div>
             <div className='cardOverview people-Button-position'>{listItems3}</div>
             <Header/>

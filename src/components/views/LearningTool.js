@@ -148,7 +148,7 @@ const LearningTool = () => {
                 </div>
                 <div className='learningTool card-question'>{cards[cardID].question}
                     <button className = "learningTool text-to-speech" onClick={()=>speak(cards[cardID].question)}>
-                        Voice
+                        Text To Speech
                     </button>
                 </div>
                 <div className='learningTool learn-tittle'>Which one is correct?
