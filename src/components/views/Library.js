@@ -40,6 +40,11 @@ const Library = () => {
     const [searchString, setSearchString] = useState('');
     const [foundDecks, setFoundDecks] = useState(null);
 
+    const doLearning = () => {
+        const Id = localStorage.getItem('deckId');
+        history.push('/learningtool/deckID=' + Id + '/cardID=0');
+    };
+
     const cardOverview = () => {
         localStorage.setItem('edit', false);
         history.push('/cardOverview');
@@ -71,11 +76,13 @@ const Library = () => {
      * @brief creates an assortment of inputted Decks
      */
     const createDeckView = (inputDecks) => {
+        console.log(inputDecks);
         return inputDecks.map((d) => (
             <Button
                 className='Home listElement-Box'
                 onClick={() => {
-                    cardOverview();
+                    doLearning();
+                    // cardOverview();
                     localStorage.setItem('deckId', d.id);
                 }}
             >
@@ -84,7 +91,7 @@ const Library = () => {
                 <div className='Home listElement-Score'>
                     <br /> <br />{' '}
                 </div>
-                <div className='Home listElement-Text'>Click to ADD</div>
+                <div className='Home listElement-Text'>Click to Learn</div>
             </Button>
         ));
     };
@@ -97,18 +104,28 @@ const Library = () => {
         }
     }
 
+    // NOTE: Could actually be solved without a GET method, along the lines of
+    /*
+        publicDecks.map((deck) => {
+            console.log(deck.deckname)
+            if (deck.deckname.match(inputSTring)); then add to 'foundDecks'
+        })
+    */
+
     /**
      * @brief fetches decks with a searchString
      */
     const getSearchedForDecks = async (input) => {
         try {
             if (input !== '') {
-                console.log(input);
+                // console.log(input);
                 const responseDecks = await api.get('/decks/search/' + input);
-                console.log(responseDecks.data);
+                // console.log(responseDecks.data);
                 setFoundDecks(responseDecks.data);
                 // now rewrite the listItems
-                listItems = createDeckView(foundDecks);
+                if (foundDecks !== null) {
+                    listItems = createDeckView(foundDecks);
+                }
             } else {
                 alert('Please enter a search String');
             }
