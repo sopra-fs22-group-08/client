@@ -105,6 +105,12 @@ const CardOverview = () => {
     * create a new duel with the invited player and push on duel site
     * */
 
+    function isOnline(us) {
+        if (String(us.status) === 'ONLINE'){
+            return us;
+        }
+    }
+
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
@@ -149,6 +155,7 @@ const CardOverview = () => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData2() {
             setDeckname(deck.deckname);
+            setVisibility(deck.visibility);
         }
         fetchData2();
     }, [deck]);
@@ -156,7 +163,8 @@ const CardOverview = () => {
 
     var listItems3;
     if (users && user) {
-        listItems3 = users.map((u) => {
+        const onlineUsers = users.filter(isOnline)
+        listItems3 = onlineUsers.map((u) => {
             if (String(u.id) !== String(user.id)) {
                 return <Button
                     className='cardOverview people-Button'
@@ -224,7 +232,7 @@ const CardOverview = () => {
 
             <div className='cardOverview switch-text'
             >
-                {visibility ? visibility : 'State'}
+                {visibility}
             </div>
 
             <Switch
