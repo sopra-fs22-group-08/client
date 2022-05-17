@@ -125,7 +125,7 @@ const CardEditPage = () => {
                 const deckId = await localStorage.getItem('deckId')
                 const response = await api.get('/decks/' + deckId + '/cards');
 
-                new Promise((resolve) => setTimeout(resolve, 1000));
+                //new Promise((resolve) => setTimeout(resolve, 1000));
 
                 setCard(response.data);
 

@@ -51,7 +51,7 @@ const Header = () => {
             try {
                 const userId = localStorage.getItem('userId');
                 const responseUser = await api.get('/users/' + userId);
-                await new Promise((resolve) => setTimeout(resolve, 1000));
+                //await new Promise((resolve) => setTimeout(resolve, 1000));
                 setUser(responseUser.data);
             } catch (error) {
                 console.error(
