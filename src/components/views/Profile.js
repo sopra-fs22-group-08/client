@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { api, handleError } from 'helpers/api';
-import { useHistory, useLocation } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {api, handleError} from 'helpers/api';
+import {useHistory, useLocation} from 'react-router-dom';
 import BaseContainer from 'components/ui/BaseContainer';
 import 'styles/views/Profile.scss';
 import PropTypes from 'prop-types';
-import { Button } from 'components/ui/Button';
+import {Button} from 'components/ui/Button';
 import Header from '../ui/Header';
+import User from "../../models/User";
 
 const FormFieldFn = (props) => {
     return (
@@ -108,11 +109,12 @@ const Profile = () => {
     const [email, setEmail] = useState(null);
     const [username, setUsername] = useState(null);
     const [editButton, setEditButton] = useState(false);
+    const [status, setStatus] = useState('ONLINE');
 
     const doUpdate = async () => {
         const id = localStorage.getItem('userId');
 
-        const requestBody = JSON.stringify({ firstName, lastName, email, username });
+        const requestBody = JSON.stringify({firstName, lastName, username, status});
         const response = await api.put('/users/' + id, requestBody);
 
         window.location.reload(true);
@@ -141,6 +143,15 @@ const Profile = () => {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        async function fetchData2() {
+            setUsername(user.username);
+            setFirstName(user.firstName);
+            setLastName(user.lastName);
+        }
+        fetchData2();
+    }, [user]);
+
     let content;
     let edit;
 
@@ -149,16 +160,16 @@ const Profile = () => {
             <div className='profile login-text'>Edit Profile</div>
 
             <div className='profile username-title'>Username</div>
-            <div className='profile username-field' />
-            <FormFieldUn value={username} onChange={(un) => setUsername(un)} />
+            <div className='profile username-field'/>
+            <FormFieldUn value={username} onChange={(un) => setUsername(un)}/>
 
             <div className='profile firstName-title'>First Name</div>
-            <div className='profile firstName-field' />
-            <FormFieldFn value={firstName} onChange={(un) => setFirstName(un)} />
+            <div className='profile firstName-field'/>
+            <FormFieldFn value={firstName} onChange={(un) => setFirstName(un)}/>
 
             <div className='profile lastName-title'>Last Name</div>
-            <div className='profile lastName-field' />
-            <FormFieldLn value={lastName} onChange={(n) => setLastName(n)} />
+            <div className='profile lastName-field'/>
+            <FormFieldLn value={lastName} onChange={(n) => setLastName(n)}/>
 
             <Button
                 className='profile createButton'
@@ -175,20 +186,20 @@ const Profile = () => {
                 <div className='profile login-text'>Profile</div>
 
                 <div className='profile username-title'>Username</div>
-                <div className='profile username-field' />
-                <FormFieldUn value={user.username} onChange={(un) => setUsername(un)} />
+                <div className='profile username-field'/>
+                <FormFieldUn value={user.username} onChange={(un) => setUsername(un)}/>
 
                 <div className='profile firstName-title'>First Name</div>
-                <div className='profile firstName-field' />
-                <FormFieldFn value={user.firstName} onChange={(un) => setFirstName(un)} />
+                <div className='profile firstName-field'/>
+                <FormFieldFn value={user.firstName} onChange={(un) => setFirstName(un)}/>
 
                 <div className='profile lastName-title'>Last Name</div>
-                <div className='profile lastName-field' />
-                <FormFieldLn value={user.lastName} onChange={(n) => setLastName(n)} />
+                <div className='profile lastName-field'/>
+                <FormFieldLn value={user.lastName} onChange={(n) => setLastName(n)}/>
 
                 <div className='profile email-title'>Email</div>
-                <div className='profile email-field' />
-                <FormFieldEm value={user.email} onChange={(n) => setEmail(n)} />
+                <div className='profile email-field'/>
+                <FormFieldEm value={user.email} onChange={(n) => setEmail(n)}/>
 
                 <Button
                     className='register createButton'
@@ -206,7 +217,7 @@ const Profile = () => {
     return (
         <BaseContainer>
             {editButton ? edit : content}
-            <Header />
+            <Header/>
         </BaseContainer>
     );
 };
