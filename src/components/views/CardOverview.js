@@ -131,7 +131,7 @@ const CardOverview = () => {
                 // Store deckId into the local storage.
                 localStorage.setItem('deckId', deckId);
 
-                await new Promise((resolve) => setTimeout(resolve, 1000));
+                //await new Promise((resolve) => setTimeout(resolve, 1000));
                 setDeck(responseDeck.data);
                 setUsers(responseUsers.data);
                 setUser(responseUser.data);
