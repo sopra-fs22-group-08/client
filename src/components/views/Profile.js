@@ -6,6 +6,7 @@ import 'styles/views/Profile.scss';
 import PropTypes from 'prop-types';
 import {Button} from 'components/ui/Button';
 import Header from '../ui/Header';
+import User from "../../models/User";
 
 const FormFieldFn = (props) => {
     return (
@@ -141,6 +142,15 @@ const Profile = () => {
 
         fetchData();
     }, []);
+
+    useEffect(() => {
+        async function fetchData2() {
+            setUsername(user.username);
+            setFirstName(user.firstName);
+            setLastName(user.lastName);
+        }
+        fetchData2();
+    }, [user]);
 
     let content;
     let edit;
