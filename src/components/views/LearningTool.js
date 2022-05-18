@@ -147,7 +147,11 @@ const LearningTool = () => {
                 <div className='learningTool card-tittle'>{deck.deckname}
                 </div>
                 <div className='learningTool card-question'>{cards[cardID].question}
-                    <button className = "learningTool text-to-speech" onClick={()=>speak(cards[cardID].question)}>
+                    <button className = "learningTool text-to-speech" onClick={()=>speak(cards[cardID].question)+
+                        ", A" +cards[cardID].options[arr[0]] +
+                        ", B" + cards[cardID].options[arr[1]] +
+                        ", C" + cards[cardID].options[arr[2]] +
+                        ", D" + cards[cardID].options[arr[3]]}>
                         Text To Speech
                     </button>
                 </div>
