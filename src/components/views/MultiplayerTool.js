@@ -45,7 +45,7 @@ const MultiplayerTool = () => {
             const selectedVoice = getVoice();
 
             speakText.voice = selectedVoice;
-            speakText.rate = 1;
+            speakText.rate = 0.825;
             speakText.pitch = 1;
             //Speak
             synth.speak(speakText);

@@ -46,7 +46,7 @@ const LearningTool = () => {
             const selectedVoice = getVoice();
 
             speakText.voice = selectedVoice;
-            speakText.rate = 0.75;
+            speakText.rate = 0.825;
             speakText.pitch = 1;
             //Speak
             synth.speak(speakText);
