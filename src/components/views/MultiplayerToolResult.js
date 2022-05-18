@@ -13,6 +13,7 @@ const resetLocalstore = () => {
     localStorage.removeItem('result');
     localStorage.removeItem('lengthDeck');
     localStorage.removeItem('deckId');
+    localStorage.removeItem('duelId');
 };
 
 const MultiplayerToolResult = () => {
@@ -37,26 +38,32 @@ const MultiplayerToolResult = () => {
         }
     }
 
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const duelId = localStorage.getItem('duelId');
-                const responseDuel = await api.get('/duels/' + duelId);
-                await new Promise((resolve) => setTimeout(resolve, 1000));
-                setDuel(responseDuel.data);
+    async function checkResults() {
+        try {
+            const duelId = localStorage.getItem('duelId');
+            const responseDuel = await api.get('/duels/' + duelId);
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            setDuel(responseDuel.data);
 
-                if (opponentId) {
-                    const opponentResponse = await api.get('/users/' + opponentId);
-                    await new Promise((resolve) => setTimeout(resolve, 1000));
-                    setOpponent(opponentResponse.data);
-                }
-            } catch (error) {
-                alert(error);
-                console.log(error);
+            if (opponentId) {
+                const opponentResponse = await api.get('/users/' + opponentId);
+                await new Promise((resolve) => setTimeout(resolve, 1000));
+                setOpponent(opponentResponse.data);
             }
+
+        } catch (error) {
+            alert(error);
+            console.log(error);
         }
-        setInterval(() => fetchData(), 2000);
-        fetchData();
+    }
+
+    useEffect(() => {
+
+        const interval = setInterval(() => {
+            checkResults();
+        }, 1000);
+
+        return () => clearInterval(interval);
     }, []);
 
     let content;
