@@ -22,8 +22,8 @@ const Home = () => {
         connected: false,
     });
 
-    const cardOverview = (deckID) => {
-        history.push('/cardOverview/deckID=' + deckID);
+    const cardOverview = (deckId) => {
+        history.push('/cardOverview/deckID=' + deckId);
     };
 
     const acceptInvite = async (invite) => {
@@ -98,7 +98,7 @@ const Home = () => {
                     className='Home listElement-Box'
                     onClick={() => {
                         cardOverview(d.id);
-                        localStorage.setItem('DeckID', d.id);
+                        localStorage.setItem('deckId', d.id);
                     }}
                 >
                     <div className='Home listElement-Number'/>
@@ -106,7 +106,7 @@ const Home = () => {
                     <div className='Home listElement-Score'>
                         <br/> <br/>{' '}
                     </div>
-                    <div className='Home listElement-Text'>Click to Learn</div>
+                    <div className='Home listElement-Text'>Click to Overview</div>
                 </Button>
             ));
         }

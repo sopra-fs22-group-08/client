@@ -1,10 +1,9 @@
 import 'styles/ui/Header.scss';
-import BaseContainer from "./BaseContainer";
-import {useHistory, useLocation} from "react-router-dom";
-import {api, handleError} from "../../helpers/api";
-import {useEffect, useState} from "react";
-import {Button} from "./Button";
-
+import BaseContainer from './BaseContainer';
+import { useHistory, useLocation } from 'react-router-dom';
+import { api, handleError } from '../../helpers/api';
+import { useEffect, useState } from 'react';
+import { Button } from './Button';
 
 const Header = () => {
     const history = useHistory();
@@ -13,9 +12,18 @@ const Header = () => {
     const [user, setUser] = useState(null);
     const [burgerMenu, setBurgerMenu] = useState(false);
 
-
     const logout = () => {
-        localStorage.removeItem('token');
+        const setUserOffline = async () => {
+            const firstName = user.firstName;
+            const lastName = user.lastName;
+            const username = user.username;
+            const email = user.email;
+            const status = 'OFFLINE';
+            const requestBody = JSON.stringify({ firstName, lastName, username, email, status });
+            await api.put('/logout', requestBody);
+        };
+        setUserOffline();
+        localStorage.clear();
         history.push('/login');
     };
 
@@ -43,49 +51,53 @@ const Header = () => {
             try {
                 const userId = localStorage.getItem('userId');
                 const responseUser = await api.get('/users/' + userId);
-                await new Promise((resolve) => setTimeout(resolve, 1000));
+                //await new Promise((resolve) => setTimeout(resolve, 1000));
                 setUser(responseUser.data);
-
             } catch (error) {
                 console.error(
                     `Something went wrong while fetching the Data: \n${handleError(error)}`
                 );
                 console.error('Details:', error);
-                alert(
-                    'Something went wrong while fetching the Data! See the console for details.'
-                );
+                alert('Something went wrong while fetching the Data! See the console for details.');
             }
         }
         fetchData();
     }, []);
 
+    let userId = parseInt(localStorage.getItem('userId'));
     let content;
 
     let burgerMenuContent = (
         <BaseContainer>
-            <div className='burgerMenu title'>NB</div>
+            <Button className='burgerMenu title' onClick={() => goHome()}>
+                NB
+            </Button>
+
             <div className='burgerMenu window'>
-            <Button
-                className='burgerMenu username'
-                onClick={() => toProfile(localStorage.getItem('userId'))}
-            >
-                {user?.username ? user.username : 'Username'}
-            </Button>
-            <Button className='burgerMenu home' onClick={() => {setBurgerMenu(false); goHome(); }}>
-                Home
-            </Button>
-            <Button className='burgerMenu public-decks' onClick={() => goPublicDecks()}>
-                Library
-            </Button>
-            <Button className='burgerMenu creator' onClick={() => goCreator()}>
-                Creator
-            </Button>
-            <Button className='burgerMenu logoutButton' onClick={() => logout()}>
-                Logout
-            </Button>
-            <div className='burgerMenu x' onClick={() => setBurgerMenu(false)}>
-                x
-            </div>
+                <Button className='burgerMenu username' onClick={() => toProfile(userId)}>
+                    {user?.username ? user.username : 'Username'}
+                </Button>
+                <Button
+                    className='burgerMenu home'
+                    onClick={() => {
+                        setBurgerMenu(false);
+                        goHome();
+                    }}
+                >
+                    Home
+                </Button>
+                <Button className='burgerMenu public-decks' onClick={() => goPublicDecks()}>
+                    Library
+                </Button>
+                <Button className='burgerMenu creator' onClick={() => goCreator()}>
+                    Creator
+                </Button>
+                <Button className='burgerMenu logoutButton' onClick={() => logout(userId)}>
+                    Logout
+                </Button>
+                <div className='burgerMenu x' onClick={() => setBurgerMenu(false)}>
+                    x
+                </div>
             </div>
         </BaseContainer>
     );
@@ -93,24 +105,20 @@ const Header = () => {
     if (user) {
         content = (
             <BaseContainer>
-                <div className='burgerMenu title'>NB</div>
-                <div
-                    className='burgerMenu burger-position'
-                    onClick={() => setBurgerMenu(true)}
-                >
-                    <div className='burgerMenu burger1'/>
-                    <div className='burgerMenu burger2'/>
-                    <div className='burgerMenu burger3'/>
+                <Button className='burgerMenu title' onClick={() => goHome()}>
+                    NB
+                </Button>
+
+                <div className='burgerMenu burger-position' onClick={() => setBurgerMenu(true)}>
+                    <div className='burgerMenu burger1' />
+                    <div className='burgerMenu burger2' />
+                    <div className='burgerMenu burger3' />
                 </div>
             </BaseContainer>
         );
     }
 
-    return (
-        <BaseContainer>
-            {burgerMenu ? burgerMenuContent : content}
-        </BaseContainer>
-    );
+    return <BaseContainer>{burgerMenu ? burgerMenuContent : content}</BaseContainer>;
 };
 
 export default Header;

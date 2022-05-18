@@ -74,7 +74,7 @@
 
     &.card-bt{
         position: absolute;
-        width: 108px;
+        width: 208px;
         height: 38px;
         left: 894px;
         top: 270px;
@@ -267,7 +267,7 @@
         width: 146px;
         height: 63px;
         left: 600px;
-        top: 146px;
+        top: 220px;
 
         background: #FFCA00;
         border-radius: 20px;
@@ -315,4 +315,29 @@
     }
 
 
+    &.switch{
+        position: absolute;
+        left: 400px;
+        top: 250px;
+
+    }
+    &.switch-text{
+        position: absolute;
+
+        position: absolute;
+        width: 49px;
+        height: 29px;
+        left: 255px;
+        top: 250px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 900;
+        font-size: 32px;
+        line-height: 38px;
+        text-align: center;
+
+        color: #FFFFFF;
+
+    }
 }

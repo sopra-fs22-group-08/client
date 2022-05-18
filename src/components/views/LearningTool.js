@@ -148,7 +148,7 @@ const LearningTool = () => {
                 </div>
                 <div className='learningTool card-question'>{cards[cardID].question}
                     <button className = "learningTool text-to-speech" onClick={()=>speak(cards[cardID].question)}>
-                        TEXT TO SPEECH
+                        Text To Speech
                     </button>
                 </div>
                 <div className='learningTool learn-tittle'>Which one is correct?
@@ -231,6 +231,7 @@ const LearningTool = () => {
     return (
         <BaseContainer>
             {content}
+            <Header/>
         </BaseContainer>
     );
 };

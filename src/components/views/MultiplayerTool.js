@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
-import {useHistory, useLocation} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { api, handleError } from 'helpers/api';
+import { useHistory, useLocation } from 'react-router-dom';
 import BaseContainer from 'components/ui/BaseContainer';
 import 'styles/views/LearningTool.scss';
-import {Button} from 'components/ui/Button';
+import { Button } from 'components/ui/Button';
 
 const synth = window.speechSynthesis;
 
@@ -25,23 +25,23 @@ const MultiplayerTool = () => {
     const getVoice = () => {
         voices = synth.getVoices();
         return voices[9];
-    }
+    };
     const speak = (text) => {
         if (synth.speaking) {
             console.error('Already speaking...');
             return;
         }
-        if (text !== "") {
+        if (text !== '') {
             //Get Speak text
-            const speakText = new SpeechSynthesisUtterance(text)
+            const speakText = new SpeechSynthesisUtterance(text);
             //Speak End
-            speakText.onend = e => {
-                console.log("Done Speaking...")
-            }
+            speakText.onend = (e) => {
+                console.log('Done Speaking...');
+            };
             //Speak error
-            speakText.onerror = e => {
-                console.error("Something went wrong");
-            }
+            speakText.onerror = (e) => {
+                console.error('Something went wrong');
+            };
             const selectedVoice = getVoice();
 
             speakText.voice = selectedVoice;
@@ -50,10 +50,10 @@ const MultiplayerTool = () => {
             //Speak
             synth.speak(speakText);
         }
-    }
+    };
 
     const goResult = async () => {
-        const duelId = localStorage.getItem("duelId")
+        const duelId = localStorage.getItem('duelId');
         const result = localStorage.getItem('result');
         await api.put('/duels/' + duelId + '/players/' + user.id + '/score/' + result);
         await api.put('/duels/' + duelId + '/players/' + user.id + '/status/FINISHED');
@@ -74,10 +74,9 @@ const MultiplayerTool = () => {
     };
 
     useEffect(() => {
-
         async function fetchData() {
             try {
-                const userId = localStorage.getItem("userId")
+                const userId = localStorage.getItem('userId');
                 const deckId = location.pathname.match(/deckID=(\d+)/);
                 const responseUser = await api.get('/users/' + userId);
                 const responseCard = await api.get('/decks/' + deckId[1] + '/cards');
@@ -147,100 +146,110 @@ const MultiplayerTool = () => {
     if (cards) {
         content = (
             <BaseContainer>
-                <div className='learningTool question-field'/>
-                <div className='learningTool card2'/>
-                <div className='learningTool card'/>
+                <div className='learningTool question-field' />
+                <div className='learningTool card2' />
+                <div className='learningTool card' />
                 <div className='learningTool card-number'>
                     {cardID}/{Object.keys(cards).length}
                 </div>
                 <div className='learningTool card-tittle'>{deck.deckname}</div>
-                <div className='learningTool card-question'>{cards[cardID].question}
-                    <button className="learningTool text-to-speech"
-                            onClick={() => speak(cards[cardID].question)}>
-                        Voice
+                <div className='learningTool card-question'>
+                    {cards[cardID].question}
+                    <button
+                        className='learningTool text-to-speech'
+                        onClick={() => speak(cards[cardID].question)}
+                    >
+                        Text To Speech
                     </button>
                 </div>
 
                 <div className='learningTool learn-tittle'>Which one is correct?</div>
 
-                <Button disabled={disable}
-                        className={
-                            b1
-                                ? arr[0] == 0
-                                    ? 'learningTool card-aw1-card-green'
-                                    : 'learningTool card-aw1-card-red'
-                                : 'learningTool card-aw1-card'
-                        }
-                        onClick={() => {
-                            checkAnswer(cardID, arr[0]);
-                            setB1(true);
-                            setDisable(true);
-                        }}
+                <Button
+                    disabled={disable}
+                    className={
+                        b1
+                            ? arr[0] == 0
+                                ? 'learningTool card-aw1-card-green'
+                                : 'learningTool card-aw1-card-red'
+                            : 'learningTool card-aw1-card'
+                    }
+                    onClick={() => {
+                        checkAnswer(cardID, arr[0]);
+                        setB1(true);
+                        setDisable(true);
+                    }}
                 >
                     {cards[cardID].options[arr[0]]}
                 </Button>
 
-                <Button disabled={disable}
-                        className={
-                            b2
-                                ? arr[1] === 0
-                                    ? 'learningTool card-aw2-card-green'
-                                    : 'learningTool card-aw2-card-red'
-                                : 'learningTool card-aw2-card'
-                        }
-                        onClick={() => {
-                            checkAnswer(cardID, arr[1]);
-                            setB2(true);
-                            setDisable(true);
-                        }}
+                <Button
+                    disabled={disable}
+                    className={
+                        b2
+                            ? arr[1] === 0
+                                ? 'learningTool card-aw2-card-green'
+                                : 'learningTool card-aw2-card-red'
+                            : 'learningTool card-aw2-card'
+                    }
+                    onClick={() => {
+                        checkAnswer(cardID, arr[1]);
+                        setB2(true);
+                        setDisable(true);
+                    }}
                 >
                     {cards[cardID].options[arr[1]]}
                 </Button>
 
-                <Button disabled={disable}
-                        className={
-                            b3
-                                ? arr[2] === 0
-                                    ? 'learningTool card-aw3-card-green'
-                                    : 'learningTool card-aw3-card-red'
-                                : 'learningTool card-aw3-card'
-                        }
-                        onClick={() => {
-                            checkAnswer(cardID, arr[2]);
-                            setB3(true);
-                            setDisable(true);
-                        }}
+                <Button
+                    disabled={disable}
+                    className={
+                        b3
+                            ? arr[2] === 0
+                                ? 'learningTool card-aw3-card-green'
+                                : 'learningTool card-aw3-card-red'
+                            : 'learningTool card-aw3-card'
+                    }
+                    onClick={() => {
+                        checkAnswer(cardID, arr[2]);
+                        setB3(true);
+                        setDisable(true);
+                    }}
                 >
                     {cards[cardID].options[arr[2]]}
                 </Button>
 
-                <Button disabled={disable}
-                        className={
-                            b4
-                                ? arr[3] === 0
-                                    ? 'learningTool card-aw4-card-green'
-                                    : 'learningTool card-aw4-card-red'
-                                : 'learningTool card-aw4-card'
-                        }
-                        onClick={() => {
-                            checkAnswer(cardID, arr[3]);
-                            setB4(true);
-                            setDisable(true);
-                        }}
+                <Button
+                    disabled={disable}
+                    className={
+                        b4
+                            ? arr[3] === 0
+                                ? 'learningTool card-aw4-card-green'
+                                : 'learningTool card-aw4-card-red'
+                            : 'learningTool card-aw4-card'
+                    }
+                    onClick={() => {
+                        checkAnswer(cardID, arr[3]);
+                        setB4(true);
+                        setDisable(true);
+                    }}
                 >
                     {cards[cardID].options[arr[3]]}
                 </Button>
+                <div className='learningTool livescore-container'>
+                    You have{' '}
+                    {parseInt(localStorage.getItem('result')) === null
+                        ? 0
+                        : localStorage.getItem('result')}{' '}
+                    out of {Object.keys(cards).length} correct!
+                </div>
             </BaseContainer>
         );
     }
 
     document.body.style = 'background: #FFCA00;';
 
-    return (
-        <BaseContainer>
-            {content}
-        </BaseContainer>
-    );
+    return <BaseContainer>{content}</BaseContainer>;
 };
 
 export default MultiplayerTool;
