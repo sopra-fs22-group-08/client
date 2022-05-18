@@ -30,7 +30,12 @@ const Home = () => {
         await api.delete('/invitations/' + invite.id)
         await api.put('/duels/' + invite.duelId + '/players/' + user.id + '/status/ACCEPTED');
         localStorage.setItem("duelId", invite.duelId);
-        history.push('/multiplayerTool/deckID=' + invite.deckId + '/cardID=0');
+
+        const url = "/multiplayer/";
+        history.push({
+            pathname: url.concat(invite.duelId),
+            state: {detail: invite}
+        })
     }
 
     const declineInvite = async (invite) => {
@@ -58,7 +63,6 @@ const Home = () => {
         async function fetchData() {
             try {
                 const userId = localStorage.getItem('userId');
-                console.log(userId);
                 const responseUser = await api.get('/users/' + userId);
                 const responseDecks = await api.get('/users/' + userId + '/decks');
                 setUser(responseUser.data);

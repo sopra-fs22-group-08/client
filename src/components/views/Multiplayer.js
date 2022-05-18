@@ -6,12 +6,12 @@ import LoadingSpin from 'react-loading-spin';
 import 'styles/views/Multiplayer.scss';
 import 'styles/ui/LoadingScreenButton.scss';
 import {Button} from 'components/ui/Button';
-import declineInvite from 'components/views/Home';
 
 const Multiplayer = () => {
 
-    const [hasAccepted, setHasAccepted] = useState(false);
-    const [hasDeclined, setHasDeclined] = useState(false);
+    const [P1Status, setP1Status] = useState("");
+    const [P2Status, setP2Status] = useState("");
+
     const [duel, setDuel] = useState(null);
 
     const history = useHistory();
@@ -24,11 +24,30 @@ const Multiplayer = () => {
             const d = responseDuel.data;
             setDuel(d);
 
-            if (d.playerTwoStatus === 'ACCEPTED') {
-                setHasAccepted(true);
+            if (d.playerOneStatus === "ACCEPTED") {
+                setP1Status("ACCEPTED");
             }
-            if (d.playerTwoStatus === 'DECLINED') {
-                setHasDeclined(true);
+            if (d.playerOneStatus === "DECLINED") {
+                setP1Status("DECLINED");
+            }
+            if (d.playerOneStatus === "PENDING") {
+                setP1Status("PENDING");
+            }
+            if (d.playerOneStatus === "CHICKEN") {
+                setP1Status("CHICKEN");
+            }
+
+            if (d.playerTwoStatus === "ACCEPTED") {
+                setP2Status("ACCEPTED");
+            }
+            if (d.playerTwoStatus === "DECLINED") {
+                setP2Status("DECLINED");
+            }
+            if (d.playerTwoStatus === "PENDING") {
+                setP2Status("PENDING");
+            }
+            if (d.playerTwoStatus === "CHICKEN") {
+                setP2Status("CHICKEN");
             }
 
         } catch (error) {
@@ -43,9 +62,12 @@ const Multiplayer = () => {
     }, []);
 
     document.body.style = 'background: #FFCA00;';
+
+    const userId = localStorage.getItem("userId");
+
     return (
         <BaseContainer>
-            {hasAccepted &&
+            {(P1Status === "ACCEPTED" && P2Status === "ACCEPTED") &&
                 <div className="Loading text-Start">
                     Your game is ready
                     <div className="Loading start">
@@ -57,24 +79,70 @@ const Multiplayer = () => {
                             }}>
                             Start
                         </Button>
+                        <div className="Loading chicken">
+                            <Button
+                                className='loadingScreen-button'
+                                onClick={async () => {
+                                    if (userId === duel.playerOneId) {
+                                        setP1Status("DECLINED")
+                                    }
+                                    if (userId === duel.playerTwoId) {
+                                        setP2Status("DECLINED")
+                                    }
+                                    try {
+                                        await api.put('/duels/' + duel.id + '/players/' + userId + '/status/CHICKEN');
+                                        localStorage.removeItem("duelId");
+                                        history.push(`/home/` + userId);
+                                    } catch (error) {
+                                        console.log(error);
+                                    }
+                                }}>
+                                🐔
+                            </Button>
+                        </div>
                     </div>
                 </div>}
-            {hasDeclined &&
+            {(P1Status === "DECLINED" || P2Status === "DECLINED") &&
                 <div className="Loading text-Start">
                     Your Invitation has been declined
                     <div className="Loading declined">
                         <Button
                             className='loadingScreen-button'
                             onClick={async () => {
-                                api.delete('/duels/' + duel.id);
-                                history.push(`/home/` + localStorage.getItem("userId"));
+                                try {
+                                    await api.delete('/duels/' + duel.id);
+                                    localStorage.removeItem("duelId");
+                                    history.push(`/home/` + userId);
+                                } catch (error) {
+                                    console.log(error);
+                                }
                             }}>
                             Ok
                         </Button>
                     </div>
                 </div>
             }
-            {!hasAccepted && !hasDeclined &&
+            {(P1Status === "CHICKEN" || P2Status === "CHICKEN") &&
+                <div className="Loading text-Start">
+                    The other Player chickened out...
+                    <div className="Loading declined">
+                        <Button
+                            className='loadingScreen-button'
+                            onClick={async () => {
+                                try {
+                                    await api.delete('/duels/' + duel.id);
+                                    localStorage.removeItem("duelId");
+                                    history.push(`/home/` + userId);
+                                } catch (error) {
+                                    console.log(error);
+                                }
+                            }}>
+                            Ok
+                        </Button>
+                    </div>
+                </div>
+            }
+            {((P1Status === "ACCEPTED" && P2Status === "PENDING") || (P2Status === "ACCEPTED" && P1Status === "PENDING")) &&
                 <div className="Loading">
                     <div className="Loading text">
                         Waiting for your Friend
@@ -95,8 +163,14 @@ const Multiplayer = () => {
                         <Button
                             className='loadingScreen-button'
                             onClick={async () => {
-                                api.delete('/invitations/' + location.state.detail.id);
-                                history.push(`/home/` + localStorage.getItem("userId"));
+                                try {
+                                    await api.delete('/invitations/' + location.state.detail.id);
+                                    await api.delete('/duels/' + duel.id);
+                                } catch (error) {
+                                    console.log(error);
+                                }
+                                localStorage.removeItem("duelId");
+                                history.push(`/home/` + userId);
                             }}>
                             Cancel
                         </Button>
