@@ -52,6 +52,7 @@ const Home = () => {
             const id = localStorage.getItem("userId");
             const responseBody = await api.get("/users/" + id + "/invitations");
             setInvitations(responseBody.data);
+
         } catch (error) {
             alert(error);
             console.log(error);
