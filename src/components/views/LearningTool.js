@@ -46,7 +46,7 @@ const LearningTool = () => {
             const selectedVoice = getVoice();
 
             speakText.voice = selectedVoice;
-            speakText.rate = 1;
+            speakText.rate = 0.75;
             speakText.pitch = 1;
             //Speak
             synth.speak(speakText);
@@ -147,11 +147,12 @@ const LearningTool = () => {
                 <div className='learningTool card-tittle'>{deck.deckname}
                 </div>
                 <div className='learningTool card-question'>{cards[cardID].question}
-                    <button className = "learningTool text-to-speech" onClick={()=>speak(cards[cardID].question)+
-                        ", A" +cards[cardID].options[arr[0]] +
-                        ", B" + cards[cardID].options[arr[1]] +
-                        ", C" + cards[cardID].options[arr[2]] +
-                        ", D" + cards[cardID].options[arr[3]]}>
+                    <button className = "learningTool text-to-speech" onClick={()=>speak(
+                        cards[cardID].question  +
+                        " ,answer 1, " + cards[cardID].options[arr[0]] +
+                        " ,answer 2, " + cards[cardID].options[arr[1]] +
+                        " ,answer 3, " + cards[cardID].options[arr[2]] +
+                        " ,answer 4, " + cards[cardID].options[arr[3]])}>
                         Text To Speech
                     </button>
                 </div>
