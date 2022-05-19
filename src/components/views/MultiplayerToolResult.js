@@ -5,17 +5,6 @@ import 'styles/views/LearningTool.scss';
 import { api } from '../../helpers/api';
 import { Button } from 'components/ui/Button';
 
-const resetLocalstore = () => {
-    /**
-     * NOTE: the duelId cannot be cleared out, since it causes 400 errors,
-     * as there is an async fetch to it in the background
-     */
-    localStorage.removeItem('result');
-    localStorage.removeItem('lengthDeck');
-    localStorage.removeItem('deckId');
-    localStorage.removeItem('duelId');
-};
-
 const MultiplayerToolResult = () => {
     const history = useHistory();
 
@@ -50,7 +39,6 @@ const MultiplayerToolResult = () => {
                 await new Promise((resolve) => setTimeout(resolve, 1000));
                 setOpponent(opponentResponse.data);
             }
-
         } catch (error) {
             alert(error);
             console.log(error);
@@ -58,7 +46,6 @@ const MultiplayerToolResult = () => {
     }
 
     useEffect(() => {
-
         const interval = setInterval(() => {
             checkResults();
         }, 1000);
@@ -90,6 +77,24 @@ const MultiplayerToolResult = () => {
 
     document.body.style = 'background: #FFCA00;';
 
+    const goHomeButton = (
+        <Button
+            onClick={() => {
+                /**
+                 * NOTE: the duelId cannot be cleared out, since it causes 400 errors,
+                 * as there is an async fetch to it in the background
+                 */
+                localStorage.removeItem('result');
+                localStorage.removeItem('lengthDeck');
+                localStorage.removeItem('deckId');
+                history.push('/home/' + userId);
+            }}
+            className='learningTool back-button'
+        >
+            Go to Home
+        </Button>
+    );
+
     // TODO: add better styling to the results page!
     return (
         <BaseContainer>
@@ -101,15 +106,7 @@ const MultiplayerToolResult = () => {
                 You had {userScore} out of {lengthDeck} correct
                 {content}
             </div>
-            <Button
-                onClick={() => {
-                    resetLocalstore();
-                    history.push('/home/' + userId);
-                }}
-                className='learningTool back-button'
-            >
-                Go Home
-            </Button>
+            {goHomeButton}
         </BaseContainer>
     );
 };

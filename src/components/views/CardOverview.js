@@ -1,12 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
-import {useHistory, useLocation} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { api, handleError } from 'helpers/api';
+import { useHistory, useLocation } from 'react-router-dom';
 import BaseContainer from 'components/ui/BaseContainer';
 import 'styles/views/CardOverview.scss';
-import {Button} from 'components/ui/Button';
-import Header from "../ui/Header";
-import Duel from "models/Duel"
-import Invitation from "../../models/Invitation";
+import { Button } from 'components/ui/Button';
+import Header from '../ui/Header';
+import Duel from 'models/Duel';
 import Switch from '@mui/material/Switch';
 
 const FormField = (props) => {
@@ -21,7 +20,6 @@ const FormField = (props) => {
         </div>
     );
 };
-
 
 const CardOverview = () => {
     // use react-router-dom's hook to access the history
@@ -46,27 +44,26 @@ const CardOverview = () => {
     const doUpdate = async () => {
         const deckId = location.pathname.match(/\d+$/);
 
-        const requestBodyTitle = JSON.stringify({deckname, visibility});
+        const requestBodyTitle = JSON.stringify({ deckname, visibility });
         const responseTitle = await api.put('/decks/' + deckId, requestBodyTitle);
 
         window.location.reload(false);
     };
     /*
-    *Send invitation to user with userToInviteId and then create a new duel and go to multiplayer page
-    * */
+     *Send invitation to user with userToInviteId and then create a new duel and go to multiplayer page
+     * */
     const startMP = async (userToInviteId, userN) => {
         try {
-
             //first create a new duel with the two players
-            const playerOneId = localStorage.getItem("userId");
+            const playerOneId = localStorage.getItem('userId');
             const playerTwoId = userToInviteId;
             const deckId = deck.id;
-            const requestBodyDuel = JSON.stringify({playerOneId, deckId, playerTwoId});
+            const requestBodyDuel = JSON.stringify({ playerOneId, deckId, playerTwoId });
 
-            const responseDuel = await api.post("/duels", requestBodyDuel);
+            const responseDuel = await api.post('/duels', requestBodyDuel);
 
             const duel = new Duel(responseDuel.data);
-            localStorage.setItem("duelId", duel.id);
+            localStorage.setItem('duelId', duel.id);
 
             //then send an invitation to the player to invite
             const senderId = playerOneId;
@@ -83,31 +80,33 @@ const CardOverview = () => {
                 deckname,
                 deckId,
                 senderUsername,
-                receiverUsername
+                receiverUsername,
             });
 
-            const responseBodyInvitation = await api.post('/users/' + receiverId + '/invitation', requestBodyInvitation);
+            const responseBodyInvitation = await api.post(
+                '/users/' + receiverId + '/invitation',
+                requestBodyInvitation
+            );
             const inv = responseBodyInvitation.data;
 
             //then open new multiplayer page with the duel in location:
-            const url = "/multiplayer/";
+            const url = '/multiplayer/';
             history.push({
                 pathname: url.concat(duel.id),
-                state: {detail: inv}
-            })
-
+                state: { detail: inv },
+            });
         } catch (error) {
             alert(error);
             console.log(error);
         }
-    }
+    };
 
     /*
-    * create a new duel with the invited player and push on duel site
-    * */
+     * create a new duel with the invited player and push on duel site
+     * */
 
     function isOnline(us) {
-        if (String(us.status) === 'ONLINE'){
+        if (String(us.status) === 'ONLINE') {
             return us;
         }
     }
@@ -123,10 +122,9 @@ const CardOverview = () => {
                     setEditButton(editen);
                 }
 
-
                 const responseDeck = await api.get('/decks/' + deckId);
                 const responseUsers = await api.get('/users');
-                const responseDecks = await api.get('/users/' + userId  + '/decks');
+                const responseDecks = await api.get('/users/' + userId + '/decks');
                 const responseUser = await api.get('/users/' + userId);
                 const responseCards = await api.get('/decks/' + deckId + '/cards');
 
@@ -135,139 +133,135 @@ const CardOverview = () => {
                 // Store deckId into the local storage.
                 localStorage.setItem('deckId', deckId);
 
-                //await new Promise((resolve) => setTimeout(resolve, 1000));
                 setDeck(responseDeck.data);
+
+                if (deck !== null) {
+                    setDeckname(deck.deckname);
+                    setVisibility(deck.visibility);
+                }
+
                 setUsers(responseUsers.data);
                 setUser(responseUser.data);
                 setCard(responseCards.data);
 
                 //check if deck is own deck
-                for (var i=0; i<ownDecks.length; i++){
-                    if (JSON.stringify(ownDecks[i]) === JSON.stringify(responseDeck.data)){
+                for (var i = 0; i < ownDecks.length; i++) {
+                    if (JSON.stringify(ownDecks[i]) === JSON.stringify(responseDeck.data)) {
                         setShowEdit(true);
                     }
                 }
-
             } catch (error) {
                 console.error(
                     `Something went wrong while fetching the Data: \n${handleError(error)}`
                 );
                 console.error('Details:', error);
-                alert(
-                    'Something went wrong while fetching the Data! See the console for details.'
-                );
+                alert('Something went wrong while fetching the Data! See the console for details.');
             }
         }
-
         fetchData();
-    }, []);
-
-
-    useEffect(() => {
-        // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
-        async function fetchData2() {
-            setDeckname(deck.deckname);
-            setVisibility(deck.visibility);
-        }
-        fetchData2();
     }, [deck]);
 
-
-    var listItems3;
+    var listOfOnlineUsers;
     if (users && user) {
-        const onlineUsers = users.filter(isOnline)
-        listItems3 = onlineUsers.map((u) => {
-            if (String(u.id) !== String(user.id)) {
-                return <Button
-                    className='cardOverview people-Button'
-                    onClick={() => startMP(u.id, u.username)}
-                >
-                    {u.username}
-                </Button>
-            }
-
-        });
-    } else {
-        listItems3 =
-            <div className='cardOverview online-None'>Currently there is no User online</div>;
+        const onlineUsers = users.filter(isOnline);
+        if (onlineUsers.length == 0) {
+            listOfOnlineUsers = (
+                <div className='cardOverview online-None'>Currently there is no User online</div>
+            );
+        } else {
+            listOfOnlineUsers = onlineUsers.map((u) => {
+                if (String(u.id) !== String(user.id)) {
+                    return (
+                        <Button
+                            key={u.id}
+                            className='cardOverview people-Button'
+                            onClick={() => startMP(u.id, u.username)}
+                        >
+                            {u.username}
+                        </Button>
+                    );
+                }
+            });
+        }
     }
-
     if (user) {
         var listItems = <div className='cardOverview deck-None'>Please create a new Card</div>;
         if (card) {
             listItems = card.map((c) => (
                 <Button
+                    key={c.id}
                     className='cardOverview listElement-Box'
                     onClick={() => {
                         localStorage.setItem('cardId', c.id);
                         history.push('/CardEditPage');
                     }}
                 >
-                    <div className='cardOverview listElement-Number'/>
+                    <div className='cardOverview listElement-Number' />
                     <div className='cardOverview listElement-Title'>{c.question}</div>
                     <div className='cardOverview listElement-Score'>
-                        <br/> <br/>{' '}
+                        <br /> <br />{' '}
                     </div>
                     <div className='cardOverview listElement-Text'>Click to Edit</div>
                 </Button>
             ));
         }
-
     }
 
     let content;
     let edit;
     let edit_button;
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // event: React.ChangeEvent<HTMLInputElement>
+    const handleChange = (event) => {
         if (checked) {
-            setVisibility("PUBLIC")
+            setVisibility('PUBLIC');
         } else {
-            setVisibility("PRIVATE")
+            setVisibility('PRIVATE');
         }
         setChecked(event.target.checked);
     };
-    if(showEdit){
+
+    if (showEdit) {
         edit_button = (
-            <Button className='cardOverview edit-Button2'
-                    onClick={() => setEditButton(true)}>Edit</Button>
-        )
+            <Button className='cardOverview edit-Button2' onClick={() => setEditButton(true)}>
+                Edit
+            </Button>
+        );
     }
 
     edit = (
         <BaseContainer>
             <div className='cardOverview card-Title'>Edit</div>
-            <FormField
-                value={deckname}
-                onChange={(n) => setDeckname(n)}
-            />
+            <FormField value={deckname} onChange={(n) => setDeckname(n)} />
 
             {editButton}
-            <Button className='cardOverview addCard-Button'
-                    onClick={() => history.push('/cardcreator')}
+            <Button
+                className='cardOverview addCard-Button'
+                onClick={() => history.push('/cardcreator')}
             >
                 +
             </Button>
 
-            <div className='cardOverview switch-text'
-            >
-                {visibility}
-            </div>
+            <div className='cardOverview switch-text'>{visibility}</div>
 
             <Switch
                 className='cardOverview switch'
                 checked={checked}
                 onChange={handleChange}
-                color="default"
+                color='default'
             />
 
-
-            <Button className='cardOverview edit-Button'
-                    onClick={() => [doUpdate(), localStorage.setItem('edit', false), setEditButton(false)]}
+            <Button
+                className='cardOverview edit-Button'
+                onClick={() => [
+                    doUpdate(),
+                    localStorage.setItem('edit', false),
+                    setEditButton(false),
+                ]}
             >
                 Submit Changes
             </Button>
-            <Header/>
+            <Header />
             <div className='cardOverview listTitle'>Cards</div>
             <div className='cardOverview list'>{listItems}</div>
         </BaseContainer>
@@ -275,15 +269,14 @@ const CardOverview = () => {
 
     content = (
         <BaseContainer>
-
             <Button className='cardOverview card' onClick={() => doLearning()}>
                 <div className='cardOverview card-Title2'>{deck ? deck.deckname : ''}</div>
                 <div className='cardOverview card-Text'>Click to Learn</div>
             </Button>
             {edit_button}
             <div className='cardOverview people-Title'>People to challenge</div>
-            <div className='cardOverview people-Button-position'>{listItems3}</div>
-            <Header/>
+            <div className='cardOverview people-Button-position'>{listOfOnlineUsers}</div>
+            <Header />
         </BaseContainer>
     );
 
@@ -292,7 +285,7 @@ const CardOverview = () => {
     return (
         <BaseContainer>
             {editButton ? edit : content}
-            <Header/>
+            <Header />
         </BaseContainer>
     );
 };

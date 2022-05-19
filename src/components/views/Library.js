@@ -79,6 +79,7 @@ const Library = () => {
         console.log(inputDecks);
         return inputDecks.map((d) => (
             <Button
+                key={d.id}
                 className='Home listElement-Box'
                 onClick={() => {
                     //doLearning();

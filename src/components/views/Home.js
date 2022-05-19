@@ -1,11 +1,11 @@
 import 'styles/views/Home.scss';
 // react imports
-import {useEffect, useState} from 'react';
-import {useHistory, useLocation} from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 // local imports
-import {api, handleError} from 'helpers/api';
+import { api, handleError } from 'helpers/api';
 import BaseContainer from 'components/ui/BaseContainer';
-import {Button} from 'components/ui/Button';
+import { Button } from 'components/ui/Button';
 import Header from 'components/ui/Header';
 
 const Home = () => {
@@ -27,40 +27,38 @@ const Home = () => {
     };
 
     const acceptInvite = async (invite) => {
-        await api.delete('/invitations/' + invite.id)
+        await api.delete('/invitations/' + invite.id);
         await api.put('/duels/' + invite.duelId + '/players/' + user.id + '/status/ACCEPTED');
-        localStorage.setItem("duelId", invite.duelId);
+        localStorage.setItem('duelId', invite.duelId);
 
-        const url = "/multiplayer/";
+        const url = '/multiplayer/';
         history.push({
             pathname: url.concat(invite.duelId),
-            state: {detail: invite}
-        })
-    }
+            state: { detail: invite },
+        });
+    };
 
     const declineInvite = async (invite) => {
         await api.put('/duels/' + invite.duelId + '/players/' + user.id + '/status/DECLINED');
-        await api.delete('/invitations/' + invite.id)
-    }
+        await api.delete('/invitations/' + invite.id);
+    };
 
     /*
-    * Every interval time: check if the logged in player has any invites and fetch them
-    * */
+     * Every interval time: check if the logged in player has any invites and fetch them
+     * */
     const checkInvites = async () => {
         try {
             //fetch invitations for the logged in-user from backend
-            const id = localStorage.getItem("userId");
-            const responseBody = await api.get("/users/" + id + "/invitations");
+            const id = localStorage.getItem('userId');
+            const responseBody = await api.get('/users/' + id + '/invitations');
             setInvitations(responseBody.data);
-
         } catch (error) {
             alert(error);
             console.log(error);
         }
-    }
+    };
 
     useEffect(() => {
-
         async function fetchData() {
             try {
                 const userId = localStorage.getItem('userId');
@@ -68,7 +66,6 @@ const Home = () => {
                 const responseDecks = await api.get('/users/' + userId + '/decks');
                 setUser(responseUser.data);
                 setDecks(responseDecks.data);
-
             } catch (error) {
                 console.error(
                     `Something went wrong while fetching the users: \n${handleError(error)}`
@@ -81,8 +78,8 @@ const Home = () => {
         }
 
         /*
-        * set Interval to which we fetch the invitations:
-        **/
+         * set Interval to which we fetch the invitations:
+         **/
         const interval = setInterval(() => {
             checkInvites();
         }, 1000);
@@ -96,16 +93,17 @@ const Home = () => {
         if (decks) {
             listItems = decks.map((d) => (
                 <Button
+                    key={d.id}
                     className='Home listElement-Box'
                     onClick={() => {
                         cardOverview(d.id);
                         localStorage.setItem('deckId', d.id);
                     }}
                 >
-                    <div className='Home listElement-Number'/>
+                    <div className='Home listElement-Number' />
                     <div className='Home listElement-Title'>{d.deckname}</div>
                     <div className='Home listElement-Score'>
-                        <br/> <br/>{' '}
+                        <br /> <br />{' '}
                     </div>
                     <div className='Home listElement-Text'>Click to Overview</div>
                 </Button>
@@ -116,26 +114,30 @@ const Home = () => {
         if (invitations) {
             listInvites = invitations.map((i) => (
                 <div className='Home invitations-Field'>
-                    <div className='Home invitations-text'>{i.senderUsername} wants to challenge you
-                        on {i.deckname}
+                    <div className='Home invitations-text'>
+                        {i.senderUsername} wants to challenge you on {i.deckname}
                     </div>
                     <Button
+                        key={i.id}
                         className='Home invitations-Accept'
                         onClick={() => {
                             acceptInvite(i);
                         }}
-                    >Accept</Button>
+                    >
+                        Accept
+                    </Button>
                     <Button
+                        key={i.id}
                         className='Home invitations-Decline'
                         onClick={() => {
                             declineInvite(i);
                         }}
-                    >X</Button>
+                    >
+                        X
+                    </Button>
                 </div>
             ));
         }
-
-
     }
 
     document.body.style = 'background: #4757FF';
@@ -146,7 +148,7 @@ const Home = () => {
             <div className='Home list'>{listItems}</div>
             <div className='Home invitations-title'>Invitations</div>
             <div className='Home invitations-list'>{listInvites}</div>
-            <Header/>
+            <Header />
         </BaseContainer>
     );
 };

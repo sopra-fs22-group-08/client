@@ -14,7 +14,7 @@ const FormFieldLn = (props) => {
             <input
                 className='cardCreator card-text'
                 placeholder='Enter the Question ...'
-                value={props.value}
+                value={props.value === null ? '' : props.value}
                 onChange={(e) => props.onChange(e.target.value)}
             />
         </div>
@@ -32,7 +32,7 @@ const FormFieldEm = (props) => {
             <input
                 className='cardCreator card-text'
                 placeholder='Enter the Answer ...'
-                value={props.value}
+                value={props.value === null ? '' : props.value}
                 onChange={(e) => props.onChange(e.target.value)}
             />
         </div>
@@ -50,7 +50,7 @@ const FormFieldFn = (props) => {
             <input
                 className='cardCreator card-text'
                 placeholder='Enter a wrong Answer ...'
-                value={props.value}
+                value={props.value === null ? '' : props.value}
                 onChange={(e) => props.onChange(e.target.value)}
             />
         </div>
@@ -67,7 +67,7 @@ const FormFieldUn = (props) => {
             <input
                 className='cardCreator card-text'
                 placeholder='Enter a wrong Answer ...'
-                value={props.value}
+                value={props.value === null ? '' : props.value}
                 onChange={(e) => props.onChange(e.target.value)}
             />
         </div>
@@ -84,7 +84,7 @@ const FormFieldPw = (props) => {
             <input
                 className='cardCreator card-text'
                 placeholder='Enter a wrong Answer ...'
-                value={props.value}
+                value={props.value === null ? '' : props.value}
                 onChange={(e) => props.onChange(e.target.value)}
             />
         </div>
