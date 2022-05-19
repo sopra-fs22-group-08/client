@@ -45,7 +45,7 @@ const MultiplayerTool = () => {
             const selectedVoice = getVoice();
 
             speakText.voice = selectedVoice;
-            speakText.rate = 1;
+            speakText.rate = 0.825;
             speakText.pitch = 1;
             //Speak
             synth.speak(speakText);
@@ -157,7 +157,11 @@ const MultiplayerTool = () => {
                     {cards[cardID].question}
                     <button
                         className='learningTool text-to-speech'
-                        onClick={() => speak(cards[cardID].question)}
+                        onClick={() => speak(cards[cardID].question +
+                            " ,answer 1, " + cards[cardID].options[arr[0]] +
+                            " ,answer 2, " + cards[cardID].options[arr[1]] +
+                            " ,answer 3, " + cards[cardID].options[arr[2]] +
+                            " ,answer 4, " + cards[cardID].options[arr[3]])}
                     >
                         Text To Speech
                     </button>
