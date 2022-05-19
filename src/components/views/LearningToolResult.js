@@ -2,13 +2,12 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import BaseContainer from 'components/ui/BaseContainer';
 import 'styles/views/LearningTool.scss';
-import Header from "../ui/Header";
+import { Button } from 'components/ui/Button';
 
 const LearningToolResult = () => {
-
     const history = useHistory();
     const location = useLocation();
-    const userId = localStorage.getItem("userId");
+    const userId = localStorage.getItem('userId');
 
     let count = localStorage.getItem('result');
     //TODO: Find other way to set it 0
@@ -16,7 +15,23 @@ const LearningToolResult = () => {
 
     const lengthDeck = localStorage.getItem('lengthDeck');
 
-
+    const goHomeButton = (
+        <Button
+            onClick={() => {
+                /**
+                 * NOTE: the duelId cannot be cleared out, since it causes 400 errors,
+                 * as there is an async fetch to it in the background
+                 */
+                localStorage.removeItem('result');
+                localStorage.removeItem('lengthDeck');
+                localStorage.removeItem('deckId');
+                history.push('/home/' + userId);
+            }}
+            className='learningTool back-button'
+        >
+            Go to Home
+        </Button>
+    );
     document.body.style = 'background: #FFCA00;';
 
     return (
@@ -25,15 +40,8 @@ const LearningToolResult = () => {
 
             <div className='learningTool resPage-Text'>
                 You had {count} out of {lengthDeck} correct
-                <div>
-                    <button onClick={()=>{
-                        history.push("/home/"+ userId);
-                        localStorage.setItem('result', 0);
-                    }} className = {"learningTool back-button"}>
-                        Go Back
-                    </button>
-                </div>
             </div>
+            {goHomeButton}
         </BaseContainer>
     );
 };

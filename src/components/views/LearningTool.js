@@ -4,7 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import BaseContainer from 'components/ui/BaseContainer';
 import 'styles/views/LearningTool.scss';
 import { Button } from 'components/ui/Button';
-import Header from "../ui/Header";
+import Header from '../ui/Header';
 //TextToSpeech API
 const synth = window.speechSynthesis;
 
@@ -21,28 +21,28 @@ const LearningTool = () => {
     const [arr, setArr] = useState(shuffleAnswers([1, 2, 0, 3]));
     const [counter, setCounter] = useState(0);
     const [disable, setDisable] = useState(false);
-    let voices = []
+    let voices = [];
 
-    const getVoice = () =>{
+    const getVoice = () => {
         voices = synth.getVoices();
         return voices[9];
-    }
+    };
     const speak = (text) => {
-        if(synth.speaking){
+        if (synth.speaking) {
             console.error('Already speaking...');
             return;
         }
-        if(text !== ""){
+        if (text !== '') {
             //Get Speak text
-            const speakText = new SpeechSynthesisUtterance(text)
+            const speakText = new SpeechSynthesisUtterance(text);
             //Speak End
-            speakText.onend = e => {
-                console.log("Done Speaking...")
-            }
+            speakText.onend = (e) => {
+                console.log('Done Speaking...');
+            };
             //Speak error
-            speakText.onerror = e => {
-                console.error("Something went wrong");
-            }
+            speakText.onerror = (e) => {
+                console.error('Something went wrong');
+            };
             const selectedVoice = getVoice();
 
             speakText.voice = selectedVoice;
@@ -51,7 +51,7 @@ const LearningTool = () => {
             //Speak
             synth.speak(speakText);
         }
-    }
+    };
 
     const goResult = async () => {
         history.push(`/learningtoolresult`);
@@ -71,7 +71,6 @@ const LearningTool = () => {
     };
 
     useEffect(() => {
-
         async function fetchData() {
             try {
                 const deckId = location.pathname.match(/deckID=(\d+)/);
@@ -138,29 +137,38 @@ const LearningTool = () => {
     if (cards) {
         content = (
             <BaseContainer>
-                <div className='learningTool question-field'/>
-                <div className='learningTool card2'/>
-                <div className='learningTool card'/>
+                <div className='learningTool question-field' />
+                <div className='learningTool card2' />
+                <div className='learningTool card' />
                 <div className='learningTool card-number'>
                     {cardID}/{Object.keys(cards).length}
                 </div>
-                <div className='learningTool card-tittle'>{deck.deckname}
-                </div>
-                <div className='learningTool card-question'>{cards[cardID].question}
-                    <button className = "learningTool text-to-speech" onClick={()=>speak(
-                        cards[cardID].question  +
-                        " ,answer 1, " + cards[cardID].options[arr[0]] +
-                        " ,answer 2, " + cards[cardID].options[arr[1]] +
-                        " ,answer 3, " + cards[cardID].options[arr[2]] +
-                        " ,answer 4, " + cards[cardID].options[arr[3]])}>
+                <div className='learningTool card-tittle'>{deck.deckname}</div>
+                <div className='learningTool card-question'>
+                    {cards[cardID].question}
+                    <button
+                        className='learningTool text-to-speech'
+                        onClick={() =>
+                            speak(
+                                cards[cardID].question +
+                                    ' ,answer 1, ' +
+                                    cards[cardID].options[arr[0]] +
+                                    ' ,answer 2, ' +
+                                    cards[cardID].options[arr[1]] +
+                                    ' ,answer 3, ' +
+                                    cards[cardID].options[arr[2]] +
+                                    ' ,answer 4, ' +
+                                    cards[cardID].options[arr[3]]
+                            )
+                        }
+                    >
                         Text To Speech
                     </button>
                 </div>
-                <div className='learningTool learn-tittle'>Which one is correct?
+                <div className='learningTool learn-tittle'>Which one is correct?</div>
 
-                </div>
-
-                <Button disabled = {disable}
+                <Button
+                    disabled={disable}
                     className={
                         b1
                             ? arr[0] == 0
@@ -177,7 +185,8 @@ const LearningTool = () => {
                     {cards[cardID].options[arr[0]]}
                 </Button>
 
-                <Button disabled = {disable}
+                <Button
+                    disabled={disable}
                     className={
                         b2
                             ? arr[1] === 0
@@ -194,7 +203,8 @@ const LearningTool = () => {
                     {cards[cardID].options[arr[1]]}
                 </Button>
 
-                <Button disabled = {disable}
+                <Button
+                    disabled={disable}
                     className={
                         b3
                             ? arr[2] === 0
@@ -211,7 +221,8 @@ const LearningTool = () => {
                     {cards[cardID].options[arr[2]]}
                 </Button>
 
-                <Button disabled = {disable}
+                <Button
+                    disabled={disable}
                     className={
                         b4
                             ? arr[3] === 0
@@ -236,7 +247,7 @@ const LearningTool = () => {
     return (
         <BaseContainer>
             {content}
-            <Header/>
+            <Header />
         </BaseContainer>
     );
 };
