@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
-import {useHistory, useLocation} from 'react-router-dom';
-import {Button} from 'components/ui/Button';
+import React, { useEffect, useState } from 'react';
+import { api, handleError } from 'helpers/api';
+import { useHistory, useLocation } from 'react-router-dom';
+import { Button } from 'components/ui/Button';
 import 'styles/views/Register.scss';
 import BaseContainer from 'components/ui/BaseContainer';
 import PropTypes from 'prop-types';
 import Deck from '../../models/Deck';
-import Header from "../ui/Header";
-import Switch from "@mui/material/Switch";
+import Header from '../ui/Header';
+import Switch from '@mui/material/Switch';
 
 const FormFieldFn = (props) => {
     return (
@@ -15,7 +15,7 @@ const FormFieldFn = (props) => {
             <input
                 className='cardCreator field-text'
                 placeholder='Enter the Carddeck Title ...'
-                value={props.value}
+                value={props.value === null ? '' : props.value}
                 onChange={(e) => props.onChange(e.target.value)}
             />
         </div>
@@ -36,7 +36,6 @@ const DeckCreator = () => {
     const [checked, setChecked] = React.useState(true);
 
     useEffect(() => {
-
         async function fetchData() {
             try {
                 const userId = localStorage.getItem('userId');
@@ -48,9 +47,7 @@ const DeckCreator = () => {
                     `Something went wrong while fetching the Data: \n${handleError(error)}`
                 );
                 console.error('Details:', error);
-                alert(
-                    'Something went wrong while fetching the Data! See the console for details.'
-                );
+                alert('Something went wrong while fetching the Data! See the console for details.');
             }
         }
 
@@ -60,7 +57,7 @@ const DeckCreator = () => {
     const doDeckCreator = async () => {
         try {
             const userid = localStorage.getItem('userId');
-            const requestBodyTitle = JSON.stringify({deckname, visibility});
+            const requestBodyTitle = JSON.stringify({ deckname, visibility });
             const responseTitle = await api.post('/users/' + userid + '/decks', requestBodyTitle);
 
             // Get the returned deck and update a new object.
@@ -76,11 +73,12 @@ const DeckCreator = () => {
         }
     };
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if(checked){
-            setVisibility("PUBLIC")
+    // event: React.ChangeEvent<HTMLInputElement>
+    const handleChange = (event) => {
+        if (checked) {
+            setVisibility('PUBLIC');
         } else {
-            setVisibility("PRIVATE")
+            setVisibility('PRIVATE');
         }
         setChecked(event.target.checked);
     };
@@ -91,21 +89,16 @@ const DeckCreator = () => {
         <BaseContainer>
             <div className='cardCreator cardDeck-title'>Title</div>
 
-
-            <div className='cardCreator switch-text'
-            >
-                {visibility ? visibility : 'State'}
-            </div>
+            <div className='cardCreator switch-text'>{visibility ? visibility : 'State'}</div>
 
             <Switch
                 className='cardCreator switch'
                 checked={checked}
                 onChange={handleChange}
-                color="default"
+                color='default'
             />
 
-            <FormFieldFn value={deckname}
-                         onChange={(un) => setDeckname(un)}/>
+            <FormFieldFn value={deckname} onChange={(un) => setDeckname(un)} />
             <Button
                 className='cardCreator createButton2'
                 disabled={!deckname}
@@ -113,7 +106,7 @@ const DeckCreator = () => {
             >
                 Create
             </Button>
-            <Header/>
+            <Header />
         </BaseContainer>
     );
 };

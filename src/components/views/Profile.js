@@ -125,10 +125,12 @@ const Profile = () => {
             try {
                 const userId = location.pathname.match(/\d+$/);
                 const response = await api.get('/users/' + userId);
-
-                //new Promise((resolve) => setTimeout(resolve, 1000));
-
                 setUser(response.data);
+                if (user !== null) {
+                    setUsername(user.username);
+                    setFirstName(user.firstName);
+                    setLastName(user.lastName);
+                }
             } catch (error) {
                 console.error(
                     `Something went wrong while fetching the users: \n${handleError(error)}`
@@ -142,15 +144,6 @@ const Profile = () => {
 
         fetchData();
     }, []);
-
-    useEffect(() => {
-        async function fetchData2() {
-            setUsername(user.username);
-            setFirstName(user.firstName);
-            setLastName(user.lastName);
-        }
-        fetchData2();
-    }, [user]);
 
     let content;
     let edit;
