@@ -2,7 +2,6 @@
 # SoPra FS22 Group 08 - NoBrainer
 
 ## Introduction
-Introduction: the project’s goal and motivation.
 
 Our project aims to create an alternative flashcard learning tool to the big names
 of 'Anki' and 'Quizlet'.
@@ -10,30 +9,18 @@ We try to make learning as easy and seamless as possible and the feedback unobtr
 
 ## Technologies
 
-• Technologies used (short).
-
-The project is written in 'Java' using the Spring Boot Framework, as well as JPA
-'Gradle' is used to manage our dependencies and the deployment happens on 'Heroku'
+The project is written in JavaScript, SCSS and HTML. The deployment happens on Heroku.
 
 ## High-Level Components
-• High-level components: Identify your project’s 3-5 main components. What is their role?
-How are they correlated? Reference the main class, file, or function in the README text
-with a link.
 
--   [`UserService`](https://github.com/sopra-fs22-group-08/server/blob/master/src/main/java/ch/uzh/ifi/hase/soprafs22/service/UserService.java): contains the logic to create and edit users.
--   [`InvitationService`](https://github.com/sopra-fs22-group-08/server/blob/master/src/main/java/ch/uzh/ifi/hase/soprafs22/service/InvitationService.java): contains the logic to invite other players, handle the
-    deletion of the invitations upon acceptance.
--   [`DuelService`](https://github.com/sopra-fs22-group-08/server/blob/master/src/main/java/ch/uzh/ifi/hase/soprafs22/service/DuelService.java): contains the logic to 'Duel', also 1v1 lobbies, where players
-    play against each other.
+- [`Header`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/ui/Header.js):  contains the Logo and the burgermanue with home the user can navigate through the app.
 
-TODO:
+- [`Home`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/views/Home.js):  contains the players public and privat cards and the invitations to games.
 
--   [ ] expand description
+- [`CardOverview`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/views/CardOverview.js):  contains the overview of the Card Deck, the possibilty to edit, learn and challenge the deck.
+
 
 ## Launch & Deployment
-
-• Launch & Deployment: Write down the steps a new developer joining your team would
-have to take to get started with your application. What commands are required to build and run your project locally? How can they run the tests? Do you have external dependencies or a database that needs to be running? How can they do releases?
 
 
 For your local development environment, you will need Node.js. You can download it [here](https://nodejs.org). All other dependencies, including React, get installed with:
@@ -50,18 +37,7 @@ npm run dev
 
 Now you can open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Notice that the page will reload if you make any edits. You will also see any lint errors in the console (use Google Chrome).
-
-### Testing
-You can run the tests with
-```bash
-npm run test
-```
-This launches the test runner in an interactive watch mode.
-
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-> For macOS user running into a 'fsevents' error: https://github.com/jest-community/vscode-jest/issues/423
+Notice that the page will reload if you make any edits.
 
 ### Build
 Finally, `npm run build` builds the app for production to the `build` folder.<br>
@@ -77,11 +53,9 @@ TODO:
 -   [ ] add illustrations
 
 ## Roadmap
-• Roadmap: The top 2-3 features that new developers who want to contribute to your project could add.
-
-TODO:
-
--   [ ] add roadmap
+- Adding LaTeX Questions and Answers To Cards
+- Adding Picture Questions and Answers To Cards
+- Ended a Payment System for Card Decks created by other Users
 
 ## Authors & Acknowledgements
 
