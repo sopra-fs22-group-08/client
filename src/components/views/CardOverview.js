@@ -135,10 +135,10 @@ const CardOverview = () => {
 
                 setDeck(responseDeck.data);
 
-                if (deck !== null) {
-                    setDeckname(deck.deckname);
-                    setVisibility(deck.visibility);
-                }
+                //if (deck !== null) {
+                //    setDeckname(deck.deckname);
+                //    setVisibility(deck.visibility);
+                //}
 
                 setUsers(responseUsers.data);
                 setUser(responseUser.data);
