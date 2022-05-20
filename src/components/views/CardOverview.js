@@ -134,12 +134,6 @@ const CardOverview = () => {
                 localStorage.setItem('deckId', deckId);
 
                 setDeck(responseDeck.data);
-
-                //if (deck !== null) {
-                //    setDeckname(deck.deckname);
-                //    setVisibility(deck.visibility);
-                //}
-
                 setUsers(responseUsers.data);
                 setUser(responseUser.data);
                 setCard(responseCards.data);
@@ -159,6 +153,15 @@ const CardOverview = () => {
             }
         }
         fetchData();
+    }, []);
+
+    useEffect(() => {
+
+        async function fetchData2() {
+            setDeckname(deck.deckname);
+            setVisibility(deck.visibility);
+        }
+        fetchData2();
     }, [deck]);
 
     var listOfOnlineUsers;
