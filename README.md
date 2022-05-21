@@ -47,6 +47,16 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Illustrations
 • Illustrations: In your client repository, briefly describe and illustrate the main user flow(s) of your interface. How does it work (without going into too much detail)? Feel free to include a few screenshots of your application.
+On the Landingpage is a Register Button to creat a user. 
+![](../../../Desktop/Screenshot 2022-05-21 at 13.30.28.png)
+After the Registration is the Homepage still empty. Therefore we create some decks with the creator.
+![](../../../Desktop/Screenshot 2022-05-21 at 13.33.15.png)
+When a deck is created, there is an overviewpage. There you can edit the Deck or challenge other Users, which are online, for a game.
+![](../../../Desktop/Screenshot 2022-05-21 at 13.37.41.png)
+If a User challenges you to a game. Yau are going to see an invitation on the Homescreen.
+![](../../../Desktop/Screenshot 2022-05-21 at 13.38.42.png)
+During the game you have one question and four answers.
+![](../../../Desktop/Screenshot 2022-05-21 at 13.39.05.png)
 
 TODO:
 
