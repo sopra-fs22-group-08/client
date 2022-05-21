@@ -35,11 +35,6 @@ const LandingPage = (props) => {
                 <div className='landingPage text-text'>
                     Easily create your own flashcards and share your decks with other users.
                     Test and increase your knowledge on your own or against other users.
-                    <div className={"landingPage disclaimer"}>
-                        DISCLAIMER: Some functionalities are not yet implemented,
-                        such as the distinction between public and private decks, friends,
-                        editing and deletion of cards and decks, open-question cards.
-                    </div>
                     <Button
                         className='landingPage getStartedButton-container'
                         onClick={() => goToRegister()}
