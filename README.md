@@ -13,11 +13,11 @@ The project is written in JavaScript, SCSS and HTML. The deployment happens on H
 
 ## High-Level Components
 
-- [`Header`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/ui/Header.js):  contains the Logo and the burgermanue with home the user can navigate through the app.
+- [`Header`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/ui/Header.js):  contains the Logo and the burger-menu with whom the user can navigate through the app.
 
 - [`Home`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/views/Home.js):  contains the players public and privat cards and the invitations to games.
 
-- [`CardOverview`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/views/CardOverview.js):  contains the overview of the Card Deck, the possibilty to edit, learn and challenge the deck.
+- [`CardOverview`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/views/CardOverview.js):  contains the overview of the Card Deck, the possibility to edit, learn and challenge the deck.
 
 
 ## Launch & Deployment
@@ -53,7 +53,7 @@ On the landingpage is a register-button to creat a user.
 After the registration, the homepage is still empty. Therefore we create some decks with the creator.
 <img width="1244" alt="Screenshot 2022-05-21 at 13 33 15" src="https://user-images.githubusercontent.com/91237594/169659854-dda46e8d-41c8-49f6-a488-66883c28896c.png">
 
-When a deck is created, there is an overviewpage. Where you can edit the deck or challenge other users.
+When a deck is created, there is an overview-page. Where you can edit the deck or challenge other users.
 <img width="1244" alt="Screenshot 2022-05-21 at 13 37 41" src="https://user-images.githubusercontent.com/91237594/169659870-8681df9e-fe05-4e4c-8021-d1d8fa4d66db.png">
 
 If a user challenges you to a game. You are going to see an invitation on the homescreen.
