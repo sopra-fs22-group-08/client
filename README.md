@@ -66,7 +66,7 @@ The cards in the game consists of one question and four possible answers.
 ## Roadmap
 - Adding LaTeX Questions and Answers To Cards
 - Adding Picture Questions and Answers To Cards
-- Ended a Payment System for Card Decks created by other Users
+- Embed a Payment System for Card Decks created by other Users
 
 ## Authors & Acknowledgements
 
