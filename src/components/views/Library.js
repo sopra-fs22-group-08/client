@@ -12,9 +12,9 @@ import Header from 'components/ui/Header';
 
 const FormFieldDeckSearch = (props) => {
     return (
-        <div className='profile field'>
+        <div className='profile search-field'>
             <input
-                className='profile lastName-text'
+                className='profile search-text'
                 placeholder='Enter Deck Name'
                 value={props.value}
                 onChange={(input) => {
@@ -118,8 +118,8 @@ const Library = () => {
             ));
             deckView = (
                 <BaseContainer>
-                    <div className='Home listTitle'>Found Decks</div>
-                    <div className='Home list'>{listItems}</div>
+                    <div className='Home listTitle-library'>Found Decks</div>
+                    <div className='Home list-library'>{listItems}</div>
                 </BaseContainer>
             );
         }
@@ -164,7 +164,7 @@ const Library = () => {
                 }}
             />
             <Button
-                className='profile createButton'
+                className='profile searchButton'
                 onClick={() => {
                     getSearchedForDecks(searchString);
                 }}
@@ -182,21 +182,23 @@ const Library = () => {
     let reloadPage = (
         <BaseContainer>
             <Button
+                className='Home delSearchButton'
                 onClick={() => {
                     window.location.reload(true);
                 }}
             >
-                Go Back to all Decks
+                Reset Search
             </Button>
         </BaseContainer>
     );
 
     return (
         <BaseContainer>
-            <Header />
+
             {SearchElement}
             {deckView}
             {reloadPage}
+            <Header />
         </BaseContainer>
     );
 };
