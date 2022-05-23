@@ -6,6 +6,8 @@
 Our project aims to create an alternative flashcard learning tool to the big names
 of 'Anki' and 'Quizlet'.
 We try to make learning as easy and seamless as possible and the feedback unobtrusive.
+Part of our motivation was that we also wanted to work on something that would provide useful functionalities to us as students after the completion of the SoPra course.
+We know that learning can sometimes be very "unfun" and therefore we thought of making the process more competitive by adding a player vs player mode apart from the classic "solo" learning experience.
 
 ## Technologies
 
