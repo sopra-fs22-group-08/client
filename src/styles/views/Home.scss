@@ -130,12 +130,37 @@
         color: #FFFFFF;
     }
 
+    &.listTitle-library {
+        position: absolute;
+        width: 300px;
+        height: 29px;
+        left: 235px;
+        top: 130px;
+
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 900;
+        font-size: 40px;
+        line-height: 28px;
+        /* identical to box height */
+
+        color: #FFFFFF;
+    }
+
     &.list {
         position: absolute;
         width: 60%;
         left: 255px;
         top: 177px;
     }
+
+    &.list-library {
+        position: absolute;
+        width: 60%;
+        left: 255px;
+        top: 220px;
+    }
+
     &.listElement-Number {
         position: relative;
         top: 4px;
@@ -205,6 +230,28 @@
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
 
+    }
+
+
+    &.delSearchButton {
+        position: absolute;
+        width: 180px;
+        height: 50px;
+        left: 990px;
+        top: 120px;
+
+        background: #FFCA00;
+        border-radius: 20px;
+
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 28px;
+        text-align: center;
+
+        color: #000000;
     }
 
 }
