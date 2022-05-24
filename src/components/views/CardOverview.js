@@ -234,6 +234,8 @@ const CardOverview = () => {
     let addCards;
     let edit;
     let edit_button;
+    let peopleToChallenge;
+    let noPeopleToChallenge;
 
     // event: React.ChangeEvent<HTMLInputElement>
     const handleChange = (event) => {
@@ -299,7 +301,14 @@ const CardOverview = () => {
         <div className='cardOverview card-Text'>Please add Card</div>
     );
 
+    peopleToChallenge = (
+        <BaseContainer>
+            <div className='cardOverview people-Title'>People to challenge</div>
+            <div className='cardOverview people-Button-position'>{listOfOnlineUsers}</div>
+        </BaseContainer>
+    );
 
+    noPeopleToChallenge = (<div className='cardOverview people-Title'></div>);
 
     content = (
         <BaseContainer>
@@ -308,8 +317,7 @@ const CardOverview = () => {
                 {cardEmpty ? clickToLearn : addCards}
             </Button>
             {edit_button}
-            <div className='cardOverview people-Title'>People to challenge</div>
-            <div className='cardOverview people-Button-position'>{listOfOnlineUsers}</div>
+            {cardEmpty ? peopleToChallenge : noPeopleToChallenge}
             <Header />
         </BaseContainer>
     );
