@@ -118,7 +118,7 @@ const CardOverview = () => {
                 const userId = localStorage.getItem('userId');
                 const deckId = localStorage.getItem('deckId');
                 const editen = localStorage.getItem('edit');
-                if (editen === true) {
+                if (editen) {
                     setEditButton(editen);
                 }
 
@@ -160,6 +160,11 @@ const CardOverview = () => {
         async function fetchData2() {
             setDeckname(deck.deckname);
             setVisibility(deck.visibility);
+            if (deck.visibility === 'PUBLIC') {
+                setChecked(false);
+            } else {
+                setChecked(true);
+            }
         }
         fetchData2();
     }, [deck]);
