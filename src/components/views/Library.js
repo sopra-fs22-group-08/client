@@ -2,7 +2,7 @@ import 'styles/views/Home.scss';
 import 'styles/views/Profile.scss';
 // react imports
 import React, { useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // local imports
 import { api, handleError } from 'helpers/api';
@@ -40,11 +40,6 @@ const Library = () => {
     const [searchString, setSearchString] = useState('');
     const [foundDecks, setFoundDecks] = useState(null);
 
-    const doLearning = () => {
-        const Id = localStorage.getItem('deckId');
-        history.push('/learningtool/deckID=' + Id + '/cardID=0');
-    };
-
     const cardOverview = () => {
         localStorage.setItem('edit', false);
         history.push('/cardOverview');
@@ -72,36 +67,61 @@ const Library = () => {
         fetchData();
     }, []);
 
-    /**
-     * @brief creates an assortment of inputted Decks
-     */
-    const createDeckView = (inputDecks) => {
-        console.log(inputDecks);
-        return inputDecks.map((d) => (
-            <Button
-                key={d.id}
-                className='Home listElement-Box'
-                onClick={() => {
-                    //doLearning();
-                    cardOverview();
-                    localStorage.setItem('deckId', d.id);
-                }}
-            >
-                <div className='Home listElement-Number' />
-                <div className='Home listElement-Title'>{d.deckname}</div>
-                <div className='Home listElement-Score'>
-                    <br /> <br />{' '}
-                </div>
-                <div className='Home listElement-Text'>Click to Learn</div>
-            </Button>
-        ));
-    };
+    var listItems;
+    var deckView;
 
     if (user) {
-        var listItems = <div className='Home deck-None'>Please create a new Deck</div>;
+        listItems = <div className='Home deck-None'>No Deck(s) found yet</div>;
+
         if (publicDecks) {
-            // console.log(publicDecks);
-            listItems = createDeckView(publicDecks);
+            listItems = publicDecks.map((d) => (
+                <Button
+                    key={d.id}
+                    className='Home listElement-Box'
+                    onClick={() => {
+                        cardOverview();
+                        localStorage.setItem('deckId', d.id);
+                    }}
+                >
+                    <div className='Home listElement-Number' />
+                    <div className='Home listElement-Title'>{d.deckname}</div>
+                    <div className='Home listElement-Score'>
+                        <br /> <br />{' '}
+                    </div>
+                    <div className='Home listElement-Text'>Click to Learn</div>
+                </Button>
+            ));
+            deckView = (
+                <BaseContainer>
+                    <div className='Home listTitle'>Public Decks</div>
+                    <div className='Home list'>{listItems}</div>
+                </BaseContainer>
+            );
+        }
+        if (foundDecks) {
+            listItems = foundDecks.map((d) => (
+                <Button
+                    key={d.id}
+                    className='Home listElement-Box'
+                    onClick={() => {
+                        cardOverview();
+                        localStorage.setItem('deckId', d.id);
+                    }}
+                >
+                    <div className='Home listElement-Number' />
+                    <div className='Home listElement-Title'>{d.deckname}</div>
+                    <div className='Home listElement-Score'>
+                        <br /> <br />{' '}
+                    </div>
+                    <div className='Home listElement-Text'>Click to Learn</div>
+                </Button>
+            ));
+            deckView = (
+                <BaseContainer>
+                    <div className='Home listTitle-library'>Found Decks</div>
+                    <div className='Home list-library'>{listItems}</div>
+                </BaseContainer>
+            );
         }
     }
 
@@ -119,14 +139,9 @@ const Library = () => {
     const getSearchedForDecks = async (input) => {
         try {
             if (input !== '') {
-                // console.log(input);
                 const responseDecks = await api.get('/decks/search/' + input);
-                // console.log(responseDecks.data);
+                // console.log('response:', responseDecks.data);
                 setFoundDecks(responseDecks.data);
-                // now rewrite the listItems
-                if (foundDecks !== null) {
-                    listItems = createDeckView(foundDecks);
-                }
             } else {
                 alert('Please enter a search String');
             }
@@ -159,23 +174,6 @@ const Library = () => {
         </BaseContainer>
     );
 
-    let publicDecksView = (
-        <BaseContainer>
-            <div className='Home listTitle-library'>Public Decks</div>
-            <div className='Home list-library'>{listItems}</div>
-        </BaseContainer>
-    );
-
-
-
-
-    let searchedDecksView = (
-        <BaseContainer>
-            <div className='Home listTitle-library'>Found Decks</div>
-            <div className='Home list-library'>{listItems}</div>
-        </BaseContainer>
-    );
-
     // TODO: find better styling and better positioning
     /**
      * @brief this reloads the page, resulting in getting back to all
@@ -189,7 +187,7 @@ const Library = () => {
                     window.location.reload(true);
                 }}
             >
-                Remove Search
+                Reset Search
             </Button>
         </BaseContainer>
     );
@@ -198,7 +196,7 @@ const Library = () => {
         <BaseContainer>
 
             {SearchElement}
-            {foundDecks === null ? publicDecksView : searchedDecksView}
+            {deckView}
             {reloadPage}
             <Header />
         </BaseContainer>
