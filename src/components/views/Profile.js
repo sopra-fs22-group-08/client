@@ -100,22 +100,20 @@ FormFieldPw.propTypes = {
 };
 
 const Profile = () => {
-    const history = useHistory();
     const location = useLocation();
 
     const [user, setUser] = useState(null);
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
-    const [email, setEmail] = useState(null);
     const [username, setUsername] = useState(null);
     const [editButton, setEditButton] = useState(false);
-    const [status, setStatus] = useState('ONLINE');
+    const status = useState('ONLINE');
 
     const doUpdate = async () => {
         const id = localStorage.getItem('userId');
 
         const requestBody = JSON.stringify({firstName, lastName, username, status});
-        const response = await api.put('/users/' + id, requestBody);
+        await api.put('/users/' + id, requestBody);
 
         window.location.reload(true);
     };
@@ -192,7 +190,7 @@ const Profile = () => {
 
                 <div className='profile email-title'>Email</div>
                 <div className='profile email-field'/>
-                <FormFieldEm value={user.email} onChange={(n) => setEmail(n)}/>
+                <FormFieldEm value={user.email} />
 
                 <Button
                     className='register createButton'

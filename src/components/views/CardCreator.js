@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
-import {useHistory, useLocation} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
 import 'styles/views/CardCreator.scss';
 import BaseContainer from 'components/ui/BaseContainer';
@@ -98,43 +98,18 @@ FormFieldPw.propTypes = {
 
 const CardCreator = () => {
     const history = useHistory();
-    const location = useLocation();
     const [question, setQuestion] = useState(null);
     const [answer, setAnswer] = useState(null);
     const [wrongAnswer1, setWrongAnswer1] = useState(null);
     const [wrongAnswer2, setWrongAnswer2] = useState(null);
     const [wrongAnswer3, setWrongAnswer3] = useState(null);
     const options = [answer, wrongAnswer1, wrongAnswer2, wrongAnswer3];
-    const [user, setUser] = useState(null);
-    const [deckId, setDeckId] = useState(null);
+
 
     const goToCardOverview = async () => {
         const deckId = localStorage.getItem('deckId');
         history.push(`/cardOverview/deckID=` + deckId);
     };
-
-    useEffect(() => {
-
-        async function fetchData() {
-            try {
-                const userId = localStorage.getItem('userId');
-                const response = await api.get('/users/' + userId);
-                //await new Promise((resolve) => setTimeout(resolve, 1000));
-                setUser(response.data);
-            } catch (error) {
-                console.error(
-                    `Something went wrong while fetching the Data: \n${handleError(error)}`
-                );
-                console.error('Details:', error);
-                alert(
-                    'Something went wrong while fetching the Data! See the console for details.'
-                );
-            }
-        }
-
-        fetchData();
-    }, []);
-
 
 
     const doCardCreator = async () => {
@@ -148,8 +123,6 @@ const CardCreator = () => {
 
             // Store cardID into the local storage.
             localStorage.setItem('cardId', card.id);
-
-            setDeckId(deckId);
 
             // DeckCreator successfully worked --> navigate to the route /home in the GameRouter
             history.push(`/home/` + 1);

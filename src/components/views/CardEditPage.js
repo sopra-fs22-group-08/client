@@ -97,7 +97,6 @@ FormFieldPw.propTypes = {
 
 const CardEditPage = () => {
     const history = useHistory();
-    const location = useLocation();
     const [question, setQuestion] = useState(null);
     const [answer, setAnswer] = useState(null);
     const [wrongAnswer1, setWrongAnswer1] = useState(null);
@@ -105,13 +104,12 @@ const CardEditPage = () => {
     const [wrongAnswer3, setWrongAnswer3] = useState(null);
     const options = [answer, wrongAnswer1, wrongAnswer2, wrongAnswer3];
     const [card, setCard] = useState(null);
-    const [deckId, setDeckId] = useState(null);
 
     const doUpdate = async () => {
         const id = localStorage.getItem('cardId');
 
         const requestBody = JSON.stringify({question, answer, options});
-        const response = await api.put('/cards/' + id, requestBody);
+        await api.put('/cards/' + id, requestBody);
     };
     const deleteCard = async () => {
         const id = localStorage.getItem('cardId');
@@ -122,10 +120,8 @@ const CardEditPage = () => {
 
         async function fetchData() {
             try {
-                const deckId = await localStorage.getItem('deckId')
+                const deckId =  localStorage.getItem('deckId')
                 const response = await api.get('/decks/' + deckId + '/cards');
-
-                //new Promise((resolve) => setTimeout(resolve, 1000));
 
                 setCard(response.data);
 
@@ -146,7 +142,7 @@ const CardEditPage = () => {
 
     useEffect(() => {
         async function fetchData2() {
-            const cardId = await localStorage.getItem('cardId');
+            const cardId = localStorage.getItem('cardId');
             var count = 0;
             for (const c of card) {
                 if (c.id === parseInt(cardId)) {
@@ -168,7 +164,6 @@ const CardEditPage = () => {
 
     const goToCardOverviewDeckEdit = async () => {
         const deckId = localStorage.getItem('deckId');
-        setDeckId(deckId);
         localStorage.setItem('edit', true);
 
         history.push(`/cardOverview/deckID=` + deckId);
