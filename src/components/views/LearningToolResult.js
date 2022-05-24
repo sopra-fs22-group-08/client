@@ -6,7 +6,6 @@ import { Button } from 'components/ui/Button';
 
 const LearningToolResult = () => {
     const history = useHistory();
-    const location = useLocation();
     const userId = localStorage.getItem('userId');
 
     let count = localStorage.getItem('result');

@@ -10,17 +10,10 @@ import Header from 'components/ui/Header';
 
 const Home = () => {
     const history = useHistory();
-    const location = useLocation();
 
     const [user, setUser] = useState(null);
     const [decks, setDecks] = useState(null);
     const [invitations, setInvitations] = useState(null);
-
-    // TODO: remove userData, doesn't do anything, when connecting it is still empty
-    const [userData, setUserData] = useState({
-        from: '',
-        connected: false,
-    });
 
     const cardOverview = (deckId) => {
         history.push('/cardOverview/deckID=' + deckId);
@@ -87,9 +80,9 @@ const Home = () => {
         fetchData();
         return () => clearInterval(interval);
     }, []);
-
+    let listItems = <div className='Home deck-None'>Please create a new Deck</div>;
+    let listInvites = <div className='Home deck-None'>Invite Player</div>;
     if (user) {
-        var listItems = <div className='Home deck-None'>Please create a new Deck</div>;
         if (decks) {
             listItems = decks.map((d) => (
                 <Button
@@ -110,7 +103,7 @@ const Home = () => {
             ));
         }
 
-        var listInvites = <div className='Home deck-None'>Invite Player</div>;
+
         if (invitations) {
             listInvites = invitations.map((i) => (
                 <div className='Home invitations-Field'>

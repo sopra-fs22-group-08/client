@@ -29,30 +29,9 @@ FormFieldFn.propTypes = {
 
 const DeckCreator = () => {
     const history = useHistory();
-    const location = useLocation();
     const [deckname, setDeckname] = useState(null);
     const [visibility, setVisibility] = useState('PRIVATE');
-    const [user, setUser] = useState(null);
     const [checked, setChecked] = React.useState(true);
-
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const userId = localStorage.getItem('userId');
-                const response = await api.get('/users/' + userId);
-                //await new Promise((resolve) => setTimeout(resolve, 1000));
-                setUser(response.data);
-            } catch (error) {
-                console.error(
-                    `Something went wrong while fetching the Data: \n${handleError(error)}`
-                );
-                console.error('Details:', error);
-                alert('Something went wrong while fetching the Data! See the console for details.');
-            }
-        }
-
-        fetchData();
-    }, []);
 
     const doDeckCreator = async () => {
         try {

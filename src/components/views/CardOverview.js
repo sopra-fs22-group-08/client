@@ -45,7 +45,7 @@ const CardOverview = () => {
         const deckId = location.pathname.match(/\d+$/);
 
         const requestBodyTitle = JSON.stringify({ deckname, visibility });
-        const responseTitle = await api.put('/decks/' + deckId, requestBodyTitle);
+        await api.put('/decks/' + deckId, requestBodyTitle);
 
         window.location.reload(false);
     };
@@ -169,7 +169,9 @@ const CardOverview = () => {
         fetchData2();
     }, [deck]);
 
-    var listOfOnlineUsers;
+    let listOfOnlineUsers;
+    let listItems = <div className='cardOverview deck-None'>Please create a new Card</div>;
+
     if (users && user) {
         const onlineUsers = users.filter(isOnline);
         if (onlineUsers.length == 0) {
@@ -193,7 +195,6 @@ const CardOverview = () => {
         }
     }
     if (user) {
-        var listItems = <div className='cardOverview deck-None'>Please create a new Card</div>;
         if (card) {
             listItems = card.map((c) => (
                 <Button
