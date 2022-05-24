@@ -92,7 +92,7 @@ const Header = () => {
                 <Button className='burgerMenu creator' onClick={() => goCreator()}>
                     Creator
                 </Button>
-                <Button className='burgerMenu logoutButton' onClick={() => logout(userId)}>
+                <Button className='burgerMenu logoutButton' onClick={() => logout()}>
                     Logout
                 </Button>
                 <div className='burgerMenu x' onClick={() => setBurgerMenu(false)}>

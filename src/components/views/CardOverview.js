@@ -160,6 +160,11 @@ const CardOverview = () => {
         async function fetchData2() {
             setDeckname(deck.deckname);
             setVisibility(deck.visibility);
+            if (deck.visibility === 'PUBLIC') {
+                setChecked(false);
+            } else {
+                setChecked(true);
+            }
         }
         fetchData2();
     }, [deck]);
