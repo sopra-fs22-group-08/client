@@ -35,10 +35,15 @@ const CardOverview = () => {
     const [editButton, setEditButton] = useState(false);
     const [checked, setChecked] = React.useState(true);
     const [showEdit, setShowEdit] = useState(false);
+    const [cardEmpty, setCardEmpty] = useState(false);
+
 
     const doLearning = () => {
         const Id = localStorage.getItem('deckId');
-        history.push('/learningtool/deckID=' + Id + '/cardID=0');
+        if (card.length != 0) {
+            console.log(card.id);
+            history.push('/learningtool/deckID=' + Id + '/cardID=0');
+        }
     };
 
     const doUpdate = async () => {
@@ -169,6 +174,15 @@ const CardOverview = () => {
         fetchData2();
     }, [deck]);
 
+    useEffect(() => {
+
+        async function fetchData3() {
+            //check if deck has a card.
+            if (card.length != 0) { setCardEmpty(true); }
+        }
+        fetchData3();
+    }, [card]);
+
     let listOfOnlineUsers;
     let listItems = <div className='cardOverview deck-None'>Please create a new Card</div>;
 
@@ -217,8 +231,12 @@ const CardOverview = () => {
     }
 
     let content;
+    let clickToLearn;
+    let addCards;
     let edit;
     let edit_button;
+    let peopleToChallenge;
+    let noPeopleToChallenge;
 
     // event: React.ChangeEvent<HTMLInputElement>
     const handleChange = (event) => {
@@ -276,15 +294,31 @@ const CardOverview = () => {
         </BaseContainer>
     );
 
+    clickToLearn = (
+        <div className='cardOverview card-Text'>Click to Learn</div>
+    );
+
+    addCards = (
+        <div className='cardOverview card-Text'>Please add Card</div>
+    );
+
+    peopleToChallenge = (
+        <BaseContainer>
+            <div className='cardOverview people-Title'>People to challenge</div>
+            <div className='cardOverview people-Button-position'>{listOfOnlineUsers}</div>
+        </BaseContainer>
+    );
+
+    noPeopleToChallenge = (<div className='cardOverview people-Title'></div>);
+
     content = (
         <BaseContainer>
             <Button className='cardOverview card' onClick={() => doLearning()}>
                 <div className='cardOverview card-Title2'>{deck ? deck.deckname : ''}</div>
-                <div className='cardOverview card-Text'>Click to Learn</div>
+                {cardEmpty ? clickToLearn : addCards}
             </Button>
             {edit_button}
-            <div className='cardOverview people-Title'>People to challenge</div>
-            <div className='cardOverview people-Button-position'>{listOfOnlineUsers}</div>
+            {cardEmpty ? peopleToChallenge : noPeopleToChallenge}
             <Header />
         </BaseContainer>
     );
