@@ -95,9 +95,6 @@ const Home = () => {
                 >
                     <div className='Home listElement-Number' />
                     <div className='Home listElement-Title'>{d.deckname}</div>
-                    <div className='Home listElement-Score'>
-                        <br /> <br />{' '}
-                    </div>
                     <div className='Home listElement-Text'>Click to Overview</div>
                 </Button>
             ));

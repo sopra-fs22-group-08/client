@@ -176,8 +176,8 @@
     }
     &.listElement-Title {
         position: relative;
-        top: -30px;
-
+        height: 100px;
+        width:100%;
 
         font-family: 'Roboto', sans-serif;
         font-style: normal;
@@ -185,29 +185,20 @@
         font-size: 16px;
         line-height: 19px;
         text-align: center;
+        overflow: hidden;
+        word-break: break-word;
+        hyphens: auto;
 
         color: #000000;
-
     }
-    &.listElement-Score {
-        position: relative;
-        left: 8px;
-        top: 40px;
-
-
-        font-family: 'Roboto', sans-serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 14px;
-
-        color: #000000;
-
+    &.listElement-Title:hover{
+        overflow: visible;
+        text-shadow: 0 0 5px white;
     }
     &.listElement-Text {
-        position: relative;
-        bottom: -35px;
 
+        position: center;
+        margin-top: 5px;
         font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 600;
