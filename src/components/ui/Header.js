@@ -1,13 +1,12 @@
 import 'styles/ui/Header.scss';
 import BaseContainer from './BaseContainer';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import { api, handleError } from '../../helpers/api';
 import { useEffect, useState } from 'react';
 import { Button } from './Button';
 
 const Header = () => {
     const history = useHistory();
-    const location = useLocation();
 
     const [user, setUser] = useState(null);
     const [burgerMenu, setBurgerMenu] = useState(false);
@@ -51,7 +50,6 @@ const Header = () => {
             try {
                 const userId = localStorage.getItem('userId');
                 const responseUser = await api.get('/users/' + userId);
-                //await new Promise((resolve) => setTimeout(resolve, 1000));
                 setUser(responseUser.data);
             } catch (error) {
                 console.error(

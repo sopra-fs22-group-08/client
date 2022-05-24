@@ -35,11 +35,11 @@ const MultiplayerTool = () => {
             //Get Speak text
             const speakText = new SpeechSynthesisUtterance(text);
             //Speak End
-            speakText.onend = (e) => {
+            speakText.onend = () => {
                 console.log('Done Speaking...');
             };
             //Speak error
-            speakText.onerror = (e) => {
+            speakText.onerror = () => {
                 console.error('Something went wrong');
             };
             const selectedVoice = getVoice();

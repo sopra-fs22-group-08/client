@@ -36,11 +36,11 @@ const LearningTool = () => {
             //Get Speak text
             const speakText = new SpeechSynthesisUtterance(text);
             //Speak End
-            speakText.onend = (e) => {
+            speakText.onend = () => {
                 console.log('Done Speaking...');
             };
             //Speak error
-            speakText.onerror = (e) => {
+            speakText.onerror = () => {
                 console.error('Something went wrong');
             };
             const selectedVoice = getVoice();
@@ -76,7 +76,6 @@ const LearningTool = () => {
                 const deckId = location.pathname.match(/deckID=(\d+)/);
                 const responseCard = await api.get('/decks/' + deckId[1] + '/cards');
                 const responseDeck = await api.get('/decks/' + deckId[1]);
-                //await new Promise((resolve) => setTimeout(resolve, 1000));
                 setDeck(responseDeck.data);
                 setCards(responseCard.data);
                 setCards(responseCard.data);

@@ -4,7 +4,7 @@ import { Button } from 'components/ui/Button';
 import 'styles/views/LandingPage.scss';
 import BaseContainer from 'components/ui/BaseContainer';
 
-const LandingPage = (props) => {
+const LandingPage = () => {
     const history = useHistory();
 
     const goToLogin = async () => {
