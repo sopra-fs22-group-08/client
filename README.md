@@ -59,7 +59,7 @@ When a deck is created, there is an overview-page. Where you can edit the deck o
 <img width="1244" alt="Screenshot 2022-05-21 at 13 37 41" src="https://user-images.githubusercontent.com/91237594/169659870-8681df9e-fe05-4e4c-8021-d1d8fa4d66db.png">
 
 If a user challenges you to a game. You are going to see an invitation on the homescreen.
-<img width="1244" alt="Screenshot 2022-05-21 at 13 38 42" src="https://user-images.githubusercontent.com/91237594/169659878-f4ddf246-4e07-49e8-9e9c-0859b279ba22.png">
+![Screenshot 2022-05-24 at 18 28 51](https://user-images.githubusercontent.com/91237594/170086354-2a14b3ba-032b-48c8-ba85-2145c0789be7.png)
 
 The cards in the game consists of one question and four possible answers.
 <img width="1244" alt="Screenshot 2022-05-21 at 13 39 05" src="https://user-images.githubusercontent.com/91237594/169659890-4001d986-6363-467e-9701-8dad58ff4436.png">
