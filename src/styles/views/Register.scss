@@ -3,7 +3,6 @@
 .register {
 
   &.title {
-
       cursor: pointer;
     position: absolute;
     width: 235px;
@@ -41,7 +40,7 @@
   //FirstName
   &.firstName-title {
     position: absolute;
-    width: 160px;
+    width: 200px;
     height: 38px;
     left: 575px;
     top: 249px;
@@ -53,9 +52,7 @@
     line-height: 38px;
     /* identical to box height */
 
-
     color: #FFFFFF;
-
   }
   &.firstName-field {
     position: absolute;
@@ -84,7 +81,6 @@
     line-height: 28px;
 
     color: rgba(0, 0, 0, 0.6);
-
 
     border: none;
     border-width: 0;
@@ -136,8 +132,6 @@
     line-height: 28px;
 
     color: rgba(0, 0, 0, 0.6);
-
-
 
     border: none;
     border-width: 0;

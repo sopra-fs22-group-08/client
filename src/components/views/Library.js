@@ -93,8 +93,8 @@ const Library = () => {
             ));
             deckView = (
                 <BaseContainer>
-                    <div className='Home listTitle'>Public Decks</div>
-                    <div className='Home list'>{listItems}</div>
+                    <div className='Home listTitle-library'>Public Decks</div>
+                    <div className='Home list-library'>{listItems}</div>
                 </BaseContainer>
             );
         }
@@ -169,7 +169,7 @@ const Library = () => {
                     getSearchedForDecks(searchString);
                 }}
             >
-                Submit
+                Search
             </Button>
         </BaseContainer>
     );
