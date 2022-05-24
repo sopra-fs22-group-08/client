@@ -53,7 +53,7 @@ const MultiplayerToolResult = () => {
         return () => clearInterval(interval);
     }, []);
 
-    let content;
+    let content = (<div> <h5 align='center'>The other player has not finished yet...</h5> </div>);
     if (duel) {
         // console.log(duel)
         if (duel.playerOneStatus === 'FINISHED' && duel.playerTwoStatus === 'FINISHED') {
@@ -72,6 +72,13 @@ const MultiplayerToolResult = () => {
                     {opponentScore} out of {lengthDeck} correct
                 </div>
             );
+        }
+        if ((duel.playerOneStatus === 'CHICKEN' && duel.playerTwoStatus === 'FINISHED') || (duel.playerOneStatus === 'FINISHED' && duel.playerTwoStatus === 'CHICKEN')){
+            content = (
+                <div>
+                    <h5 align='center'>The other player was too afraid and chickened out! 🐔 </h5>
+                </div>
+            )
         }
     }
 
