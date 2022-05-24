@@ -209,7 +209,6 @@ const CardOverview = () => {
         }
     }
     if (user) {
-        var listItems = <div className='cardOverview deck-None'>Please create a new Card</div>;
         if (card) {
             listItems = card.map((c) => (
                 <Button
