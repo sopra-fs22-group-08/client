@@ -118,7 +118,7 @@ const CardOverview = () => {
                 const userId = localStorage.getItem('userId');
                 const deckId = localStorage.getItem('deckId');
                 const editen = localStorage.getItem('edit');
-                if (editen) {
+                if (editen === true) {
                     setEditButton(editen);
                 }
 
