@@ -142,7 +142,6 @@ const LearningTool = () => {
                 <div className='learningTool card-number'>
                     {cardID}/{Object.keys(cards).length}
                 </div>
-                <div className='learningTool card-tittle'>{deck.deckname}</div>
                 <div className='learningTool card-question'>
                     {cards[cardID].question}
                     <button

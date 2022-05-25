@@ -13,7 +13,7 @@ const Home = () => {
 
     const [user, setUser] = useState(null);
     const [decks, setDecks] = useState(null);
-    const [invitations, setInvitations] = useState(null);
+    const [invitations, setInvitations] = useState([]);
 
     const cardOverview = (deckId) => {
         history.push('/cardOverview/deckID=' + deckId);
@@ -81,7 +81,7 @@ const Home = () => {
         return () => clearInterval(interval);
     }, []);
     let listItems = <div className='Home deck-None'>Please create a new Deck</div>;
-    let listInvites = <div className='Home deck-None'>Invite Player</div>;
+    let listInvites = <div className='Home deck-None'>You have no invitations :(</div>;
     if (user) {
         if (decks) {
             listItems = decks.map((d) => (
@@ -100,8 +100,7 @@ const Home = () => {
             ));
         }
 
-
-        if (invitations) {
+        if (invitations.length != 0) {
             listInvites = invitations.map((i) => (
                 <div className='Home invitations-Field'>
                     <div className='Home invitations-text'>

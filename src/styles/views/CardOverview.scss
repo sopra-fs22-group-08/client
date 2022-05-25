@@ -73,18 +73,16 @@
 
     &.card-Title2 {
         position: relative;
-
+        height: 230px;
         font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 900;
-        font-size: 32px;
-        line-height: 38px;
+        font-size: 25px;
+        line-height: 29px;
         text-align: center;
-
         color: #000000;
-
+        overflow: hidden;
     }
-
 
     &.card-Text {
 
@@ -354,26 +352,24 @@
         color: #000000;
     }
     &.listElement-Title {
+        height: 100px;
         position: relative;
-        top: -30px;
-
-
         font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 900;
         font-size: 16px;
         line-height: 19px;
         text-align: center;
-
+        overflow: hidden;
         color: #000000;
-
+    }
+    &.listElement-Title:hover {
+        overflow: visible;
     }
     &.listElement-Score {
         position: relative;
         left: 8px;
         top: 40px;
-
-
         font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
@@ -385,7 +381,6 @@
     }
     &.listElement-Text {
         position: relative;
-        bottom: -35px;
 
         font-family: 'Roboto', sans-serif;
         font-style: normal;
@@ -424,8 +419,6 @@
         font-size: 32px;
         line-height: 38px;
         /* identical to box height */
-
-
         color: #FFFFFF;
 
     }
