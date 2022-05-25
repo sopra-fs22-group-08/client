@@ -221,9 +221,6 @@ const CardOverview = () => {
                 >
                     <div className='cardOverview listElement-Number' />
                     <div className='cardOverview listElement-Title'>{c.question}</div>
-                    <div className='cardOverview listElement-Score'>
-                        <br /> <br />{' '}
-                    </div>
                     <div className='cardOverview listElement-Text'>Click to Edit</div>
                 </Button>
             ));

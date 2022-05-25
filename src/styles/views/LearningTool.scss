@@ -164,17 +164,20 @@
 
     &.card-tittle {
         position: absolute;
-        width: 108px;
+        width: 150px;
         height: 17px;
         left: 383px;
         top: 248px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
 
         font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
-        text-align: center;
+        text-align: left;
 
         color: #000000;
     }
