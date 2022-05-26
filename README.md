@@ -11,13 +11,13 @@ We know that learning can sometimes be very "unfun" and therefore we thought of 
 
 ## Technologies
 
-The project is written in JavaScript, SCSS and HTML. The deployment happens on Heroku.
+The project has been written in REACT (HTML, SCSS, javascript). The deployment happens on Heroku. A Text-To-Speech API (Web Speech API) and a Email Sending API (SendGrid) have been used.
 
 ## High-Level Components
 
-- [`MultiplayerTool`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/views/MultiplayerTool.js):  one of the core components that make the our application stand out from other flashcard applications. It allows the user to test his knowledge in a competetive manner against his other users that are currently online.
+- [`MultiplayerTool`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/views/MultiplayerTool.js):  one of the core components that make the our application stand out from other flashcard applications. It allows the user to test his knowledge in a competetive manner against his other users that are currently online. To increase accessibility for all users a **Text-To-Speech API** (*Web Speech API*) has been integrated which reads the question and all possible answers to the user.
 
-- [`LearningTool`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/views/LearningTool.js):  very similar to the MultiplayerTool with the minor difference that you can just go through the cards on your own. The user can learn the cards so that he can feel confident on challenging other players on their decks.
+- [`LearningTool`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/views/LearningTool.js):  very similar to the MultiplayerTool with the minor difference that you can just go through the cards on your own. The user can learn the cards so that he can feel confident on challenging other players on their decks. To increase accessibility for all users a **Text-To-Speech API** (*Web Speech API*) has been integrated which reads the question and all possible answers to the user.
 
 - [`Home`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/views/Home.js):  displays the private and public decks of the user and any invitations received
 
