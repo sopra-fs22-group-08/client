@@ -34,7 +34,11 @@ const LearningTool = () => {
         }
         if (text !== '') {
             //Get Speak text
-            const speakText = new SpeechSynthesisUtterance(text);
+            const speakText = new SpeechSynthesisUtterance(text[0]);
+            const speakAnswer1 = new SpeechSynthesisUtterance(text[1]);
+            const speakAnswer2 = new SpeechSynthesisUtterance(text[2]);
+            const speakAnswer3 = new SpeechSynthesisUtterance(text[3]);
+            const speakAnswer4 = new SpeechSynthesisUtterance(text[4]);
             //Speak End
             speakText.onend = () => {
                 console.log('Done Speaking...');
@@ -44,14 +48,40 @@ const LearningTool = () => {
                 console.error('Something went wrong');
             };
             const selectedVoice = getVoice();
-
+            //Speak
             speakText.voice = selectedVoice;
             speakText.rate = 0.825;
             speakText.pitch = 1;
-            //Speak
             synth.speak(speakText);
+
+            speakAnswer1.voice = selectedVoice;
+            speakAnswer1.rate = 0.825;
+            speakAnswer1.pitch = 1;
+            synth.speak(speakAnswer1);
+
+            speakAnswer2.voice = selectedVoice;
+            speakAnswer2.rate = 0.825;
+            speakAnswer2.pitch = 1;
+            synth.speak(speakAnswer2);
+
+            speakAnswer3.voice = selectedVoice;
+            speakAnswer3.rate = 0.825;
+            speakAnswer3.pitch = 1;
+            synth.speak(speakAnswer3);
+
+            speakAnswer4.voice = selectedVoice;
+            speakAnswer4.rate = 0.825;
+            speakAnswer4.pitch = 1;
+            synth.speak(speakAnswer4);
+
+
         }
     };
+
+    const speakAll = (params) => {
+        speak(params);
+
+    }
 
     const goResult = async () => {
         history.push(`/learningtoolresult`);
@@ -111,6 +141,7 @@ const LearningTool = () => {
 
     async function checkAnswer(cardID, value) {
         let c = counter;
+        synth.cancel()
         if (value === 0) {
             //Right Answer
             c = c + 1;
@@ -147,17 +178,17 @@ const LearningTool = () => {
                     <button
                         className='learningTool text-to-speech'
                         onClick={() =>
-                            speak(
-                                cards[cardID].question +
+                            speakAll([
+                                cards[cardID].question,
                                     ' ,answer 1, ' +
-                                    cards[cardID].options[arr[0]] +
+                                    cards[cardID].options[arr[0]],
                                     ' ,answer 2, ' +
-                                    cards[cardID].options[arr[1]] +
+                                    cards[cardID].options[arr[1]],
                                     ' ,answer 3, ' +
-                                    cards[cardID].options[arr[2]] +
+                                    cards[cardID].options[arr[2]],
                                     ' ,answer 4, ' +
                                     cards[cardID].options[arr[3]]
-                            )
+                            ])
                         }
                     >
                         Text To Speech
@@ -169,7 +200,7 @@ const LearningTool = () => {
                     disabled={disable}
                     className={
                         b1
-                            ? arr[0] == 0
+                            ? arr[0] === 0
                                 ? 'learningTool card-aw1-card-green'
                                 : 'learningTool card-aw1-card-red'
                             : 'learningTool card-aw1-card'
