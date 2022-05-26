@@ -162,29 +162,14 @@
         color: #000000;
     }
 
-    &.card-tittle {
-        position: absolute;
-        width: 108px;
-        height: 17px;
-        left: 383px;
-        top: 248px;
-
-        font-family: 'Roboto', sans-serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 19px;
-        text-align: center;
-
-        color: #000000;
-    }
-
     &.card-aw1-card {
         position: absolute;
         width: 363px;
         height: 63px;
         left: 766px;
         top: 238px;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         background: #ffffff;
         border: 1px solid #000000;
@@ -200,6 +185,9 @@
 
         color: #000000;
     }
+    &.card-aw1-card:hover {
+        overflow: visible;
+    }
 
     &.card-aw1-card-red {
         position: absolute;
@@ -207,6 +195,7 @@
         height: 63px;
         left: 766px;
         top: 238px;
+        overflow: hidden;
 
         background: #ff0000;
         border: 1px solid #000000;
@@ -229,6 +218,7 @@
         height: 63px;
         left: 766px;
         top: 238px;
+        overflow: hidden;
 
         background: #7cfc00;
         border: 1px solid #000000;
@@ -251,6 +241,7 @@
         height: 63px;
         left: 766px;
         top: 344px;
+        overflow: hidden;
 
         background: #ffffff;
         border: 1px solid #000000;
@@ -266,6 +257,9 @@
 
         color: #000000;
     }
+    &.card-aw2-card:hover {
+        overflow: visible;
+    }
 
     &.card-aw2-card-red {
         position: absolute;
@@ -273,6 +267,7 @@
         height: 63px;
         left: 766px;
         top: 344px;
+        overflow: hidden;
 
         background: #ff0000;
         border: 1px solid #000000;
@@ -295,6 +290,7 @@
         height: 63px;
         left: 766px;
         top: 344px;
+        overflow: hidden;
 
         background: #7cfc00;
         border: 1px solid #000000;
@@ -317,6 +313,7 @@
         height: 63px;
         left: 766px;
         top: 450px;
+        overflow: hidden;
 
         background: #ffffff;
         border: 1px solid #000000;
@@ -333,12 +330,17 @@
         color: #000000;
     }
 
+    &.card-aw3-card:hover {
+        overflow: visible;
+    }
+
     &.card-aw3-card-red {
         position: absolute;
         width: 363px;
         height: 63px;
         left: 766px;
         top: 450px;
+        overflow: hidden;
 
         background: #ff0000;
         border: 1px solid #000000;
@@ -361,6 +363,7 @@
         height: 63px;
         left: 766px;
         top: 450px;
+        overflow: hidden;
 
         background: #7cfc00;
         border: 1px solid #000000;
@@ -383,6 +386,7 @@
         height: 63px;
         left: 766px;
         top: 556px;
+        overflow: hidden;
 
         background: #ffffff;
         border: 1px solid #000000;
@@ -399,12 +403,17 @@
         color: #000000;
     }
 
+    &.card-aw4-card:hover {
+        overflow: visible;
+    }
+
     &.card-aw4-card-red {
         position: absolute;
         width: 363px;
         height: 63px;
         left: 766px;
         top: 556px;
+        overflow: hidden;
 
         background: #ff0000;
         border: 1px solid #000000;
@@ -427,6 +436,7 @@
         height: 63px;
         left: 766px;
         top: 556px;
+        overflow: hidden;
 
         background: #7cfc00;
         border: 1px solid #000000;
