@@ -40,7 +40,7 @@ const CardOverview = () => {
 
     const doLearning = () => {
         const Id = localStorage.getItem('deckId');
-        if (card.length != 0) {
+        if (card.length) {
             console.log(card.id);
             history.push('/learningtool/deckID=' + Id + '/cardID=0');
         }
@@ -178,7 +178,7 @@ const CardOverview = () => {
 
         async function fetchData3() {
             //check if deck has a card.
-            if (card.length != 0) { setCardEmpty(true); }
+            if (card !== null && card.length !== 0) { setCardEmpty(true); }
         }
         fetchData3();
     }, [card]);
@@ -188,7 +188,7 @@ const CardOverview = () => {
 
     if (users && user) {
         const onlineUsers = users.filter(isOnline);
-        if (onlineUsers.length == 0) {
+        if (onlineUsers.length === 0) {
             listOfOnlineUsers = (
                 <div className='cardOverview online-None'>Currently there is no User online</div>
             );
@@ -205,6 +205,7 @@ const CardOverview = () => {
                         </Button>
                     );
                 }
+                return null;
             });
         }
     }

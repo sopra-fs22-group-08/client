@@ -13,7 +13,7 @@ const LearningTool = () => {
     const location = useLocation();
 
     const [cards, setCards] = useState(null);
-    const [deck, setDeck] = useState(null);
+    //const [deck, setDeck] = useState(null);
     const [b1, setB1] = useState(false);
     const [b2, setB2] = useState(false);
     const [b3, setB3] = useState(false);
@@ -105,8 +105,8 @@ const LearningTool = () => {
             try {
                 const deckId = location.pathname.match(/deckID=(\d+)/);
                 const responseCard = await api.get('/decks/' + deckId[1] + '/cards');
-                const responseDeck = await api.get('/decks/' + deckId[1]);
-                setDeck(responseDeck.data);
+                //const responseDeck = await api.get('/decks/' + deckId[1]);
+                //setDeck(responseDeck.data);
                 setCards(responseCard.data);
                 setCards(responseCard.data);
             } catch (error) {
@@ -121,7 +121,7 @@ const LearningTool = () => {
         }
 
         fetchData();
-    }, []);
+    }, [location.pathname]);
 
     let content;
 
