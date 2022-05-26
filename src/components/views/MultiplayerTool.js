@@ -33,7 +33,11 @@ const MultiplayerTool = () => {
         }
         if (text !== '') {
             //Get Speak text
-            const speakText = new SpeechSynthesisUtterance(text);
+            const speakText = new SpeechSynthesisUtterance(text[0]);
+            const speakAnswer1 = new SpeechSynthesisUtterance(text[1]);
+            const speakAnswer2 = new SpeechSynthesisUtterance(text[2]);
+            const speakAnswer3 = new SpeechSynthesisUtterance(text[3]);
+            const speakAnswer4 = new SpeechSynthesisUtterance(text[4]);
             //Speak End
             speakText.onend = () => {
                 console.log('Done Speaking...');
@@ -43,14 +47,40 @@ const MultiplayerTool = () => {
                 console.error('Something went wrong');
             };
             const selectedVoice = getVoice();
-
+            //Speak
             speakText.voice = selectedVoice;
             speakText.rate = 0.825;
             speakText.pitch = 1;
-            //Speak
             synth.speak(speakText);
+
+            speakAnswer1.voice = selectedVoice;
+            speakAnswer1.rate = 0.825;
+            speakAnswer1.pitch = 1;
+            synth.speak(speakAnswer1);
+
+            speakAnswer2.voice = selectedVoice;
+            speakAnswer2.rate = 0.825;
+            speakAnswer2.pitch = 1;
+            synth.speak(speakAnswer2);
+
+            speakAnswer3.voice = selectedVoice;
+            speakAnswer3.rate = 0.825;
+            speakAnswer3.pitch = 1;
+            synth.speak(speakAnswer3);
+
+            speakAnswer4.voice = selectedVoice;
+            speakAnswer4.rate = 0.825;
+            speakAnswer4.pitch = 1;
+            synth.speak(speakAnswer4);
+
+
         }
     };
+
+    const speakAll = (params) => {
+        speak(params);
+
+    }
 
     const goResult = async () => {
         const duelId = localStorage.getItem('duelId');
@@ -156,11 +186,17 @@ const MultiplayerTool = () => {
                     {cards[cardID].question}
                     <button
                         className='learningTool text-to-speech'
-                        onClick={() => speak(cards[cardID].question +
-                            " ,answer 1, " + cards[cardID].options[arr[0]] +
-                            " ,answer 2, " + cards[cardID].options[arr[1]] +
-                            " ,answer 3, " + cards[cardID].options[arr[2]] +
-                            " ,answer 4, " + cards[cardID].options[arr[3]])}
+                        onClick={() => speakAll([
+                            cards[cardID].question,
+                            ' ,answer 1, ' +
+                            cards[cardID].options[arr[0]],
+                            ' ,answer 2, ' +
+                            cards[cardID].options[arr[1]],
+                            ' ,answer 3, ' +
+                            cards[cardID].options[arr[2]],
+                            ' ,answer 4, ' +
+                            cards[cardID].options[arr[3]]
+                        ])}
                     >
                         Text To Speech
                     </button>
@@ -240,8 +276,8 @@ const MultiplayerTool = () => {
                     {cards[cardID].options[arr[3]]}
                 </Button>
                 <div className='learningTool livescore-container'>
-                    You have{' '}
-                    {parseInt(localStorage.getItem('result')) === null
+                    You have {' '}
+                    {localStorage.getItem('result') === 0
                         ? 0
                         : localStorage.getItem('result')}{' '}
                     out of {Object.keys(cards).length} correct!

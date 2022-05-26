@@ -75,6 +75,7 @@ const Multiplayer = () => {
                             className='loadingScreen-button'
                             onClick={() => {
                                 localStorage.setItem('duelId', duel.id);
+                                localStorage.setItem('result', 0);
                                 history.push('/multiplayerTool/deckID=' + duel.deckId + '/cardID=0');
                             }}>
                             Start
