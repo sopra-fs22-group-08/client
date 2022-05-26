@@ -15,11 +15,15 @@ The project is written in JavaScript, SCSS and HTML. The deployment happens on H
 
 ## High-Level Components
 
-- [`Header`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/ui/Header.js):  contains the Logo and the burger-menu with whom the user can navigate through the app.
+- [`MultiplayerTool`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/views/MultiplayerTool.js):  one of the core components that make the our application stand out from other flashcard applications. It allows the user to test his knowledge in a competetive manner against his other users that are currently online.
 
-- [`Home`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/views/Home.js):  contains the players public and privat cards and the invitations to games.
+- [`LearningTool`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/views/LearningTool.js):  very similar to the MultiplayerTool with the minor difference that you can just go through the cards on your own. The user can learn the cards so that he can feel confident on challenging other players on their decks.
 
-- [`CardOverview`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/views/CardOverview.js):  contains the overview of the Card Deck, the possibility to edit, learn and challenge the deck.
+- [`Home`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/views/Home.js):  displays the private and public decks of the user and any invitations received
+
+- [`Library`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/views/Library.js):  in the library the user sees all public decks created by himself or other users. He can click on decks and go to the CardOverview or simply search for a specific deck by using the search bar.
+
+- [`CardOverview`](https://github.com/sopra-fs22-group-08/client/blob/master/src/components/views/CardOverview.js):  contains the overview of the Card Deck, the possibility to edit the deck and add or delete cards as well as edit their content. It also displays all users that are currently online and therefore can be challenged on that deck. Instead of challenging other players he can just click on the deck and learn on his own.
 
 
 ## Launch & Deployment
