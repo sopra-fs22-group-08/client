@@ -73,8 +73,6 @@ const LearningTool = () => {
             speakAnswer4.rate = 0.825;
             speakAnswer4.pitch = 1;
             synth.speak(speakAnswer4);
-
-
         }
     };
 
@@ -146,8 +144,8 @@ const LearningTool = () => {
             //Right Answer
             c = c + 1;
             setCounter(c);
-            sessionStorage.setItem('result', c);
         }
+        sessionStorage.setItem('result', c);
 
         await new Promise((resolve) => setTimeout(resolve, 1200));
 

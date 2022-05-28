@@ -55,7 +55,6 @@ const MultiplayerToolResult = () => {
 
     let content = (<div> <h5 align='center'>The other player has not finished yet...</h5> </div>);
     if (duel) {
-        // console.log(duel)
         if (duel.playerOneStatus === 'FINISHED' && duel.playerTwoStatus === 'FINISHED') {
             let status;
             if (opponentScore > userScore) {

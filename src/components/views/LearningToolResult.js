@@ -8,22 +8,13 @@ const LearningToolResult = () => {
     const history = useHistory();
     const userId = sessionStorage.getItem('userId');
 
-    let count = sessionStorage.getItem('result');
-    //TODO: Find other way to set it 0
-    //sessionStorage.setItem('result', 0);
-
-    const lengthDeck = sessionStorage.getItem('lengthDeck');
-
     const goHomeButton = (
         <Button
             onClick={() => {
-                /**
-                 * NOTE: the duelId cannot be cleared out, since it causes 400 errors,
-                 * as there is an async fetch to it in the background
-                 */
                 sessionStorage.removeItem('result');
                 sessionStorage.removeItem('lengthDeck');
                 sessionStorage.removeItem('deckId');
+                sessionStorage.removeItem('result');
                 history.push('/home/' + userId);
             }}
             className='learningTool back-button'
@@ -38,7 +29,7 @@ const LearningToolResult = () => {
             <div className='learningTool resPage-Title'>Result</div>
 
             <div className='learningTool resPage-Text'>
-                You had {count} out of {lengthDeck} correct
+                You had {sessionStorage.getItem('result')} out of {sessionStorage.getItem('lengthDeck')} correct
             </div>
             {goHomeButton}
         </BaseContainer>

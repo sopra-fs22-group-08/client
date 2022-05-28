@@ -37,15 +37,12 @@ const Home = () => {
         await api.delete('/invitations/' + invite.id);
     };
 
-    /*
-     * Every interval time: check if the logged in player has any invites and fetch them
-     * */
     const checkInvites = async () => {
         try {
-            //fetch invitations for the logged in-user from backend
             const id = sessionStorage.getItem('userId');
             const responseBody = await api.get('/users/' + id + '/invitations');
             setInvitations(responseBody.data);
+
         } catch (error) {
             alert(error);
             console.log(error);
@@ -60,6 +57,7 @@ const Home = () => {
                 const responseDecks = await api.get('/users/' + userId + '/decks');
                 setUser(responseUser.data);
                 setDecks(responseDecks.data);
+
             } catch (error) {
                 console.error(
                     `Something went wrong while fetching the users: \n${handleError(error)}`
@@ -71,9 +69,6 @@ const Home = () => {
             }
         }
 
-        /*
-         * set Interval to which we fetch the invitations:
-         **/
         const interval = setInterval(() => {
             checkInvites();
         }, 1000);
@@ -81,8 +76,10 @@ const Home = () => {
         fetchData();
         return () => clearInterval(interval);
     }, []);
+
     let listItems = <div className='Home deck-None'>Please create a new Deck</div>;
     let listInvites = <div className='Home deck-None'>You have no invitations :(</div>;
+
     if (user) {
         if (decks) {
             listItems = decks.map((d) => (
@@ -108,7 +105,6 @@ const Home = () => {
                         {i.senderUsername} wants to challenge you on {i.deckname}
                     </div>
                     <Button
-                        key={i.id}
                         className='Home invitations-Accept'
                         onClick={() => {
                             acceptInvite(i);
@@ -117,7 +113,6 @@ const Home = () => {
                         Accept
                     </Button>
                     <Button
-                        key={i.id}
                         className='Home invitations-Decline'
                         onClick={() => {
                             declineInvite(i);
