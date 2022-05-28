@@ -100,11 +100,30 @@
 
         color: #000000;
     }
+
+    &.delete-Button {
+        position: absolute;
+        width: 200px;
+        height: 55px;
+        left: 1050px;
+        top: 110px;
+        background: #4757FF;
+        border-radius: 10px;
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 28px;
+        text-align: center;
+        padding-top: 5px;
+        color: #FFFFFF;
+    }
+
     &.edit-Button {
         position: absolute;
         width: 200px;
         height: 55px;
-        left: 900px;
+        left: 800px;
         top: 110px;
 
         background: #4757FF;
@@ -117,9 +136,7 @@
         line-height: 28px;
         text-align: center;
         padding-top: 5px;
-
         color: #FFFFFF;
-
     }
 
     &.edit-Button2 {

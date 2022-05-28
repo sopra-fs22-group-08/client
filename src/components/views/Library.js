@@ -155,7 +155,7 @@ const Library = () => {
                     getSearchedForDecks(searchString);
                 }}
             >
-                ⌕
+                🔍
             </Button>
         </BaseContainer>
     );

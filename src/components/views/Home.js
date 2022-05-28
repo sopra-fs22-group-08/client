@@ -80,10 +80,10 @@ const Home = () => {
         fetchData();
         return () => clearInterval(interval);
     }, []);
-    let listItems = <div className='Home deck-None'>Please create a new Deck</div>;
+    let listItems = <div className='Home deck-None'>Please create a new Deck in the Creator</div>;
     let listInvites = <div className='Home deck-None'>You have no invitations :(</div>;
     if (user) {
-        if (decks) {
+        if (decks && decks.length !== 0) {
             listItems = decks.map((d) => (
                 <Button
                     key={d.id}

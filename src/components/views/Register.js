@@ -106,6 +106,7 @@ const Register = () => {
     const [username, setUsername] = useState(null);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
+    const [isRegistered, setIsRegistered] = useState(false);
 
     const checkEmail = (email) => {
         const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -121,6 +122,8 @@ const Register = () => {
                 alert("please enter a valid email");
                 return;
             }
+
+            setIsRegistered(true);
 
             const requestBody = JSON.stringify({username, firstName, lastName, email, password});
             const response = await api.post('/users', requestBody);
@@ -139,6 +142,7 @@ const Register = () => {
             // Register successfully worked --> navigate to the route /game in the GameRouter
             history.push(`/home/` + user.id);
         } catch (error) {
+            setIsRegistered(false);
             alert(`Something went wrong during the Registration: \n${handleError(error)}`);
         }
     };
@@ -178,10 +182,18 @@ const Register = () => {
 
             <Button
                 className='register createButton'
-                disabled={!firstName || !lastName || !email || !username || !password}
+                disabled={!firstName || !lastName || !email || !username || !password || isRegistered}
                 onClick={() => doRegister()}
             >
                 Create
+            </Button>
+            <Button
+                className='register loginButton'
+                onClick={() => [
+                    history.push('/login')
+                ]}
+            >
+                or Login
             </Button>
         </BaseContainer>
     );

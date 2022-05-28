@@ -1,6 +1,6 @@
 import 'styles/ui/Header.scss';
 import BaseContainer from './BaseContainer';
-import { useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { api, handleError } from '../../helpers/api';
 import { useEffect, useState } from 'react';
 import { Button } from './Button';
@@ -28,7 +28,7 @@ const Header = () => {
 
     const toProfile = (userId) => {
         let url = '/profile/';
-        history.push(url.concat(userId));
+        history.push({ pathname: url.concat(userId), state: { detail: user } });
     };
 
     const goHome = async () => {
