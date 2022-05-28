@@ -187,6 +187,14 @@ const Register = () => {
             >
                 Create
             </Button>
+            <Button
+                className='register loginButton'
+                onClick={() => [
+                    history.push('/login')
+                ]}
+            >
+                or Login
+            </Button>
         </BaseContainer>
     );
 };
