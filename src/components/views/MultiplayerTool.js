@@ -183,6 +183,7 @@ const MultiplayerTool = () => {
                     {cardID}/{Object.keys(cards).length}
                 </div>
                 <div className='learningTool card-question'>
+                    {cards[cardID].question}
                     <button
                         className='learningTool text-to-speech'
                         onClick={() => speakAll([
@@ -199,7 +200,6 @@ const MultiplayerTool = () => {
                     >
                         Text To Speech
                     </button>
-                    {"\n"+ cards[cardID].question}
                 </div>
 
                 <div className='learningTool learn-tittle'>Which one is correct?</div>
