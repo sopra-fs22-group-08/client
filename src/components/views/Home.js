@@ -1,12 +1,13 @@
 import 'styles/views/Home.scss';
 // react imports
 import { useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 // local imports
 import { api, handleError } from 'helpers/api';
 import BaseContainer from 'components/ui/BaseContainer';
 import { Button } from 'components/ui/Button';
 import Header from 'components/ui/Header';
+import Invitation from "../../models/Invitation";
 
 const Home = () => {
     const history = useHistory();
@@ -22,7 +23,7 @@ const Home = () => {
     const acceptInvite = async (invite) => {
         await api.delete('/invitations/' + invite.id);
         await api.put('/duels/' + invite.duelId + '/players/' + user.id + '/status/ACCEPTED');
-        localStorage.setItem('duelId', invite.duelId);
+        sessionStorage.setItem('duelId', invite.duelId);
 
         const url = '/multiplayer/';
         history.push({
@@ -42,7 +43,7 @@ const Home = () => {
     const checkInvites = async () => {
         try {
             //fetch invitations for the logged in-user from backend
-            const id = localStorage.getItem('userId');
+            const id = sessionStorage.getItem('userId');
             const responseBody = await api.get('/users/' + id + '/invitations');
             setInvitations(responseBody.data);
         } catch (error) {
@@ -54,7 +55,7 @@ const Home = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const userId = localStorage.getItem('userId');
+                const userId = sessionStorage.getItem('userId');
                 const responseUser = await api.get('/users/' + userId);
                 const responseDecks = await api.get('/users/' + userId + '/decks');
                 setUser(responseUser.data);
@@ -90,7 +91,7 @@ const Home = () => {
                     className='Home listElement-Box'
                     onClick={() => {
                         cardOverview(d.id);
-                        localStorage.setItem('deckId', d.id);
+                        sessionStorage.setItem('deckId', d.id);
                     }}
                 >
                     <div className='Home listElement-Number' />
@@ -100,7 +101,7 @@ const Home = () => {
             ));
         }
 
-        if (invitations.length != 0) {
+        if (invitations.length !== 0) {
             listInvites = invitations.map((i) => (
                 <div className='Home invitations-Field'>
                     <div className='Home invitations-text'>

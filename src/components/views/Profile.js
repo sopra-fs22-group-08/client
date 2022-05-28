@@ -110,7 +110,7 @@ const Profile = () => {
     const status = useState('ONLINE');
 
     const doUpdate = async () => {
-        const id = localStorage.getItem('userId');
+        const id = sessionStorage.getItem('userId');
 
         const requestBody = JSON.stringify({firstName, lastName, username, status});
         await api.put('/users/' + id, requestBody);

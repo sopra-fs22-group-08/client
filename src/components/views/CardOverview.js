@@ -39,7 +39,7 @@ const CardOverview = () => {
 
 
     const doLearning = () => {
-        const Id = localStorage.getItem('deckId');
+        const Id = sessionStorage.getItem('deckId');
         if (card.length) {
             console.log(card.id);
             history.push('/learningtool/deckID=' + Id + '/cardID=0');
@@ -60,7 +60,7 @@ const CardOverview = () => {
     const startMP = async (userToInviteId, userN) => {
         try {
             //first create a new duel with the two players
-            const playerOneId = localStorage.getItem('userId');
+            const playerOneId = sessionStorage.getItem('userId');
             const playerTwoId = userToInviteId;
             const deckId = deck.id;
             const requestBodyDuel = JSON.stringify({ playerOneId, deckId, playerTwoId });
@@ -68,7 +68,7 @@ const CardOverview = () => {
             const responseDuel = await api.post('/duels', requestBodyDuel);
 
             const duel = new Duel(responseDuel.data);
-            localStorage.setItem('duelId', duel.id);
+            sessionStorage.setItem('duelId', duel.id);
 
             //then send an invitation to the player to invite
             const senderId = playerOneId;
@@ -120,9 +120,9 @@ const CardOverview = () => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
             try {
-                const userId = localStorage.getItem('userId');
-                const deckId = localStorage.getItem('deckId');
-                const editen = localStorage.getItem('edit');
+                const userId = sessionStorage.getItem('userId');
+                const deckId = sessionStorage.getItem('deckId');
+                const editen = sessionStorage.getItem('edit');
                 if (editen === true) {
                     setEditButton(editen);
                 }
@@ -136,7 +136,7 @@ const CardOverview = () => {
                 const ownDecks = responseDecks.data;
 
                 // Store deckId into the local storage.
-                localStorage.setItem('deckId', deckId);
+                sessionStorage.setItem('deckId', deckId);
 
                 setDeck(responseDeck.data);
                 setUsers(responseUsers.data);
@@ -216,7 +216,7 @@ const CardOverview = () => {
                     key={c.id}
                     className='cardOverview listElement-Box'
                     onClick={() => {
-                        localStorage.setItem('cardId', c.id);
+                        sessionStorage.setItem('cardId', c.id);
                         history.push('/CardEditPage');
                     }}
                 >
@@ -280,7 +280,7 @@ const CardOverview = () => {
                 className='cardOverview edit-Button'
                 onClick={() => [
                     doUpdate(),
-                    localStorage.setItem('edit', false),
+                    sessionStorage.setItem('edit', false),
                     setEditButton(false),
                 ]}
             >

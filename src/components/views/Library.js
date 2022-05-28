@@ -41,14 +41,14 @@ const Library = () => {
     const [foundDecks, setFoundDecks] = useState(null);
 
     const cardOverview = () => {
-        localStorage.setItem('edit', false);
+        sessionStorage.setItem('edit', false);
         history.push('/cardOverview');
     };
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const userId = localStorage.getItem('userId');
+                const userId = sessionStorage.getItem('userId');
                 const responseUser = await api.get('/users/' + userId);
                 // NOTE: get only public decks, so they don't have to get filtered further down
                 const responseDecks = await api.get('/decks/visibility/PUBLIC');
@@ -80,7 +80,7 @@ const Library = () => {
                     className='Home listElement-Box'
                     onClick={() => {
                         cardOverview();
-                        localStorage.setItem('deckId', d.id);
+                        sessionStorage.setItem('deckId', d.id);
                     }}
                 >
                     <div className='Home listElement-Number' />
@@ -102,7 +102,7 @@ const Library = () => {
                     className='Home listElement-Box'
                     onClick={() => {
                         cardOverview();
-                        localStorage.setItem('deckId', d.id);
+                        sessionStorage.setItem('deckId', d.id);
                     }}
                 >
                     <div className='Home listElement-Number' />

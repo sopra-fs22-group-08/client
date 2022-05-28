@@ -107,14 +107,14 @@ const CardCreator = () => {
 
 
     const goToCardOverview = async () => {
-        const deckId = localStorage.getItem('deckId');
+        const deckId = sessionStorage.getItem('deckId');
         history.push(`/cardOverview/deckID=` + deckId);
     };
 
 
     const doCardCreator = async () => {
         try {
-            const deckId = localStorage.getItem('deckId');
+            const deckId = sessionStorage.getItem('deckId');
             const requestBodyCard = JSON.stringify({question, answer, options});
             const responseCard = await api.post('/decks/' + deckId + '/cards', requestBodyCard);
 
@@ -122,7 +122,7 @@ const CardCreator = () => {
             const card = new Card(responseCard.data);
 
             // Store cardID into the local storage.
-            localStorage.setItem('cardId', card.id);
+            sessionStorage.setItem('cardId', card.id);
 
             // DeckCreator successfully worked --> navigate to the route /home in the GameRouter
             history.push(`/home/` + 1);

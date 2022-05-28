@@ -6,13 +6,13 @@ import { Button } from 'components/ui/Button';
 
 const LearningToolResult = () => {
     const history = useHistory();
-    const userId = localStorage.getItem('userId');
+    const userId = sessionStorage.getItem('userId');
 
-    let count = localStorage.getItem('result');
+    let count = sessionStorage.getItem('result');
     //TODO: Find other way to set it 0
-    //localStorage.setItem('result', 0);
+    //sessionStorage.setItem('result', 0);
 
-    const lengthDeck = localStorage.getItem('lengthDeck');
+    const lengthDeck = sessionStorage.getItem('lengthDeck');
 
     const goHomeButton = (
         <Button
@@ -21,9 +21,9 @@ const LearningToolResult = () => {
                  * NOTE: the duelId cannot be cleared out, since it causes 400 errors,
                  * as there is an async fetch to it in the background
                  */
-                localStorage.removeItem('result');
-                localStorage.removeItem('lengthDeck');
-                localStorage.removeItem('deckId');
+                sessionStorage.removeItem('result');
+                sessionStorage.removeItem('lengthDeck');
+                sessionStorage.removeItem('deckId');
                 history.push('/home/' + userId);
             }}
             className='learningTool back-button'

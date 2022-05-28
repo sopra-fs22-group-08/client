@@ -22,7 +22,7 @@ const Header = () => {
             await api.put('/logout', requestBody);
         };
         setUserOffline();
-        localStorage.clear();
+        sessionStorage.clear();
         history.push('/login');
     };
 
@@ -32,7 +32,7 @@ const Header = () => {
     };
 
     const goHome = async () => {
-        const id = localStorage.getItem('userId');
+        const id = sessionStorage.getItem('userId');
         history.push(`/home/` + id);
     };
 
@@ -48,7 +48,7 @@ const Header = () => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
             try {
-                const userId = localStorage.getItem('userId');
+                const userId = sessionStorage.getItem('userId');
                 const responseUser = await api.get('/users/' + userId);
                 setUser(responseUser.data);
             } catch (error) {
@@ -62,7 +62,7 @@ const Header = () => {
         fetchData();
     }, []);
 
-    let userId = parseInt(localStorage.getItem('userId'));
+    let userId = parseInt(sessionStorage.getItem('userId'));
     let content;
 
     let burgerMenuContent = (

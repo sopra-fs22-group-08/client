@@ -58,15 +58,15 @@ const Login = () => {
             const user = new User(response.data);
 
             // Store the token into the local storage.
-            localStorage.setItem('token', user.token);
+            sessionStorage.setItem('token', user.token);
 
             // Store userID into the local storage.
-            localStorage.setItem('userId', user.id);
+            sessionStorage.setItem('userId', user.id);
 
             // BUG: set result to 0
-            if (localStorage.getItem('result') === null) {
+            if (sessionStorage.getItem('result') === null) {
                 // console.log("inside null check")
-                localStorage.setItem('result', 0);
+                sessionStorage.setItem('result', 0);
             }
 
             // Login successfully worked --> navigate to the route /game in the GameRouter
