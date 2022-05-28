@@ -174,7 +174,6 @@ const LearningTool = () => {
                     {cardID}/{Object.keys(cards).length}
                 </div>
                 <div className='learningTool card-question'>
-                    {cards[cardID].question}
                     <button
                         className='learningTool text-to-speech'
                         onClick={() =>
@@ -193,6 +192,7 @@ const LearningTool = () => {
                     >
                         Text To Speech
                     </button>
+                    {'\n' + cards[cardID].question}
                 </div>
                 <div className='learningTool learn-tittle'>Which one is correct?</div>
 
