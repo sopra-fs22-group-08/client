@@ -113,7 +113,7 @@ const Home = () => {
                             acceptInvite(i);
                         }}
                     >
-                        Accept
+                        ✓
                     </Button>
                     <Button
                         key={i.id}
@@ -122,7 +122,7 @@ const Home = () => {
                             declineInvite(i);
                         }}
                     >
-                        X
+                        ✘
                     </Button>
                 </div>
             ));
@@ -133,7 +133,7 @@ const Home = () => {
 
     return (
         <BaseContainer>
-            <div className='Home listTitle'>Continue Learning</div>
+            <div className='Home listTitle'>Your Card Decks</div>
             <div className='Home list'>{listItems}</div>
             <div className='Home invitations-title'>Invitations</div>
             <div className='Home invitations-list'>{listInvites}</div>

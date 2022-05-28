@@ -193,7 +193,7 @@ const Profile = () => {
                 <FormFieldEm value={user.email} />
 
                 <Button
-                    className='register createButton'
+                    className='profile createButton2'
                     // open edit window
                     onClick={() => setEditButton(true)}
                 >
