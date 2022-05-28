@@ -13,16 +13,16 @@
         position: absolute;
         width: 484.32px;
         height: 32px;
-        left: 261.68px;
-        top: 436px;
+        left: 870px;
+        top: 177px;
     }
 
     &.invitations-title {
         position: absolute;
         width: 289.52px;
         height: 29px;
-        left: 235px;
-        top: 388px;
+        left: 850px;
+        top: 130px;
 
         font-family: 'Roboto', sans-serif;
         font-style: normal;
@@ -35,8 +35,8 @@
     }
     &.invitations-Field {
         position: relative;
-        width: 550px;
         height: 32px;
+        width: 430px;
         margin-right: 10px; margin-bottom: 10px;
 
         background: #FFFFFF;
@@ -46,31 +46,38 @@
     }
     &.invitations-text {
         position: relative;
-        left: 5px;
+        width: 350px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        height: 23px;
+        left: 10px;
         top: 5px;
 
         font-family: 'Racing Sans One', sans-serif;
         font-style: normal;
-        font-weight: 400;
+        font-weight: 200;
         font-size: 16px;
         line-height: 20px;
+
 
         color: #000000;
     }
     &.invitations-Accept {
         position: relative;
-        left: 450px;
-        top: -17px;
-        width: 54px;
-        height: 23px;
+        left: 370px;
+        top: -21px;
+        width: 25px;
+        height: 25px;
 
         background: #228C22;
         border-radius: 20px;
 
         font-family: 'Roboto', sans-serif;
         font-style: normal;
-        font-weight: 400;
-        font-size: 12px;
+        font-weight: 900;
+        font-size: 17px;
         line-height: 14px;
         text-align: center;
 
@@ -79,10 +86,10 @@
     }
     &.invitations-Decline {
         position: relative;
-        width: 27.42px;
-        height: 23px;
-        left: 460px;
-        top: -17px;
+        width: 25px;
+        height: 25px;
+        left: 375px;
+        top: -21px;
 
 
         background: #EA2D21;
@@ -90,8 +97,8 @@
 
         font-family: 'Roboto', sans-serif;
         font-style: normal;
-        font-weight: 400;
-        font-size: 12px;
+        font-weight: 900;
+        font-size: 17px;
         line-height: 14px;
         text-align: center;
 
@@ -149,7 +156,7 @@
 
     &.list {
         position: absolute;
-        width: 60%;
+        width: 40%;
         left: 255px;
         top: 177px;
     }
@@ -179,15 +186,17 @@
         height: 100px;
         width:100%;
 
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+
         font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 900;
         font-size: 16px;
-        line-height: 19px;
+        line-height: 20px;
         text-align: center;
-        overflow: hidden;
         word-break: break-word;
-        hyphens: auto;
 
         color: #000000;
     }

@@ -113,7 +113,7 @@ const Home = () => {
                             acceptInvite(i);
                         }}
                     >
-                        Accept
+                        ✓
                     </Button>
                     <Button
                         key={i.id}
@@ -122,7 +122,7 @@ const Home = () => {
                             declineInvite(i);
                         }}
                     >
-                        X
+                        ✘
                     </Button>
                 </div>
             ));
