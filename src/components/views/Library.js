@@ -119,13 +119,6 @@ const Library = () => {
         }
     }
 
-    // NOTE: Could actually be solved without a GET method, along the lines of
-    /*
-        publicDecks.map((deck) => {
-            console.log(deck.deckname)
-            if (deck.deckname.match(inputSTring)); then add to 'foundDecks'
-        })
-    */
 
     /**
      * @brief fetches decks with a searchString
@@ -145,7 +138,6 @@ const Library = () => {
         }
     };
 
-    // TODO: find better postioning and do better styling
     /**
      * @brief element including search elements
      */
@@ -163,12 +155,11 @@ const Library = () => {
                     getSearchedForDecks(searchString);
                 }}
             >
-                Search
+                ⌕
             </Button>
         </BaseContainer>
     );
 
-    // TODO: find better styling and better positioning
     /**
      * @brief this reloads the page, resulting in getting back to all
      * public decks
@@ -181,7 +172,7 @@ const Library = () => {
                     window.location.reload(true);
                 }}
             >
-                Reset Search
+                ✘
             </Button>
         </BaseContainer>
     );
