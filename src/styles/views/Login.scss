@@ -138,11 +138,30 @@
 
   }
 
+  &.registerButton {
+    position: absolute;
+    width: 146px;
+    height: 63px;
+    left: 770px;
+    top: 642px;
+
+    background: #FFCA00;
+    border-radius: 20px;
+
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    color: #000000;
+  }
+
   &.loginButton {
     position: absolute;
     width: 146px;
     height: 63px;
-    left: 683px;
+    left: 600px;
     top: 642px;
 
     background: #FFCA00;
@@ -156,7 +175,6 @@
     text-align: center;
 
     color: #000000;
-
   }
 
 }

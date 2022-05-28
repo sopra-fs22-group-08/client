@@ -98,6 +98,14 @@ const Login = () => {
             >
                 Login
             </Button>
+            <Button
+                className='login registerButton'
+                onClick={() => [
+                    history.push('/register')
+                ]}
+            >
+                or Register
+            </Button>
         </BaseContainer>
     );
 };
