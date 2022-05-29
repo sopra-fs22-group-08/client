@@ -18,7 +18,7 @@ const Multiplayer = () => {
 
     const checkDuelStatus = async () => {
         try {
-            const duelId = localStorage.getItem('duelId');
+            const duelId = sessionStorage.getItem('duelId');
             const responseDuel = await api.get('/duels/' + duelId);
             const d = responseDuel.data;
             setDuel(d);
@@ -61,7 +61,7 @@ const Multiplayer = () => {
 
     document.body.style = 'background: #FFCA00;';
 
-    const userId = localStorage.getItem('userId');
+    const userId = sessionStorage.getItem('userId');
 
     return (
         <BaseContainer>
@@ -72,8 +72,8 @@ const Multiplayer = () => {
                         <Button
                             className='loadingScreen-button'
                             onClick={() => {
-                                localStorage.setItem('duelId', duel.id);
-                                localStorage.setItem('result', 0);
+                                sessionStorage.setItem('duelId', duel.id);
+                                sessionStorage.setItem('result', 0);
                                 history.push(
                                     '/multiplayerTool/deckID=' + duel.deckId + '/cardID=0'
                                 );
@@ -99,7 +99,7 @@ const Multiplayer = () => {
                                                 userId +
                                                 '/status/CHICKEN'
                                         );
-                                        localStorage.removeItem('duelId');
+                                        sessionStorage.removeItem('duelId');
                                         history.push(`/home/` + userId);
                                     } catch (error) {
                                         console.log(error);
@@ -121,7 +121,7 @@ const Multiplayer = () => {
                             onClick={async () => {
                                 try {
                                     await api.delete('/duels/' + duel.id);
-                                    localStorage.removeItem('duelId');
+                                    sessionStorage.removeItem('duelId');
                                     history.push(`/home/` + userId);
                                 } catch (error) {
                                     console.log(error);
@@ -142,7 +142,7 @@ const Multiplayer = () => {
                             onClick={async () => {
                                 try {
                                     await api.delete('/duels/' + duel.id);
-                                    localStorage.removeItem('duelId');
+                                    sessionStorage.removeItem('duelId');
                                     history.push(`/home/` + userId);
                                 } catch (error) {
                                     console.log(error);
@@ -180,7 +180,7 @@ const Multiplayer = () => {
                                 } catch (error) {
                                     console.log(error);
                                 }
-                                localStorage.removeItem('duelId');
+                                sessionStorage.removeItem('duelId');
                                 history.push(`/home/` + userId);
                             }}
                         >

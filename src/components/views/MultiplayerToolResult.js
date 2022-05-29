@@ -8,9 +8,9 @@ import { Button } from 'components/ui/Button';
 const MultiplayerToolResult = () => {
     const history = useHistory();
 
-    let userScore = parseInt(localStorage.getItem('result'));
-    const lengthDeck = parseInt(localStorage.getItem('lengthDeck'));
-    const userId = parseInt(localStorage.getItem('userId'));
+    let userScore = parseInt(sessionStorage.getItem('result'));
+    const lengthDeck = parseInt(sessionStorage.getItem('lengthDeck'));
+    const userId = parseInt(sessionStorage.getItem('userId'));
 
     const [duel, setDuel] = useState(null);
     const [opponent, setOpponent] = useState(null);
@@ -29,7 +29,7 @@ const MultiplayerToolResult = () => {
 
     async function checkResults() {
         try {
-            const duelId = localStorage.getItem('duelId');
+            const duelId = sessionStorage.getItem('duelId');
             const responseDuel = await api.get('/duels/' + duelId);
             await new Promise((resolve) => setTimeout(resolve, 1000));
             setDuel(responseDuel.data);
@@ -55,7 +55,6 @@ const MultiplayerToolResult = () => {
 
     let content = (<div> <h5 align='center'>The other player has not finished yet...</h5> </div>);
     if (duel) {
-        // console.log(duel)
         if (duel.playerOneStatus === 'FINISHED' && duel.playerTwoStatus === 'FINISHED') {
             let status;
             if (opponentScore > userScore) {
@@ -91,9 +90,9 @@ const MultiplayerToolResult = () => {
                  * NOTE: the duelId cannot be cleared out, since it causes 400 errors,
                  * as there is an async fetch to it in the background
                  */
-                localStorage.removeItem('result');
-                localStorage.removeItem('lengthDeck');
-                localStorage.removeItem('deckId');
+                sessionStorage.removeItem('result');
+                sessionStorage.removeItem('lengthDeck');
+                sessionStorage.removeItem('deckId');
                 history.push('/home/' + userId);
             }}
             className='learningTool back-button'
@@ -107,7 +106,7 @@ const MultiplayerToolResult = () => {
         <BaseContainer>
             {/* <Header /> */}
             {/* NOTE: we need to remove the header, as with the 'go back' button, we can clear the
-            localstorage from unnecessary elements, causing issues */}
+            sessionStorage from unnecessary elements, causing issues */}
             <div className='learningTool resPage-Title'>Result</div>
             <div className='learningTool resPage-Text'>
                 You had {userScore} out of {lengthDeck} correct

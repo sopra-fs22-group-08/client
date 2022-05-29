@@ -111,7 +111,7 @@ const Profile = () => {
     const doUpdate = async () => {
         try {
             // checkNamesElseSetThem();
-            const id = localStorage.getItem('userId');
+            const id = sessionStorage.getItem('userId');
             const requestBody = JSON.stringify({ firstName, lastName, username, status });
             await api.put('/users/' + id, requestBody);
             window.location.reload(true);

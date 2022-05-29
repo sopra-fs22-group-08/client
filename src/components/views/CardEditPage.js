@@ -106,13 +106,13 @@ const CardEditPage = () => {
     const [card, setCard] = useState(null);
 
     const doUpdate = async () => {
-        const id = localStorage.getItem('cardId');
+        const id = sessionStorage.getItem('cardId');
 
         const requestBody = JSON.stringify({question, answer, options});
         await api.put('/cards/' + id, requestBody);
     };
     const deleteCard = async () => {
-        const id = localStorage.getItem('cardId');
+        const id = sessionStorage.getItem('cardId');
         await api.delete('/cards/' + id);
     };
 
@@ -120,7 +120,7 @@ const CardEditPage = () => {
 
         async function fetchData() {
             try {
-                const deckId =  localStorage.getItem('deckId')
+                const deckId =  sessionStorage.getItem('deckId')
                 const response = await api.get('/decks/' + deckId + '/cards');
 
                 setCard(response.data);
@@ -142,7 +142,7 @@ const CardEditPage = () => {
 
     useEffect(() => {
         async function fetchData2() {
-            const cardId = localStorage.getItem('cardId');
+            const cardId = sessionStorage.getItem('cardId');
             var count = 0;
             for (const c of card) {
                 if (c.id === parseInt(cardId)) {
@@ -163,8 +163,8 @@ const CardEditPage = () => {
 
 
     const goToCardOverviewDeckEdit = async () => {
-        const deckId = localStorage.getItem('deckId');
-        localStorage.setItem('edit', true);
+        const deckId = sessionStorage.getItem('deckId');
+        sessionStorage.setItem('edit', true);
 
         history.push(`/cardOverview/deckID=` + deckId);
 

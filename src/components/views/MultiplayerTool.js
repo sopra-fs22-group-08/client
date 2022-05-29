@@ -22,8 +22,8 @@ const MultiplayerTool = () => {
     const [counter, setCounter] = useState(0);
     const [disable, setDisable] = useState(false);
 
-    const duelId = localStorage.getItem('duelId');
-    const userId = localStorage.getItem('userId');
+    const duelId = sessionStorage.getItem('duelId');
+    const userId = sessionStorage.getItem('userId');
     const [duel, setDuel] = useState(null);
 
     let voices = [];
@@ -85,7 +85,7 @@ const MultiplayerTool = () => {
     };
 
     const goResult = async () => {
-        const result = localStorage.getItem('result');
+        const result = sessionStorage.getItem('result');
         await api.put('/duels/' + duelId + '/players/' + user.id + '/score/' + result);
         await api.put('/duels/' + duelId + '/players/' + user.id + '/status/FINISHED');
         history.push(`/multiplayerToolResult`);
@@ -154,12 +154,12 @@ const MultiplayerTool = () => {
             //Right Answer
             c = c + 1;
             setCounter(c);
-            localStorage.setItem('result', c);
+            sessionStorage.setItem('result', c);
         }
 
         await new Promise((resolve) => setTimeout(resolve, 1200));
 
-        localStorage.setItem('lengthDeck', Object.keys(cards).length);
+        sessionStorage.setItem('lengthDeck', Object.keys(cards).length);
 
         checkNextCard(cardID, value);
     }
@@ -177,7 +177,7 @@ const MultiplayerTool = () => {
     const chickenOut = async () => {
         try {
             await api.put('/duels/' + duel.id + '/players/' + userId + '/status/CHICKEN');
-            localStorage.removeItem('duelId');
+            sessionStorage.removeItem('duelId');
             history.push(`/home/` + userId);
         } catch (error) {
             console.log(error);
@@ -284,7 +284,7 @@ const MultiplayerTool = () => {
                 </Button>
                 <div className='learningTool livescore-container'>
                     You have{' '}
-                    {localStorage.getItem('result') === 0 ? 0 : localStorage.getItem('result')} out
+                    {sessionStorage.getItem('result') === 0 ? 0 : sessionStorage.getItem('result')} out
                     of {Object.keys(cards).length} correct!
                 </div>
                 <Button className='learningTool giveup-button' onClick={() => [chickenOut()]}>
