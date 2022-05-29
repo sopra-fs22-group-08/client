@@ -13,6 +13,8 @@ the user.
 We thought of making the process more fun and competitive by adding a 'player vs player'
 mode, called 'Duel', apart from the classic 'solo' learning experience.
 
+[Click here to visit our website!](https://sopra-fs22-group08-client.herokuapp.com/)
+
 ## Technologies
 
 - The project has been written in REACT (HTML, SCSS, javascript). 
