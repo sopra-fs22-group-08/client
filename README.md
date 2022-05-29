@@ -15,9 +15,9 @@ mode, called 'Duel', apart from the classic 'solo' learning experience.
 
 ## Technologies
 
-The project has been written in REACT (HTML, SCSS, javascript). The deployment
-happens on Heroku. A Text-To-Speech API (Web Speech API) and a Email Sending API
-(SendGrid) have been used.
+- The project has been written in REACT (HTML, SCSS, javascript). 
+- The deployment happens on Heroku. 
+- A Text-To-Speech API (Web Speech API) and a Email Sending API (SendGrid) have been used.
 
 ## High-Level Components
 
@@ -79,7 +79,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ## Illustrations
 
 - On the 'landingpage' is a register-button to create a user.
-<img width="720" alt="Screenshot 2022-05-21 at 13 30 28" src="https://user-images.githubusercontent.com/91237594/169659835-a56f6806-1b40-4807-a00e-5fa84d6905ce.png">
+<img width="720" alt="Screenshot 2022-05-21 at 13 30 28" src="https://user-images.githubusercontent.com/45210978/170867778-ae8e2577-bb18-4a7b-bb12-7b3f68f722f5.jpg">
 
 - Decks are generated with the Creator.
 <img width="720" alt="Screenshot 2022-05-29 at 09 58 37" src="https://user-images.githubusercontent.com/91237594/170858790-511af7d0-8dd0-458e-9dac-82d021f4e2d2.png">
@@ -93,7 +93,7 @@ or challenge other users.
 <img width="720" alt="Screenshot 2022-05-29 at 09 57 53" src="https://user-images.githubusercontent.com/91237594/170858796-5abffa6d-dfac-43c2-a945-bd9626044c5c.png">
 
 - The cards in the game consists of one question and four possible answers.
-<img width="720" alt="Screenshot 2022-05-21 at 13 39 05" src="https://user-images.githubusercontent.com/91237594/169659890-4001d986-6363-467e-9701-8dad58ff4436.png">
+<img width="720" alt="Screenshot 2022-05-21 at 13 39 05" src="https://user-images.githubusercontent.com/45210978/170867782-9c2d8b6c-a454-4030-94b8-a4a0ec472a47.jpg">
 
 ## Roadmap
 
