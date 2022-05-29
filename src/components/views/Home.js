@@ -76,12 +76,10 @@ const Home = () => {
         fetchData();
         return () => clearInterval(interval);
     }, []);
-
-    let listItems = <div className='Home deck-None'>Please create a new Deck</div>;
+    let listItems = <div className='Home deck-None'>Please create a new Deck in the Creator</div>;
     let listInvites = <div className='Home deck-None'>You have no invitations :(</div>;
-
     if (user) {
-        if (decks) {
+        if (decks && decks.length !== 0) {
             listItems = decks.map((d) => (
                 <Button
                     key={d.id}
@@ -110,15 +108,16 @@ const Home = () => {
                             acceptInvite(i);
                         }}
                     >
-                        Accept
+                        ✓
                     </Button>
                     <Button
+                        key={i.id}
                         className='Home invitations-Decline'
                         onClick={() => {
                             declineInvite(i);
                         }}
                     >
-                        X
+                        ✘
                     </Button>
                 </div>
             ));
@@ -129,7 +128,7 @@ const Home = () => {
 
     return (
         <BaseContainer>
-            <div className='Home listTitle'>Continue Learning</div>
+            <div className='Home listTitle'>Your Card Decks</div>
             <div className='Home list'>{listItems}</div>
             <div className='Home invitations-title'>Invitations</div>
             <div className='Home invitations-list'>{listInvites}</div>

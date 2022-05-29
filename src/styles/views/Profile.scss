@@ -1,9 +1,6 @@
 @import 'src/styles/theme';
 
-
 .profile {
-
-
     //FirstName
     &.firstName-title {
         position: absolute;
@@ -18,11 +15,9 @@
         font-size: 32px;
         line-height: 38px;
         /* identical to box height */
-
-
-        color: #FFFFFF;
-
+        color: #ffffff;
     }
+
     &.firstName-field {
         position: absolute;
         width: 363px;
@@ -30,16 +25,17 @@
         left: 575px;
         top: 292px;
 
-        background: #FFFFFF;
+        background: #ffffff;
         border: 1px solid #000000;
         box-sizing: border-box;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
     }
+
     &.firstName-text {
         position: absolute;
-        width: 281px;
-        height: 22px;
+        width: 320px;
+        height: 26px;
         left: 595px;
         top: 303px;
 
@@ -50,7 +46,6 @@
         line-height: 28px;
 
         color: rgba(0, 0, 0, 0.6);
-
 
         border: none;
         border-width: 0;
@@ -71,10 +66,9 @@
         line-height: 38px;
         /* identical to box height */
 
-
-        color: #FFFFFF;
-
+        color: #ffffff;
     }
+
     &.lastName-field {
         position: absolute;
         width: 363px;
@@ -82,16 +76,17 @@
         left: 575px;
         top: 402px;
 
-        background: #FFFFFF;
+        background: #ffffff;
         border: 1px solid #000000;
         box-sizing: border-box;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
     }
+
     &.lastName-text {
         position: absolute;
-        width: 281px;
-        height: 22px;
+        width: 320px;
+        height: 26px;
         left: 595px;
         top: 413px;
 
@@ -103,14 +98,12 @@
 
         color: rgba(0, 0, 0, 0.6);
 
-
-
         border: none;
         border-width: 0;
     }
 
-    //Email
-    &.email-title {
+    //Username
+    &.username-title {
         position: absolute;
         width: 160px;
         height: 38px;
@@ -124,27 +117,27 @@
         line-height: 38px;
         /* identical to box height */
 
-
-        color: #FFFFFF;
-
+        color: #ffffff;
     }
-    &.email-field {
+
+    &.username-field {
         position: absolute;
         width: 363px;
         height: 49px;
         left: 575px;
         top: 512px;
 
-        background: #FFFFFF;
+        background: #ffffff;
         border: 1px solid #000000;
         box-sizing: border-box;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
     }
-    &.email-text {
+
+    &.username-text {
         position: absolute;
-        width: 281px;
-        height: 22px;
+        width: 320px;
+        height: 26px;
         left: 595px;
         top: 523px;
 
@@ -156,15 +149,12 @@
 
         color: rgba(0, 0, 0, 0.6);
 
-
-
         border: none;
         border-width: 0;
     }
 
-
-    //Username
-    &.username-title {
+    //Email
+    &.email-title {
         position: absolute;
         width: 200px;
         height: 38px;
@@ -177,29 +167,28 @@
         font-size: 32px;
         line-height: 38px;
         /* identical to box height */
-
-
-        color: #FFFFFF;
-
+        color: #ffffff;
     }
-    &.username-field {
+
+    &.email-field {
         position: absolute;
         width: 363px;
         height: 49px;
         left: 574px;
         top: 622px;
 
-        background: #FFFFFF;
+        background: #ffffff;
         border: 1px solid #000000;
         box-sizing: border-box;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
     }
-    &.username-text {
+
+    &.email-text {
         position: absolute;
-        width: 281px;
-        height: 22px;
-        left: 594px;
+        width: 320px;
+        height: 26px;
+        left: 595px;
         top: 633px;
 
         font-family: 'Roboto', sans-serif;
@@ -209,7 +198,6 @@
         line-height: 28px;
 
         color: rgba(0, 0, 0, 0.6);
-
 
         border: none;
         border-width: 0;
@@ -230,11 +218,9 @@
         line-height: 38px;
         /* identical to box height */
 
-
-        color: #FFFFFF;
-
-
+        color: #ffffff;
     }
+
     &.password-field {
         position: absolute;
         width: 363px;
@@ -242,12 +228,13 @@
         left: 575px;
         top: 732px;
 
-        background: #FFFFFF;
+        background: #ffffff;
         border: 1px solid #000000;
         box-sizing: border-box;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
     }
+
     &.password-text {
         position: absolute;
         width: 281px;
@@ -265,7 +252,6 @@
 
         border: none;
         border-width: 0;
-
     }
 
     &.createButton {
@@ -273,9 +259,9 @@
         width: 146px;
         height: 63px;
         left: 683px;
-        top: 832px;
+        top: 600px;
 
-        background: #FFCA00;
+        background: #ffca00;
         border-radius: 20px;
 
         font-family: 'Roboto', sans-serif;
@@ -286,8 +272,26 @@
         text-align: center;
 
         color: #000000;
+    }
 
+    &.createButton2 {
+        position: absolute;
+        width: 146px;
+        height: 63px;
+        left: 683px;
+        top: 700px;
 
+        background: #ffca00;
+        border-radius: 20px;
+
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 28px;
+        text-align: center;
+
+        color: #000000;
     }
 
     &.login-text {
@@ -303,27 +307,27 @@
         font-size: 54px;
         line-height: 63px;
 
-        color: #FFFFFF;
+        color: #ffffff;
     }
 
     &.search-field {
         position: absolute;
-        width: 363px;
+        width: 420px;
         height: 49px;
         left: 550px;
         top: 120px;
 
-        background: #FFFFFF;
+        background: #ffffff;
         border: 1px solid #000000;
         box-sizing: border-box;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
-
     }
+
     &.search-text {
         position: absolute;
-        width: 281px;
-        height: 22px;
+        width: 95%;
+        height: 26px;
         left: 12px;
         top: 12px;
 
@@ -335,33 +339,27 @@
 
         color: rgba(0, 0, 0, 0.6);
 
-
-
         border: none;
         border-width: 0;
     }
 
-
     &.searchButton {
         position: absolute;
-        width: 90px;
+        width: 50px;
         height: 50px;
-        left: 930px;
+        left: 980px;
         top: 120px;
 
-        background: #FFCA00;
-        border-radius: 20px;
+        background: #ffca00;
+        border-radius: 50px;
 
         font-family: 'Roboto', sans-serif;
         font-style: normal;
-        font-weight: 400;
-        font-size: 24px;
+        font-weight: 500;
+        font-size: 20px;
         line-height: 28px;
         text-align: center;
 
         color: #000000;
-
-
     }
-
 }

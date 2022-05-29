@@ -32,9 +32,9 @@ const CardOverview = () => {
     const [user, setUser] = useState(null);
     const [deckname, setDeckname] = useState(null);
     const [visibility, setVisibility] = useState(null);
-    const [editButton, setEditButton] = useState(false);
-    const [checked, setChecked] = React.useState(true);
-    const [showEdit, setShowEdit] = useState(false);
+    const [isInEditMode, setIsInEditMode] = useState(false);
+    const [checked, setChecked] = useState(true);
+    const [showEditButton, setShowEditButton] = useState(false);
     const [cardEmpty, setCardEmpty] = useState(false);
 
 
@@ -48,12 +48,17 @@ const CardOverview = () => {
 
     const doUpdate = async () => {
         const deckId = location.pathname.match(/\d+$/);
-
         const requestBodyTitle = JSON.stringify({ deckname, visibility });
         await api.put('/decks/' + deckId, requestBodyTitle);
-
         window.location.reload(false);
     };
+
+    const deleteDeck = async() => {
+        const deckId = location.pathname.match(/\d+$/);
+        await api.delete('/decks/' + deckId);
+        history.push(`/home/` + user.id);
+    }
+
     /*
      *Send invitation to user with userToInviteId and then create a new duel and go to multiplayer page
      * */
@@ -124,7 +129,7 @@ const CardOverview = () => {
                 const deckId = sessionStorage.getItem('deckId');
                 const editen = sessionStorage.getItem('edit');
                 if (editen === true) {
-                    setEditButton(editen);
+                    setIsInEditMode(editen);
                 }
 
                 const responseDeck = await api.get('/decks/' + deckId);
@@ -146,7 +151,7 @@ const CardOverview = () => {
                 //check if deck is own deck
                 for (var i = 0; i < ownDecks.length; i++) {
                     if (JSON.stringify(ownDecks[i]) === JSON.stringify(responseDeck.data)) {
-                        setShowEdit(true);
+                        setShowEditButton(true);
                     }
                 }
             } catch (error) {
@@ -246,9 +251,9 @@ const CardOverview = () => {
         setChecked(event.target.checked);
     };
 
-    if (showEdit) {
+    if (showEditButton) {
         edit_button = (
-            <Button className='cardOverview edit-Button2' onClick={() => setEditButton(true)}>
+            <Button className='cardOverview edit-Button2' onClick={() => setIsInEditMode(true)}>
                 Edit
             </Button>
         );
@@ -281,10 +286,21 @@ const CardOverview = () => {
                 onClick={() => [
                     doUpdate(),
                     sessionStorage.setItem('edit', false),
-                    setEditButton(false),
+                    setIsInEditMode(false),
                 ]}
             >
                 Submit Changes
+            </Button>
+
+            <Button
+                className='cardOverview delete-Button'
+                onClick={() => [
+                    // setIsInEditMode(false),
+                    deleteDeck(),
+                    sessionStorage.setItem('edit', false),
+                ]}
+            >
+                Delete
             </Button>
             <Header />
             <div className='cardOverview listTitle'>Cards</div>
@@ -325,7 +341,7 @@ const CardOverview = () => {
 
     return (
         <BaseContainer>
-            {editButton ? edit : content}
+            {isInEditMode ? edit : content}
             <Header />
         </BaseContainer>
     );

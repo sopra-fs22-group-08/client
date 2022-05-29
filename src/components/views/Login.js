@@ -65,7 +65,6 @@ const Login = () => {
 
             // BUG: set result to 0
             if (sessionStorage.getItem('result') === null) {
-                // console.log("inside null check")
                 sessionStorage.setItem('result', 0);
             }
 
@@ -78,18 +77,20 @@ const Login = () => {
 
     const goToLandingPage = () => {
         history.push('/');
-    }
+    };
 
     document.body.style = 'background: #4757FF';
     return (
         <BaseContainer>
-            <div className='login title' onClick={()=>goToLandingPage()}>No Brainer</div>
+            <div className='login title' onClick={() => goToLandingPage()}>
+                No Brainer
+            </div>
             <div className='login login-text'>Login</div>
             <div className='login username-title'>Username</div>
-            <div className='login username-field'/>
+            <div className='login username-field' />
             <FormFieldUn value={username} onChange={(un) => setUsername(un)} />
             <div className='login password-title'>Password</div>
-            <div className='login password-field'/>
+            <div className='login password-field' />
             <FormFieldPw value={password} onChange={(n) => setPassword(n)} />
             <Button
                 className='login loginButton'
@@ -97,6 +98,9 @@ const Login = () => {
                 onClick={() => doLogin()}
             >
                 Login
+            </Button>
+            <Button className='login registerButton' onClick={() => [history.push('/register')]}>
+                or Register
             </Button>
         </BaseContainer>
     );
