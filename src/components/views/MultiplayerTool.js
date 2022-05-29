@@ -27,6 +27,7 @@ const MultiplayerTool = () => {
     const [duel, setDuel] = useState(null);
 
     let voices = [];
+
     const getVoice = () => {
         voices = synth.getVoices();
         return voices[9];
