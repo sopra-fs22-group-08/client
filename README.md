@@ -56,14 +56,14 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 On the landingpage is a register-button to creat a user. 
 <img width="1153" alt="Screenshot 2022-05-21 at 13 30 28" src="https://user-images.githubusercontent.com/91237594/169659835-a56f6806-1b40-4807-a00e-5fa84d6905ce.png">
 
-After the registration, the homepage is still empty. Therefore we create some decks with the creator.
-<img width="1244" alt="Screenshot 2022-05-21 at 13 33 15" src="https://user-images.githubusercontent.com/91237594/169659854-dda46e8d-41c8-49f6-a488-66883c28896c.png">
+Decks are generated with the Creator.
+<img width="1199" alt="Screenshot 2022-05-29 at 09 58 37" src="https://user-images.githubusercontent.com/91237594/170858790-511af7d0-8dd0-458e-9dac-82d021f4e2d2.png">
 
 When a deck is created, there is an overview-page. Where you can edit the deck or challenge other users.
-<img width="1244" alt="Screenshot 2022-05-21 at 13 37 41" src="https://user-images.githubusercontent.com/91237594/169659870-8681df9e-fe05-4e4c-8021-d1d8fa4d66db.png">
+<img width="1191" alt="Screenshot 2022-05-29 at 09 59 08" src="https://user-images.githubusercontent.com/91237594/170858785-b5ab0075-83db-4667-bf9d-c418daa0cc8f.png">
 
 If a user challenges you to a game. You are going to see an invitation on the homescreen.
-![Screenshot 2022-05-24 at 18 28 51](https://user-images.githubusercontent.com/91237594/170086354-2a14b3ba-032b-48c8-ba85-2145c0789be7.png)
+<img width="1182" alt="Screenshot 2022-05-29 at 09 57 53" src="https://user-images.githubusercontent.com/91237594/170858796-5abffa6d-dfac-43c2-a945-bd9626044c5c.png">
 
 The cards in the game consists of one question and four possible answers.
 <img width="1244" alt="Screenshot 2022-05-21 at 13 39 05" src="https://user-images.githubusercontent.com/91237594/169659890-4001d986-6363-467e-9701-8dad58ff4436.png">
