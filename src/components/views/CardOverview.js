@@ -37,7 +37,6 @@ const CardOverview = () => {
     const [showEditButton, setShowEditButton] = useState(false);
     const [cardEmpty, setCardEmpty] = useState(false);
 
-
     const doLearning = () => {
         const Id = sessionStorage.getItem('deckId');
         if (card.length) {
@@ -264,7 +263,6 @@ const CardOverview = () => {
             <div className='cardOverview card-Title'>Edit</div>
             <FormField value={deckname} onChange={(n) => setDeckname(n)} />
 
-            {editButton}
             <Button
                 className='cardOverview addCard-Button'
                 onClick={() => history.push('/cardcreator')}

@@ -111,7 +111,6 @@ const Home = () => {
                         ✓
                     </Button>
                     <Button
-                        key={i.id}
                         className='Home invitations-Decline'
                         onClick={() => {
                             declineInvite(i);
