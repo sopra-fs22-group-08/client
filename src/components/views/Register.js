@@ -1,12 +1,11 @@
-import React, {useState} from 'react';
-import {api, handleError} from 'helpers/api';
+import React, { useState } from 'react';
+import { api, handleError } from 'helpers/api';
 import User from 'models/User';
-import {useHistory} from 'react-router-dom';
-import {Button} from 'components/ui/Button';
+import { useHistory } from 'react-router-dom';
+import { Button } from 'components/ui/Button';
 import 'styles/views/Register.scss';
 import BaseContainer from 'components/ui/BaseContainer';
 import PropTypes from 'prop-types';
-
 
 const FormFieldFn = (props) => {
     return (
@@ -109,23 +108,24 @@ const Register = () => {
     const [isRegistered, setIsRegistered] = useState(false);
 
     const checkEmail = (email) => {
-        const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        const regex =
+            /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         if (regex.test(email) === false) {
             return false;
         }
         return true;
-    }
+    };
 
     const doRegister = async () => {
         try {
             if (!checkEmail(email)) {
-                alert("please enter a valid email");
+                alert('please enter a valid email');
                 return;
             }
 
             setIsRegistered(true);
 
-            const requestBody = JSON.stringify({username, firstName, lastName, email, password});
+            const requestBody = JSON.stringify({ username, firstName, lastName, email, password });
             const response = await api.post('/users', requestBody);
             await new Promise((resolve) => setTimeout(resolve, 1000));
 
@@ -149,49 +149,52 @@ const Register = () => {
 
     const goToLandingPage = () => {
         history.push('/');
-    }
+    };
     document.body.style = 'background: #4757FF;';
     return (
         <BaseContainer>
-            <div className='register title' onClick={() => goToLandingPage()}>No Brainer</div>
+            <div className='register title' onClick={() => goToLandingPage()}>
+                No Brainer
+            </div>
             <div className='register login-text'>Create New Account</div>
 
             <div className='register firstName-title'>First Name</div>
-            <div className='register firstName-field'/>
+            <div className='register firstName-field' />
 
-            <FormFieldFn value={firstName} onChange={(un) => setFirstName(un)}/>
+            <FormFieldFn value={firstName} onChange={(un) => setFirstName(un)} />
 
             <div className='register lastName-title'>Last Name</div>
-            <div className='register lastName-field'/>
+            <div className='register lastName-field' />
 
-            <FormFieldLn value={lastName} onChange={(n) => setLastName(n)}/>
+            <FormFieldLn value={lastName} onChange={(n) => setLastName(n)} />
 
             <div className='register email-title'>Email</div>
-            <div className='register email-field'/>
+            <div className='register email-field' />
 
-            <FormFieldEm value={email} onChange={(n) => setEmail(n)}/>
+            <FormFieldEm value={email} onChange={(n) => setEmail(n)} />
 
             <div className='register username-title'>Username</div>
-            <div className='register username-field'/>
+            <div className='register username-field' />
 
-            <FormFieldUn value={username} onChange={(un) => setUsername(un)}/>
+            <FormFieldUn value={username} onChange={(un) => setUsername(un)} />
 
             <div className='register password-title'>Password</div>
-            <div className='register password-field'/>
-            <FormFieldPw value={password} onChange={(n) => setPassword(n)}/>
+            <div className='register password-field' />
+            <FormFieldPw value={password} onChange={(n) => setPassword(n)} />
 
             <Button
                 className='register createButton'
-                disabled={!firstName || !lastName || !email || !username || !password || isRegistered}
+                disabled={
+                    !firstName || !lastName || !email || !username || !password || isRegistered
+                }
                 onClick={() => doRegister()}
             >
                 Create
             </Button>
             <Button
                 className='register loginButton'
-                onClick={() => [
-                    history.push('/login')
-                ]}
+                disabled={isRegistered}
+                onClick={() => [history.push('/login')]}
             >
                 or Login
             </Button>

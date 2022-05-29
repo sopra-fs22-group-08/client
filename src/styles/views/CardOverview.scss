@@ -1,13 +1,12 @@
 @import 'src/styles/theme';
 
 .cardOverview {
-    &.switch{
+    &.switch {
         position: absolute;
         left: 400px;
         top: 200px;
-
     }
-    &.switch-text{
+    &.switch-text {
         position: absolute;
         width: 49px;
         height: 29px;
@@ -22,13 +21,13 @@
         text-align: center;
 
         color: #000000;
-
     }
 
     &.online-None {
-        float:left;
+        float: left;
         height: 32px;
-        margin-right: 20px; margin-bottom: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
 
         font-family: 'Racing Sans One', sans-serif;
         font-style: normal;
@@ -38,7 +37,6 @@
         text-align: center;
 
         color: #000000;
-
     }
 
     &.card {
@@ -49,7 +47,7 @@
         top: 282px;
         align-content: center;
 
-        background: #FFFFFF;
+        background: #ffffff;
         border: 1px solid #000000;
         box-sizing: border-box;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -68,7 +66,6 @@
         text-align: center;
 
         color: #000000;
-
     }
 
     &.card-Title2 {
@@ -81,11 +78,18 @@
         line-height: 29px;
         text-align: center;
         color: #000000;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
         overflow: hidden;
+        display: -webkit-box;
+        -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-box-orient: vertical;
     }
 
     &.card-Text {
-
         position: absolute;
         left: 10%;
         right: 10%;
@@ -107,7 +111,7 @@
         height: 55px;
         left: 1050px;
         top: 110px;
-        background: #4757FF;
+        background: #4757ff;
         border-radius: 10px;
         font-family: 'Roboto', sans-serif;
         font-style: normal;
@@ -116,7 +120,7 @@
         line-height: 28px;
         text-align: center;
         padding-top: 5px;
-        color: #FFFFFF;
+        color: #ffffff;
     }
 
     &.edit-Button {
@@ -126,7 +130,7 @@
         left: 800px;
         top: 110px;
 
-        background: #4757FF;
+        background: #4757ff;
         border-radius: 10px;
 
         font-family: 'Roboto', sans-serif;
@@ -136,7 +140,7 @@
         line-height: 28px;
         text-align: center;
         padding-top: 5px;
-        color: #FFFFFF;
+        color: #ffffff;
     }
 
     &.edit-Button2 {
@@ -146,7 +150,7 @@
         left: 400px;
         top: 620px;
 
-        background: #4757FF;
+        background: #4757ff;
         border-radius: 10px;
 
         font-family: 'Roboto', sans-serif;
@@ -157,8 +161,7 @@
         text-align: center;
         padding-top: 5px;
 
-        color: #FFFFFF;
-
+        color: #ffffff;
     }
 
     &.addCard-Button {
@@ -168,7 +171,7 @@
         left: 340px;
         top: 270px;
 
-        background: #4757FF;
+        background: #4757ff;
         border-radius: 10px;
 
         font-family: 'Roboto', sans-serif;
@@ -179,7 +182,7 @@
         text-align: center;
         padding-top: 5px;
 
-        color: #FFFFFF;
+        color: #ffffff;
     }
     &.people-Title {
         position: absolute;
@@ -195,18 +198,16 @@
         line-height: 28px;
         /* identical to box height */
 
-
         color: #000000;
-
     }
     &.people-Button {
-        float:left;
+        float: left;
         width: 107px;
         height: 32px;
-        margin-right: 20px; margin-bottom: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
 
-
-        background: #FFFFFF;
+        background: #ffffff;
         border: 1px solid #000000;
         box-sizing: border-box;
         border-radius: 10px;
@@ -219,7 +220,6 @@
         text-align: center;
 
         color: #000000;
-
     }
     &.people-Button-position {
         position: absolute;
@@ -250,15 +250,16 @@
         line-height: 28px;
         /* identical to box height */
 
-        color: #FFFFFF;
+        color: #ffffff;
     }
     &.invitations-Field {
         position: relative;
         width: 550px;
         height: 32px;
-        margin-right: 10px; margin-bottom: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
 
-        background: #FFFFFF;
+        background: #ffffff;
         border: 1px solid #000000;
         box-sizing: border-box;
         border-radius: 10px;
@@ -283,7 +284,7 @@
         width: 54px;
         height: 23px;
 
-        background: #228C22;
+        background: #228c22;
         border-radius: 20px;
 
         font-family: 'Roboto', sans-serif;
@@ -293,8 +294,7 @@
         line-height: 14px;
         text-align: center;
 
-        color: #FFFFFF;
-
+        color: #ffffff;
     }
     &.invitations-Decline {
         position: relative;
@@ -303,8 +303,7 @@
         left: 460px;
         top: -17px;
 
-
-        background: #EA2D21;
+        background: #ea2d21;
         border-radius: 20px;
 
         font-family: 'Roboto', sans-serif;
@@ -314,13 +313,14 @@
         line-height: 14px;
         text-align: center;
 
-        color: #FFFFFF;
+        color: #ffffff;
     }
 
     &.deck-None {
-        float:left;
+        float: left;
         height: 32px;
-        margin-right: 20px; margin-bottom: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
 
         font-family: 'Racing Sans One', sans-serif;
         font-style: normal;
@@ -394,7 +394,6 @@
         line-height: 14px;
 
         color: #000000;
-
     }
     &.listElement-Text {
         position: relative;
@@ -407,20 +406,19 @@
         text-align: center;
 
         color: #000000;
-
     }
     &.listElement-Box {
-        float:left;
+        float: left;
         width: 108px;
         height: 153px;
-        margin-right: 20px; margin-bottom: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px;
 
-        background: #FFFFFF;
+        background: #ffffff;
         border: 1px solid #000000;
         box-sizing: border-box;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
-
     }
 
     &.form-title {
@@ -436,8 +434,7 @@
         font-size: 32px;
         line-height: 38px;
         /* identical to box height */
-        color: #FFFFFF;
-
+        color: #ffffff;
     }
     &.form-field {
         position: absolute;
@@ -446,7 +443,7 @@
         left: 350px;
         top: 115px;
 
-        background: #FFFFFF;
+        background: #ffffff;
         border: 1px solid #000000;
         box-sizing: border-box;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -470,5 +467,4 @@
         border: none;
         border-width: 0;
     }
-
 }
