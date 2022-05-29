@@ -27,6 +27,31 @@ const MultiplayerTool = () => {
     const [duel, setDuel] = useState(null);
 
     let voices = [];
+    const [ locationKeys, setLocationKeys ] = useState([])
+
+    useEffect(() => {
+        return history.listen(location => {
+            if (history.action === 'PUSH') {
+                setLocationKeys([ location.key ])
+            }
+
+            if (history.action === 'POP') {
+                if (locationKeys[1] === location.key) {
+                    setLocationKeys(([ _, ...keys ]) => keys)
+
+                    // Handle forward event
+
+                } else {
+                    setLocationKeys((keys) => [ location.key, ...keys ])
+
+                    // Handle back event
+
+                }
+            }
+        })
+    }, [ locationKeys, ])
+
+
     const getVoice = () => {
         voices = synth.getVoices();
         return voices[9];
