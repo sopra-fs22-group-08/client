@@ -8,6 +8,8 @@
  */
 
 .learningTool {
+    font-family: 'Roboto', sans-serif;
+
     &.back-button {
         position: relative;
         width: 200px;
@@ -19,7 +21,26 @@
         background: #4757ff;
         border-radius: 10px;
 
-        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 28px;
+        text-align: center;
+        padding-top: 5px;
+
+        color: #ffffff;
+    }
+
+    &.giveup-button {
+        position: absolute;
+        width: fit-content;
+        height: fit-content;
+        left: 650px;
+        top: 700px;
+
+        background: #4757ff;
+        border-radius: 10px;
+
         font-style: normal;
         font-weight: 400;
         font-size: 24px;
@@ -33,14 +54,13 @@
     &.text-to-speech {
         position: absolute;
         width: fit-content;
-        height: 40px;
+        height: fit-content;
         left: 400px;
         top: 190px;
 
         background: #4757ff;
         border-radius: 10px;
 
-        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 24px;
@@ -60,7 +80,6 @@
         top: 50px;
 
         text-align: center;
-        font-family: 'Racing Sans One', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 128px;
@@ -81,7 +100,6 @@
         flex-direction: column;
 
         text-align: center;
-        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 40px;
@@ -98,7 +116,6 @@
         left: 766px;
         top: 160px;
 
-        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 32px;
@@ -151,7 +168,6 @@
         display: -webkit-box;
         -webkit-box-orient: vertical;
 
-        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 30px;
@@ -171,7 +187,6 @@
         left: 570px;
         top: 248px;
 
-        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -196,7 +211,6 @@
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
 
-        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -222,7 +236,6 @@
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
 
-        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -245,7 +258,6 @@
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
 
-        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -268,7 +280,6 @@
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
 
-        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -294,7 +305,6 @@
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
 
-        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -317,7 +327,6 @@
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
 
-        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -340,7 +349,6 @@
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
 
-        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -367,7 +375,6 @@
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
 
-        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -390,7 +397,6 @@
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
 
-        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -413,7 +419,6 @@
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
 
-        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -440,7 +445,6 @@
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
 
-        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -463,7 +467,6 @@
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
 
-        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
