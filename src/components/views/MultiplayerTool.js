@@ -28,7 +28,6 @@ const MultiplayerTool = () => {
 
     let voices = [];
 
-
     const getVoice = () => {
         voices = synth.getVoices();
         return voices[9];
