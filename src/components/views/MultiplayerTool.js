@@ -21,6 +21,11 @@ const MultiplayerTool = () => {
     const [arr, setArr] = useState(shuffleAnswers([1, 2, 0, 3]));
     const [counter, setCounter] = useState(0);
     const [disable, setDisable] = useState(false);
+
+    const duelId = localStorage.getItem('duelId');
+    const userId = localStorage.getItem('userId');
+    const [duel, setDuel] = useState(null);
+
     let voices = [];
     const getVoice = () => {
         voices = synth.getVoices();
@@ -80,7 +85,6 @@ const MultiplayerTool = () => {
     };
 
     const goResult = async () => {
-        const duelId = localStorage.getItem('duelId');
         const result = localStorage.getItem('result');
         await api.put('/duels/' + duelId + '/players/' + user.id + '/score/' + result);
         await api.put('/duels/' + duelId + '/players/' + user.id + '/status/FINISHED');
@@ -103,8 +107,8 @@ const MultiplayerTool = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const userId = localStorage.getItem('userId');
                 const deckId = location.pathname.match(/deckID=(\d+)/);
+                const responseDuel = await api.get('/duels/' + duelId);
                 const responseUser = await api.get('/users/' + userId);
                 const responseCard = await api.get('/decks/' + deckId[1] + '/cards');
                 const responseDeck = await api.get('/decks/' + deckId[1]);
@@ -112,7 +116,7 @@ const MultiplayerTool = () => {
                 setUser(responseUser.data);
                 setDeck(responseDeck.data);
                 setCards(responseCard.data);
-                setCards(responseCard.data);
+                setDuel(responseDuel.data);
             } catch (error) {
                 console.error(
                     `Something went wrong while fetching the decks: \n${handleError(error)}`
@@ -169,6 +173,16 @@ const MultiplayerTool = () => {
             return goNextCard();
         }
     }
+
+    const chickenOut = async () => {
+        try {
+            await api.put('/duels/' + duel.id + '/players/' + userId + '/status/CHICKEN');
+            localStorage.removeItem('duelId');
+            history.push(`/home/` + userId);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     if (cards) {
         content = (
@@ -273,6 +287,9 @@ const MultiplayerTool = () => {
                     {localStorage.getItem('result') === 0 ? 0 : localStorage.getItem('result')} out
                     of {Object.keys(cards).length} correct!
                 </div>
+                <Button className='learningTool giveup-button' onClick={() => [chickenOut()]}>
+                    Give Up
+                </Button>
             </BaseContainer>
         );
     }
