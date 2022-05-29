@@ -143,12 +143,12 @@ const LearningTool = () => {
             //Right Answer
             c = c + 1;
             setCounter(c);
-            localStorage.setItem('result', c);
         }
+        sessionStorage.setItem('result', c);
 
         await new Promise((resolve) => setTimeout(resolve, 1200));
 
-        localStorage.setItem('lengthDeck', Object.keys(cards).length);
+        sessionStorage.setItem('lengthDeck', Object.keys(cards).length);
 
         checkNextCard(cardID, value);
     }

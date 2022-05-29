@@ -80,8 +80,8 @@ const MultiplayerTool = () => {
     };
 
     const goResult = async () => {
-        const duelId = localStorage.getItem('duelId');
-        const result = localStorage.getItem('result');
+        const duelId = sessionStorage.getItem('duelId');
+        const result = sessionStorage.getItem('result');
         await api.put('/duels/' + duelId + '/players/' + user.id + '/score/' + result);
         await api.put('/duels/' + duelId + '/players/' + user.id + '/status/FINISHED');
         history.push(`/multiplayerToolResult`);
@@ -103,7 +103,7 @@ const MultiplayerTool = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const userId = localStorage.getItem('userId');
+                const userId = sessionStorage.getItem('userId');
                 const deckId = location.pathname.match(/deckID=(\d+)/);
                 const responseUser = await api.get('/users/' + userId);
                 const responseCard = await api.get('/decks/' + deckId[1] + '/cards');
@@ -150,12 +150,12 @@ const MultiplayerTool = () => {
             //Right Answer
             c = c + 1;
             setCounter(c);
-            localStorage.setItem('result', c);
+            sessionStorage.setItem('result', c);
         }
 
         await new Promise((resolve) => setTimeout(resolve, 1200));
 
-        localStorage.setItem('lengthDeck', Object.keys(cards).length);
+        sessionStorage.setItem('lengthDeck', Object.keys(cards).length);
 
         checkNextCard(cardID, value);
     }
@@ -270,7 +270,7 @@ const MultiplayerTool = () => {
                 </Button>
                 <div className='learningTool livescore-container'>
                     You have{' '}
-                    {localStorage.getItem('result') === 0 ? 0 : localStorage.getItem('result')} out
+                    {sessionStorage.getItem('result') === 0 ? 0 : sessionStorage.getItem('result')} out
                     of {Object.keys(cards).length} correct!
                 </div>
             </BaseContainer>

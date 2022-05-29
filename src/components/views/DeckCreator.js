@@ -35,7 +35,7 @@ const DeckCreator = () => {
 
     const doDeckCreator = async () => {
         try {
-            const userid = localStorage.getItem('userId');
+            const userid = sessionStorage.getItem('userId');
             const requestBodyTitle = JSON.stringify({ deckname, visibility });
             const responseTitle = await api.post('/users/' + userid + '/decks', requestBodyTitle);
 
@@ -43,7 +43,7 @@ const DeckCreator = () => {
             const deck = new Deck(responseTitle.data);
 
             // Store deckId into the local storage.
-            localStorage.setItem('deckId', deck.id);
+            sessionStorage.setItem('deckId', deck.id);
 
             // DeckCreator successfully worked --> navigate to the route /home in the GameRouter
             history.push(`/cardcreator`);
