@@ -79,21 +79,25 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ## Illustrations
 
 - On the 'landingpage' is a register-button to create a user.
-<img width="720" alt="Screenshot 2022-05-21 at 13 30 28" src="https://user-images.githubusercontent.com/45210978/170867778-ae8e2577-bb18-4a7b-bb12-7b3f68f722f5.jpg">
+<img width="720" alt="Landingpage" src="https://user-images.githubusercontent.com/45210978/170867778-ae8e2577-bb18-4a7b-bb12-7b3f68f722f5.jpg">
 
 - Decks are generated with the Creator.
-<img width="720" alt="Screenshot 2022-05-29 at 09 58 37" src="https://user-images.githubusercontent.com/91237594/170858790-511af7d0-8dd0-458e-9dac-82d021f4e2d2.png">
+<img width="720" alt="Home1" src="https://user-images.githubusercontent.com/91237594/170858790-511af7d0-8dd0-458e-9dac-82d021f4e2d2.png">
 
 - When a deck is created, there is an overview-page. Where you can edit the deck
 or challenge other users.
-<img width="720" alt="Screenshot 2022-05-29 at 09 59 08" src="https://user-images.githubusercontent.com/91237594/170858785-b5ab0075-83db-4667-bf9d-c418daa0cc8f.png">
+<img width="720" alt="CardOverview" src="https://user-images.githubusercontent.com/91237594/170858785-b5ab0075-83db-4667-bf9d-c418daa0cc8f.png">
+
+- Editing Deck under CardOverview
+
+<img width="720" alt="Edit Decks" src="https://user-images.githubusercontent.com/45210978/170868531-054a328a-258f-48b7-9cbe-d4dbadc94823.jpg">
 
 - If a user challenges you to a game. You are going to see an invitation on the
 'homescreen'.
-<img width="720" alt="Screenshot 2022-05-29 at 09 57 53" src="https://user-images.githubusercontent.com/91237594/170858796-5abffa6d-dfac-43c2-a945-bd9626044c5c.png">
+<img width="720" alt="Home2" src="https://user-images.githubusercontent.com/91237594/170858796-5abffa6d-dfac-43c2-a945-bd9626044c5c.png">
 
 - The cards in the game consists of one question and four possible answers.
-<img width="720" alt="Screenshot 2022-05-21 at 13 39 05" src="https://user-images.githubusercontent.com/45210978/170867782-9c2d8b6c-a454-4030-94b8-a4a0ec472a47.jpg">
+<img width="720" alt="Mptool" src="https://user-images.githubusercontent.com/45210978/170867782-9c2d8b6c-a454-4030-94b8-a4a0ec472a47.jpg">
 
 ## Roadmap
 
