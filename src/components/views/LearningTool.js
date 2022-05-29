@@ -73,15 +73,12 @@ const LearningTool = () => {
             speakAnswer4.rate = 0.825;
             speakAnswer4.pitch = 1;
             synth.speak(speakAnswer4);
-
-
         }
     };
 
     const speakAll = (params) => {
         speak(params);
-
-    }
+    };
 
     const goResult = async () => {
         history.push(`/learningtoolresult`);
@@ -141,7 +138,7 @@ const LearningTool = () => {
 
     async function checkAnswer(cardID, value) {
         let c = counter;
-        synth.cancel()
+        synth.cancel();
         if (value === 0) {
             //Right Answer
             c = c + 1;
@@ -173,27 +170,21 @@ const LearningTool = () => {
                 <div className='learningTool card-number'>
                     {cardID}/{Object.keys(cards).length}
                 </div>
-                <div className='learningTool card-question'>
-                    {cards[cardID].question}
-                    <button
-                        className='learningTool text-to-speech'
-                        onClick={() =>
-                            speakAll([
-                                cards[cardID].question,
-                                    ' ,answer 1, ' +
-                                    cards[cardID].options[arr[0]],
-                                    ' ,answer 2, ' +
-                                    cards[cardID].options[arr[1]],
-                                    ' ,answer 3, ' +
-                                    cards[cardID].options[arr[2]],
-                                    ' ,answer 4, ' +
-                                    cards[cardID].options[arr[3]]
-                            ])
-                        }
-                    >
-                        Text To Speech
-                    </button>
-                </div>
+                <Button
+                    className='learningTool text-to-speech'
+                    onClick={() =>
+                        speakAll([
+                            cards[cardID].question,
+                            ' ,answer 1, ' + cards[cardID].options[arr[0]],
+                            ' ,answer 2, ' + cards[cardID].options[arr[1]],
+                            ' ,answer 3, ' + cards[cardID].options[arr[2]],
+                            ' ,answer 4, ' + cards[cardID].options[arr[3]],
+                        ])
+                    }
+                >
+                    Text To Speech
+                </Button>
+                <div className='learningTool card-question'>{cards[cardID].question}</div>
                 <div className='learningTool learn-tittle'>Which one is correct?</div>
 
                 <Button

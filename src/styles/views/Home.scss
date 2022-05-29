@@ -181,14 +181,11 @@
 
         color: #000000;
     }
+
     &.listElement-Title {
         position: relative;
         height: 100px;
         width:100%;
-
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
 
         font-family: 'Roboto', sans-serif;
         font-style: normal;
@@ -198,12 +195,24 @@
         text-align: center;
         word-break: break-word;
 
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        hyphens: auto;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+
         color: #000000;
     }
+
     &.listElement-Title:hover{
         overflow: visible;
         text-shadow: 0 0 5px white;
     }
+
     &.listElement-Text {
 
         position: center;
